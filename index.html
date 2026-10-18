@@ -1,0 +1,2110 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="S4C là chỗ dựa kỹ thuật cho doanh nghiệp nhỏ, siêu nhỏ và startup: vận hành & tối ưu hệ thống, bảo vệ an toàn, tự động hóa việc lặp lại. Tư vấn ban đầu miễn phí.">
+<meta name="theme-color" content="#0b1220">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://your-domain.example/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='6' y1='2' x2='26' y2='30' gradientUnits='userSpaceOnUse'><stop offset='0' stop-color='%2378a2ff'/><stop offset='.55' stop-color='%233b6fe6'/><stop offset='1' stop-color='%231a3ca3'/></linearGradient></defs><rect width='32' height='32' rx='7' fill='%230b1220'/><path d='M16 4 L26 8 V15 C26 21.5 21.5 25.5 16 27.5 C10.5 25.5 6 21.5 6 15 V8 Z' fill='url(%23g)'/><path d='M11.5 16 l3.2 3.2 L21 12.2' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<!-- Open Graph / mạng xã hội -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="S4C">
+<meta property="og:title" content="S4C — Vận hành · Tối ưu · An toàn hệ thống cho doanh nghiệp nhỏ">
+<meta property="og:description" content="S4C là chỗ dựa kỹ thuật cho doanh nghiệp nhỏ, siêu nhỏ và startup: vận hành & tối ưu hệ thống, bảo vệ an toàn, tự động hóa việc lặp lại. Tư vấn ban đầu miễn phí.">
+<meta property="og:url" content="https://your-domain.example/">
+<meta property="og:image" content="https://your-domain.example/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="S4C — Vận hành · Tối ưu · An toàn hệ thống cho doanh nghiệp nhỏ">
+<meta name="twitter:description" content="S4C là chỗ dựa kỹ thuật cho doanh nghiệp nhỏ, siêu nhỏ và startup: vận hành & tối ưu hệ thống, bảo vệ an toàn, tự động hóa việc lặp lại. Tư vấn ban đầu miễn phí.">
+<meta name="twitter:image" content="https://your-domain.example/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<title>S4C Solution Portal</title>
+<style>
+/* Trang giới thiệu dịch vụ tương tác — vận hành, tối ưu & an toàn hệ thống cho DN nhỏ.
+   Hệ màu: xanh dương (cùng họ CMC) + nền xanh than-đen (navy charcoal); icon đơn sắc cùng tông; status chỉ dùng cho dữ liệu. Theme đổi toàn trang (cả sidebar). */
+:root {
+  --bg: #eef1f6; --surface: #ffffff; --surface-2: #eef1f7; --surface-3: #e1e7f1;
+  --ink: #111a28; --ink-soft: #4b5a6e; --ink-faint: #828fa3;
+  --line: #d8dfe9; --line-soft: #e6ebf2;
+  --accent: #2563eb; --accent-ink: #1d4ed8; --accent-wash: #e5edfd;
+  --navy: #0c1424; --navy-2: #13233f;
+  --ok: #2e9e6b; --warn: #c6881a; --crit: #d04a4a;
+  --ok-wash: #e6f4ec; --warn-wash: #faf0da; --crit-wash: #f8e5e5;
+  --gold: #b07d22; --gold-wash: #f6edd8;
+  --chart-grid: #e1e7f1; --chart-ink: #4b5a6e;
+  /* sidebar (theme-aware) — light: sáng */
+  --nav-bg: #ffffff; --nav-ink: #26344a; --nav-ink-soft: #596a7e; --nav-sec: #93a0b2; --nav-border: #e6ebf2; --nav-hover: #eef2f9;
+  --shadow: 0 1px 2px rgba(18,32,41,.05), 0 6px 20px rgba(18,32,41,.07);
+  --shadow-lg: 0 10px 40px rgba(18,32,41,.16);
+  --radius: 11px; --radius-sm: 7px;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --nav-w: 236px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #090d15; --surface: #111724; --surface-2: #172031; --surface-3: #212c40;
+    --ink: #e7ecf5; --ink-soft: #9fabbd; --ink-faint: #67758a;
+    --line: #233146; --line-soft: #1a2434;
+    --accent: #5b8dff; --accent-ink: #88aaff; --accent-wash: #122140;
+    --navy: #060a12; --navy-2: #0c1424;
+    --ok: #46b985; --warn: #e0a63c; --crit: #e86d6d;
+    --ok-wash: #11291f; --warn-wash: #2c2512; --crit-wash: #2c1818;
+    --gold: #d6a648; --gold-wash: #292110;
+    --chart-grid: #233146; --chart-ink: #9fabbd;
+    --nav-bg: #070c15; --nav-ink: #c6d2e2; --nav-ink-soft: #8593a6; --nav-sec: #5d6c80; --nav-border: rgba(255,255,255,.07); --nav-hover: rgba(255,255,255,.05);
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.4);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,.55);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #090d15; --surface: #111724; --surface-2: #172031; --surface-3: #212c40;
+  --ink: #e7ecf5; --ink-soft: #9fabbd; --ink-faint: #67758a;
+  --line: #233146; --line-soft: #1a2434;
+  --accent: #5b8dff; --accent-ink: #88aaff; --accent-wash: #122140;
+  --navy: #060a12; --navy-2: #0c1424;
+  --ok: #46b985; --warn: #e0a63c; --crit: #e86d6d;
+  --ok-wash: #11291f; --warn-wash: #2c2512; --crit-wash: #2c1818;
+  --gold: #d6a648; --gold-wash: #292110;
+  --chart-grid: #233146; --chart-ink: #9fabbd;
+  --nav-bg: #070c15; --nav-ink: #c6d2e2; --nav-ink-soft: #8593a6; --nav-sec: #5d6c80; --nav-border: rgba(255,255,255,.07); --nav-hover: rgba(255,255,255,.05);
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.4);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,.55);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 14.5px; line-height: 1.58; -webkit-font-smoothing: antialiased; }
+h1,h2,h3,h4 { font-family: var(--font-display); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+p { margin: 0; }
+button { font-family: inherit; cursor: pointer; }
+.tnum { font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--font-mono); }
+svg.ic { width: 1em; height: 1em; display: block; }
+
+.app { display: flex; min-height: 100%; }
+
+/* nav (theme-aware) */
+.nav { width: var(--nav-w); flex: none; background: var(--nav-bg); color: var(--nav-ink); display: flex; flex-direction: column; position: sticky; top: env(safe-area-inset-top,0px); height: 100vh; z-index: 40; border-right: 1px solid var(--nav-border); transition: background .2s, color .2s; }
+.brand { padding: 18px 18px 14px; border-bottom: 1px solid var(--nav-border); }
+.brand .logo { font-family: var(--font-display); font-weight: 700; font-size: 21px; letter-spacing: -.5px; display: flex; align-items: center; gap: 9px; color: var(--nav-ink); }
+.brand .logo .mk { width: 27px; height: 27px; flex: none; }
+.brand .tag { font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--nav-sec); margin-top: 7px; }
+.nav-scroll { overflow-y: auto; flex: 1; padding: 8px 10px 14px; }
+.nav-sec { font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--nav-sec); padding: 13px 10px 5px; }
+.nav-item { display: flex; align-items: center; gap: 11px; width: 100%; padding: 9px 11px; border: none; background: none; color: var(--nav-ink-soft); text-align: left; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 1px; transition: background .12s, color .12s; }
+.nav-item:hover { background: var(--nav-hover); color: var(--nav-ink); }
+.nav-item.active { background: var(--accent); color: #fff; font-weight: 500; }
+.nav-item.feature { color: var(--accent-ink); background: var(--accent-wash); margin-bottom: 4px; }
+.nav-item.feature.active { background: var(--accent); color: #fff; }
+.nav-item .ix { font-size: 17px; flex: none; display: grid; place-items: center; }
+.nav-foot { padding: 11px 12px; border-top: 1px solid var(--nav-border); display: flex; flex-direction: column; gap: 7px; }
+.nav-foot button { font-size: 11.5px; padding: 8px 8px; border-radius: var(--radius-sm); border: 1px solid var(--nav-border); background: none; color: var(--nav-ink-soft); display: flex; align-items: center; justify-content: center; gap: 6px; transition: background .12s; }
+.nav-foot button:hover { background: var(--nav-hover); color: var(--nav-ink); }
+.nav-foot .row { display: flex; gap: 7px; } .nav-foot .row button { flex: 1; }
+
+.main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.topbar { display: none; position: sticky; top: 0; z-index: 35; background: var(--nav-bg); color: var(--nav-ink); border-bottom: 1px solid var(--nav-border); padding: 10px 14px; padding-top: calc(10px + env(safe-area-inset-top,0px)); align-items: center; gap: 12px; }
+.topbar .logo { font-family: var(--font-display); font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.topbar .logo .mk { width: 22px; height: 22px; }
+.hamb { margin-left: auto; background: var(--nav-hover); border: 1px solid var(--nav-border); color: var(--nav-ink); width: 38px; height: 34px; border-radius: 8px; font-size: 16px; }
+
+.content { padding: 26px 32px 70px; max-width: 1180px; width: 100%; margin: 0 auto; }
+.view { display: none; } .view.active { display: block; animation: fade .2s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+.page-head { margin-bottom: 20px; }
+.eyebrow { font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--accent-ink); font-weight: 600; margin-bottom: 6px; font-family: var(--font-mono); }
+.page-head h1 { font-size: 25px; letter-spacing: -.5px; }
+.page-head p.sub { color: var(--ink-soft); margin-top: 7px; max-width: 72ch; }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.grid { display: grid; gap: 15px; }
+.pill { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 600; padding: 3px 9px; border-radius: 100px; letter-spacing: .3px; white-space: nowrap; }
+.pill.ok { background: var(--ok-wash); color: var(--ok); } .pill.warn { background: var(--warn-wash); color: var(--warn); } .pill.crit { background: var(--crit-wash); color: var(--crit); }
+.pill.accent { background: var(--accent-wash); color: var(--accent-ink); } .pill.muted { background: var(--surface-2); color: var(--ink-soft); } .pill.gold { background: var(--gold-wash); color: var(--gold); }
+
+.note-tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: .8px; color: var(--accent-ink); background: var(--accent-wash); padding: 3px 9px; border-radius: 5px; }
+
+.btn { display: inline-flex; align-items: center; gap: 7px; justify-content: center; padding: 10px 17px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 500; transition: all .12s; }
+.btn:hover { border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { background: var(--accent-ink); color: #fff; }
+.btn.ghost { background: none; } .btn.lg { padding: 13px 24px; font-size: 14.5px; }
+.btn .ic { font-size: 15px; }
+
+.detail-field { margin-top: 13px; }
+.detail-field .k { font-size: 10px; text-transform: uppercase; letter-spacing: .8px; color: var(--ink-faint); font-weight: 600; margin-bottom: 4px; font-family: var(--font-mono); }
+.detail-field .v { font-size: 13px; color: var(--ink); }
+.detail-field ul { margin: 4px 0 0; padding-left: 16px; color: var(--ink-soft); font-size: 12.5px; }
+.detail-field li { margin-bottom: 3px; }
+.sec-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-faint); font-family: var(--font-mono); margin: 30px 0 13px; font-weight: 600; }
+
+/* icon tile — tông nhất quán */
+.itile { border-radius: 10px; display: grid; place-items: center; background: var(--accent-wash); color: var(--accent); flex: none; }
+
+/* hero */
+.hero { background: linear-gradient(140deg, var(--navy) 0%, var(--navy-2) 100%); color: #e9f0f6; border-radius: 14px; padding: 34px 32px; position: relative; overflow: hidden; display: flex; gap: 26px; align-items: center; }
+.hero .hero-text { flex: 1; min-width: 0; position: relative; z-index: 1; }
+.hero .eyebrow { color: var(--accent); }
+.hero h2 { font-size: 26px; letter-spacing: -.5px; color: #fff; max-width: 26ch; }
+.hero .lead { color: #a9bcc7; margin-top: 12px; max-width: 60ch; }
+.hero .cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+.hero .btn { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #e9f0f6; }
+.hero .btn:hover { background: rgba(255,255,255,.16); color: #fff; }
+.hero .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.hero .shield { flex: none; width: 150px; height: 150px; position: relative; z-index: 1; }
+@media (prefers-reduced-motion: no-preference){ .hero .shield { animation: shieldFloat 5.5s ease-in-out infinite; } }
+@keyframes shieldFloat { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-7px) rotate(-1.2deg); } }
+@media (prefers-reduced-motion: reduce){ .sh-glint { display: none; } }
+@media (max-width: 720px){ .hero .shield { display: none; } }
+.hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(91,141,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(91,141,255,.07) 1px, transparent 1px); background-size: 30px 30px; -webkit-mask-image: radial-gradient(circle at 78% 28%, #000, transparent 72%); mask-image: radial-gradient(circle at 78% 28%, #000, transparent 72%); animation: gridpan 20s linear infinite; pointer-events: none; }
+.hero::after { content: ""; position: absolute; right: -60px; top: -70px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(91,141,255,.22), transparent 70%); pointer-events: none; animation: glowpulse 6s ease-in-out infinite; }
+@keyframes gridpan { from { background-position: 0 0, 0 0; } to { background-position: 30px 30px, 30px 30px; } }
+@keyframes glowpulse { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
+
+/* live badge */
+.live-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700; letter-spacing: .5px; color: var(--ok); background: var(--ok-wash); padding: 3px 9px; border-radius: 100px; }
+.live-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); animation: blink 1.4s ease-in-out infinite; }
+@keyframes blink { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.75); } }
+
+/* share buttons */
+.share-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.share-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 13px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 12.5px; font-weight: 500; transition: all .12s; }
+.share-btn:hover { border-color: var(--accent); background: var(--surface-2); }
+.share-btn .ic { font-size: 16px; }
+.share-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.share-btn.primary:hover { background: var(--accent-ink); }
+
+.pain-grid { grid-template-columns: repeat(3,1fr); }
+.pain-card { padding: 17px; }
+.pain-card .pq { font-size: 14.5px; font-weight: 600; font-family: var(--font-display); color: var(--ink); display: flex; gap: 10px; align-items: flex-start; line-height: 1.3; }
+.pain-card .pq .itile { width: 26px; height: 26px; font-size: 15px; background: var(--crit-wash); color: var(--crit); margin-top: 1px; }
+.pain-card .pa { color: var(--ink-soft); font-size: 12.5px; margin-top: 10px; }
+.pain-card .pcost { font-size: 11.5px; color: var(--gold); margin-top: 9px; font-weight: 500; }
+
+.who-box { grid-template-columns: 1fr 1fr; }
+.who { padding: 18px; }
+.who h4 { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+.who.yes h4 { color: var(--ok); } .who.no h4 { color: var(--ink-faint); }
+.who ul { margin: 10px 0 0; padding-left: 18px; color: var(--ink-soft); font-size: 12.5px; }
+.who li { margin-bottom: 5px; }
+
+.value-row { grid-template-columns: repeat(3,1fr); }
+.value-card { padding: 18px; }
+.value-card .itile { width: 40px; height: 40px; font-size: 21px; margin-bottom: 11px; }
+.value-card .vt { font-weight: 600; font-size: 14px; }
+.value-card .vd { font-size: 12.5px; color: var(--ink-soft); margin-top: 6px; }
+
+.journey { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; }
+.journey .step { flex: 1; min-width: 108px; display: flex; align-items: center; gap: 9px; }
+.journey .step .n { font-family: var(--font-mono); font-size: 11px; color: var(--accent-ink); border: 1.5px solid var(--accent); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--accent-wash); }
+.journey .step .lbl { font-weight: 600; font-size: 12.5px; } .journey .step .lbl small { display: block; color: var(--ink-faint); font-weight: 400; font-size: 11px; }
+.journey .arrow { color: var(--ink-faint); align-self: center; padding: 0 3px; }
+
+/* scenario */
+.scn-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.scn-progress { display: flex; gap: 0; margin-bottom: 18px; overflow-x: auto; padding-bottom: 4px; }
+.scn-pstep { display: flex; align-items: center; flex: none; }
+.scn-pstep .node { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; padding: 0 4px; }
+.scn-pstep .dot { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-mono); font-size: 12px; font-weight: 600; background: var(--surface); border: 2px solid var(--line); color: var(--ink-faint); transition: all .18s; }
+.scn-pstep.done .dot { background: var(--ok); border-color: var(--ok); color: #fff; }
+.scn-pstep.current .dot { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 0 4px var(--accent-wash); }
+.scn-pstep .plabel { font-size: 10.5px; color: var(--ink-faint); white-space: nowrap; max-width: 100px; text-align: center; line-height: 1.25; }
+.scn-pstep.current .plabel { color: var(--ink); font-weight: 600; }
+.scn-pstep .connector { width: 26px; height: 2px; background: var(--line); margin: 0 2px 20px; flex: none; }
+.scn-pstep.done .connector { background: var(--ok); }
+
+.scn-stage { display: grid; grid-template-columns: 1fr 320px; gap: 18px; align-items: start; }
+.scn-main { min-width: 0; }
+.stage-card { padding: 24px; }
+.stage-card .st-eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--accent-ink); font-weight: 600; letter-spacing: .5px; }
+.stage-card h2 { font-size: 20px; margin-top: 5px; letter-spacing: -.3px; }
+.stage-card .st-intro { color: var(--ink-soft); margin-top: 9px; font-size: 13.5px; }
+.stage-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 22px; }
+
+.ctx-panel { position: sticky; top: 18px; padding: 18px; }
+.ctx-panel h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .8px; color: var(--ink-faint); font-family: var(--font-mono); }
+.ctx-card { margin-top: 10px; padding: 13px; background: var(--surface-2); border-radius: var(--radius-sm); }
+.ctx-card .cc-name { font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+.ctx-card .cc-name .itile { width: 24px; height: 24px; font-size: 14px; }
+.ctx-card .cc-sub { font-size: 11.5px; color: var(--ink-faint); margin-top: 4px; }
+.ctx-steps { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.ctx-s { display: flex; align-items: center; gap: 8px; font-size: 11.5px; padding: 6px 8px; border-radius: 6px; background: var(--surface-2); color: var(--ink-faint); }
+.ctx-s.on { background: var(--accent-wash); color: var(--accent-ink); font-weight: 600; }
+.ctx-s .cs-n { width: 17px; height: 17px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 10px; background: var(--surface-3); color: var(--ink-faint); }
+.ctx-s.on .cs-n { background: var(--accent); color: #fff; } .ctx-s.done .cs-n { background: var(--ok); color: #fff; }
+
+.benefit { display: flex; gap: 11px; padding: 14px 16px; border-radius: var(--radius-sm); background: var(--ok-wash); border: 1px solid color-mix(in srgb, var(--ok) 28%, transparent); margin-top: 16px; }
+.benefit .b-ic { color: var(--ok); flex: none; font-size: 17px; margin-top: 1px; }
+.benefit .b-h { font-weight: 700; font-size: 10.5px; text-transform: uppercase; letter-spacing: .7px; color: var(--ok); margin-bottom: 4px; }
+.benefit .b-t { font-size: 12.5px; color: var(--ink); }
+.risk-callout { display: flex; gap: 11px; padding: 14px 16px; border-radius: var(--radius-sm); background: var(--crit-wash); border: 1px solid color-mix(in srgb, var(--crit) 28%, transparent); margin-top: 14px; }
+.risk-callout .r-ic { color: var(--crit); flex: none; font-size: 17px; margin-top: 1px; }
+.risk-callout .r-h { font-weight: 700; font-size: 10.5px; text-transform: uppercase; letter-spacing: .7px; color: var(--crit); margin-bottom: 4px; }
+
+.opt-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.opt { padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; transition: all .14s; }
+.opt:hover { border-color: var(--accent); } .opt.sel { border-color: var(--accent); background: var(--accent-wash); }
+.opt .o-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.opt .o-name { font-weight: 600; font-size: 14px; } .opt .o-desc { font-size: 12.5px; color: var(--ink-soft); margin-top: 5px; } .opt .o-fit { font-size: 11.5px; color: var(--accent-ink); margin-top: 7px; font-weight: 500; }
+
+.finding-list { display: flex; flex-direction: column; gap: 9px; margin-top: 4px; }
+.finding { display: flex; gap: 11px; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); align-items: flex-start; }
+.finding .f-sev { width: 3px; border-radius: 3px; align-self: stretch; flex: none; }
+.finding .f-body { flex: 1; min-width: 0; }
+.finding .f-title { font-weight: 600; font-size: 13px; } .finding .f-desc { font-size: 12px; color: var(--ink-soft); margin-top: 3px; } .finding .f-cost { font-size: 11.5px; color: var(--gold); margin-top: 5px; font-weight: 500; }
+
+.report-card { border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; margin-top: 6px; }
+.report-card .rc-head { background: var(--surface-2); padding: 11px 15px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); }
+.report-card .rc-body { padding: 16px 18px; }
+.report-card .rc-row { display: grid; grid-template-columns: 140px 1fr; gap: 8px 14px; font-size: 12.5px; padding: 8px 0; border-top: 1px solid var(--line-soft); }
+.report-card .rc-row:first-child { border-top: none; } .report-card .rc-row .rk { color: var(--ink-faint); font-weight: 600; }
+
+.timeline { margin-top: 4px; position: relative; padding-left: 22px; }
+.timeline::before { content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+.tl-item { position: relative; padding: 0 0 14px; }
+.tl-item::before { content: ""; position: absolute; left: -19px; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); }
+.tl-item.crit::before { background: var(--crit); } .tl-item.warn::before { background: var(--warn); } .tl-item.ok::before { background: var(--ok); }
+.tl-item .tl-time { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); }
+.tl-item .tl-text { font-size: 12.5px; margin-top: 1px; } .tl-item .tl-src { font-size: 10.5px; color: var(--ink-faint); font-family: var(--font-mono); }
+
+.svc-link-card { padding: 16px 18px; border: 1px solid var(--accent); border-radius: var(--radius-sm); background: var(--accent-wash); margin-top: 6px; }
+
+.dtabs { display: flex; gap: 6px; margin: 4px 0 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.dtab { padding: 9px 14px; border: none; background: none; color: var(--ink-soft); font-size: 13px; font-weight: 500; border-bottom: 2px solid transparent; margin-bottom: -1px; display: inline-flex; align-items: center; gap: 7px; }
+.dtab .ic { font-size: 15px; }
+.dtab.active { color: var(--accent-ink); border-bottom-color: var(--accent); font-weight: 600; }
+
+/* charts */
+.perf-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+.perf-head .ph-val { font-family: var(--font-display); font-size: 22px; font-weight: 600; }
+.perf-head .ph-lbl { font-size: 11.5px; color: var(--ink-faint); }
+.chart-wrap { position: relative; }
+.chart-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.spark-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 14px; }
+.spark { padding: 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+.spark .sp-lbl { font-size: 11px; color: var(--ink-faint); } .spark .sp-val { font-family: var(--font-display); font-size: 18px; font-weight: 600; margin-top: 2px; } .spark svg { width: 100%; height: 26px; margin-top: 6px; display: block; }
+
+.gauge-wrap { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.gauge { flex: none; width: 150px; text-align: center; }
+.gauge svg { width: 150px; height: 92px; display: block; }
+.gauge .g-cap { font-size: 11px; color: var(--ink-faint); }
+.gauge-note { flex: 1; min-width: 180px; font-size: 12.5px; color: var(--ink-soft); }
+
+.harden-list { display: flex; flex-direction: column; gap: 13px; margin-top: 4px; }
+.hb .hb-top { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; margin-bottom: 5px; }
+.hb .hb-name { font-weight: 600; display: flex; align-items: center; gap: 7px; }
+.hb .hb-name .tag { font-size: 9.5px; font-family: var(--font-mono); color: var(--ink-faint); background: var(--surface-2); padding: 1px 6px; border-radius: 4px; font-weight: 600; }
+.hb .hb-delta { font-family: var(--font-mono); font-size: 11.5px; }
+.hb .track { height: 9px; background: var(--surface-3); border-radius: 5px; position: relative; overflow: hidden; }
+.hb .fill-before { position: absolute; left: 0; top: 0; bottom: 0; background: color-mix(in srgb, var(--ink-faint) 45%, transparent); border-radius: 5px; }
+.hb .fill-after { position: absolute; left: 0; top: 0; bottom: 0; background: var(--ok); border-radius: 5px; transition: width .8s cubic-bezier(.4,0,.2,1); }
+.hb .hb-sub { font-size: 11px; color: var(--ink-faint); margin-top: 4px; }
+.legend-row { display: flex; gap: 16px; margin-top: 6px; font-size: 11px; color: var(--ink-faint); }
+.legend-row span { display: inline-flex; align-items: center; gap: 6px; }
+.legend-row .sw { width: 12px; height: 8px; border-radius: 3px; }
+
+/* services */
+.lifecycle { display: flex; gap: 0; align-items: stretch; overflow-x: auto; padding-bottom: 6px; }
+.lc-node { flex: none; display: flex; align-items: center; }
+.lc-node .lc-chip { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 10px 8px; min-width: 100px; cursor: pointer; }
+.lc-node .itile { width: 38px; height: 38px; font-size: 19px; }
+.lc-node .lc-lbl { font-size: 10.5px; text-align: center; color: var(--ink-soft); line-height: 1.2; max-width: 96px; }
+.lc-node .lc-arrow { color: var(--ink-faint); padding: 0 2px; }
+.svc-grid { grid-template-columns: repeat(2, 1fr); }
+.svc-card { padding: 18px; cursor: pointer; display: flex; flex-direction: column; transition: border-color .14s, box-shadow .14s; }
+.svc-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+.svc-card .sc-top { display: flex; gap: 11px; align-items: flex-start; }
+.svc-card .itile { width: 38px; height: 38px; font-size: 19px; }
+.svc-card .sc-step { font-size: 10px; font-family: var(--font-mono); color: var(--ink-faint); font-weight: 600; }
+.svc-card h3 { font-size: 14.5px; margin-top: 1px; }
+.svc-card .oneliner { color: var(--ink-soft); font-size: 12.5px; margin-top: 9px; flex: 1; }
+.svc-card .tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
+.svc-card .mini-tag { font-size: 10px; font-family: var(--font-mono); color: var(--ink-soft); background: var(--surface-2); padding: 2px 7px; border-radius: 4px; }
+.svc-card .sc-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+.svc-card .sc-price { font-size: 11px; color: var(--gold); font-weight: 600; }
+.exc-box { background: var(--warn-wash); border-left: 3px solid var(--warn); padding: 11px 13px; border-radius: var(--radius-sm); margin-top: 14px; }
+.exc-box .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: .8px; color: var(--warn); font-weight: 700; margin-bottom: 5px; }
+.exc-box ul { margin: 0; padding-left: 16px; font-size: 12.5px; color: var(--ink-soft); }
+.price-box { background: var(--gold-wash); border-left: 3px solid var(--gold); padding: 11px 13px; border-radius: var(--radius-sm); margin-top: 14px; font-size: 12.5px; }
+.price-box .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: .8px; color: var(--gold); font-weight: 700; margin-bottom: 5px; }
+.get-box { background: var(--ok-wash); border-left: 3px solid var(--ok); padding: 11px 13px; border-radius: var(--radius-sm); margin-top: 14px; }
+.get-box .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: .8px; color: var(--ok); font-weight: 700; margin-bottom: 5px; }
+.get-box ul { margin: 0; padding-left: 16px; font-size: 12.5px; color: var(--ink-soft); }
+
+/* pricing */
+.price-grid { grid-template-columns: repeat(3,1fr); }
+.price-card { padding: 20px; display: flex; flex-direction: column; position: relative; }
+.price-card.popular { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--shadow); }
+.price-card .pc-badge { position: absolute; top: -10px; left: 20px; background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: .3px; }
+.price-card .itile { width: 38px; height: 38px; font-size: 19px; margin-bottom: 11px; }
+.price-card h3 { font-size: 15px; }
+.price-card .pc-price { font-family: var(--font-display); font-size: 25px; font-weight: 700; margin-top: 10px; color: var(--accent-ink); letter-spacing: -.5px; }
+.price-card .pc-unit { font-size: 12px; color: var(--ink-faint); font-weight: 400; }
+.price-card .pc-desc { font-size: 12.5px; color: var(--ink-soft); margin-top: 8px; }
+.price-card ul { margin: 13px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.price-card li { font-size: 12.5px; color: var(--ink-soft); display: flex; gap: 8px; align-items: flex-start; }
+.price-card li .ck { color: var(--ok); font-weight: 700; flex: none; }
+.price-note { display: flex; gap: 10px; align-items: flex-start; padding: 13px 16px; border-radius: var(--radius-sm); background: var(--gold-wash); border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent); margin-top: 16px; font-size: 12.5px; color: var(--ink); }
+
+/* architecture */
+.layer-stack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+.layer-row { display: flex; gap: 14px; align-items: flex-start; padding: 15px 17px; border-left: 3px solid var(--accent); }
+.layer-row .itile { width: 38px; height: 38px; font-size: 19px; flex: none; }
+.layer-row.cross { border-left-style: dashed; background: var(--accent-wash); }
+.layer-row .layer-h { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.layer-row .layer-h b { font-size: 14px; }
+.layer-row .layer-tag { font-size: 10.5px; font-family: var(--font-mono); color: var(--ink-faint); }
+.layer-row .layer-body p { font-size: 12.5px; color: var(--ink-soft); margin-top: 5px; line-height: 1.55; }
+.open-grid { grid-template-columns: repeat(3,1fr); }
+.open-card { padding: 16px 18px; }
+.open-card .itile { width: 34px; height: 34px; font-size: 17px; }
+.open-card h3 { font-size: 14px; margin-top: 10px; }
+.open-card p { font-size: 12.3px; color: var(--ink-soft); margin-top: 6px; line-height: 1.55; }
+@media (max-width: 860px){ .open-grid { grid-template-columns: 1fr; } }
+.arch-wrap { display: grid; grid-template-columns: 1.55fr 1fr; gap: 18px; align-items: start; }
+.arch-canvas { padding: 10px; overflow-x: auto; }
+.arch-svg { width: 100%; min-width: 540px; height: auto; display: block; }
+.arch-node { cursor: pointer; }
+.arch-node rect { transition: all .14s; }
+.arch-node:hover rect { stroke: var(--accent); stroke-width: 2; }
+.arch-node.sel rect { stroke: var(--accent); stroke-width: 2.5; }
+.arch-node text { font-family: var(--font-body); pointer-events: none; }
+.node-detail { padding: 18px; position: sticky; top: 18px; }
+.node-detail .empty { color: var(--ink-faint); text-align: center; padding: 28px 10px; font-size: 13px; }
+.oss-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 5px; background: var(--ok-wash); color: var(--ok); }
+
+/* engagement */
+.eng-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); font-size: 13px; font-family: inherit; }
+.form-group textarea { resize: vertical; min-height: 64px; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); }
+.need-opt .no-t { font-weight: 600; font-size: 13px; } .need-opt .no-d { font-size: 11.5px; color: var(--ink-soft); margin-top: 2px; }
+.summary-out { padding: 18px; position: sticky; top: 18px; }
+.summary-out pre { background: var(--navy); color: #cbdcea; padding: 15px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 11.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; max-height: 300px; overflow-y: auto; margin: 11px 0; }
+.copy-ok { color: var(--ok); font-size: 12px; font-weight: 600; display: none; }
+.chan-target { display: flex; gap: 11px; align-items: center; padding: 11px 13px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-2); margin-top: 4px; }
+.chan-target.warn { background: var(--warn-wash); border-color: transparent; }
+.chan-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.chan-steps li { display: flex; gap: 11px; align-items: flex-start; font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.chan-steps .cs-num { width: 22px; height: 22px; border-radius: 50%; background: var(--accent-wash); color: var(--accent-ink); font-size: 11px; font-weight: 700; font-family: var(--font-mono); display: grid; place-items: center; flex: none; }
+.data-fate { margin-top: 14px; }
+.data-fate .df-row { display: flex; gap: 11px; padding: 11px 0; border-top: 1px solid var(--line-soft); font-size: 12.5px; }
+.data-fate .df-row:first-child { border-top: none; }
+.data-fate .df-ic { width: 24px; height: 24px; border-radius: 6px; flex: none; display: grid; place-items: center; font-size: 12px; font-weight: 700; }
+.contact-box { padding: 14px 16px; border: 1px solid var(--accent); border-radius: var(--radius-sm); background: var(--accent-wash); margin-top: 14px; }
+.contact-box .cb-row { display: flex; align-items: center; gap: 9px; font-size: 13px; margin-top: 7px; }
+.contact-box .cb-row .cb-k { color: var(--ink-faint); width: 92px; flex: none; font-size: 11.5px; }
+.contact-box .cb-row .cb-v { font-weight: 600; user-select: all; }
+.contact-box .cb-row .cb-v.ph { color: var(--ink-faint); font-weight: 400; font-style: italic; user-select: none; }
+
+.overlay { position: fixed; inset: 0; background: rgba(6,12,18,.55); z-index: 50; display: none; }
+.overlay.show { display: block; }
+
+.guide-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; background: var(--navy); color: #fff; align-items: center; gap: 14px; padding: 12px 20px; padding-bottom: calc(12px + env(safe-area-inset-bottom,0px)); box-shadow: 0 -4px 20px rgba(0,0,0,.25); }
+.guide-bar.show { display: flex; }
+.guide-bar .gstep { flex: 1; min-width: 0; } .guide-bar .gstep b { font-family: var(--font-display); display: block; font-size: 14px; } .guide-bar .gstep small { color: #9bb0bf; font-size: 11px; }
+.guide-bar button { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: #fff; height: 38px; border-radius: 8px; font-size: 15px; padding: 0 13px; }
+.guide-bar button:hover { background: rgba(255,255,255,.2); } .guide-bar button:disabled { opacity: .35; cursor: default; }
+.guide-bar .gcount { font-family: var(--font-mono); font-size: 12px; color: #9bb0bf; }
+
+.position-strip { display: flex; gap: 11px; align-items: flex-start; padding: 14px 16px; border-radius: var(--radius-sm); background: var(--accent-wash); border: 1px solid color-mix(in srgb,var(--accent) 24%,transparent); margin-top: 22px; }
+.position-strip .itile { width: 30px; height: 30px; font-size: 17px; }
+
+/* about / story */
+.about-lede { background: linear-gradient(140deg, var(--navy) 0%, var(--navy-2) 100%); color: #e9f0f6; border-radius: 14px; padding: 30px 30px; position: relative; overflow: hidden; margin-bottom: 20px; }
+.about-lede .eyebrow { color: var(--accent); }
+.about-lede h1 { color: #fff; font-size: 24px; letter-spacing: -.5px; max-width: 24ch; }
+.about-lede p { color: #a9bcc7; margin-top: 11px; max-width: 64ch; font-size: 14px; }
+.about-lede .qmark { position: absolute; right: 18px; top: 10px; color: rgba(47,186,206,.22); font-size: 46px; }
+.story-grid { grid-template-columns: repeat(2,1fr); }
+.story-card { padding: 20px; }
+.story-card .sh { display: flex; gap: 11px; align-items: center; }
+.story-card .itile { width: 38px; height: 38px; font-size: 19px; }
+.story-card h3 { font-size: 15.5px; }
+.story-card .sbody { font-size: 12.8px; color: var(--ink-soft); margin-top: 11px; line-height: 1.6; }
+.story-card .lesson { margin-top: 12px; padding: 10px 12px; background: var(--accent-wash); border-radius: var(--radius-sm); font-size: 12.3px; color: var(--accent-ink); }
+.story-card .lesson b { font-weight: 600; }
+.story-card.turn { border-color: var(--accent); background: var(--accent-wash); }
+.story-card .sh .stage-n { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent-ink); background: var(--accent-wash); border-radius: 6px; padding: 3px 7px; flex: none; }
+.story-card.turn .sh .stage-n { background: var(--surface); }
+.empathy-card { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; margin: 16px 0 4px; border-left: 3px solid var(--accent); }
+.cap-grid { grid-template-columns: repeat(3,1fr); }
+.cap-card { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.cap-card .cap-h { display: flex; gap: 11px; align-items: center; }
+.cap-card .cap-h .itile { width: 38px; height: 38px; font-size: 19px; flex: none; }
+.cap-card .cap-h h3 { font-size: 15px; }
+.cap-card .cap-sub { font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
+.cap-card .cap-list { margin: 0; padding-left: 17px; display: flex; flex-direction: column; gap: 5px; }
+.cap-card .cap-list li { font-size: 12.3px; color: var(--ink-soft); line-height: 1.5; }
+.cap-card .chips-wrap { margin-top: auto; }
+@media (max-width: 860px){ .cap-grid { grid-template-columns: 1fr; } }
+.chips-wrap { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip-exp { font-size: 12px; padding: 6px 12px; border-radius: 100px; background: var(--surface-2); color: var(--ink-soft); border: 1px solid var(--line); }
+.insight { padding: 18px; margin-top: 16px; display: flex; gap: 12px; align-items: flex-start; }
+.insight .itile { width: 34px; height: 34px; font-size: 17px; flex: none; }
+@media (max-width: 860px){ .story-grid { grid-template-columns: 1fr; } }
+
+@media (max-width: 1000px) { .scn-stage { grid-template-columns: 1fr; } .ctx-panel { position: static; } .pain-grid, .value-row, .price-grid { grid-template-columns: 1fr; } }
+@media (max-width: 860px) {
+  .nav { position: fixed; left: 0; top: 0; height: 100%; transform: translateX(-100%); transition: transform .25s ease; box-shadow: var(--shadow-lg); }
+  .nav.open { transform: none; } .topbar { display: flex; }
+  .content { padding: 20px 16px 84px; }
+  .arch-wrap, .eng-layout, .who-box, .model-grid { grid-template-columns: 1fr; }
+  .svc-grid { grid-template-columns: 1fr; } .spark-row { grid-template-columns: 1fr; }
+  .node-detail, .summary-out { position: static; }
+  .journey .arrow { display: none; } .journey .step { flex-basis: 48%; margin-bottom: 8px; }
+  .page-head h1 { font-size: 22px; }
+}
+.model-grid { grid-template-columns: repeat(2,1fr); }
+.model-card { padding: 20px; }
+.model-card .itile { width: 40px; height: 40px; font-size: 21px; margin-bottom: 12px; }
+.model-card h3 { font-size: 16px; } .model-card .m-desc { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
+.model-card .m-for { font-size: 12px; margin-top: 12px; padding: 9px 11px; background: var(--surface-2); border-radius: 6px; } .model-card .m-for b { color: var(--accent-ink); }
+.model-card .m-price { font-size: 11.5px; color: var(--gold); font-weight: 600; margin-top: 10px; }
+@media (max-width: 480px) { .hero { padding: 24px 20px; } .hero h2 { font-size: 21px; } }
+/* need-opt: thẻ-nút chọn nhu cầu (card toggle, có icon) */
+.need-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.need-opt { position: relative; }
+.need-opt input { position: absolute; opacity: 0; pointer-events: none; }
+.need-opt .no-box { display: flex; gap: 11px; align-items: center; padding: 13px 14px; border: 1.5px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); cursor: pointer; transition: border-color .14s, background .14s, box-shadow .14s, transform .08s; height: 100%; }
+.need-opt:hover .no-box { border-color: var(--accent); background: var(--surface-2); }
+.need-opt .no-box:active { transform: scale(.985); }
+.need-opt.on .no-box { border-color: var(--accent); background: var(--accent-wash); box-shadow: 0 0 0 1px var(--accent) inset; }
+.need-opt .no-ico { width: 34px; height: 34px; font-size: 17px; flex: none; transition: background .14s, color .14s; }
+.need-opt.on .no-ico { background: var(--accent); color: #fff; }
+.need-opt .no-txt { flex: 1; min-width: 0; }
+.need-opt .no-badge { width: 22px; height: 22px; border-radius: 999px; border: 1.5px solid var(--line); flex: none; display: grid; place-items: center; color: transparent; transition: all .14s; }
+.need-opt.on .no-badge { background: var(--accent); border-color: var(--accent); color: #fff; }
+.need-opt .no-badge svg { width: 13px; height: 13px; }
+@media (max-width: 560px){ .need-opts { grid-template-columns: 1fr; } }
+
+/* contact box nổi bật */
+.contact-box { background: var(--surface); }
+.contact-box .cb-head { display: flex; align-items: center; gap: 10px; }
+.contact-box .cb-head .itile { width: 36px; height: 36px; font-size: 18px; }
+.contact-box .cb-row .cb-ic { width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center; font-size: 14px; flex: none; }
+
+/* scenario hub */
+.scn-hint { font-size: 12.5px; color: var(--ink-soft); margin-bottom: 14px; max-width: 760px; }
+.prob-map { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.pm-row { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); cursor: pointer; text-align: left; transition: border-color .12s, background .12s, transform .08s; width: 100%; }
+.pm-row:hover { border-color: var(--accent); background: var(--surface-2); }
+.pm-row:active { transform: scale(.995); }
+.pm-row .pm-ic { width: 32px; height: 32px; font-size: 16px; flex: none; }
+.pm-row .pm-prob { flex: 1 1 42%; min-width: 0; font-size: 12.8px; color: var(--ink); }
+.pm-row .pm-arrow { color: var(--accent); font-weight: 700; flex: none; }
+.pm-row .pm-sol { flex: 1 1 42%; min-width: 0; font-size: 12.8px; font-weight: 600; color: var(--accent-ink); }
+.pm-row .pm-go { flex: none; font-size: 11px; font-weight: 600; color: var(--ink-faint); border: 1px solid var(--line); border-radius: 100px; padding: 4px 10px; }
+.pm-row:hover .pm-go { color: var(--accent-ink); border-color: var(--accent); }
+@media (max-width: 680px){ .pm-row { flex-wrap: wrap; } .pm-row .pm-arrow { display: none; } .pm-row .pm-prob, .pm-row .pm-sol { flex-basis: 100%; } .pm-row .pm-sol::before { content: "→ "; color: var(--accent); } }
+.scn-hub { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 18px; }
+@media (max-width: 1100px){ .scn-hub { grid-template-columns: 1fr 1fr; } }
+.scn-pick { padding: 16px; border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--surface); cursor: pointer; transition: all .14s; text-align: left; }
+.scn-pick:hover { border-color: var(--accent); }
+.scn-pick.active { border-color: var(--accent); background: var(--accent-wash); box-shadow: var(--shadow); }
+.scn-pick .sp-top { display: flex; align-items: center; gap: 10px; }
+.scn-pick .itile { width: 36px; height: 36px; font-size: 18px; }
+.scn-pick .sp-step { font-size: 9.5px; font-family: var(--font-mono); color: var(--ink-faint); font-weight: 600; letter-spacing: .3px; }
+.scn-pick h3 { font-size: 14px; margin-top: 1px; }
+.scn-pick .sp-tag { font-size: 11.5px; color: var(--ink-soft); margin-top: 8px; line-height: 1.45; }
+@media (max-width: 760px){ .scn-hub { grid-template-columns: 1fr; } }
+
+/* radar (đánh giá khung) */
+.radar-wrap { display: grid; grid-template-columns: 300px 1fr; gap: 18px; align-items: center; }
+.radar-wrap svg { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto; }
+.mat-list { display: flex; flex-direction: column; gap: 11px; }
+.mat .mat-top { display: flex; justify-content: space-between; font-size: 12.5px; margin-bottom: 5px; }
+.mat .mat-top b { font-family: var(--font-mono); }
+.mat .track { height: 8px; background: var(--surface-3); border-radius: 5px; position: relative; overflow: hidden; }
+.mat .fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); border-radius: 5px; transition: width .8s cubic-bezier(.4,0,.2,1); }
+.mat .tgt { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--ok); }
+@media (max-width: 760px){ .radar-wrap { grid-template-columns: 1fr; } }
+
+/* process list (điều tra) */
+.proc-table { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+.proc-row { display: grid; grid-template-columns: 1.2fr 2fr auto; gap: 10px; align-items: center; padding: 9px 12px; border-radius: 6px; background: var(--surface-2); font-size: 12.5px; }
+.proc-row.flag { background: var(--crit-wash); border: 1px solid color-mix(in srgb,var(--crit) 30%,transparent); }
+.proc-row .pname { font-family: var(--font-mono); font-weight: 600; display: flex; align-items: center; gap: 7px; }
+.proc-row .pbar { height: 7px; background: var(--surface-3); border-radius: 4px; overflow: hidden; }
+.proc-row .pbar i { display: block; height: 100%; border-radius: 4px; background: var(--accent); }
+.proc-row.flag .pbar i { background: var(--crit); }
+.proc-row .pcpu { font-family: var(--font-mono); font-weight: 600; text-align: right; }
+.proc-row.flag .pcpu { color: var(--crit); }
+.clue-list { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.clue { border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+.clue .clue-h { display: flex; gap: 10px; align-items: center; padding: 11px 13px; cursor: pointer; font-size: 13px; font-weight: 600; }
+.clue .clue-h .itile { width: 26px; height: 26px; font-size: 14px; background: var(--crit-wash); color: var(--crit); }
+.clue .clue-h .chev { margin-left: auto; color: var(--ink-faint); transition: transform .15s; }
+.clue.open .clue-h .chev { transform: rotate(90deg); }
+.clue .clue-b { display: none; padding: 0 13px 12px 49px; font-size: 12.3px; color: var(--ink-soft); }
+.clue.open .clue-b { display: block; }
+
+/* kill chain */
+.kchain { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding-bottom: 6px; margin-top: 4px; }
+.kc-node { flex: none; display: flex; align-items: center; }
+.kc-box { min-width: 108px; max-width: 128px; padding: 11px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-2); }
+.kc-box .kc-n { font-size: 9px; font-family: var(--font-mono); color: var(--crit); font-weight: 700; }
+.kc-box .kc-t { font-size: 12px; font-weight: 600; margin-top: 3px; }
+.kc-box .kc-d { font-size: 10.5px; color: var(--ink-faint); margin-top: 3px; }
+.kc-arrow { color: var(--crit); padding: 0 4px; transition: color .25s, opacity .25s; opacity: .35; }
+/* DFIR replay: node mờ → sáng dần khi phát lại */
+.kchain .kc-node .kc-box { opacity: .4; transition: opacity .3s ease, border-color .3s ease, box-shadow .3s ease, transform .3s ease; }
+.kchain .kc-node.lit .kc-box { opacity: 1; border-color: var(--crit); box-shadow: 0 0 0 1px var(--crit) inset, var(--shadow); transform: translateY(-2px); }
+.kchain .kc-node.lit ~ .kc-arrow { }
+.chain-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.btn.sm { padding: 6px 12px; font-size: 12px; }
+
+/* ===== Managed: bảng trực NOC (log sự kiện live) ===== */
+.ops-console { display: flex; flex-direction: column; gap: 12px; }
+.ops-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.ops-counters { display: flex; gap: 18px; flex-wrap: wrap; }
+.opc { text-align: right; }
+.opc .opc-v { font-family: var(--font-display); font-size: 20px; font-weight: 700; line-height: 1; }
+.opc .opc-l { font-size: 10.5px; color: var(--ink-faint); margin-top: 3px; }
+.ops-feed { display: flex; flex-direction: column; gap: 7px; min-height: 196px; }
+.of-row { display: flex; align-items: center; gap: 10px; padding: 9px 11px; border: 1px solid var(--line); border-left: 3px solid var(--ok); border-radius: var(--radius-sm); background: var(--surface-2); animation: ofIn .35s ease both; }
+.of-row.warn { border-left-color: var(--warn); }
+.of-row .of-t { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); flex: none; }
+.of-row .of-ic { width: 26px; height: 26px; font-size: 14px; flex: none; }
+.of-row.warn .of-ic { background: var(--warn-wash); color: var(--warn); }
+.of-row .of-x { flex: 1; min-width: 0; font-size: 12.3px; color: var(--ink); }
+.of-row .of-badge { width: 20px; height: 20px; border-radius: 50%; background: var(--ok-wash); color: var(--ok); display: grid; place-items: center; flex: none; }
+.of-row.warn .of-badge { background: var(--warn-wash); color: var(--warn); }
+.of-row .of-badge svg { width: 12px; height: 12px; }
+.ops-note { font-size: 11.5px; color: var(--ink-faint); }
+@keyframes ofIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+/* ===== Đánh giá: dải quét phát hiện (count-up) ===== */
+.scan-strip { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding: 13px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-2); }
+.scan-strip .scan-c { text-align: center; }
+.scan-strip .sc-v { font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1; color: var(--accent-ink); }
+.scan-strip .sc-l { font-size: 10.5px; color: var(--ink-faint); margin-top: 3px; }
+@media (max-width: 560px){ .ops-head { align-items: flex-start; } .opc { text-align: left; } }
+
+/* roadmap */
+.roadmap { display: flex; flex-direction: column; gap: 0; margin-top: 4px; }
+.rm-item { display: flex; gap: 13px; }
+.rm-rail { display: flex; flex-direction: column; align-items: center; flex: none; }
+.rm-rail .rm-dot { width: 26px; height: 26px; border-radius: 50%; background: var(--accent-wash); color: var(--accent-ink); display: grid; place-items: center; font-family: var(--font-mono); font-size: 11px; font-weight: 700; }
+.rm-rail .rm-line { width: 2px; flex: 1; background: var(--line); margin: 2px 0; }
+.rm-item:last-child .rm-line { display: none; }
+.rm-body { padding-bottom: 16px; }
+.rm-body h4 { font-size: 13.5px; } .rm-body .rm-ph { font-size: 10.5px; font-family: var(--font-mono); color: var(--ink-faint); } .rm-body p { font-size: 12.3px; color: var(--ink-soft); margin-top: 4px; }
+
+/* managed checklist */
+.mgd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 4px; }
+.mgd { display: flex; gap: 9px; align-items: flex-start; padding: 11px 13px; border: 1px solid var(--line); border-radius: var(--radius-sm); font-size: 12.5px; }
+.mgd .itile { width: 26px; height: 26px; font-size: 13px; }
+@media (max-width: 560px){ .mgd-grid { grid-template-columns: 1fr; } }
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: 9px; }
+.faq { border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; background: var(--surface); }
+.faq .faq-q { display: flex; gap: 10px; align-items: center; padding: 14px 16px; cursor: pointer; font-size: 13.5px; font-weight: 600; }
+.faq .faq-q .chev { margin-left: auto; color: var(--ink-faint); transition: transform .15s; flex: none; }
+.faq.open .faq-q .chev { transform: rotate(90deg); }
+.faq .faq-a { display: none; padding: 0 16px 14px 16px; font-size: 12.8px; color: var(--ink-soft); line-height: 1.6; }
+.faq.open .faq-a { display: block; }
+
+/* footer */
+.site-footer { border-top: 1px solid var(--line); margin-top: 40px; padding: 28px 0 8px; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 22px; }
+.site-footer .f-brand .logo { font-family: var(--font-display); font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+.site-footer .f-brand .mk { width: 24px; height: 24px; }
+.site-footer .f-brand p { font-size: 12px; color: var(--ink-soft); margin-top: 8px; max-width: 34ch; }
+.site-footer h5 { font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: var(--ink-faint); font-family: var(--font-mono); margin-bottom: 10px; }
+.site-footer a, .site-footer .f-link { display: block; font-size: 12.5px; color: var(--ink-soft); background: none; border: none; padding: 4px 0; cursor: pointer; text-align: left; text-decoration: none; }
+.site-footer a:hover, .site-footer .f-link:hover { color: var(--accent-ink); }
+.footer-bottom { border-top: 1px solid var(--line-soft); margin-top: 18px; padding: 14px 0 4px; font-size: 11.5px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+@media (max-width: 760px){ .site-footer { grid-template-columns: 1fr 1fr; } .site-footer .f-brand { grid-column: 1 / -1; } }
+
+/* floating contact button */
+.fab { position: fixed; right: 18px; bottom: 18px; bottom: calc(18px + env(safe-area-inset-bottom,0px)); z-index: 45; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 100px; border: none; background: var(--accent); color: #fff; font-size: 13.5px; font-weight: 600; box-shadow: 0 6px 24px rgba(37,99,235,.4); transition: transform .14s, background .14s; }
+.fab:hover { background: var(--accent-ink); transform: translateY(-2px); }
+.fab .ic { font-size: 16px; }
+@media (max-width: 560px){ .fab span.lbl { display: none; } .fab { padding: 14px; } }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <nav class="nav" id="nav">
+    <div class="brand">
+      <div class="logo">
+        <svg class="mk" viewBox="0 0 32 32" fill="none" aria-hidden="true"><defs><linearGradient id="sgA" x1="6" y1="2" x2="26" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#78a2ff"/><stop offset=".55" stop-color="#3b6fe6"/><stop offset="1" stop-color="#1a3ca3"/></linearGradient><linearGradient id="sgAh" x1="16" y1="2" x2="16" y2="15" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 24 22 29 16 31 C10 29 4 24 4 16 V8 Z" fill="#0b2258" opacity=".5"/><path d="M16 2 L28 7 V15 C28 23 22 28 16 30 C10 28 4 23 4 15 V7 Z" fill="url(#sgA)" stroke="rgba(255,255,255,.3)" stroke-width=".8"/><path d="M16 2 L28 7 V13 C24 11 20 10 16 10 C12 10 8 11 4 13 V7 Z" fill="url(#sgAh)"/><path d="M11 16 l3.5 3.5 L22 11.5" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        S4C
+      </div>
+      <div class="tag">Systems · Smart Solutions · Security</div>
+    </div>
+    <div class="nav-scroll" id="navScroll"></div>
+    <div class="nav-foot">
+      <button id="guideBtn"></button>
+      <div class="row">
+        <button id="resetBtn"></button>
+        <button id="themeBtn"></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="logo"><svg class="mk" viewBox="0 0 32 32" fill="none" aria-hidden="true"><defs><linearGradient id="sgB" x1="6" y1="2" x2="26" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#78a2ff"/><stop offset=".55" stop-color="#3b6fe6"/><stop offset="1" stop-color="#1a3ca3"/></linearGradient><linearGradient id="sgBh" x1="16" y1="2" x2="16" y2="15" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 24 22 29 16 31 C10 29 4 24 4 16 V8 Z" fill="#0b2258" opacity=".5"/><path d="M16 2 L28 7 V15 C28 23 22 28 16 30 C10 28 4 23 4 15 V7 Z" fill="url(#sgB)" stroke="rgba(255,255,255,.3)" stroke-width=".8"/><path d="M16 2 L28 7 V13 C24 11 20 10 16 10 C12 10 8 11 4 13 V7 Z" fill="url(#sgBh)"/><path d="M11 16 l3.5 3.5 L22 11.5" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>S4C</div>
+      <button class="hamb" id="hamb">☰</button>
+    </div>
+    <div class="content">
+
+      <!-- ===== OVERVIEW ===== -->
+      <section class="view active" id="view-overview">
+        <div class="hero">
+          <div class="hero-text">
+            <div class="eyebrow">S4C · Systems · Smart Solutions · Security</div>
+            <h2>Bạn lo việc kinh doanh. Phần hệ thống — tối ưu, vận hành, an toàn — cứ để S4C.</h2>
+            <p class="lead">S4C là chỗ dựa kỹ thuật cho doanh nghiệp nhỏ, siêu nhỏ và startup chưa có đội IT riêng: vận hành và tối ưu hệ thống, bảo vệ an toàn, và tự động hóa những việc lặp lại. Chúng tôi bắt đầu bằng việc hiểu đúng bài toán của bạn, rồi đề xuất giải pháp vừa sức — ưu tiên công cụ mã nguồn mở để tiết kiệm chi phí.</p>
+            <div class="cta-row">
+              <button class="btn primary lg" data-nav="scenario"><span class="ic" data-icon="play"></span> Xem S4C làm việc thế nào</button>
+              <button class="btn" data-nav="pricing">Xem cách tính chi phí</button>
+            </div>
+          </div>
+          <svg class="shield" viewBox="0 0 120 130" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="hs" x1="26" y1="6" x2="94" y2="124" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#78a2ff"/><stop offset=".5" stop-color="#3b6fe6"/><stop offset="1" stop-color="#1a3ca3"/></linearGradient>
+              <linearGradient id="hsGloss" x1="60" y1="6" x2="60" y2="66" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+              <radialGradient id="hsGlow" cx="50%" cy="36%" r="62%"><stop offset="0" stop-color="#9cbcff" stop-opacity=".55"/><stop offset="1" stop-color="#9cbcff" stop-opacity="0"/></radialGradient>
+              <clipPath id="hsClip"><path d="M60 6 L108 24 V58 C108 90 86 112 60 124 C34 112 12 90 12 58 V24 Z"/></clipPath>
+            </defs>
+            <path d="M60 10 L108 28 V62 C108 94 86 116 60 128 C34 116 12 94 12 62 V28 Z" fill="#0b2258" opacity=".55"/>
+            <path d="M60 6 L108 24 V58 C108 90 86 112 60 124 C34 112 12 90 12 58 V24 Z" fill="url(#hs)" stroke="rgba(255,255,255,.24)" stroke-width="1.5"/>
+            <path d="M60 6 L108 24 V54 C92 47 76 44 60 44 C44 44 28 47 12 54 V24 Z" fill="url(#hsGloss)"/>
+            <ellipse cx="60" cy="52" rx="42" ry="34" fill="url(#hsGlow)"/>
+            <g clip-path="url(#hsClip)"><rect class="sh-glint" x="-46" y="-6" width="30" height="150" fill="#fff" opacity=".2" transform="skewX(-16)"><animate attributeName="x" from="-46" to="150" dur="3.4s" begin="1.2s" repeatCount="indefinite"/></rect></g>
+            <path d="M40 62 l14 14 L84 44" stroke="#eaf0ff" stroke-width="6.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M40 62 l14 14 L84 44" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+          </svg>
+        </div>
+
+        <div class="sec-title">Có phải bạn đang gặp những điều này?</div>
+        <div class="grid pain-grid" id="painGrid"></div>
+
+        <div class="sec-title">S4C dành cho ai?</div>
+        <div class="grid who-box">
+          <div class="card who yes">
+            <h4><span class="ic" data-icon="check"></span> Phù hợp nếu bạn là…</h4>
+            <ul>
+              <li>Doanh nghiệp nhỏ, siêu nhỏ, hộ kinh doanh hoặc startup</li>
+              <li>Chưa có đội kỹ thuật / IT riêng để lo hệ thống</li>
+              <li>Đã có website, ứng dụng, máy chủ, dữ liệu cần chạy ổn &amp; an toàn</li>
+              <li>Muốn chi phí hợp lý, không phải mua license đắt đỏ</li>
+            </ul>
+          </div>
+          <div class="card who no">
+            <h4><span class="ic" data-icon="minus"></span> S4C không cố làm gì</h4>
+            <ul>
+              <li>Tập trung vận hành, tối ưu &amp; an toàn trên chính hệ thống của bạn — không nhận viết phần mềm giải pháp outsource</li>
+              <li>Không cạnh tranh với các tập đoàn công nghệ lớn</li>
+              <li>Không bán sản phẩm đóng hộp "một cỡ cho tất cả"</li>
+              <li>Không hứa "hoàn hảo tuyệt đối" — mà giải quyết vấn đề thực tế</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sec-title">Làm việc với S4C, bạn được gì?</div>
+        <div class="grid value-row" id="valueRow"></div>
+
+        <div class="sec-title">Cách S4C đồng hành — từng bước một</div>
+        <div class="card" style="padding:20px">
+          <div class="journey">
+            <div class="step"><span class="n">1</span><span class="lbl">Lắng nghe<small>Hiểu bài toán</small></span></div><span class="arrow">→</span>
+            <div class="step"><span class="n">2</span><span class="lbl">Đánh giá<small>Đánh giá hệ thống</small></span></div><span class="arrow">→</span>
+            <div class="step"><span class="n">3</span><span class="lbl">Đề xuất<small>Giải pháp vừa sức</small></span></div><span class="arrow">→</span>
+            <div class="step"><span class="n">4</span><span class="lbl">Triển khai<small>Dựng &amp; tối ưu</small></span></div><span class="arrow">→</span>
+            <div class="step"><span class="n">5</span><span class="lbl">Vận hành<small>Giám sát &amp; đồng hành</small></span></div>
+          </div>
+        </div>
+
+        <div class="position-strip">
+          <span class="itile" data-icon="handshake"></span>
+          <span style="font-size:12.5px;color:var(--ink-soft)">S4C là <b style="color:var(--ink)">chỗ dựa kỹ thuật cho doanh nghiệp nhỏ</b> ở phần vận hành, tối ưu và an toàn hệ thống — bù đắp đúng chỗ bạn chưa có người, không thay thế đội của bạn. Các tình huống, tên khách hàng và con số trên trang là ví dụ minh họa cho cách làm việc; chi phí chốt theo phạm vi thực tế.</span>
+        </div>
+
+        <div class="card" style="margin-top:24px;padding:28px 26px;text-align:center;background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#eaf1f8;border:none">
+          <h3 style="color:#fff;font-size:21px">Bắt đầu bằng một buổi trao đổi miễn phí</h3>
+          <p style="color:#a9bcc7;font-size:13.5px;margin:9px auto 0;max-width:54ch">Kể S4C nghe bạn đang lo gì — chúng tôi giúp nhìn rõ vấn đề và gợi ý hướng đi phù hợp. Không cam kết, không ép mua.</p>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+            <button class="btn primary lg" data-nav="engagement">Nhận tư vấn miễn phí</button>
+            <button class="btn lg" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#eaf1f8" data-nav="scenario">Xem kịch bản thực tế</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SCENARIO ===== -->
+      <section class="view" id="view-scenario">
+        <div class="scn-head">
+          <div>
+            <div class="eyebrow">Kịch bản thực tế · demo tương tác</div>
+            <h1 style="font-size:24px">4 tình huống live — bấm chọn từng cái để xem</h1>
+          </div>
+          <span class="note-tag">VÍ DỤ MINH HỌA</span>
+        </div>
+        <p class="scn-hint">Mỗi thẻ là một <b>demo live riêng biệt</b> với cách thể hiện khác nhau — và đều kết thúc bằng một <b>kết quả bàn giao (output)</b> cụ thể. Bấm vào thẻ, rồi đi qua từng bước.</p>
+
+        <div class="sec-title" style="margin-top:4px">Bạn đang gặp vấn đề nào? S4C có giải pháp tương ứng</div>
+        <div class="prob-map" id="probMap"></div>
+
+        <div class="sec-title">Chọn một tình huống để xem demo live</div>
+        <div class="scn-hub" id="scnHub"></div>
+        <div class="card" id="scnCustomer" style="padding:14px 16px;margin-bottom:18px;display:flex;gap:11px;align-items:flex-start"></div>
+        <div class="scn-progress" id="scnProgress"></div>
+        <div class="scn-stage">
+          <div class="scn-main"><div class="card stage-card" id="scnStage"></div></div>
+          <div class="card ctx-panel" id="ctxPanel"></div>
+        </div>
+      </section>
+
+      <!-- ===== ABOUT (story) ===== -->
+      <section class="view" id="view-about">
+        <div class="about-lede">
+          <span class="qmark" data-icon="quote"></span>
+          <div class="eyebrow">Về S4C</div>
+          <h1>Chúng tôi từng đứng đúng chỗ bạn đang đứng</h1>
+          <p>Hãy hình dung: 2 giờ sáng, điện thoại reo. Website đang chết giữa đợt khuyến mãi, hay dữ liệu vừa bị mã hóa đòi tiền chuộc, hay đơn hàng cứ rơi mà không ai biết vì sao. Không có ai để gọi. Mỗi phút trôi qua là doanh thu, là niềm tin của khách, là đêm mất ngủ của bạn.</p>
+          <p>Cảm giác đó, chúng tôi hiểu rất rõ — vì đã sống với nó nhiều năm, ở phía người phải xử lý. <b style="color:#fff">S4C là một đội ngũ kỹ sư hệ thống &amp; an toàn thông tin</b> với khoảng 10 năm trong nghề: vận hành, tối ưu và bảo vệ những hệ thống khắt khe nhất. Kinh nghiệm của chúng tôi không đến từ sách vở hay slide bán hàng — nó đến từ những sự cố thật, những đêm trắng thật, và những bài học phải trả giá mới rút ra được.</p>
+        </div>
+
+        <div class="card empathy-card">
+          <span class="itile" data-icon="handshake" style="width:40px;height:40px;font-size:20px;flex:none"></span>
+          <div>
+            <b style="font-size:14px">Vì sao câu chuyện này đáng để bạn nghe?</b>
+            <p style="font-size:13px;color:var(--ink-soft);margin-top:6px">Vì người kể đã tự tay đi qua cả bốn chặng dưới đây — không phải đọc lại của ai. Khi bạn giao hệ thống cho S4C, bạn không giao cho một người mới học việc trên chính hệ thống của mình, mà cho người đã va vấp đủ nhiều để biết chỗ nào dễ ngã và cách tránh.</p>
+          </div>
+        </div>
+
+        <div class="grid story-grid">
+          <div class="card story-card">
+            <div class="sh"><span class="stage-n">01</span><span class="itile" data-icon="gear"></span><h3>Những đêm giữ cho hệ thống không gục</h3></div>
+            <div class="sbody">Nhiều năm vận hành các hệ thống tải cao — fintech, loyalty — nơi mỗi giây có hàng nghìn giao dịch và một phút gián đoạn là hàng loạt khách không thanh toán được. Có những đêm trắng vì một truy vấn làm nghẽn cả cơ sở dữ liệu giờ cao điểm: phải lần từng dòng log, đọc từng execution plan, thêm đúng một chỉ mục, cân lại worker và cache — rồi nín thở nhìn biểu đồ phản hồi tụt xuống trước khi khách thức dậy. Vận hành, quản trị và tuning hệ thống đã thành phản xạ, không phải lý thuyết.</div>
+            <div class="lesson"><b>Bài học:</b> hiệu năng không phải chuyện may rủi — nó đến từ theo dõi, đo đạc và tinh chỉnh (tuning) đúng chỗ ở tầng hệ thống.</div>
+          </div>
+          <div class="card story-card">
+            <div class="sh"><span class="stage-n">02</span><span class="itile" data-icon="shield"></span><h3>Dựng lá chắn, siết từng lớp một</h3></div>
+            <div class="sbody">Đi hardening hệ điều hành, tường lửa, PAM, VPN, DLP cho doanh nghiệp lớn và khối FDI — nơi một cổng mở thừa hay một tài khoản mặc định còn sót cũng đủ thành cánh cửa cho kẻ xấu. Công việc là soi từng dòng cấu hình, đối chiếu với mốc chuẩn (CIS), đóng thứ không cần, bật xác thực 2 lớp cho tài khoản quyền cao, và làm đi làm lại cho tới khi không còn khe hở dễ dãi nào. Tỉ mỉ đến mức nhàm chán — nhưng chính sự nhàm chán đó cứu hệ thống.</div>
+            <div class="lesson"><b>Bài học:</b> an toàn là nhiều lớp nhỏ làm đúng và làm kỷ luật, không phải một "món" đắt tiền mua về là xong.</div>
+          </div>
+          <div class="card story-card">
+            <div class="sh"><span class="stage-n">03</span><span class="itile" data-icon="search"></span><h3>Lần theo dấu vết kẻ tấn công</h3></div>
+            <div class="sbody">Giám sát an toàn thông tin và điều tra số (DFIR) cho nhiều vụ việc thật — webshell ẩn mình sau một ô upload, malware đào tiền ảo ăn sạch CPU ban đêm, ransomware quét qua cả mạng phẳng trong vài giờ. Có lần mất nhiều ngày lần ngược một dấu vết mờ trong log để tìm "bệnh nhân số 0", dựng lại từng bước đường đi của kẻ tấn công, rồi bịt đúng lỗ hổng đã để nó vào. Áp lực lớn nhất không phải kỹ thuật, mà là sự bình tĩnh khi mọi thứ đang cháy.</div>
+            <div class="lesson"><b>Bài học:</b> phát hiện sớm và giữ đủ dấu vết (log) quyết định bạn cứu được hệ thống hay mất trắng.</div>
+          </div>
+          <div class="card story-card turn">
+            <div class="sh"><span class="stage-n">04</span><span class="itile" data-icon="handshake"></span><h3>Và rồi chúng tôi nhận ra điều này</h3></div>
+            <div class="sbody">Doanh nghiệp lớn có đội ngũ, có ngân sách, có quy trình. Nhưng một shop online, một startup, một xưởng nhỏ lại gặp y hệt những vấn đề đó — hệ thống chậm, bị tấn công, mất dữ liệu, không ai trực — mà thường chẳng có một ai để gọi lúc 2 giờ sáng. Họ không thiếu quyết tâm, họ chỉ thiếu một người đã từng đi qua những đêm như thế. Nhóm kỹ sư chúng tôi lập S4C để mang chính kinh nghiệm "chiến trường" ấy về, theo cách vừa sức và vừa túi tiền của doanh nghiệp nhỏ.</div>
+            <div class="lesson"><b>Chính vì vậy:</b> S4C luôn bắt đầu từ việc <b>hiểu bài toán của bạn</b>, rồi mới tìm giải pháp — không áp gói sẵn, không bán thứ bạn chưa cần.</div>
+          </div>
+        </div>
+
+        <div class="sec-title">Những mảng S4C đã kinh qua</div>
+        <div class="chips-wrap" id="expChips"></div>
+
+        <div class="card insight">
+          <span class="itile" data-icon="info"></span>
+          <div style="font-size:12.8px;color:var(--ink-soft)">Kinh nghiệm được kể lại một cách tôn trọng: S4C <b>không nêu tên khách hàng</b> hay dữ liệu của bất kỳ ai. Thứ mang theo là cách tiếp cận, phương án xử lý và sự thấu hiểu — giúp bạn tránh đúng những "hố" mà nhiều hệ thống khác đã ngã.</div>
+        </div>
+
+        <div class="sec-title">Nền tảng năng lực — 3 trụ cột: System · Network · Security</div>
+        <p style="font-size:12.8px;color:var(--ink-soft);margin:-4px 0 12px;max-width:760px">Sức mạnh của S4C là làm chủ cả ba trụ cột cùng lúc — vì một hệ thống nhanh mà hở, hay an toàn mà chậm, đều chưa đủ. Dưới đây là năng lực &amp; chứng chỉ theo từng trụ cột.</p>
+        <div class="grid cap-grid">
+          <div class="card cap-card">
+            <div class="cap-h"><span class="itile" data-icon="gear"></span><div><h3>System</h3><div class="cap-sub">Hệ điều hành · máy chủ · CSDL · vận hành</div></div></div>
+            <ul class="cap-list">
+              <li>Quản trị &amp; vận hành Windows / Linux, ảo hóa, cloud</li>
+              <li>Tối ưu hiệu năng (tuning), xử lý nghẽn CSDL &amp; I/O</li>
+              <li>Sao lưu – khôi phục, bảo đảm uptime, xử lý sự cố vận hành</li>
+            </ul>
+            <div class="chips-wrap"><span class="chip-exp">MCSA</span><span class="chip-exp">Linux (LPIC)</span><span class="chip-exp">Virtualization</span></div>
+          </div>
+          <div class="card cap-card">
+            <div class="cap-h"><span class="itile" data-icon="network"></span><div><h3>Network</h3><div class="cap-sub">Hạ tầng mạng · kết nối · phân vùng</div></div></div>
+            <ul class="cap-list">
+              <li>Thiết kế &amp; phân vùng mạng (segmentation), VLAN</li>
+              <li>Tường lửa, VPN, cân tải, định tuyến &amp; bảo mật biên</li>
+              <li>Giám sát lưu lượng, xử lý nghẽn &amp; sự cố kết nối</li>
+            </ul>
+            <div class="chips-wrap"><span class="chip-exp">CCNA</span><span class="chip-exp">CCNP</span><span class="chip-exp">Palo Alto</span><span class="chip-exp">Fortinet</span><span class="chip-exp">Check Point</span><span class="chip-exp">F5</span><span class="chip-exp">Sophos</span></div>
+          </div>
+          <div class="card cap-card">
+            <div class="cap-h"><span class="itile" data-icon="shield"></span><div><h3>Security</h3><div class="cap-sub">Hardening · giám sát · điều tra &amp; ứng cứu</div></div></div>
+            <ul class="cap-list">
+              <li>Hardening OS/FW/PAM/VPN/DLP, lá chắn web (WAF)</li>
+              <li>Giám sát an toàn thông tin, săn mối đe dọa (threat hunting)</li>
+              <li>Điều tra số (DFIR), ứng cứu webshell / malware / ransomware</li>
+            </ul>
+            <div class="chips-wrap"><span class="chip-exp">CISSP</span><span class="chip-exp">CEH</span><span class="chip-exp">CHFI</span><span class="chip-exp">ECIH</span><span class="chip-exp">CSA</span><span class="chip-exp">CCDL</span><span class="chip-exp">Security+</span><span class="chip-exp">AWS</span><span class="chip-exp">Azure</span></div>
+          </div>
+        </div>
+        <div class="card insight" style="margin-top:12px">
+          <span class="itile" data-icon="info"></span>
+          <div style="font-size:12.5px;color:var(--ink-soft)">Khoảng <b>10 năm</b> kinh nghiệm hạ tầng IT, bảo mật hệ thống và vận hành trung tâm giám sát (SOC). S4C là <b>đội ngũ</b> — nên năng lực trải đều cả ba trụ cột, không phụ thuộc một cá nhân.</div>
+        </div>
+
+        <div class="sec-title">Cam kết khi làm việc cùng bạn</div>
+        <div class="grid" style="grid-template-columns:repeat(2,1fr)">
+          <div class="card" style="padding:16px 18px;display:flex;gap:11px"><span class="itile" data-icon="lock" style="width:34px;height:34px;font-size:17px"></span><div><b style="font-size:13.5px">Bảo mật &amp; NDA</b><div style="font-size:12.5px;color:var(--ink-soft);margin-top:4px">Sẵn sàng ký cam kết bảo mật; không chia sẻ dữ liệu, cấu hình hay thông tin hệ thống của bạn cho bất kỳ ai.</div></div></div>
+          <div class="card" style="padding:16px 18px;display:flex;gap:11px"><span class="itile" data-icon="check" style="width:34px;height:34px;font-size:17px"></span><div><b style="font-size:13.5px">Minh bạch</b><div style="font-size:12.5px;color:var(--ink-soft);margin-top:4px">Báo giá &amp; phạm vi rõ trước khi làm; thao tác rủi ro luôn hỏi ý bạn và ghi lại đầy đủ.</div></div></div>
+          <div class="card" style="padding:16px 18px;display:flex;gap:11px"><span class="itile" data-icon="compass" style="width:34px;height:34px;font-size:17px"></span><div><b style="font-size:13.5px">Thực tế, không vẽ vời</b><div style="font-size:12.5px;color:var(--ink-soft);margin-top:4px">Ưu tiên giải pháp vừa sức, mã nguồn mở; không bán thứ bạn chưa cần tới.</div></div></div>
+          <div class="card" style="padding:16px 18px;display:flex;gap:11px"><span class="itile" data-icon="book" style="width:34px;height:34px;font-size:17px"></span><div><b style="font-size:13.5px">Bàn giao được</b><div style="font-size:12.5px;color:var(--ink-soft);margin-top:4px">Có tài liệu &amp; hướng dẫn vận hành; bạn không bị phụ thuộc một chiều vào ai.</div></div></div>
+        </div>
+
+        <div style="text-align:center;margin-top:24px"><button class="btn primary lg" data-nav="scenario">Xem cách S4C đồng hành →</button></div>
+      </section>
+
+      <!-- ===== SERVICES ===== -->
+      <section class="view" id="view-services">
+        <div class="page-head">
+          <div class="eyebrow">Nhóm dịch vụ</div>
+          <h1>Các nhóm dịch vụ — đi cùng cả vòng đời hệ thống của bạn</h1>
+          <p class="sub">Không rời rạc: đây là các chặng S4C đi cùng bạn, từ lúc chưa rõ mình thiếu gì đến khi hệ thống tối ưu và yên tâm. Mỗi dịch vụ ghi rõ giải quyết vấn đề gì, hạng mục kỹ thuật, bạn nhận được gì, chi phí tham khảo và phần ngoài phạm vi.</p>
+        </div>
+        <div class="card" style="padding:14px"><div class="lifecycle" id="lifecycle"></div></div>
+        <div class="grid svc-grid" id="svcGrid" style="margin-top:16px"></div>
+      </section>
+
+      <!-- ===== PRICING ===== -->
+      <section class="view" id="view-pricing">
+        <div class="page-head">
+          <div class="eyebrow">Chi phí &amp; cách tính</div>
+          <h1>Chi phí minh bạch, theo đúng bài toán của bạn</h1>
+          <p class="sub">S4C không áp giá cứng — vì mỗi hệ thống một khác. Thay vào đó là <b>cách tính phí rõ ràng theo từng nhóm việc</b>; con số cụ thể chốt sau buổi khảo sát (miễn phí) và luôn báo giá trước khi làm. Ưu tiên công cụ mã nguồn mở nên bạn tiết kiệm nhiều chi phí license.</p>
+        </div>
+        <div class="grid price-grid" id="priceGrid"></div>
+        <div class="price-note"><span class="ic" data-icon="info" style="font-size:16px"></span><div>Chi phí <b>tùy phạm vi từng bài toán</b>, chưa gồm phần cứng/cloud và license bên thứ ba (nếu có). S4C luôn báo giá chi tiết &amp; thống nhất trước khi làm — không phát sinh bất ngờ. Không chắc nên chọn gì? Cứ bắt đầu bằng <b>buổi tư vấn miễn phí</b>.</div></div>
+        <div style="text-align:center;margin-top:22px"><button class="btn primary lg" data-nav="engagement">Đặt buổi tư vấn miễn phí →</button></div>
+      </section>
+
+      <!-- ===== MODELS ===== -->
+      <section class="view" id="view-models">
+        <div class="page-head">
+          <div class="eyebrow">Cách hợp tác</div>
+          <h1>Bạn chọn cách hợp tác vừa với mình</h1>
+          <p class="sub">Không bắt buộc gói cứng. Tùy bài toán, ngân sách và việc bạn có người làm hay không, S4C linh hoạt theo một hoặc kết hợp nhiều cách sau.</p>
+        </div>
+        <div class="grid model-grid" id="modelGrid"></div>
+        <div class="card" style="padding:18px;margin-top:16px;display:flex;gap:12px;align-items:flex-start">
+          <span class="itile" data-icon="opensource" style="width:38px;height:38px;font-size:19px"></span>
+          <div>
+            <div style="font-weight:600;font-size:14px">Ưu tiên giải pháp mã nguồn mở (open-source)</div>
+            <p style="font-size:12.5px;color:var(--ink-soft);margin-top:6px">Với doanh nghiệp nhỏ, chi phí license phần mềm thường là rào cản lớn. S4C ưu tiên dùng các công cụ mã nguồn mở đã được kiểm chứng — giám sát, tường lửa, lá chắn web, quản lý truy cập — cấu hình và vận hành cho phù hợp. Bạn tiết kiệm phần lớn chi phí bản quyền, chỉ trả cho công triển khai và vận hành.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ARCHITECTURE ===== -->
+      <section class="view" id="view-architecture">
+        <div class="page-head">
+          <div class="eyebrow">Giải pháp &amp; công nghệ</div>
+          <h1>Cách S4C tư duy về một hệ thống</h1>
+          <p class="sub">S4C không thay hệ thống của bạn — mà nhìn nó như nhiều tầng xếp lên nhau, rồi bổ sung các lớp còn thiếu và <b>kết nối mọi thứ lại</b> thành một bức tranh rõ ràng, phần lớn dựng trên công cụ mã nguồn mở. Triết lý xuyên suốt: <b>phòng thủ nhiều lớp</b> (defense in depth) + <b>nhìn thấy được</b> (observability) + <b>mở để tích hợp &amp; tự động hóa</b>.</p>
+        </div>
+
+        <div class="sec-title" style="margin-top:0">Tư duy phân lớp — mỗi tầng một nhóm rủi ro</div>
+        <div class="layer-stack">
+          <div class="card layer-row"><span class="itile" data-icon="gear"></span><div class="layer-body"><div class="layer-h"><b>Tầng System</b><span class="layer-tag">máy chủ · OS · CSDL · ứng dụng</span></div><p>Nơi mọi thứ thật sự chạy. S4C quản trị, tối ưu hiệu năng (tuning), vá lỗi, chuẩn hóa cấu hình và đảm bảo sao lưu – khôi phục. Đây là nền móng: nền yếu thì các tầng trên vá víu bao nhiêu cũng không vững.</p></div></div>
+          <div class="card layer-row"><span class="itile" data-icon="network"></span><div class="layer-body"><div class="layer-h"><b>Tầng Network</b><span class="layer-tag">mạng · phân vùng · kết nối</span></div><p>Đường đi của dữ liệu. S4C phân vùng mạng (segmentation) để sự cố một chỗ không lan ra cả hệ thống, dựng tường lửa, VPN, cân tải và kiểm soát ra/vào ở biên — chặn kẻ xấu từ xa và giữ kết nối ổn định.</p></div></div>
+          <div class="card layer-row"><span class="itile" data-icon="shield"></span><div class="layer-body"><div class="layer-h"><b>Tầng Security</b><span class="layer-tag">lá chắn · kiểm soát · giám sát</span></div><p>Các lớp bảo vệ chủ động: lá chắn web (WAF), kiểm soát truy cập đặc quyền (PAM), chống rò rỉ dữ liệu (DLP), giám sát an toàn thông tin và điều tra – ứng cứu khi có sự cố. Nhiều lớp nhỏ làm đúng, cộng lại thành chiều sâu.</p></div></div>
+          <div class="card layer-row cross"><span class="itile" data-icon="eye"></span><div class="layer-body"><div class="layer-h"><b>Quản trị &amp; Vận hành</b><span class="layer-tag">xuyên suốt cả 3 tầng</span></div><p>Lớp "keo" nối tất cả: gom log &amp; chỉ số về một chỗ, dựng tự động hóa để phát hiện và xử lý sớm, giữ cơ chế phê duyệt và báo cáo minh bạch. Đây là nơi S4C thay cho đội kỹ thuật nội bộ mà bạn chưa có.</p></div></div>
+        </div>
+        <div class="sec-title">Sơ đồ tham chiếu — bấm từng khối để xem chi tiết</div>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin:-4px 0 12px;max-width:760px">Dưới đây là một sơ đồ giải pháp tham chiếu: dữ liệu đi theo một luồng từ nguồn → gom &amp; theo dõi → phát hiện → xử lý → báo cáo. Bấm từng khối để xem nó làm gì, cần gì, cho ra gì và giới hạn ở đâu. Thiết kế thật luôn tùy môi trường của bạn.</p>
+        <div class="card" style="padding:14px 16px;margin-bottom:16px">
+          <div style="font-size:11px;font-family:var(--font-mono);color:var(--ink-faint);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">Dữ liệu đi theo một luồng</div>
+          <div class="kchain" style="margin-top:0">
+            <div class="kc-node"><div class="kc-box" style="background:var(--surface);border-color:var(--accent)"><div class="kc-n" style="color:var(--accent-ink)">01</div><div class="kc-t">Nguồn</div><div class="kc-d">máy chủ, app, mạng, bảo mật</div></div></div><span class="kc-arrow" style="color:var(--accent)">→</span>
+            <div class="kc-node"><div class="kc-box" style="background:var(--surface);border-color:var(--accent)"><div class="kc-n" style="color:var(--accent-ink)">02</div><div class="kc-t">Gom &amp; theo dõi</div><div class="kc-d">log + hiệu năng về một chỗ</div></div></div><span class="kc-arrow" style="color:var(--accent)">→</span>
+            <div class="kc-node"><div class="kc-box" style="background:var(--surface);border-color:var(--accent)"><div class="kc-n" style="color:var(--accent-ink)">03</div><div class="kc-t">Phát hiện</div><div class="kc-d">cảnh báo bất thường sớm</div></div></div><span class="kc-arrow" style="color:var(--accent)">→</span>
+            <div class="kc-node"><div class="kc-box" style="background:var(--surface);border-color:var(--accent)"><div class="kc-n" style="color:var(--accent-ink)">04</div><div class="kc-t">Xử lý</div><div class="kc-d">có người, có phê duyệt</div></div></div><span class="kc-arrow" style="color:var(--accent)">→</span>
+            <div class="kc-node"><div class="kc-box" style="background:var(--surface);border-color:var(--accent)"><div class="kc-n" style="color:var(--accent-ink)">05</div><div class="kc-t">Báo cáo</div><div class="kc-d">bạn nắm tình hình</div></div></div>
+          </div>
+        </div>
+        <div class="arch-wrap">
+          <div class="card arch-canvas">
+            <svg class="arch-svg" viewBox="0 0 560 320" id="archSvg" role="img" aria-label="Sơ đồ giải pháp tham chiếu S4C">
+              <g stroke="var(--line)" stroke-width="2" fill="none">
+                <path d="M110,70 L160,95"/><path d="M110,160 L160,120"/><path d="M110,250 L160,140"/>
+                <path d="M270,115 L320,115"/><path d="M430,135 L430,180 L380,205"/>
+                <path d="M320,140 L320,190"/><path d="M270,220 L320,220"/>
+              </g>
+              <g class="arch-node" data-node="edge"><rect x="20" y="45" width="90" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="65" y="67" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Tường lửa &amp; WAF</text><text x="65" y="82" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">chặn tấn công vào web</text></g>
+              <g class="arch-node" data-node="servers"><rect x="20" y="135" width="90" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="65" y="157" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Máy chủ &amp; app</text><text x="65" y="172" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">website · API · DB</text></g>
+              <g class="arch-node" data-node="pam"><rect x="20" y="225" width="90" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="65" y="247" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Kiểm soát truy cập</text><text x="65" y="262" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">PAM · xác thực</text></g>
+              <g class="arch-node" data-node="collect"><rect x="160" y="95" width="110" height="52" rx="8" fill="var(--accent-wash)" stroke="var(--accent)"/><text x="215" y="117" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-ink)">Gom &amp; theo dõi</text><text x="215" y="132" text-anchor="middle" font-size="8.5" fill="var(--accent-ink)">log · hiệu năng</text></g>
+              <g class="arch-node" data-node="detect"><rect x="320" y="90" width="110" height="52" rx="8" fill="var(--navy)" stroke="var(--navy)"/><text x="375" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Phát hiện bất thường</text><text x="375" y="127" text-anchor="middle" font-size="8.5" fill="#9bb0bf">cảnh báo sớm</text></g>
+              <g class="arch-node" data-node="respond"><rect x="320" y="190" width="110" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="375" y="212" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Xử lý &amp; vận hành</text><text x="375" y="227" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">ai làm · phê duyệt</text></g>
+              <g class="arch-node" data-node="report"><rect x="160" y="195" width="110" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="215" y="217" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Báo cáo dễ hiểu</text><text x="215" y="232" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">bạn nắm tình hình</text></g>
+            </svg>
+          </div>
+          <div class="card node-detail" id="nodeDetail"><div class="empty">← Bấm một khối trong sơ đồ để xem giải thích.</div></div>
+        </div>
+
+        <div class="sec-title">Tư duy mở — không khóa cứng, luôn kết nối được</div>
+        <div class="grid open-grid">
+          <div class="card open-card"><span class="itile" data-icon="network"></span><h3>Tích hợp</h3><p>Nối được với công cụ &amp; dịch vụ bạn đang dùng — cloud, email, chat (Telegram/Zalo), hệ thống sẵn có — qua API hoặc cổng trung gian. Không bắt bạn thay mới toàn bộ.</p></div>
+          <div class="card open-card"><span class="itile" data-icon="grid"></span><h3>Mở rộng</h3><p>Bắt đầu gọn ở phần cấp thiết, rồi lắp thêm từng khối khi bạn lớn lên — thêm nguồn log, thêm lớp bảo vệ, thêm site — mà không phải làm lại từ đầu.</p></div>
+          <div class="card open-card"><span class="itile" data-icon="gear"></span><h3>Tự động hóa</h3><p>Chỗ nào lặp đi lặp lại, S4C viết job/script để máy tự làm: cảnh báo tự xử lý, sao lưu, dọn dẹp, đồng bộ danh sách chặn — giảm tối đa thao tác tay.</p></div>
+        </div>
+      </section>
+
+      <!-- ===== FAQ ===== -->
+      <section class="view" id="view-faq">
+        <div class="page-head">
+          <div class="eyebrow">Câu hỏi thường gặp</div>
+          <h1>Những băn khoăn thường gặp — nói thẳng</h1>
+          <p class="sub">Doanh nghiệp nhỏ thường ngại ngần vài điều trước khi cho người ngoài "đụng" vào hệ thống. Dưới đây là trả lời thẳng thắn.</p>
+        </div>
+        <div class="faq-list" id="faqList"></div>
+        <div style="text-align:center;margin-top:24px"><button class="btn primary lg" data-nav="engagement">Còn câu hỏi khác? Nhắn S4C →</button></div>
+      </section>
+
+      <!-- ===== ENGAGEMENT ===== -->
+      <section class="view" id="view-engagement">
+        <div class="page-head">
+          <div class="eyebrow">Liên hệ &amp; khảo sát</div>
+          <h1>Kể cho S4C nghe câu chuyện của bạn</h1>
+          <p class="sub">Không cần rành kỹ thuật — bạn chỉ cần kể điều đang khiến mình bận lòng. Vài gợi ý bên dưới chỉ để khơi chuyện; quan trọng nhất là phần bạn tự mô tả. Portal gom lại thành một bản tóm tắt để bạn gửi cho S4C qua kênh thuận tiện. Buổi trao đổi đầu tiên luôn miễn phí.</p>
+        </div>
+        <div class="eng-layout">
+          <div>
+            <div class="form-group">
+              <label style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">Gợi ý — điều gì đang khiến bạn bận tâm? <span style="font-weight:400;font-size:11.5px;color:var(--ink-faint)">không bắt buộc · <b id="needCount" style="color:var(--accent-ink)">0</b> đã chọn</span></label>
+              <div class="need-opts" id="needOpts"></div>
+            </div>
+            <div class="card" style="padding:16px;margin-top:4px">
+              <div class="form-group"><label for="engGoal">Kể bằng lời của bạn — bạn đang trăn trở hay mong muốn điều gì? <span style="font-weight:400;color:var(--ink-faint);font-size:11.5px">(phần quan trọng nhất)</span></label><textarea id="engGoal" style="min-height:92px" placeholder="VD: dạo này web hay chậm vào buổi tối; tôi lo một ngày nào đó mất sạch dữ liệu khách; muốn có người lo giúp phần kỹ thuật để yên tâm bán hàng…"></textarea></div>
+              <div class="form-group"><label for="engOrg">Doanh nghiệp bạn làm gì?</label><input id="engOrg" placeholder="VD: app giao hàng, web bán hàng, phòng khám…"></div>
+              <div class="form-group"><label for="engScale">Quy mô cỡ nào?</label><input id="engScale" placeholder="VD: 20 nhân sự, 1 app + 3 máy chủ"></div>
+              <div class="form-group"><label for="engSys">Hiện tại bạn đang có gì về IT?</label><input id="engSys" placeholder="VD: thuê cloud, có app, chưa ai lo kỹ thuật"></div>
+              <div class="form-group" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div><label for="engBudget">Ngân sách dự kiến</label><input id="engBudget" placeholder="VD: còn cân nhắc"></div>
+                <div><label for="engContact">Liên hệ lại của bạn</label><input id="engContact" placeholder="Email / số điện thoại"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card summary-out">
+            <h3 style="font-size:15px">Tóm tắt gửi S4C</h3>
+            <p style="font-size:12px;color:var(--ink-soft);margin-top:4px">Tự cập nhật theo lựa chọn của bạn.</p>
+            <pre id="engSummary" class="mono"></pre>
+            <div style="font-size:11.5px;color:var(--ink-faint);margin:2px 0 8px">Gửi nhu cầu cho S4C qua:</div>
+            <div class="share-row" id="shareRow"></div>
+            <div class="copy-ok" id="copyOk" style="margin-top:9px">✓ Đã sao chép</div>
+
+            <div class="contact-box">
+              <div class="cb-head"><span class="itile" data-icon="phone"></span><div><div style="font-weight:600;font-size:13.5px">Liên hệ S4C — tư vấn miễn phí</div><div style="font-size:11.5px;color:var(--ink-soft)">Phản hồi trong giờ làm việc</div></div></div>
+              <div class="cb-row"><span class="cb-ic itile" data-icon="users"></span><span class="cb-k">Phụ trách</span><span class="cb-v" id="cName"></span></div>
+              <div class="cb-row"><span class="cb-ic itile" style="background:var(--ok-wash);color:var(--ok)" data-icon="phone"></span><span class="cb-k">Hotline</span><span class="cb-v" id="cHotline"></span></div>
+              <div class="cb-row"><span class="cb-ic itile" data-icon="mail"></span><span class="cb-k">Email</span><span class="cb-v" id="cEmail"></span></div>
+              <div class="cb-row"><span class="cb-ic itile" data-icon="chat"></span><span class="cb-k">Zalo</span><span class="cb-v" id="cPhone"></span></div>
+            </div>
+
+            <div class="sec-title" style="margin:16px 0 4px">Thông tin của bạn đi đâu?</div>
+            <div class="data-fate">
+              <div class="df-row"><div class="df-ic" style="background:var(--accent-wash);color:var(--accent-ink)">1</div><div><b>Chọn một kênh ở trên</b> (Hotline, Email, Zalo, Telegram, Facebook): một cửa sổ hướng dẫn sẽ hiện ra, chỉ bạn từng bước — nội dung đã điền sẵn hoặc tự sao chép, bạn chỉ việc gửi.</div></div>
+              <div class="df-row"><div class="df-ic" style="background:var(--accent-wash);color:var(--accent-ink)">2</div><div>Thông tin chỉ dùng để liên hệ tư vấn, <b>không chia sẻ</b> cho bên thứ ba.</div></div>
+              <div class="df-row"><div class="df-ic" style="background:var(--ok-wash);color:var(--ok)">3</div><div><b>Sắp tới:</b> form gửi thẳng &amp; tự lưu về hệ thống S4C qua kết nối an toàn, kèm thông báo quyền riêng tư.</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="f-brand">
+          <div class="logo"><svg class="mk" viewBox="0 0 32 32" fill="none" aria-hidden="true"><defs><linearGradient id="sgD" x1="6" y1="2" x2="26" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#78a2ff"/><stop offset=".55" stop-color="#3b6fe6"/><stop offset="1" stop-color="#1a3ca3"/></linearGradient><linearGradient id="sgDh" x1="16" y1="2" x2="16" y2="15" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 24 22 29 16 31 C10 29 4 24 4 16 V8 Z" fill="#0b2258" opacity=".5"/><path d="M16 2 L28 7 V15 C28 23 22 28 16 30 C10 28 4 23 4 15 V7 Z" fill="url(#sgD)" stroke="rgba(255,255,255,.3)" stroke-width=".8"/><path d="M16 2 L28 7 V13 C24 11 20 10 16 10 C12 10 8 11 4 13 V7 Z" fill="url(#sgDh)"/><path d="M11 16 l3.5 3.5 L22 11.5" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>S4C</div>
+          <p>Đội ngũ kỹ sư giúp doanh nghiệp nhỏ vận hành, tối ưu và bảo vệ hệ thống — vừa sức, minh bạch, có người chịu trách nhiệm.</p>
+        </div>
+        <div class="f-col">
+          <h5>Khám phá</h5>
+          <button class="f-link" data-nav="about">Về S4C</button>
+          <button class="f-link" data-nav="services">Nhóm dịch vụ</button>
+          <button class="f-link" data-nav="scenario">Kịch bản thực tế</button>
+          <button class="f-link" data-nav="faq">Câu hỏi thường gặp</button>
+        </div>
+        <div class="f-col">
+          <h5>Liên hệ</h5>
+          <a id="fPhone" href="#">Hotline</a>
+          <a id="fEmail" href="#">Email</a>
+          <button class="f-link" data-nav="engagement">Gửi nhu cầu tư vấn</button>
+        </div>
+        <div class="footer-bottom" style="grid-column:1/-1">
+          <span>© 2026 S4C · Systems · Smart Solutions · Security</span>
+          <span>Tư vấn ban đầu miễn phí · Cam kết bảo mật (NDA)</span>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+</div>
+
+<button class="fab" id="fab"><span class="ic" data-icon="send"></span><span class="lbl">Tư vấn miễn phí</span></button>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"S4C","description":"Đội ngũ kỹ sư giúp doanh nghiệp nhỏ, siêu nhỏ và startup vận hành, tối ưu và bảo vệ an toàn hệ thống.","areaServed":"VN","email":"thinhdv90@gmail.com","telephone":"+84769010092","slogan":"Systems · Smart Solutions · Security","knowsAbout":["Quản trị vận hành hệ thống","Giám sát & tối ưu hiệu năng","Hardening","An toàn thông tin","Điều tra & ứng cứu sự cố","Đánh giá an toàn thông tin"]}
+</script>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="guide-bar" id="guideBar">
+  <button id="gPrev" aria-label="Trước">‹</button>
+  <div class="gstep"><b id="gTitle">—</b><small id="gAction">—</small></div>
+  <span class="gcount" id="gCount">1 / 6</span>
+  <button id="gNext" aria-label="Sau">›</button>
+  <button id="gClose" style="font-size:13px">Đóng</button>
+</div>
+
+<script>
+/* =========================================================
+   S4C — Trang giới thiệu dịch vụ tương tác
+   Vận hành · tối ưu · an toàn hệ thống cho DN nhỏ
+   Ví dụ minh họa: "Đi Chợ Nhanh" (startup ~20 người)
+   ========================================================= */
+
+/* >>>>> THINH TỰ ĐIỀN THÔNG TIN LIÊN HỆ Ở ĐÂY (để [..] nếu chưa có) <<<<< */
+const CONTACT = {
+  name:     "Mr. Thịnh",
+  hotline:  "076 9010092",
+  email:    "thinhdv90@gmail.com",
+  phone:    "[Zalo: số/link cập nhật sau]",
+  telegram: "[Telegram: @username hoặc link t.me]",
+  messenger:"[Messenger: link m.me]",
+};
+/* Bảng giá tham khảo — chỉnh số tùy ý */
+const PRICING = [
+  { icon:"chat",    name:"Trao đổi & tư vấn ban đầu", price:"Miễn phí", unit:"", popular:false,
+    desc:"Một buổi nghe bài toán của bạn và phác thảo hướng xử lý. Không cam kết, không ràng buộc.",
+    items:["Hiểu nhu cầu & hiện trạng","Gợi ý hướng ưu tiên","Phác thảo phạm vi & chi phí"] },
+  { icon:"search",  name:"Tư vấn & đánh giá hệ thống", price:"Theo quy mô", unit:"", popular:false,
+    desc:"Rà soát tổng thể, đánh giá sức khỏe & an toàn, chỉ ra điểm yếu theo thứ tự ưu tiên.",
+    items:["Đánh giá vận hành + an toàn","Báo cáo & điểm số dễ hiểu","Lộ trình đề xuất rõ ràng"] },
+  { icon:"wrench",  name:"Triển khai & tối ưu", price:"Theo gói công việc", unit:"", popular:true,
+    desc:"Dựng nền tảng: cài đặt & cấu hình, tối ưu hiệu năng, hardening (FW/WAF/PAM), sao lưu.",
+    items:["Thiết lập & siết cấu hình","Tối ưu hiệu năng (performance)","Bảo vệ nhiều lớp + sao lưu"] },
+  { icon:"gear",    name:"Đồng hành vận hành (Managed)", price:"Phí theo tháng", unit:"", popular:false,
+    desc:"S4C vận hành, giám sát, tối ưu định kỳ và ứng cứu sự cố hằng tháng — thay cho đội kỹ thuật.",
+    items:["Giám sát & cảnh báo sớm","Vận hành + tuning định kỳ","Ứng cứu sự cố + báo cáo"] },
+  { icon:"users",   name:"Thuê theo giờ / theo việc", price:"Theo giờ / đợt", unit:"", popular:false,
+    desc:"Cần người làm theo đợt, linh hoạt như một thành viên kỹ thuật bên ngoài.",
+    items:["Theo nhu cầu cụ thể","Không ràng buộc dài hạn","Tính theo khối lượng"] },
+  { icon:"sliders", name:"Giải pháp may đo (Custom)", price:"Báo giá riêng", unit:"", popular:false,
+    desc:"Bài toán đặc thù cần thiết kế riêng. S4C nghiên cứu và triển khai đúng tình huống của bạn.",
+    items:["Khảo sát & thiết kế riêng","Kết hợp nhiều dịch vụ","Báo giá theo phạm vi"] },
+];
+
+/* ---------- Icon set (đơn sắc, cùng tông) ---------- */
+const ICONS = {
+  home:'<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>',
+  book:'<path d="M12 6c-2-1.3-4.6-2-7.2-2A1 1 0 004 5v12.5a1 1 0 001 1c2.4 0 4.7.6 7 1.8 2.3-1.2 4.6-1.8 7-1.8a1 1 0 001-1V5a1 1 0 00-.8-1C16.6 4 14 4.7 12 6z"/><path d="M12 6v13"/>',
+  quote:'<path d="M9 7H5a2 2 0 00-2 2v3a2 2 0 002 2h2v3H4M19 7h-4a2 2 0 00-2 2v3a2 2 0 002 2h2v3h-3"/>',
+  play:'<path d="M7 5l12 7-12 7z" fill="currentColor" stroke="none"/>',
+  grid:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  money:'<rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9v6M18 9v6"/>',
+  users:'<circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3 2.6-5 5.5-5s5.5 2 5.5 5"/><path d="M16 5.2a3 3 0 010 5.6"/><path d="M20.5 20c0-2.4-1.7-4.2-4-4.8"/>',
+  network:'<circle cx="5" cy="12" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M7 11l10-4M7 13l10 4"/>',
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/>',
+  search:'<circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4.2-4.2"/>',
+  compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z" fill="currentColor" stroke="none"/>',
+  gear:'<circle cx="12" cy="12" r="3.2"/><path d="M12 3.2v2.4M12 18.4v2.4M4.4 7.5l2 1.2M17.6 15.3l2 1.2M4.4 16.5l2-1.2M17.6 8.7l2-1.2"/>',
+  shield:'<path d="M12 3l7 3v5c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/>',
+  pulse:'<path d="M3 12h4l2.5-6 4 12 2.5-6H21"/>',
+  chart:'<path d="M4 4v16h16"/><path d="M8 15l3-3 3 2 4-5"/>',
+  wrench:'<path d="M15.5 6.5a3.6 3.6 0 01-4.6 4.6L5 17l2 2 5.9-5.9a3.6 3.6 0 004.6-4.6l-2.3 2.3-1.9-.4-.4-1.9z"/>',
+  sliders:'<path d="M4 7h9M18 7h2M4 12h4M12 12h8M4 17h12M18 17h2"/><circle cx="15.5" cy="7" r="1.8" fill="currentColor" stroke="none"/><circle cx="9.5" cy="12" r="1.8" fill="currentColor" stroke="none"/><circle cx="15.5" cy="17" r="1.8" fill="currentColor" stroke="none"/>',
+  chat:'<path d="M4 5h16a1 1 0 011 1v9a1 1 0 01-1 1H9l-4 4v-4H4a1 1 0 01-1-1V6a1 1 0 011-1z"/>',
+  eye:'<path d="M2 12s3.6-6.2 10-6.2S22 12 22 12s-3.6 6.2-10 6.2S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/>',
+  database:'<ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.6 3.6 3 8 3s8-1.4 8-3V6"/><path d="M4 12c0 1.6 3.6 3 8 3s8-1.4 8-3"/>',
+  lock:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>',
+  wall:'<rect x="3" y="4.5" width="18" height="15" rx="1.5"/><path d="M3 9.5h18M3 14.5h18M9 4.5v5M15 9.5v5M9 14.5v5"/>',
+  handshake:'<path d="M3 13l3-3 4 3 2-2 5 4"/><path d="M12 11l3-3 6 5"/><path d="M3 13v4a1 1 0 001 1h3"/>',
+  store:'<path d="M4 9l1-4h14l1 4"/><path d="M4 9a2.5 2.5 0 005 0 2.5 2.5 0 005 0 2.5 2.5 0 005 0"/><path d="M5 11v8h14v-8"/><path d="M9 19v-5h4v5"/>',
+  opensource:'<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v6M8.5 15.5l-3 3M15.5 15.5l3 3"/>',
+  check:'<path d="M4 12l5 5L20 6"/>',
+  minus:'<path d="M5 12h14"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/>',
+  copy:'<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h8"/>',
+  phone:'<path d="M5 4h3l1.5 4-2 1.5a12 12 0 005 5l1.5-2 4 1.5v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/>',
+  telegram:'<path d="M21.5 4.2L2.8 11.4c-.9.3-.9 1.5.1 1.8l4.6 1.4 1.7 5c.3.8 1.2 1 1.8.4l2.6-2.4 4.5 3.3c.7.5 1.6.1 1.8-.7L23 5.4c.2-.9-.6-1.6-1.5-1.2z" fill="currentColor" stroke="none"/>',
+  facebook:'<path d="M14 9h3V6h-3c-1.9 0-3 1.3-3 3v2H8v3h3v6h3v-6h3l1-3h-4V9z" fill="currentColor" stroke="none"/>',
+  send:'<path d="M4 12l16-7-7 16-2.5-6.5z"/>',
+};
+function svgIcon(name){ return `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]||""}</svg>`; }
+
+const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+const el = (t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isPlaceholder = v => !v || /^\s*\[.*\]\s*$/.test(v);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const randInt=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+function copyText(txt){
+  try{ navigator.clipboard.writeText(txt); return; }catch(e){}
+  try{ const ta=document.createElement("textarea"); ta.value=txt; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }catch(e){}
+}
+function toast(msg){ const o=$("#copyOk"); if(!o) return; o.textContent="✓ "+msg; o.style.display="inline"; clearTimeout(window.__toast); window.__toast=setTimeout(()=>o.style.display="none",2800); }
+function liveStop(){ if(window.__live){ clearInterval(window.__live); window.__live=null; } }
+function countUp(elm, target){
+  if(!elm) return;
+  if(reduceMotion){ elm.textContent=target; return; }
+  const dur=900, t0=performance.now();
+  (function step(t){ const k=Math.min(1,(t-t0)/dur); elm.textContent=Math.round(target*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(step); })(t0);
+}
+function animateGauge(target){
+  const arc=$("#gArc");
+  if(arc && !reduceMotion){ const L=arc.getTotalLength(); arc.style.transition="none"; arc.style.strokeDasharray=L; arc.style.strokeDashoffset=L; requestAnimationFrame(()=>requestAnimationFrame(()=>{ arc.style.transition="stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1)"; arc.style.strokeDashoffset=0; })); }
+  countUp($("#gScore"), target);
+}
+
+/* ---------- Nav ---------- */
+const NAV = [
+  { sec:"Bắt đầu" },
+  { view:"overview", icon:"home", label:"Tổng quan" },
+  { view:"scenario", icon:"play", label:"Kịch bản thực tế", feature:true },
+  { view:"about", icon:"book", label:"Về S4C" },
+  { sec:"Tìm hiểu" },
+  { view:"services", icon:"grid", label:"Nhóm dịch vụ" },
+  { view:"pricing", icon:"money", label:"Bảng giá tham khảo" },
+  { view:"models", icon:"handshake", label:"Cách hợp tác" },
+  { view:"architecture", icon:"network", label:"Giải pháp & công nghệ" },
+  { view:"faq", icon:"quote", label:"Câu hỏi thường gặp" },
+  { view:"engagement", icon:"mail", label:"Liên hệ & khảo sát" },
+];
+const navScroll=$("#navScroll");
+NAV.forEach(n=>{
+  if(n.sec){ navScroll.appendChild(el("div","nav-sec",n.sec)); return; }
+  const b=el("button","nav-item"+(n.feature?" feature":"")+(n.view==="overview"?" active":""));
+  b.dataset.view=n.view;
+  b.innerHTML=`<span class="ix">${svgIcon(n.icon)}</span>${n.label}`;
+  navScroll.appendChild(b);
+});
+$("#guideBtn").innerHTML=`${svgIcon("play")} Trình bày theo kịch bản`;
+$("#resetBtn").textContent="↺ Xem lại từ đầu";
+$("#themeBtn").textContent="◐ Theme";
+
+/* resolve inline [data-icon] placeholders in static HTML */
+$$("[data-icon]").forEach(n=>{ n.innerHTML=svgIcon(n.dataset.icon); });
+
+/* ---------- Data ---------- */
+const PAINS = [
+  { q:"Hệ thống chậm dần, hay treo mà không rõ vì sao?", a:"Thiếu người theo dõi thì chỉ biết khi khách phàn nàn. Thường là ổ đĩa đầy, cấu hình chưa tối ưu hoặc quá tải.", cost:"Khách bỏ đi, nhân viên mất thời gian" },
+  { q:"Không có ai lo máy chủ, cập nhật hay sao lưu định kỳ?", a:"Những việc 'thầm lặng' này rất dễ bị bỏ quên — đến khi hỏng mới phát hiện chưa có bản sao lưu nào dùng được.", cost:"Rủi ro mất dữ liệu, gián đoạn" },
+  { q:"Website / app bị tấn công, chèn mã độc hay sập?", a:"Hệ thống công khai luôn bị dò quét tự động. Không có lá chắn và không ai theo dõi thì rất dễ bị khai thác.", cost:"Mất doanh thu, mất uy tín" },
+  { q:"Dữ liệu khách hàng bị khóa đòi tiền chuộc?", a:"Ransomware không chừa doanh nghiệp nhỏ. Không sao lưu đúng cách thì gần như mất trắng.", cost:"Có nơi phải đóng cửa vì chuyện này" },
+  { q:"Thuê hẳn một nhân viên kỹ thuật thì không kham nổi?", a:"Lương một người làm full-time là khoản cố định lớn, trong khi nhu cầu thật chưa cần tới mức đó.", cost:"Chi phí cố định vượt nhu cầu" },
+  { q:"Không biết mình đang thiếu / yếu ở đâu để lo?", a:"Phần khó nhất là không rõ vấn đề nằm đâu. Không được đánh giá thì không biết nên làm gì trước.", cost:"Lo sai chỗ, tốn tiền không đúng việc" },
+];
+const VALUES = [
+  { icon:"money", t:"Chi phí vừa sức, minh bạch", d:"Ưu tiên công cụ mã nguồn mở, không bắt mua license chi phí cao. Có bảng giá tham khảo rõ ràng, báo giá trước khi làm." },
+  { icon:"wrench", t:"Lo phần kỹ thuật cho bạn", d:"Vận hành, tối ưu hiệu năng và giữ an toàn — để bạn yên tâm tập trung kinh doanh." },
+  { icon:"handshake", t:"Đồng hành dài hạn", d:"Không bỏ bạn tự xoay. Có người theo dõi, xử lý khi sự cố và tư vấn khi cần." },
+];
+/* ===== 4 KỊCH BẢN (sắp theo thứ tự dịch vụ) — mỗi KB có OUTPUT bàn giao ===== */
+const SCENARIOS = [
+  { id:"assess", icon:"search", step:"Dịch vụ 1 · Tư vấn & Đánh giá", label:"Đánh giá tổng thể",
+    tag:"Rà soát toàn diện hệ thống & ATTT theo khung chuẩn → bàn giao bản đánh giá, rủi ro và khuyến nghị.",
+    customer:{icon:"network", name:"Công ty IT game outsource", type:"~60 kỹ sư · gia công cho studio Âu–Mỹ", context:"Đối tác nước ngoài yêu cầu bản đánh giá năng lực an toàn thông tin trước khi ký hợp đồng mới"},
+    steps:[
+      {key:"why", nav:"Vì sao", title:"1 · Vì sao cần đánh giá tổng thể", intro:"Đối tác nước ngoài, nhà đầu tư, hay chính rủi ro mất dữ liệu buộc bạn phải biết hệ thống mình đang ở đâu so với một chuẩn an toàn — bằng chứng, không cảm tính."},
+      {key:"framework", nav:"Khung chuẩn", title:"2 · Soi theo một khung chuẩn", intro:"S4C đánh giá theo khung NIST CSF — 5 trụ cột dễ hiểu: Nhận diện, Bảo vệ, Phát hiện, Ứng phó, Phục hồi; đối chiếu thêm các mục của ISO 27001."},
+      {key:"radar", nav:"Kết quả", title:"3 · Kết quả: mức trưởng thành hiện tại", intro:"Điểm từng trụ cột hiện ra trên một bức tranh. Bạn thấy ngay mình mạnh ở đâu, yếu ở đâu so với mục tiêu."},
+      {key:"gap", nav:"Khoảng cách", title:"4 · Khoảng cách & rủi ro", intro:"S4C liệt kê khoảng cách cụ thể theo mức ưu tiên — cái nào nguy hiểm cần xử lý ngay, cái nào làm sau."},
+      {key:"output", nav:"Bàn giao", title:"5 · Bàn giao: Bản đánh giá tổng thể", intro:"Kết quả cuối cùng là một bộ tài liệu bạn cầm được — để ra quyết định, trình đối tác hoặc chuẩn bị audit."},
+    ]},
+  { id:"tune", icon:"gear", step:"Dịch vụ 2 · Hardening & Tối ưu", label:"Hardening & Tối ưu hiệu năng",
+    tag:"Siết cấu hình, tối ưu hiệu năng (performance) và tăng cường bảo mật → hệ thống nhanh hơn và đạt chuẩn.",
+    customer:{icon:"store", name:"Nền tảng app đi chợ", type:"Startup giao hàng · ~25 người", context:"Lượt truy cập tăng nhanh — giờ cao điểm hệ thống quá tải, đồng thời lo bề mặt tấn công mở rộng"},
+    steps:[
+      {key:"ctx", nav:"Bối cảnh", title:"1 · Bối cảnh: vừa chậm, vừa hở", intro:"Giờ cao điểm hệ thống quá tải, phản hồi chậm; song song đó cấu hình mặc định để nhiều 'cửa mở' — vừa ảnh hưởng trải nghiệm, vừa rủi ro bảo mật."},
+      {key:"perf", nav:"Tối ưu", title:"2 · Tối ưu hiệu năng (performance)", intro:"S4C truy điểm nghẽn ở tầng hệ thống/hạ tầng và tối ưu — không đụng code ứng dụng. Hiệu năng cải thiện rõ rệt."},
+      {key:"harden", nav:"Hardening", title:"3 · Hardening: siết từng lớp bảo mật", intro:"Tường lửa, WAF, kiểm soát truy cập (PAM), siết cấu hình, sao lưu — nâng điểm an toàn lên rõ rệt."},
+      {key:"standard", nav:"Đạt chuẩn", title:"4 · Đáp ứng tiêu chuẩn", intro:"Đối chiếu với các mốc chuẩn hóa (CIS Benchmark, hardening guideline) — đảm bảo làm đúng chứ không làm cho có."},
+      {key:"output", nav:"Bàn giao", title:"5 · Bàn giao: hệ thống tối ưu & đạt chuẩn", intro:"Kết quả: hệ thống nhanh hơn, vững hơn, có tài liệu cấu hình chuẩn để duy trì."},
+    ]},
+  { id:"managed", icon:"gear", step:"Dịch vụ 3 · Managed Service", label:"Vận hành & Tự động hóa",
+    tag:"S4C đưa việc lặp lại vào tự động hóa (job, script, cảnh báo tự xử lý) để hệ thống tự chạy phần nhàm chán → bạn tiết kiệm nguồn lực, đội ngũ tập trung việc giá trị cao.",
+    customer:{icon:"store", name:"Shop Táo Xanh (bán lẻ online)", type:"Bán lẻ đa kênh · ~30 người", context:"Không có đội kỹ thuật riêng; tuyển người giỏi thì đắt và khó giữ, mà phần lớn công việc lại là những đầu việc lặp đi lặp lại"},
+    steps:[
+      {key:"ctx", nav:"Bối cảnh", title:"1 · Bối cảnh: phần lớn là việc lặp lại", intro:"Hệ thống cần người lo mỗi ngày, nhưng nhìn kỹ thì phần nhiều là việc lặp đi lặp lại: cập nhật, sao lưu, dọn dẹp, canh cảnh báo. Thuê người ngồi làm tay những việc đó vừa tốn, vừa dễ sót."},
+      {key:"monitor", nav:"Tự động hóa", title:"2 · Đưa việc lặp lại vào tự động hóa", intro:"Thay vì ngồi canh, S4C viết sẵn các job và script để hệ thống tự làm phần việc lặp lại và tự phản ứng với tình huống thường gặp. Dưới đây là các luồng tự động đang chạy trên hệ thống."},
+      {key:"coverage", nav:"Phạm vi", title:"3 · Máy làm việc lặp, người làm việc khó", intro:"Việc lặp lại giao cho tự động hóa; phần cần đầu óc — tối ưu, phân tích, xử lý sự cố — là nơi đội ngũ S4C dồn sức. Đây là ranh giới S4C phân chia rõ."},
+      {key:"resource", nav:"Nguồn lực", title:"4 · Tối ưu nguồn lực & chuẩn hóa cách làm", intro:"Nhờ tự động hóa, cùng một chi phí lo được nhiều việc hơn so với tuyển người làm tay — kèm quy trình rõ ràng và cam kết phản hồi (SLA)."},
+      {key:"output", nav:"Bàn giao", title:"5 · Bàn giao: hệ thống tự chạy & minh bạch", intro:"Kết quả: phần việc lặp đã tự động hóa, nguồn lực dồn vào việc giá trị cao, và báo cáo minh bạch mỗi kỳ."},
+    ]},
+  { id:"dfir", icon:"shield", step:"Dịch vụ 4 · Điều tra & Ứng cứu (DFIR)", label:"Ứng cứu Ransomware",
+    tag:"Sự cố nghiêm trọng (ransomware, malware, webshell) → điều tra số (DFIR), khống chế, khôi phục và báo cáo.",
+    customer:{icon:"network", name:"Công ty sản xuất vốn Nhật (FDI)", type:"Nhà máy + văn phòng tại VN · ~180 máy", context:"Sáng thứ Hai: hàng loạt máy hiện thông báo đòi tiền chuộc, file bị mã hóa đuôi .locked — dây chuyền &amp; văn phòng đình trệ"},
+    steps:[
+      {key:"signal", nav:"Sự cố", title:"1 · Sự cố: hệ thống bị mã hóa & đòi tiền chuộc", intro:"Đây là tình huống khẩn cấp quy mô lớn: nhiều máy trạm và máy chủ file bị mã hóa, kèm ghi chú đòi tiền chuộc. Mỗi giờ trôi qua là thiệt hại."},
+      {key:"scope", nav:"Khoanh vùng", title:"2 · Khoanh vùng & điều tra số (DFIR)", intro:"Việc đầu tiên không phải xóa — mà là khoanh vùng thiệt hại, giữ bằng chứng và tìm 'bệnh nhân số 0' để chặn lây lan."},
+      {key:"chain", nav:"Chuỗi tấn công", title:"3 · Dựng lại chuỗi tấn công", intro:"S4C dựng lại toàn bộ đường đi của kẻ tấn công — từ email lừa đảo đến lúc mã hóa hàng loạt."},
+      {key:"respond", nav:"Ứng cứu", title:"4 · Ứng cứu & khôi phục", intro:"Cô lập, chặn lây, khôi phục từ bản sao lưu sạch — và nguyên tắc quan trọng: không trả tiền chuộc."},
+      {key:"output", nav:"Bàn giao", title:"5 · Bàn giao: báo cáo sự cố & bài học", intro:"Kết thúc là một báo cáo điều tra đầy đủ — nguyên nhân gốc, phạm vi, cách khôi phục và khuyến nghị để không tái diễn."},
+    ]},
+];
+/* Dữ liệu KB2 — Hardening & Tối ưu */
+const TUNE_FIXES=[["database","Tối ưu truy vấn & chỉ mục CSDL","Gỡ truy vấn nặng gây nghẽn giờ cao điểm"],["gear","Chuẩn hóa cấu hình máy chủ","Worker, cache, buffer theo đúng tải"],["pulse","Xử lý điểm nghẽn I/O","Tách log, dọn đĩa, cân tải hợp lý"],["network","Cân tải & bộ nhớ đệm","Chia tải, giảm độ trễ truy cập"]];
+const COMPLIANCE=["Tắt dịch vụ &amp; cổng mạng không dùng","Chuẩn hóa mật khẩu mạnh + xác thực 2 lớp (MFA)","Mã hóa kết nối (TLS) &amp; dữ liệu nhạy cảm","Vá lỗ hổng &amp; cập nhật theo lịch","Nhật ký tập trung, có lưu vết truy cập","Sao lưu tự động &amp; kiểm chứng khôi phục"];
+/* Dữ liệu KB3 — Managed: so sánh nguồn lực */
+const RESOURCE=[{k:"Tự tuyển đội kỹ thuật", pct:100, note:"Lương cố định 2–3+ người, khó tuyển & khó giữ, nghỉ là hụt"},{k:"Thuê Managed từ S4C", pct:38, note:"Trả theo nhu cầu, có cả đội nhiều mảng, không gánh lương cố định"}];
+const MGMT_WAY=["Quy trình chuẩn: tiếp nhận → xử lý → phê duyệt → ghi vết","Cam kết phản hồi (SLA) theo mức độ nghiêm trọng","Báo cáo định kỳ &amp; đề xuất cải thiện minh bạch"];
+/* Dữ liệu KB4 — DFIR ransomware (FDI) */
+const DFIR_SIGNAL=[["Máy bị mã hóa","34 / 180","máy trạm + 2 máy chủ file"],["Thời điểm","02:30 Chủ nhật","ngoài giờ, cuối tuần"],["Đòi tiền chuộc","Có","ghi chú để trên màn hình"]];
+const DFIR_FINDINGS=[
+  { sev:"crit", title:"Ransomware mã hóa hàng loạt", desc:"Mã độc tống tiền lan qua mạng nội bộ, mã hóa file trên nhiều máy và 2 máy chủ chia sẻ. Đuôi file đổi thành .locked." , cost:"Dây chuyền & văn phòng đình trệ" },
+  { sev:"crit", title:"Xâm nhập từ email lừa đảo", desc:"Lần ngược về 'bệnh nhân số 0': một nhân viên mở tệp đính kèm độc hại cuối tuần trước — khởi nguồn của toàn bộ sự việc." , cost:"Thiếu lọc email & nhận thức" },
+  { sev:"warn", title:"Mạng phẳng, không chia vùng", desc:"Máy văn phòng và máy chủ cùng một vùng mạng, không MFA cho tài khoản quản trị — nên mã độc lan ngang rất nhanh." , cost:"Lây lan diện rộng" },
+];
+const DFIR_CHAIN=[
+  {n:"01",t:"Email lừa đảo",d:"NV mở tệp đính kèm độc"},
+  {n:"02",t:"Chiếm máy đầu",d:"Mã độc chạy, tải thêm công cụ"},
+  {n:"03",t:"Leo thang quyền",d:"Chiếm tài khoản quản trị miền"},
+  {n:"04",t:"Lan ngang",d:"Phát tán khắp mạng nội bộ"},
+  {n:"05",t:"Mã hóa & tống tiền",d:"Chạy ransomware hàng loạt"},
+];
+const DFIR_RESP=[
+  "Cô lập ngay: ngắt mạng các vùng bị ảnh hưởng để chặn lây lan.",
+  "Giữ bằng chứng & khoanh 'bệnh nhân số 0', đường lây — phục vụ điều tra.",
+  "KHÔNG trả tiền chuộc — khôi phục từ bản sao lưu sạch đã kiểm chứng.",
+  "Đặt lại toàn bộ mật khẩu/khóa, vá lỗ hổng bị khai thác.",
+  "Giám sát tăng cường 2 tuần đề phòng tái phát.",
+];
+const DFIR_OUTPUT=[
+  ["Nguyên nhân gốc","Email lừa đảo + thiếu MFA + mạng phẳng không chia vùng"],
+  ["Phạm vi","34/180 máy bị mã hóa; chưa thấy dấu hiệu dữ liệu bị mang ra ngoài"],
+  ["Khôi phục","Phục hồi từ backup sạch trong ~28 giờ — không trả tiền chuộc"],
+  ["Ngăn tái diễn","Chia vùng mạng, bật MFA, triển khai EDR, sao lưu offline, diễn tập ứng cứu"],
+];
+/* Dữ liệu KB1 — Đánh giá theo NIST CSF */
+const CSF = [
+  { k:"Nhận diện", en:"Identify", now:35, tgt:85, note:"Biết mình có tài sản gì, rủi ro nằm ở đâu" },
+  { k:"Bảo vệ", en:"Protect", now:45, tgt:88, note:"Tường lửa, sao lưu, kiểm soát truy cập, vá lỗi" },
+  { k:"Phát hiện", en:"Detect", now:20, tgt:82, note:"Giám sát & cảnh báo khi có bất thường" },
+  { k:"Ứng phó", en:"Respond", now:25, tgt:80, note:"Có quy trình xử lý khi sự cố xảy ra" },
+  { k:"Phục hồi", en:"Recover", now:30, tgt:85, note:"Khôi phục nhanh, giảm thời gian gián đoạn" },
+];
+const CSF_GAPS = [
+  { sev:"crit", title:"Không có giám sát & cảnh báo (Detect 20/100)", desc:"Hệ thống gần như 'mù' — sự cố xảy ra không ai biết. Đây là khoảng cách lớn nhất.", act:"Dựng monitoring + cảnh báo" },
+  { sev:"crit", title:"Chưa có quy trình ứng phó sự cố (Respond 25/100)", desc:"Khi có chuyện, không rõ ai làm gì, gọi ai — mất thời gian vàng.", act:"Xây playbook xử lý + đầu mối" },
+  { sev:"warn", title:"Sao lưu chưa kiểm chứng (Recover 30/100)", desc:"Có sao lưu nhưng chưa thử khôi phục — rủi ro khi cần không dùng được.", act:"Sao lưu tự động + diễn tập khôi phục" },
+  { sev:"warn", title:"Chưa có danh mục tài sản & rủi ro (Identify 35/100)", desc:"Không biết đầy đủ mình đang có gì thì khó bảo vệ cho đúng.", act:"Lập danh mục tài sản + đánh giá rủi ro" },
+];
+const ROADMAP = [
+  { ph:"Giai đoạn 1 · 0–1 tháng", h:"Chặn rủi ro lớn nhất", p:"Dựng giám sát & cảnh báo, bật sao lưu tự động có kiểm chứng, lập danh mục tài sản. Nâng Detect & Recover trước." },
+  { ph:"Giai đoạn 2 · 1–3 tháng", h:"Hoàn thiện bảo vệ & quy trình", p:"Hardening (tường lửa/WAF/PAM), siết cấu hình, xây quy trình ứng phó sự cố và đầu mối rõ ràng." },
+  { ph:"Giai đoạn 3 · duy trì", h:"Vận hành & cải thiện liên tục", p:"Tự động hóa việc lặp, theo dõi và đánh giá lại định kỳ theo khung, báo cáo mức trưởng thành cho đối tác/lãnh đạo." },
+];
+/* Dữ liệu KB3 — Điều tra tấn công */
+const PROCS = [
+  { name:"nginx", cpu:12, flag:false }, { name:"php-fpm", cpu:18, flag:false },
+  { name:"mysqld", cpu:22, flag:false }, { name:"kdevtmpfsi", cpu:98, flag:true },
+  { name:"sshd", cpu:2, flag:false },
+];
+const CLUES = [
+  { icon:"pulse", t:"Tiến trình lạ chiếm 98% CPU", d:"Tiến trình 'kdevtmpfsi' không thuộc hệ thống — đây là phần mềm đào tiền ảo (cryptominer) đang dùng máy chủ của bạn để đào coin cho kẻ khác. Đó là lý do CPU luôn 99% và hóa đơn cloud tăng vọt." },
+  { icon:"wall", t:"File lạ trong thư mục upload", d:"Phát hiện file /var/www/uploads/img_9f3.php — một 'webshell': cửa hậu cho phép kẻ tấn công chạy lệnh trên máy chủ qua trình duyệt. Nó được tải lên qua một lỗ hổng ở chức năng upload." },
+  { icon:"gear", t:"Tác vụ định kỳ (cron) lạ", d:"Có một cron job tự tải lại mã độc mỗi 10 phút — gọi là backdoor để duy trì quyền kiểm soát, kể cả khi bạn xóa tiến trình thì nó tự quay lại." },
+  { icon:"network", t:"Kết nối ra 'mỏ đào' coin", d:"Máy chủ đang kết nối ra một pool đào tiền ảo qua cổng 3333 — bằng chứng rõ ràng tài nguyên của bạn đang bị lợi dụng để kiếm tiền." },
+];
+const KCHAIN = [
+  { n:"01", t:"Khai thác lỗ hổng", d:"Chức năng upload thiếu kiểm tra" },
+  { n:"02", t:"Cài webshell", d:"Tải cửa hậu .php lên máy chủ" },
+  { n:"03", t:"Cắm backdoor", d:"Cron tự tải lại mã độc" },
+  { n:"04", t:"Thả miner", d:"Cài phần mềm đào tiền ảo" },
+  { n:"05", t:"Chiếm tài nguyên", d:"CPU 99%, hóa đơn tăng" },
+];
+const SEC_RESP = [
+  "Cô lập máy chủ khỏi 'mỏ đào' — chặn kết nối ra cổng 3333 (sau khi báo bạn).",
+  "Dừng & xóa tiến trình miner và webshell; gỡ cron job backdoor cắm sẵn.",
+  "Đổi toàn bộ mật khẩu/khóa truy cập có thể đã lộ; rà soát tài khoản lạ.",
+  "Kiểm tra log xác nhận phạm vi — dữ liệu khách có bị lấy đi không.",
+];
+const SEC_PREVENT = [
+  "Vá lỗ hổng upload (nguyên nhân gốc) & siết cấu hình máy chủ.",
+  "Dựng WAF (lá chắn web) chặn các kiểu tấn công tương tự.",
+  "Bật giám sát + cảnh báo khi CPU/kết nối bất thường — để lần sau biết ngay trong vài phút.",
+  "Sao lưu sạch & kiểm chứng để khôi phục nhanh nếu cần.",
+];
+/* Dữ liệu KB2 — Managed */
+const MANAGED = [
+  { icon:"gear", t:"Tự động hóa việc lặp (TỰ ĐỘNG)", d:"Job & script lo cập nhật, dọn dẹp, kiểm tra sức khỏe — không cần ngồi làm tay." },
+  { icon:"database", t:"Sao lưu & kiểm chứng (TỰ ĐỘNG)", d:"Sao lưu theo lịch, tự thử khôi phục để chắc chắn dùng được khi cần." },
+  { icon:"eye", t:"Theo dõi & cảnh báo tự xử lý (TỰ ĐỘNG)", d:"Phát hiện bất thường, tự phản ứng tình huống thường gặp, chỉ báo khi cần người." },
+  { icon:"pulse", t:"Tối ưu hiệu năng (CÓ NGƯỜI)", d:"Kỹ sư rà điểm nghẽn, tinh chỉnh cho nhanh & tiết kiệm tài nguyên." },
+  { icon:"shield", t:"Ứng cứu sự cố (CÓ NGƯỜI)", d:"Có kỹ sư xử lý ngay theo cam kết phản hồi — thay vì bạn tự xoay." },
+  { icon:"chart", t:"Báo cáo & đề xuất (CÓ NGƯỜI)", d:"Tổng hợp việc đã tự động hóa, tình hình & hướng cải thiện mỗi kỳ." },
+];
+const OPS_REPORT = {
+  what:"Dựng tự động hóa (sao lưu, dọn dẹp, cảnh báo tự xử lý); tinh chỉnh (tuning) hệ thống; cải thiện định kỳ.",
+  perf:"Tốc độ phản hồi nhanh hơn ~2,6 lần (từ ~430ms xuống ~165ms).",
+  uptime:"Uptime tháng: 99,95% · không có gián đoạn kéo dài.",
+  followup:"Theo dõi dung lượng đĩa, tối ưu truy vấn chậm, rà soát bảo mật định kỳ.",
+  cost:"Trong gói Managed theo tháng — không phát sinh ngoài.",
+};
+const LISTEN_POINTS = [
+  { icon:"chat", t:"Lắng nghe không thuật ngữ", d:"\"App nhà tôi mấy lần tự nhiên đơ\", \"sợ mất dữ liệu khách\" — S4C ghi nhận đúng điều bạn cần." },
+  { icon:"grid", t:"Ghi lại bạn đang có gì", d:"App, API, máy chủ, ai đang quản, đã có sao lưu/giám sát chưa — S4C hỏi và ghi giúp, bạn không cần rành kỹ thuật." },
+  { icon:"compass", t:"Chốt mục tiêu thực tế", d:"Ưu tiên điều quan trọng nhất với việc kinh doanh, không làm dàn trải." },
+];
+const POSTURE = [
+  { id:"mon", name:"Giám sát & cảnh báo",  tag:"MON",   before:10, after:86, note:"Dựng theo dõi hệ thống + cảnh báo sớm (mã nguồn mở)" },
+  { id:"perf",name:"Hiệu năng & cấu hình", tag:"PERF",  before:45, after:85, note:"Tối ưu cấu hình, xử lý điểm nghẽn, chuẩn hóa" },
+  { id:"bak", name:"Sao lưu & khôi phục",  tag:"BAK",   before:15, after:90, note:"Sao lưu tự động, kiểm thử khôi phục định kỳ" },
+  { id:"web", name:"Bảo vệ hệ thống & mạng",tag:"FW/WAF",before:20, after:87, note:"Tường lửa + lá chắn web chặn tấn công phổ biến" },
+  { id:"acc", name:"Kiểm soát truy cập",   tag:"PAM",   before:25, after:82, note:"Giới hạn quyền admin, xác thực 2 lớp, ghi vết" },
+];
+function postureScore(k){ return Math.round(POSTURE.reduce((s,p)=>s+p[k],0)/POSTURE.length); }
+const ASSESS_FINDINGS = [
+  { sev:"crit", color:"var(--crit)", title:"Hệ thống đang chạy \"trong bóng tối\"", desc:"Không có monitoring (theo dõi), nên server đầy ổ đĩa, hết RAM hay một dịch vụ chết mà không ai biết — tới khi khách báo mới hay.", cost:"Điểm mù: chỉ biết khi đã sập" },
+  { sev:"crit", color:"var(--crit)", title:"Tưởng đã có backup, thật ra chưa chắc dùng được", desc:"Nhiều nơi có sao lưu nhưng chưa bao giờ thử khôi phục. Đến lúc cần mới phát hiện bản backup hỏng hoặc thiếu.", cost:"Điểm mù: mất dữ liệu đúng lúc cần nhất" },
+  { sev:"warn", color:"var(--warn)", title:"Server để nguyên cấu hình mặc định", desc:"Máy chủ chạy thiết lập mặc định, còn cổng mở thừa và dịch vụ không dùng — vừa ì ạch, vừa hở cửa cho kẻ xấu.", cost:"Điểm mù: vừa chậm vừa rủi ro" },
+  { sev:"warn", color:"var(--warn)", title:"App/web chưa có WAF che chắn", desc:"Ứng dụng công khai nhưng không có WAF (lá chắn ứng dụng web) chặn tấn công tự động. Bị dò quét là có thể bị khai thác.", cost:"Điểm mù: bị tấn công mà không hay" },
+];
+const PROPOSE_OPTIONS = [
+  { id:"quickwin", name:"Gói \"Xử lý vấn đề cấp thiết\"", desc:"Làm ngay việc rủi ro cao nhất: bật sao lưu tự động + giám sát cơ bản + lá chắn web. Nhanh, gọn, chặn nguy cơ lớn.", fit:"Hợp nếu ngân sách hạn chế, cần an tâm ngay", price:"Tham khảo: từ ~5 triệu, theo việc" },
+  { id:"foundation", name:"Gói \"Nền tảng vững chắc\"", desc:"Triển khai & tối ưu đủ 5 khía cạnh: giám sát, hiệu năng/cấu hình, sao lưu, bảo vệ hệ thống, kiểm soát truy cập — bằng công cụ mã nguồn mở.", fit:"Hợp nếu muốn chắc chắn, làm một lần cho gọn", price:"Tham khảo: từ ~10 triệu, gói 1 lần" },
+  { id:"companion", name:"Gói \"Đồng hành lâu dài\"", desc:"Nền tảng vững chắc + tự động hóa việc lặp, tối ưu hiệu năng định kỳ và ứng cứu sự cố khi cần. Bạn có một chỗ dựa kỹ thuật ổn định.", fit:"Hợp nếu muốn yên tâm dài hạn, không phải tự lo", price:"Tham khảo: từ ~5 triệu/tháng" },
+];
+const PERF = {
+  points: [ {t:"08:00",v:290},{t:"09:00",v:340},{t:"10:00",v:410},{t:"11:00",v:395},{t:"12:00",v:430},{t:"13:00",v:180},{t:"14:00",v:165},{t:"15:00",v:158},{t:"16:00",v:170},{t:"17:00",v:162} ],
+  tuneIdx: 5, threshold: 300,
+  cpu:[42,48,61,58,66,39,35,33,37,34], ram:[55,58,63,61,67,52,49,48,50,49],
+};
+const INVESTIGATE = {
+  timeline:[
+    { t:"02:14", src:"WAF", text:"Lá chắn web chặn một chuỗi tấn công vào trang đăng nhập của app", level:"warn" },
+    { t:"02:15", src:"WAF", text:"Cùng một địa chỉ IP lạ tiếp tục thử nhiều kiểu tấn công khác", level:"warn" },
+    { t:"02:16", src:"PAM", text:"Cảnh báo: có người thử đăng nhập tài khoản admin ngoài giờ, từ IP lạ", level:"crit" },
+    { t:"02:17", src:"PAM", text:"Xác thực 2 lớp chặn lại — đăng nhập KHÔNG thành công", level:"ok" },
+    { t:"02:20", src:"S4C", text:"S4C nhận cảnh báo, chặn IP tấn công và rà soát toàn hệ thống", level:"ok" },
+  ],
+  verdict:"Kẻ tấn công dò tự động vào app, bị lá chắn web (WAF) chặn, rồi thử chiếm tài khoản admin nhưng bị xác thực 2 lớp (PAM) chặn lại. Không có xâm nhập thành công. Nhờ có các lớp bảo vệ và theo dõi, sự việc được phát hiện và chặn ngay trong đêm.",
+  action:"S4C chặn IP tấn công, kiểm tra log toàn hệ thống xác nhận không có truy cập trái phép thành công, và đề xuất siết thêm luật WAF. Mọi thao tác đều ghi lại.",
+};
+const REPORT = {
+  what:"Thiết lập monitoring & backup; tinh chỉnh (tuning) hệ thống; dựng bảo vệ nhiều lớp; xử lý 1 nỗ lực tấn công trong đêm.",
+  score:"Điểm sức khỏe & an toàn hệ thống tăng từ 23/100 lên 86/100.",
+  perf:"Tốc độ phản hồi hệ thống nhanh hơn ~2,6 lần (từ ~430ms xuống ~165ms).",
+  incident:"1 nỗ lực tấn công bị chặn, không thiệt hại.",
+  followup:"Theo dõi IP tấn công, duy trì sao lưu, rà soát định kỳ hằng tháng.",
+  cost:"Thuộc gói đồng hành theo tháng — không phát sinh chi phí ngoài cho các việc trên.",
+};
+
+const SERVICES = [
+  { id:"consult", step:"Bước 1", icon:"search", name:"Tư vấn & Đánh giá tổng thể",
+    tags:["Rà soát hệ thống","Đánh giá","Chỉ ra điểm yếu"],
+    one:"Rà soát toàn bộ hệ thống, đánh giá sức khỏe & an toàn, chỉ ra điểm còn thiếu — bằng ngôn ngữ bạn hiểu.",
+    problem:"Bạn không chắc hệ thống đang ổn tới đâu, nên không biết cần làm gì trước và tránh tiêu tiền sai chỗ.",
+    get:["Báo cáo đánh giá & điểm hệ thống hiện tại","Danh sách điểm yếu kèm mức rủi ro","Thứ tự ưu tiên nên xử lý"],
+    boundary:["Chưa bao gồm việc khắc phục (ở bước sau)","Kết quả phụ thuộc mức truy cập bạn cho phép"],
+    price:"Tham khảo: buổi trao đổi đầu miễn phí; đánh giá chi tiết từ ~5 triệu", model:"Tư vấn" },
+  { id:"design", step:"Bước 2", icon:"compass", name:"Đề xuất & Thiết kế giải pháp",
+    tags:["Tư vấn giải pháp","Thiết kế","Ưu tiên open-source"],
+    one:"Tư vấn, đề xuất và thiết kế giải pháp đúng bài toán, vừa túi tiền — ưu tiên mã nguồn mở để tiết kiệm.",
+    problem:"Nhiều giải pháp ngoài kia đắt hoặc quá tầm; bạn cần cái vừa sức và đúng nhu cầu.",
+    get:["Phương án xử lý cho từng điểm yếu","So sánh lựa chọn & chi phí tham khảo","Lộ trình triển khai theo ngân sách"],
+    boundary:["Không ép mua giải pháp đắt tiền","Quyết định cuối cùng là của bạn"],
+    price:"Tham khảo: thường gộp trong gói tư vấn/triển khai", model:"Tư vấn · Nghiên cứu" },
+  { id:"operate", step:"Bước 3", icon:"gear", name:"Vận hành & Tự động hóa",
+    tags:["Tự động hóa (job/script)","Theo dõi hiệu năng","Cảnh báo tự xử lý","Tuning"],
+    one:"Đưa việc lặp lại vào tự động hóa và theo dõi hệ thống — thay cho việc phải ngồi làm tay mỗi ngày.",
+    problem:"Không có nhân sự kỹ thuật, mà phần lớn công việc lại lặp đi lặp lại và dễ bị bỏ sót.",
+    get:["Job & script tự động cho cập nhật, dọn dẹp, sao lưu","Theo dõi hiệu năng, uptime & tối ưu (tuning)","Cảnh báo tự xử lý tình huống thường gặp + báo cáo định kỳ"],
+    boundary:["Tập trung tầng hệ thống & hạ tầng; code ứng dụng do đội phát triển của bạn","Thao tác rủi ro cao cần bạn phê duyệt"],
+    price:"Tham khảo: từ ~5 triệu/tháng, tùy quy mô", model:"Managed · Outsource" },
+  { id:"harden", step:"Bước 4", icon:"shield", name:"Hardening & Tăng cường bảo mật",
+    tags:["Firewall","WAF","PAM","Siết cấu hình","Sao lưu · MFA"],
+    one:"Dựng các lớp bảo vệ: Firewall (tường lửa), WAF (lá chắn ứng dụng web), PAM (kiểm soát truy cập đặc quyền), siết cấu hình, backup & xác thực nhiều lớp.",
+    problem:"Hệ thống đang chạy nhưng nhiều cửa còn mở, dễ bị tấn công và lạm dụng.",
+    get:["WAF chặn tấn công web; firewall siết chặt","PAM + xác thực 2 lớp cho tài khoản quan trọng","Cấu hình được vá & siết; sao lưu tự động"],
+    boundary:["Không đảm bảo an toàn tuyệt đối (không ai làm được)","Giảm rủi ro xuống mức hợp lý theo phạm vi"],
+    price:"Tham khảo: trong gói triển khai từ ~10 triệu", model:"Dự án · Custom" },
+  { id:"incident", step:"Bước 5", icon:"pulse", name:"Điều tra & Ứng cứu sự cố",
+    tags:["Phát hiện bất thường","Điều tra","Ngăn chặn","Khôi phục"],
+    one:"Khi hệ thống có dấu hiệu bất thường hay bị tấn công — có người điều tra và xử lý thay vì bạn cuống.",
+    problem:"Sự cố xảy ra ngoài giờ, không biết gọi ai, càng chậm càng thiệt hại.",
+    get:["Khoanh vùng & ngăn chặn sớm","Điều tra nguyên nhân, đánh giá thiệt hại","Khuyến nghị khắc phục & biên bản xử lý"],
+    boundary:["Hiệu quả tùy dữ liệu/log còn lại để điều tra","Phục hồi hệ thống phối hợp cùng bạn"],
+    price:"Tham khảo: gói giờ ứng cứu, hoặc gồm trong gói đồng hành", model:"Managed · Theo việc" },
+  { id:"debug", step:"Khi cần", icon:"sliders", name:"Debug & Troubleshooting hệ thống",
+    tags:["Truy lỗi","Phân tích log","Xử lý nghẽn","Khắc phục"],
+    one:"Hệ thống chậm, treo hay lỗi khó hiểu — S4C truy đúng nguyên nhân gốc rồi xử lý, không chữa qua loa.",
+    problem:"Có trục trặc lặp đi lặp lại mà không rõ vì sao; khởi động lại thì tạm ổn rồi lại tái diễn.",
+    get:["Truy nguyên nhân gốc qua log & số liệu","Khắc phục dứt điểm, không chỉ chữa triệu chứng","Ghi lại cách xử lý để lần sau tự chủ động"],
+    boundary:["Tập trung tầng hệ thống/hạ tầng; lỗi logic ứng dụng phối hợp cùng đội dev","Cần đủ log & quyền truy cập để truy vết"],
+    price:"Tham khảo: theo giờ, hoặc gồm trong gói vận hành", model:"Theo việc · Managed" },
+  { id:"report", step:"Bước 6", icon:"chart", name:"Báo cáo & Minh bạch vận hành",
+    tags:["Báo cáo định kỳ","Điểm hệ thống","Đề xuất cải thiện"],
+    one:"Bạn luôn thấy rõ: đã làm gì, điểm hệ thống & hiệu năng ra sao, chi phí thế nào — không mập mờ.",
+    problem:"Thuê ngoài mà không rõ họ làm gì, tiền đi đâu, hệ thống có tốt hơn không.",
+    get:["Báo cáo định kỳ dễ hiểu","Điểm hệ thống & hiệu năng theo thời gian","Đề xuất cải thiện cho kỳ tới"],
+    boundary:["Báo cáo phản ánh dữ liệu trong phạm vi theo dõi","Không thay báo cáo kiểm toán chính thức"],
+    price:"Tham khảo: đi kèm các gói vận hành/đồng hành", model:"Đi kèm dịch vụ" },
+  { id:"training", step:"Bổ trợ", icon:"users", name:"Đào tạo nhận thức an toàn thông tin",
+    tags:["Nhận thức ATTT","Chống lừa đảo","Thực hành an toàn"],
+    one:"Phần lớn sự cố bắt đầu từ con người — một cú click nhầm. S4C đào tạo đội ngũ bạn nhận biết và tránh bẫy.",
+    problem:"Nhân viên chưa quen nhận diện email lừa đảo, mật khẩu yếu, thói quen dùng máy thiếu an toàn.",
+    get:["Buổi đào tạo ngắn, ví dụ thực tế dễ nhớ","Hướng dẫn thói quen an toàn hằng ngày","Bài kiểm tra nhận thức (tùy chọn giả lập phishing)"],
+    boundary:["Tập trung nâng nhận thức, không thay giải pháp kỹ thuật","Hiệu quả cần duy trì & nhắc lại định kỳ"],
+    price:"Tham khảo: theo buổi / quy mô đội", model:"Đào tạo · Theo việc" },
+];
+const MODELS = [
+  { icon:"compass", name:"Tư vấn giải pháp", desc:"S4C nghiên cứu bài toán của bạn và đề xuất cách giải phù hợp. Bạn có thể tự làm theo hoặc nhờ S4C làm tiếp.", forWho:"Khi bạn cần <b>định hướng</b> trước khi quyết định đầu tư.", price:"Tham khảo: buổi đầu miễn phí" },
+  { icon:"gear", name:"Vận hành & Tự động hóa", desc:"S4C dựng tự động hóa cho việc lặp lại, theo dõi, tối ưu và xử lý sự cố — bạn không phải tự xoay.", forWho:"Khi bạn <b>không có người kỹ thuật</b> và muốn yên tâm dài hạn.", price:"Tham khảo: từ ~5 triệu/tháng" },
+  { icon:"users", name:"Outsource — thuê riêng", desc:"Thuê năng lực kỹ thuật của S4C theo nhu cầu và thời gian cụ thể, linh hoạt như một thành viên bên ngoài.", forWho:"Khi bạn cần <b>người làm theo đợt</b>, không muốn tuyển cố định.", price:"Tham khảo: theo giờ / theo việc" },
+  { icon:"sliders", name:"Custom — may đo", desc:"Bài toán đặc thù cần giải pháp riêng. S4C thiết kế và triển khai đúng tình huống của bạn.", forWho:"Khi nhu cầu của bạn <b>không vừa gói nào</b> có sẵn.", price:"Tham khảo: báo giá theo thiết kế" },
+];
+const NODES = {
+  edge: { title:"Tường lửa & Lá chắn web (WAF)", purpose:"Lớp bảo vệ ngoài cùng: chặn truy cập xấu và các kiểu tấn công phổ biến vào website/app.",
+    input:["Lưu lượng vào web/API","Luật chặn & nhận diện tấn công"], output:["Tấn công bị chặn","Cảnh báo khi bị dò quét"], limit:"Giảm mạnh rủi ro nhưng không thay được việc vá lỗi ứng dụng.", oss:"Công cụ mã nguồn mở", svc:["Hardening & Tăng cường bảo mật"] },
+  servers: { title:"Máy chủ & Ứng dụng", purpose:"Nơi app, API và cơ sở dữ liệu của bạn chạy — và là nơi theo dõi hiệu năng, sức khỏe để tối ưu.",
+    input:["Chỉ số máy chủ (CPU, RAM, đĩa)","Hoạt động ứng dụng"], output:["Tín hiệu hiệu năng","Dữ liệu để tối ưu (tuning)"], limit:"S4C chỉ tác động khi được bạn đồng ý.", oss:"", svc:["Quản trị vận hành & Giám sát"] },
+  pam: { title:"Kiểm soát truy cập (PAM)", purpose:"Quản chặt các tài khoản quyền cao: ai được vào đâu, khi nào, có xác thực 2 lớp và ghi vết đầy đủ.",
+    input:["Yêu cầu đăng nhập đặc quyền","Chính sách phân quyền"], output:["Chặn truy cập trái phép","Nhật ký ai làm gì"], limit:"Cần phối hợp để định nghĩa đúng ai cần quyền gì.", oss:"Công cụ mã nguồn mở", svc:["Hardening & Tăng cường bảo mật"] },
+  collect: { title:"Gom & Theo dõi", purpose:"Gom nhật ký (log) và chỉ số hiệu năng từ nhiều nơi về một chỗ, theo dõi liên tục.",
+    input:["Log từ máy chủ, app, WAF","Chỉ số hiệu năng"], output:["Một bức tranh thống nhất","Dữ liệu để phát hiện bất thường"], limit:"Phạm vi tùy nguồn dữ liệu bạn cho phép kết nối.", oss:"Công cụ mã nguồn mở", svc:["Quản trị vận hành & Giám sát"] },
+  detect: { title:"Phát hiện bất thường", purpose:"Nối các tín hiệu lại và cảnh báo sớm khi có điều đáng ngờ — tấn công, đăng nhập lạ, hiệu năng tụt.",
+    input:["Dữ liệu đã gom"], output:["Cảnh báo có ngữ cảnh","Điểm cần ưu tiên"], limit:"Đưa ra nghi vấn cần xác minh, không tự kết luận chắc chắn.", oss:"Công cụ mã nguồn mở", svc:["Điều tra & Ứng cứu sự cố"] },
+  respond: { title:"Xử lý & Vận hành", purpose:"Biến cảnh báo thành các bước xử lý rõ ràng — ai làm, việc rủi ro thì hỏi bạn trước.",
+    input:["Cảnh báo cần xử lý"], output:["Hành động xử lý có ghi lại","Phê duyệt khi cần"], limit:"Việc rủi ro cao luôn cần bạn đồng ý, không tự động tác động.", oss:"", svc:["Quản trị vận hành & Giám sát","Điều tra & Ứng cứu sự cố"] },
+  report: { title:"Báo cáo dễ hiểu", purpose:"Tổng hợp mọi việc thành báo cáo bạn đọc hiểu được: điểm hệ thống, hiệu năng, việc đã làm.",
+    input:["Việc đã xử lý, chỉ số hệ thống"], output:["Báo cáo định kỳ","Đề xuất cải thiện"], limit:"Phản ánh dữ liệu trong phạm vi được theo dõi.", oss:"", svc:["Báo cáo & Minh bạch vận hành"] },
+};
+const NEEDS = [
+  {id:"ops", icon:"eye", t:"Cần người quản trị, vận hành hệ thống", d:"Vận hành, cập nhật, sao lưu, lo phần kỹ thuật hộ."},
+  {id:"perf", icon:"pulse", t:"Hệ thống chậm, hay trục trặc", d:"Muốn theo dõi và tối ưu hiệu năng (performance)."},
+  {id:"web", icon:"shield", t:"Sợ web/app bị tấn công", d:"Muốn có lá chắn web (WAF) và giám sát."},
+  {id:"data", icon:"database", t:"Sợ mất dữ liệu / bị tống tiền", d:"Muốn sao lưu và khôi phục an toàn."},
+  {id:"access", icon:"lock", t:"Sợ bị chiếm quyền quản trị", d:"Muốn kiểm soát truy cập & xác thực 2 lớp."},
+  {id:"assess", icon:"search", t:"Chưa rõ mình thiếu/yếu ở đâu", d:"Muốn được đánh giá hệ thống trước."},
+];
+/* Vấn đề của KH → giải pháp S4C (một số liên kết thẳng tới demo live) */
+const PROBLEM_MAP = [
+  { ic:"search",  prob:"Chưa rõ hệ thống mình yếu ở đâu",            sol:"Tư vấn &amp; Đánh giá tổng thể (hệ thống + ATTT)", scn:"assess" },
+  { ic:"pulse",   prob:"Hệ thống chậm, quá tải giờ cao điểm",         sol:"Tuning &amp; Tối ưu hiệu năng",                    scn:"tune" },
+  { ic:"shield",  prob:"Nhiều 'cửa' còn mở, sợ bị tấn công",          sol:"Hardening, đạt chuẩn &amp; bảo đảm ATTT",          scn:"tune" },
+  { ic:"gear",    prob:"Không có người lo hệ thống mỗi ngày",         sol:"Vận hành &amp; Tự động hóa (Managed)",             scn:"managed" },
+  { ic:"sliders", prob:"Trục trặc lặp lại hoài không rõ vì sao",      sol:"Debug &amp; Troubleshooting hệ thống",             svc:"debug" },
+  { ic:"wall",    prob:"Nghi bị tấn công, mã hóa, cài webshell",      sol:"Điều tra &amp; Ứng cứu sự cố (DFIR)",              scn:"dfir" },
+  { ic:"users",   prob:"Nhân viên hay click nhầm, dính lừa đảo",      sol:"Đào tạo nhận thức an toàn thông tin",              svc:"training" },
+];
+
+/* =========================================================
+   State & nav behaviour
+   ========================================================= */
+const STATE = { scenId:"assess", stageIdx:0, maxStage:0, opTab:"perf", clues:new Set() };
+function resetScenario(){ STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; renderScenario(); }
+function resetDemo(){ STATE.scenId="assess"; resetScenario(); go("scenario"); }
+function go(view){
+  liveStop();
+  $$(".view").forEach(v=>v.classList.toggle("active", v.id==="view-"+view));
+  $$(".nav-item").forEach(n=>n.classList.toggle("active", n.dataset.view===view));
+  $("#nav").classList.remove("open"); window.scrollTo({top:0,behavior:"instant"});
+}
+$$(".nav-item").forEach(n=>n.addEventListener("click",()=>go(n.dataset.view)));
+document.addEventListener("click",e=>{const t=e.target.closest("[data-nav]");if(t)go(t.dataset.nav);});
+$("#hamb").addEventListener("click",()=>$("#nav").classList.toggle("open"));
+function currentDark(){const a=document.documentElement.getAttribute("data-theme");if(a)return a==="dark";return window.matchMedia("(prefers-color-scheme: dark)").matches;}
+$("#themeBtn").addEventListener("click",()=>document.documentElement.setAttribute("data-theme",currentDark()?"light":"dark"));
+$("#resetBtn").addEventListener("click",resetDemo);
+
+/* ---- Contact ---- */
+function fillContact(){
+  const map={cName:CONTACT.name, cHotline:CONTACT.hotline, cEmail:CONTACT.email, cPhone:CONTACT.phone};
+  Object.entries(map).forEach(([id,val])=>{
+    const node=$("#"+id); if(!node) return;
+    if(isPlaceholder(val)){ node.textContent="sẽ cập nhật"; node.classList.add("ph"); }
+    else { node.textContent=val; node.classList.remove("ph"); }
+  });
+}
+
+/* ---- About chips ---- */
+const EXPERIENCE = [
+  "Vận hành hệ thống tải cao","Tối ưu & tuning performance","Xử lý nghẽn truy vấn DB đồng thời",
+  "Debug & giám sát hệ thống","Hardening OS","Firewall","PAM","VPN","DLP",
+  "Giám sát ATTT","DFIR – điều tra số","Ứng cứu webshell / malware / ransomware","Rà soát & đánh giá tổng thể",
+];
+const expChips=$("#expChips");
+if(expChips) EXPERIENCE.forEach(t=>expChips.appendChild(el("span","chip-exp",t)));
+
+/* ---- Overview ---- */
+const painGrid=$("#painGrid");
+PAINS.forEach(p=>painGrid.appendChild(el("div","card pain-card",`<div class="pq"><span class="itile">${svgIcon("info")}</span>${p.q}</div><div class="pa">${p.a}</div><div class="pcost">${p.cost}</div>`)));
+const valueRow=$("#valueRow");
+VALUES.forEach(v=>valueRow.appendChild(el("div","card value-card",`<div class="itile">${svgIcon(v.icon)}</div><div class="vt">${v.t}</div><div class="vd">${v.d}</div>`)));
+
+/* ---- Pricing ---- */
+const priceGrid=$("#priceGrid");
+PRICING.forEach(p=>{
+  priceGrid.appendChild(el("div","card price-card"+(p.popular?" popular":""),
+    `${p.popular?'<span class="pc-badge">Phổ biến</span>':''}<div class="itile">${svgIcon(p.icon)}</div><h3>${p.name}</h3>
+     <div class="pc-price">${p.price}${p.unit?`<span class="pc-unit"> ${p.unit}</span>`:''}</div>
+     <div class="pc-desc">${p.desc}</div>
+     <ul>${p.items.map(i=>`<li><span class="ck">✓</span>${i}</li>`).join("")}</ul>`));
+});
+
+/* ---- Charts ---- */
+function gaugeSvg(score, color){
+  const cx=75, cy=80, r=62, frac=Math.max(0,Math.min(1,score/100));
+  const a=Math.PI*(1-frac), x=cx+r*Math.cos(a), y=cy-r*Math.sin(a);
+  const bg=`M ${cx-r} ${cy} A ${r} ${r} 0 0 1 ${cx+r} ${cy}`;
+  const fg=`M ${cx-r} ${cy} A ${r} ${r} 0 0 1 ${x.toFixed(1)} ${y.toFixed(1)}`;
+  return `<svg viewBox="0 0 150 92" role="img" aria-label="Điểm ${score} trên 100">
+    <path d="${bg}" fill="none" stroke="var(--surface-3)" stroke-width="12" stroke-linecap="round"/>
+    <path id="gArc" d="${fg}" fill="none" stroke="${color}" stroke-width="12" stroke-linecap="round"/>
+    <text x="75" y="70" text-anchor="middle" fill="${color}" style="font-family:var(--font-display);font-size:26px;font-weight:700"><tspan id="gScore">${score}</tspan></text>
+    <text x="75" y="86" text-anchor="middle" fill="var(--ink-faint)" style="font-size:10px">trên 100</text>
+  </svg>`;
+}
+function scoreColor(s){ return s<40?"var(--crit)":s<70?"var(--warn)":"var(--ok)"; }
+function perfChart(){
+  const W=640,H=230, padL=44,padR=16,padT=16,padB=34;
+  const pts=PERF.points, n=pts.length, maxV=460, minV=100;
+  const xx=i=> padL + (W-padL-padR)*(i/(n-1));
+  const yy=v=> padT + (H-padT-padB)*(1-(v-minV)/(maxV-minV));
+  const line=pts.map((p,i)=>`${i===0?"M":"L"} ${xx(i).toFixed(1)} ${yy(p.v).toFixed(1)}`).join(" ");
+  const area=`${line} L ${xx(n-1).toFixed(1)} ${(H-padB).toFixed(1)} L ${xx(0).toFixed(1)} ${(H-padB).toFixed(1)} Z`;
+  const gridY=[150,250,350,450].map(v=>`<line x1="${padL}" y1="${yy(v).toFixed(1)}" x2="${W-padR}" y2="${yy(v).toFixed(1)}" stroke="var(--chart-grid)" stroke-width="1"/><text x="${padL-6}" y="${(yy(v)+3).toFixed(1)}" text-anchor="end" fill="var(--chart-ink)" style="font-size:9px;font-family:var(--font-mono)">${v}</text>`).join("");
+  const thrY=yy(PERF.threshold), tuneX=xx(PERF.tuneIdx);
+  const dots=pts.map((p,i)=>`<circle cx="${xx(i).toFixed(1)}" cy="${yy(p.v).toFixed(1)}" r="3.2" fill="var(--accent)"><title>${p.t}: ${p.v}ms</title></circle>`).join("");
+  const labels=pts.map((p,i)=> i%2===0?`<text x="${xx(i).toFixed(1)}" y="${H-padB+16}" text-anchor="middle" fill="var(--chart-ink)" style="font-size:9px;font-family:var(--font-mono)">${p.t}</text>`:"").join("");
+  return `<div class="chart-wrap"><svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tốc độ phản hồi giảm sau khi S4C tối ưu">
+      <defs><linearGradient id="pfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+      ${gridY}
+      <line x1="${padL}" y1="${thrY.toFixed(1)}" x2="${W-padR}" y2="${thrY.toFixed(1)}" stroke="var(--crit)" stroke-width="1.2" stroke-dasharray="4 4" opacity=".7"/>
+      <text x="${W-padR}" y="${(thrY-5).toFixed(1)}" text-anchor="end" fill="var(--crit)" style="font-size:9px;font-family:var(--font-mono)">ngưỡng chấp nhận 300ms</text>
+      <line x1="${tuneX.toFixed(1)}" y1="${padT}" x2="${tuneX.toFixed(1)}" y2="${H-padB}" stroke="var(--ok)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".8"/>
+      <text x="${(tuneX+5).toFixed(1)}" y="${padT+10}" fill="var(--ok)" style="font-size:9px;font-weight:600;font-family:var(--font-mono)">S4C tối ưu</text>
+      <path d="${area}" fill="url(#pfill)"/><path d="${line}" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+      ${dots}${labels}
+    </svg></div>`;
+}
+function sparkSvg(arr,color){
+  const W=120,H=26,max=Math.max(...arr),min=Math.min(...arr);
+  const xx=i=>W*(i/(arr.length-1)), yy=v=> H-2-(H-4)*((v-min)/((max-min)||1));
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path d="${arr.map((v,i)=>`${i===0?"M":"L"} ${xx(i).toFixed(1)} ${yy(v).toFixed(1)}`).join(" ")}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+}
+/* ===== Live riêng cho Managed: luồng tự động hóa (job/script) đang chạy ===== */
+const OPS_EVENTS = [
+  {ic:"database",c:"ok",  t:"Job sao lưu tự động: hoàn tất &amp; kiểm chứng khôi phục"},
+  {ic:"gear",   c:"ok",   t:"Script dọn log &amp; ổ đĩa: giải phóng 18 GB"},
+  {ic:"pulse",  c:"ok",   t:"Luật tự giãn tải: CPU chạm 82% → đưa về 54%"},
+  {ic:"wall",   c:"warn", t:"WAF tự chặn 37 request bất thường tới trang đăng nhập"},
+  {ic:"eye",    c:"ok",   t:"Job vá bảo mật: cập nhật 3 dịch vụ, không gián đoạn"},
+  {ic:"lock",   c:"warn", t:"Đăng nhập sai nhiều lần → tự khóa tài khoản &amp; gửi cảnh báo"},
+  {ic:"network",c:"ok",   t:"Kiểm tra sức khỏe dịch vụ: tất cả bình thường"},
+  {ic:"shield", c:"ok",   t:"Đồng bộ danh sách chặn IP xấu từ nguồn tình báo mối đe dọa"},
+];
+function managedConsole(){
+  return `<div class="ops-console">
+    <div class="ops-head">
+      <span class="live-badge"><span class="dot"></span>LIVE · Tự động hóa đang chạy</span>
+      <div class="ops-counters">
+        <div class="opc"><div class="opc-v tnum"><span id="opcEvt">0</span></div><div class="opc-l">việc tự động xử lý hôm nay</div></div>
+        <div class="opc"><div class="opc-v tnum" style="color:var(--ok)">99.9%</div><div class="opc-l">uptime 30 ngày</div></div>
+        <div class="opc"><div class="opc-v tnum">0</div><div class="opc-l">việc cần bạn can thiệp</div></div>
+      </div>
+    </div>
+    <div class="ops-feed" id="opsFeed"></div>
+    <div class="ops-note">Mỗi dòng là một job/script S4C dựng sẵn, hệ thống tự chạy. Chỉ việc thật sự cần quyết định mới báo tới bạn.</div>
+  </div>`;
+}
+function startOpsLive(){
+  liveStop();
+  const feed=$("#opsFeed"); if(!feed) return;
+  let evt=147; const evtEl=$("#opcEvt"); countUp(evtEl, evt);
+  const push=()=>{
+    const e=OPS_EVENTS[Math.floor(Math.random()*OPS_EVENTS.length)];
+    const n=new Date(), p=x=>String(x).padStart(2,"0");
+    const row=document.createElement("div");
+    row.className="of-row "+e.c;
+    row.innerHTML=`<span class="of-t tnum">${p(n.getHours())}:${p(n.getMinutes())}:${p(n.getSeconds())}</span><span class="of-ic itile">${svgIcon(e.ic)}</span><span class="of-x">${e.t}</span><span class="of-badge">${e.c==="warn"?svgIcon("info"):svgIcon("check")}</span>`;
+    feed.insertBefore(row, feed.firstChild);
+    while(feed.children.length>6) feed.removeChild(feed.lastChild);
+    evt++; if(evtEl) evtEl.textContent=evt;
+  };
+  for(let i=0;i<4;i++) push();
+  if(reduceMotion) return;
+  window.__live=setInterval(push, 2200);
+}
+/* ===== Live riêng cho DFIR: phát lại diễn biến tấn công từng bước ===== */
+function startChainReplay(){
+  const nodes=$$("#dfirChain .kc-node");
+  if(!nodes.length) return;
+  if(reduceMotion){ nodes.forEach(n=>n.classList.add("lit")); return; }
+  liveStop(); nodes.forEach(n=>n.classList.remove("lit"));
+  let i=0;
+  (function tick(){ if(i<nodes.length){ nodes[i].classList.add("lit"); i++; window.__live=setTimeout(tick, 680); } })();
+}
+
+/* ---- Scenario engine (3 kịch bản) ---- */
+function curScen(){ return SCENARIOS.find(s=>s.id===STATE.scenId)||SCENARIOS[0]; }
+function benefit(h,t){ return `<div class="benefit"><span class="b-ic">${svgIcon("check")}</span><div><div class="b-h">${h}</div><div class="b-t">${t}</div></div></div>`; }
+function renderScenario(){ renderHub(); renderCustomer(); renderProgress(); renderStage(); renderCtxPanel(); }
+function renderHub(){
+  const box=$("#scnHub"); if(!box) return; box.innerHTML="";
+  SCENARIOS.forEach(sc=>{
+    const b=el("button","scn-pick"+(sc.id===STATE.scenId?" active":""));
+    b.innerHTML=`<div class="sp-top"><span class="itile">${svgIcon(sc.icon)}</span><div><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div></div><div class="sp-tag">${sc.tag}</div>`;
+    b.addEventListener("click",()=>{ if(STATE.scenId!==sc.id){ STATE.scenId=sc.id; STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; STATE.clues=new Set(); renderScenario(); } });
+    box.appendChild(b);
+  });
+}
+function renderCustomer(){
+  const c=curScen().customer, box=$("#scnCustomer"); if(!box) return;
+  box.innerHTML=`<span class="itile" style="width:30px;height:30px;font-size:17px">${svgIcon(c.icon)}</span><span style="font-size:13px;color:var(--ink-soft)"><b style="color:var(--ink)">${c.name}</b> — ${c.type}. ${c.context}.</span>`;
+}
+function renderProgress(){
+  const steps=curScen().steps, box=$("#scnProgress"); box.innerHTML="";
+  steps.forEach((s,i)=>{
+    const wrap=el("div","scn-pstep"+(i<STATE.stageIdx?" done":"")+(i===STATE.stageIdx?" current":""));
+    const node=el("div","node",`<div class="dot">${i<STATE.stageIdx?"✓":(i+1)}</div><div class="plabel">${s.nav}</div>`);
+    node.addEventListener("click",()=>{ if(i<=STATE.maxStage){STATE.stageIdx=i;renderScenario();} });
+    wrap.appendChild(node); box.appendChild(wrap);
+    if(i<steps.length-1){ const c=el("div","scn-pstep"+(i<STATE.stageIdx?" done":"")); c.innerHTML=`<div class="connector"></div>`; box.appendChild(c); }
+  });
+}
+function stageNavHtml(){
+  const steps=curScen().steps, first=STATE.stageIdx===0, last=STATE.stageIdx===steps.length-1;
+  return `<div class="stage-nav">
+    <button class="btn ghost" ${first?"disabled style=visibility:hidden":""} id="stPrev">‹ Quay lại</button>
+    ${last?`<button class="btn" id="stReset">↺ Xem lại từ đầu</button>`:`<button class="btn primary" id="stNext">Bước tiếp theo ›</button>`}
+  </div>`;
+}
+function renderStage(){
+  liveStop();
+  const sc=curScen(), steps=sc.steps, s=steps[STATE.stageIdx];
+  const body = sc.id==="assess"?assessBody(s.key) : sc.id==="tune"?tuneBody(s.key) : sc.id==="managed"?managedBody(s.key) : dfirBody(s.key);
+  $("#scnStage").innerHTML=`<div class="st-eyebrow">${sc.label} · Bước ${STATE.stageIdx+1}/${steps.length}</div><h2>${s.title}</h2><p class="st-intro">${s.intro}</p>${body}${stageNavHtml()}`;
+  bindStageNav(); bindStageBody(sc.id, s.key);
+}
+function bindStageNav(){
+  const p=$("#stPrev"),n=$("#stNext"),r=$("#stReset");
+  if(p)p.addEventListener("click",()=>{STATE.stageIdx--;renderScenario();});
+  if(n)n.addEventListener("click",()=>{STATE.stageIdx++;STATE.maxStage=Math.max(STATE.maxStage,STATE.stageIdx);renderScenario();});
+  if(r)r.addEventListener("click",resetScenario);
+}
+let liveCpu=PERF.cpu.slice(), liveRam=PERF.ram.slice(), liveLat=PERF.points[PERF.points.length-1].v;
+function startPerfLive(){
+  liveStop();
+  if(reduceMotion) return;
+  window.__live=setInterval(()=>{
+    const latEl=$("#liveLatVal"),cpuEl=$("#liveCpuVal"),ramEl=$("#liveRamVal"),cs=$("#liveCpuSpark"),rs=$("#liveRamSpark");
+    if(!latEl){ liveStop(); return; }
+    liveLat=clamp(liveLat+randInt(-6,6),150,184);
+    liveCpu.push(clamp(liveCpu[liveCpu.length-1]+randInt(-4,4),28,48)); liveCpu.shift();
+    liveRam.push(clamp(liveRam[liveRam.length-1]+randInt(-3,3),44,56)); liveRam.shift();
+    latEl.textContent=liveLat;
+    cpuEl.textContent=liveCpu[liveCpu.length-1]+"%";
+    ramEl.textContent=liveRam[liveRam.length-1]+"%";
+    if(cs) cs.innerHTML=sparkSvg(liveCpu,"var(--accent)");
+    if(rs) rs.innerHTML=sparkSvg(liveRam,"var(--accent)");
+  },1700);
+}
+function radarChart(items){
+  const cx=150, cy=138, R=104, N=items.length;
+  const ang=i=> -Math.PI/2 + i*2*Math.PI/N;
+  const pt=(i,r)=>[cx+r*Math.cos(ang(i)), cy+r*Math.sin(ang(i))];
+  const rings=[0.25,0.5,0.75,1].map(f=>`<polygon points="${items.map((_,i)=>pt(i,R*f).map(n=>n.toFixed(1)).join(",")).join(" ")}" fill="none" stroke="var(--chart-grid)" stroke-width="1"/>`).join("");
+  const axes=items.map((_,i)=>{const[x,y]=pt(i,R);return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="var(--chart-grid)" stroke-width="1"/>`;}).join("");
+  const now=items.map((it,i)=>pt(i,R*it.now/100).map(n=>n.toFixed(1)).join(",")).join(" ");
+  const tgt=items.map((it,i)=>pt(i,R*it.tgt/100).map(n=>n.toFixed(1)).join(",")).join(" ");
+  const dots=items.map((it,i)=>{const[x,y]=pt(i,R*it.now/100);return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="var(--accent)"/>`;}).join("");
+  const labels=items.map((it,i)=>{const[x,y]=pt(i,R+17);return `<text x="${x.toFixed(1)}" y="${(y+3).toFixed(1)}" text-anchor="middle" fill="var(--ink-soft)" style="font-size:10px;font-weight:600">${it.k}</text>`;}).join("");
+  return `<svg viewBox="0 0 300 286" role="img" aria-label="Radar mức trưởng thành an toàn thông tin">${rings}${axes}
+    <polygon points="${tgt}" fill="none" stroke="var(--ok)" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <polygon points="${now}" fill="color-mix(in srgb,var(--accent) 20%,transparent)" stroke="var(--accent)" stroke-width="2"/>${dots}${labels}</svg>`;
+}
+
+/* ===== KB1: Đánh giá tổng thể ===== */
+function assessBody(key){
+  if(key==="why") return `<div class="grid" style="grid-template-columns:1fr;gap:10px;margin-top:6px">
+      ${[["network","Đối tác / khách lớn yêu cầu","Nhiều hợp đồng B2B, bên mua lớn hay nhà đầu tư đòi bạn chứng minh hệ thống an toàn trước khi ký."],["shield","Rủi ro thật đang treo","Mất dữ liệu, bị tấn công, gián đoạn — hậu quả có thật, nhưng bạn chưa biết mình hở ở đâu."],["compass","Cần một điểm khởi đầu","Không đánh giá thì mọi khoản đầu tư về sau đều là đoán mò. Đánh giá cho bạn bản đồ."]].map(r=>`<div class="card" style="padding:14px 16px;display:flex;gap:12px;align-items:flex-start"><span class="itile" style="width:34px;height:34px;font-size:18px">${svgIcon(r[0])}</span><div><b style="font-size:13.5px">${r[1]}</b><div style="font-size:12.5px;color:var(--ink-soft);margin-top:4px">${r[2]}</div></div></div>`).join("")}
+    </div>${benefit("Bạn được gì","Hiểu rõ vì sao nên làm — và làm xong bạn có 'tấm bản đồ' để quyết định đầu tư đúng chỗ.")}`;
+  if(key==="framework") return `<div class="card" style="padding:16px 18px;margin-top:6px"><p style="font-size:13px;color:var(--ink-soft)">S4C chấm theo <b>NIST CSF</b> — một khung chuẩn quốc tế, gói gọn trong 5 trụ cột dễ hiểu. Mỗi trụ cột trả lời một câu hỏi:</p>
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">${CSF.map((c,i)=>`<div style="padding:12px 13px;border:1px solid var(--line);border-radius:var(--radius-sm)"><div style="font-weight:600;font-size:13px">${i+1}. ${c.k} <span style="font-family:var(--font-mono);font-size:10px;color:var(--ink-faint)">${c.en}</span></div><div style="font-size:12px;color:var(--ink-soft);margin-top:4px">${c.note}</div></div>`).join("")}</div></div>
+    ${benefit("Bạn được gì","Một thước đo khách quan — không phải cảm tính 'chắc ổn', mà soi theo chuẩn ai cũng công nhận.")}`;
+  if(key==="radar"){ const avg=Math.round(CSF.reduce((s,c)=>s+c.now,0)/CSF.length);
+    return `<div class="scan-strip"><span class="live-badge"><span class="dot"></span>ĐANG QUÉT</span>
+        <div class="scan-c"><div class="sc-v tnum"><span id="scHost">0</span></div><div class="sc-l">máy chủ/thiết bị rà soát</div></div>
+        <div class="scan-c"><div class="sc-v tnum" style="color:var(--warn)"><span id="scVuln">0</span></div><div class="sc-l">lỗ hổng phát hiện</div></div>
+        <div class="scan-c"><div class="sc-v tnum" style="color:var(--crit)"><span id="scMis">0</span></div><div class="sc-l">cấu hình sai / điểm yếu</div></div>
+      </div>
+      <div class="card" style="padding:18px;margin-top:10px"><div class="radar-wrap">
+        <div>${radarChart(CSF)}<div style="text-align:center;font-size:11px;color:var(--ink-faint);margin-top:4px"><span style="color:var(--accent)">●</span> Hiện tại &nbsp; <span style="color:var(--ok)">▭</span> Mục tiêu</div></div>
+        <div><div style="font-family:var(--font-display);font-size:30px;font-weight:700;color:${scoreColor(avg)}">${avg}<span style="font-size:14px;color:var(--ink-faint)">/100</span></div><div style="font-size:12px;color:var(--ink-soft);margin:2px 0 12px">Mức trưởng thành trung bình · còn khoảng cách tới mục tiêu</div>
+          <div class="mat-list" id="matList">${CSF.map(c=>`<div class="mat"><div class="mat-top"><span>${c.k}</span><b style="color:${scoreColor(c.now)}">${c.now} <span style="color:var(--ink-faint)">/ ${c.tgt}</span></b></div><div class="track"><div class="fill" data-to="${c.now}" style="width:0%;background:${scoreColor(c.now)}"></div><div class="tgt" style="left:${c.tgt}%"></div></div></div>`).join("")}</div>
+        </div></div></div>
+      ${benefit("Bạn được gì","Một bức tranh một trang: thấy ngay mình yếu nhất ở 'Phát hiện' và 'Ứng phó' — nơi cần ưu tiên.")}`;
+  }
+  if(key==="gap") return `<div class="finding-list" style="margin-top:6px">${CSF_GAPS.map(g=>`<div class="finding"><div class="f-sev" style="background:${g.sev==="crit"?"var(--crit)":"var(--warn)"}"></div><div class="f-body"><div class="f-title">${g.title} <span class="pill ${g.sev}">${g.sev==="crit"?"Ưu tiên cao":"Nên làm"}</span></div><div class="f-desc">${g.desc}</div><div class="f-cost" style="color:var(--accent-ink)">→ ${g.act}</div></div></div>`).join("")}</div>
+    ${benefit("Bạn được gì","Danh sách việc cụ thể theo mức ưu tiên — biết chính xác tiêu tiền vào đâu trước cho đáng.")}`;
+  if(key==="output"){ const avg=Math.round(CSF.reduce((s,c)=>s+c.now,0)/CSF.length);
+    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · BẢN ĐÁNH GIÁ TỔNG THỂ (ví dụ)</span><span>NIST CSF + rà soát vận hành</span></div><div class="rc-body">
+      <div class="rc-row"><span class="rk">Sức khỏe hệ thống</span><span>28 máy chủ/thiết bị rà soát; chỉ ra điểm nghẽn hiệu năng, cấu hình lệch chuẩn, rủi ro vận hành</span></div>
+      <div class="rc-row"><span class="rk">Mức an toàn (ATTT)</span><span>Điểm trưởng thành trung bình <b style="color:${scoreColor(avg)}">${avg}/100</b> theo 5 trụ cột NIST CSF — còn khoảng cách tới mục tiêu</span></div>
+      <div class="rc-row"><span class="rk">Rủi ro ưu tiên</span><span>${CSF_GAPS.filter(g=>g.sev==="crit").map(g=>g.title.replace(/ \(.*/,"")).join("; ")}</span></div>
+      <div class="rc-row"><span class="rk">Khuyến nghị</span><span>${CSF_GAPS.map(g=>g.act).join("; ")}</span></div>
+      <div class="rc-row"><span class="rk">Lộ trình</span><span>${ROADMAP.map(r=>r.h).join(" → ")}</span></div>
+      <div class="rc-row"><span class="rk">Tài liệu bàn giao</span><span>Báo cáo đánh giá (bản điều hành cho sếp + bản kỹ thuật cho IT), danh mục rủi ro có mức ưu tiên, lộ trình &amp; checklist hành động</span></div>
+    </div></div>
+    <div class="roadmap" style="margin-top:14px">${ROADMAP.map((r,i)=>`<div class="rm-item"><div class="rm-rail"><div class="rm-dot">${i+1}</div><div class="rm-line"></div></div><div class="rm-body"><div class="rm-ph">${r.ph}</div><h4>${r.h}</h4><p>${r.p}</p></div></div>`).join("")}</div>
+    <div class="svc-link-card" style="margin-top:12px"><p style="font-size:13px;color:var(--ink)"><b>Output:</b> ${curScen().customer.name} nhận bộ tài liệu đánh giá đầy đủ — đủ cơ sở ra quyết định đầu tư, trình đối tác nước ngoài và chuẩn bị audit.</p><button class="btn primary" style="margin-top:12px" data-nav="engagement">Đặt lịch đánh giá miễn phí →</button></div>`;
+  }
+  return "";
+}
+
+/* ===== KB2: Hardening & Tối ưu hiệu năng ===== */
+function tuneBody(key){
+  const peak=Math.max(...PERF.points.map(p=>p.v));
+  if(key==="ctx") return `<div class="risk-callout" style="margin-top:6px"><span class="r-ic">${svgIcon("info")}</span><div><div class="r-h">Hai vấn đề cùng lúc</div><div style="font-size:12.5px;color:var(--ink)">Giờ cao điểm hệ thống phản hồi ~${peak}ms (quá tải), đồng thời cấu hình để mặc định — nhiều cổng/dịch vụ thừa mở ra, thành bề mặt tấn công rộng.</div></div></div>
+    ${benefit("Giải quyết cả hai","Hardening và tối ưu hiệu năng đi cùng nhau: một hệ thống nhanh nhưng hở thì vẫn rủi ro, và ngược lại.")}`;
+  if(key==="perf") return `<div class="card" style="padding:18px;margin-top:6px"><div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:4px"><div style="font-size:12.5px;color:var(--ink-soft)">Hiệu năng trước / sau tối ưu (mốc xanh)</div><span class="pill ok">~${peak}ms → ~165ms · nhanh hơn 2,6×</span></div>${perfChart()}
+      <div class="mgd-grid" style="margin-top:14px">${TUNE_FIXES.map(m=>`<div class="mgd"><span class="itile">${svgIcon(m[0])}</span><div><b style="font-size:12.5px">${m[1]}</b><div style="font-size:11.5px;color:var(--ink-faint);margin-top:2px">${m[2]}</div></div></div>`).join("")}</div></div>
+      ${benefit("Tối ưu hiệu năng (performance)","S4C truy nguyên nhân ở hạ tầng (CSDL, cấu hình, I/O) và tối ưu — không đụng code ứng dụng. Phản hồi nhanh hơn ~2,6 lần.")}`;
+  if(key==="harden"){ const before=postureScore("before"), after=postureScore("after");
+    return `<div class="card" style="padding:18px;margin-top:6px">
+      <div class="gauge-wrap"><div class="gauge">${gaugeSvg(after, scoreColor(after))}<div class="g-cap">Điểm an toàn sau hardening</div></div>
+      <div class="gauge-note">Siết đủ các lớp, điểm an toàn tăng từ <b style="color:${scoreColor(before)}">${before}</b> lên <b style="color:${scoreColor(after)}">${after}</b> / 100. Phần lớn bằng công cụ mã nguồn mở.</div></div>
+      <div class="harden-list" style="margin-top:18px" id="hardenBars">${POSTURE.map(p=>`<div class="hb"><div class="hb-top"><span class="hb-name">${p.name} <span class="tag">${p.tag}</span></span><span class="hb-delta"><span style="color:var(--ink-faint)">${p.before}</span> → <b style="color:var(--ok)">${p.after}</b></span></div><div class="track"><div class="fill-before" style="width:${p.before}%"></div><div class="fill-after" data-to="${p.after}" style="width:${p.before}%"></div></div><div class="hb-sub">${p.note}</div></div>`).join("")}</div></div>
+      ${benefit("Hardening nhiều lớp","Tường lửa, WAF, PAM, siết cấu hình, sao lưu — mỗi lớp giảm một nhóm rủi ro, cộng lại thành phòng thủ có chiều sâu.")}`;
+  }
+  if(key==="standard") return `<div class="card" style="padding:16px 18px;margin-top:6px"><div style="font-size:12.5px;font-weight:600;margin-bottom:10px">Đối chiếu mốc chuẩn hóa (CIS Benchmark / hardening guideline)</div>
+      <div class="mgd-grid">${COMPLIANCE.map(c=>`<div class="mgd"><span class="itile" style="width:24px;height:24px;font-size:12px;background:var(--ok-wash);color:var(--ok)">${svgIcon("check")}</span><div style="font-size:12.3px">${c}</div></div>`).join("")}</div></div>
+      ${benefit("Làm đúng, không làm cho có","Mỗi hạng mục đối chiếu với một mốc chuẩn công nhận — bạn có cơ sở chứng minh hệ thống đạt yêu cầu an toàn.")}`;
+  if(key==="output"){ const before=postureScore("before"), after=postureScore("after");
+    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · HỆ THỐNG TỐI ƯU &amp; ĐẠT CHUẨN (ví dụ)</span><span>${curScen().customer.name}</span></div><div class="rc-body">
+      <div class="rc-row"><span class="rk">Hiệu năng</span><span style="color:var(--ok)">Phản hồi nhanh hơn ~2,6 lần (từ ~${peak}ms xuống ~165ms)</span></div>
+      <div class="rc-row"><span class="rk">An toàn</span><span>Điểm an toàn tăng <b style="color:${scoreColor(before)}">${before}</b> → <b style="color:var(--ok)">${after}</b> / 100</span></div>
+      <div class="rc-row"><span class="rk">Tuân thủ</span><span>Đạt các mốc hardening cơ bản theo CIS Benchmark</span></div>
+      <div class="rc-row"><span class="rk">Tài liệu bàn giao</span><span>Tài liệu cấu hình chuẩn, hướng dẫn vận hành &amp; checklist duy trì</span></div>
+    </div></div>
+    <div class="svc-link-card" style="margin-top:12px"><p style="font-size:13px;color:var(--ink)"><b>Output:</b> hệ thống vừa nhanh hơn vừa vững hơn, có tài liệu để tự duy trì — không phụ thuộc một chiều.</p><button class="btn primary" style="margin-top:12px" data-nav="engagement">Nhận tư vấn hardening &amp; tối ưu →</button></div>`;
+  }
+  return "";
+}
+
+/* ===== KB3: Managed Service ===== */
+function managedBody(key){
+  if(key==="ctx") return `<div class="risk-callout" style="margin-top:6px"><span class="r-ic">${svgIcon("info")}</span><div><div class="r-h">Bài toán nguồn lực</div><div style="font-size:12.5px;color:var(--ink)">Hệ thống cần người lo mỗi ngày, nhưng phần lớn là việc lặp lại — cập nhật, sao lưu, dọn dẹp, canh cảnh báo. Thuê người ngồi làm tay những việc đó vừa tốn kém, vừa dễ bỏ sót.</div></div></div>
+    ${benefit("Hướng đi của S4C","Đưa việc lặp lại vào tự động hóa, dành sức người cho việc khó — thay vì gánh lương cố định cho những đầu việc máy làm tốt hơn.")}`;
+  if(key==="monitor"){
+    return `<div class="card" style="padding:18px;margin-top:6px">${managedConsole()}</div>
+      ${benefit("Để máy làm việc lặp","S4C dựng job, script và luật tự xử lý cho các tình huống thường gặp — hệ thống tự chạy phần nhàm chán, hạn chế lệ thuộc vào việc ngồi canh thủ công.")}`;
+  }
+  if(key==="coverage") return `<div class="mgd-grid" style="margin-top:6px">${MANAGED.map(m=>`<div class="mgd"><span class="itile">${svgIcon(m.icon)}</span><div><b style="font-size:12.5px">${m.t}</b><div style="font-size:11.5px;color:var(--ink-faint);margin-top:2px">${m.d}</div></div></div>`).join("")}</div>
+    ${benefit("Máy làm việc lặp, người làm việc khó","Phần lặp lại để tự động hóa lo; đội ngũ S4C dồn sức vào tối ưu, phân tích và xử lý sự cố — những việc thật sự cần con người.")}`;
+  if(key==="resource") return `<div class="card" style="padding:18px;margin-top:6px"><div style="font-size:12.5px;font-weight:600;margin-bottom:12px">Chi phí tương đối: tự tuyển đội vs thuê Managed</div>
+      <div class="harden-list">${RESOURCE.map((r,i)=>`<div class="hb"><div class="hb-top"><span class="hb-name">${r.k}</span><b class="hb-delta" style="color:${i===0?'var(--ink-faint)':'var(--ok)'}">${r.pct===100?'~100%':'~'+r.pct+'%'}</b></div><div class="track"><div class="fill-after" style="width:${r.pct}%;background:${i===0?'var(--ink-faint)':'var(--ok)'}"></div></div><div class="hb-sub">${r.note}</div></div>`).join("")}</div>
+      <div style="font-size:11px;color:var(--ink-faint);margin-top:8px">Minh họa tương đối — con số thực tùy quy mô.</div>
+      <div class="sec-title" style="margin:16px 0 8px">Phương thức quản trị chuẩn</div>
+      <ul style="margin:0;padding-left:18px;color:var(--ink-soft);font-size:12.5px">${MGMT_WAY.map(w=>`<li style="margin-bottom:6px">${w}</li>`).join("")}</ul></div>
+      ${benefit("Tối ưu nguồn lực","Nhờ tự động hóa, cùng một chi phí lo được nhiều việc hơn so với tuyển người làm tay — lại có quy trình rõ ràng và người chịu trách nhiệm.")}`;
+  if(key==="output"){ const r=OPS_REPORT;
+    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · BÁO CÁO MANAGED THÁNG (ví dụ)</span><span>${curScen().customer.name}</span></div><div class="rc-body">
+      <div class="rc-row"><span class="rk">Việc đã làm</span><span>${r.what}</span></div>
+      <div class="rc-row"><span class="rk">Hiệu năng</span><span style="color:var(--ok)">${r.perf}</span></div>
+      <div class="rc-row"><span class="rk">Ổn định</span><span>${r.uptime}</span></div>
+      <div class="rc-row"><span class="rk">Nguồn lực</span><span>Phần việc lặp đã tự động hóa; ước tính tiết kiệm ~60% so với tự tuyển đội tương đương</span></div>
+      <div class="rc-row"><span class="rk">Chi phí</span><span style="color:var(--gold)">${r.cost}</span></div>
+    </div></div>
+    <div class="svc-link-card" style="margin-top:12px"><p style="font-size:13px;color:var(--ink)"><b>Output:</b> việc lặp lại được tự động hóa, hệ thống chạy ổn định, nguồn lực dồn vào việc giá trị cao — minh bạch mỗi kỳ.</p><button class="btn primary" style="margin-top:12px" data-nav="engagement">Nhận tư vấn Managed →</button></div>`;
+  }
+  return "";
+}
+
+/* ===== KB4: DFIR — Ứng cứu Ransomware (FDI) ===== */
+function dfirBody(key){
+  if(key==="signal") return `<div class="risk-callout" style="margin-top:6px"><span class="r-ic">${svgIcon("info")}</span><div><div class="r-h">Sự cố khẩn cấp</div><div style="font-size:12.5px;color:var(--ink)">Ransomware đã mã hóa hàng loạt máy. Dây chuyền sản xuất và văn phòng đình trệ — cần ứng cứu ngay, đúng quy trình, không hoảng loạn.</div></div></div>
+    <div class="spark-row" style="margin-top:12px">${DFIR_SIGNAL.map(s=>`<div class="spark"><div class="sp-lbl">${s[0]}</div><div class="sp-val tnum" style="color:var(--crit)">${s[1]}</div><div style="font-size:11px;color:var(--ink-faint);margin-top:6px">${s[2]}</div></div>`).join("")}</div>
+    ${benefit("Giữ bình tĩnh, đúng quy trình","Ở quy mô này, hành động sai (xóa vội, khởi động lại, trả tiền chuộc) có thể làm mất bằng chứng hoặc mất thêm dữ liệu. S4C vào theo quy trình DFIR.")}`;
+  if(key==="scope") return `<div class="finding-list" style="margin-top:6px">${DFIR_FINDINGS.map(f=>`<div class="finding"><div class="f-sev" style="background:${f.sev==="crit"?"var(--crit)":"var(--warn)"}"></div><div class="f-body"><div class="f-title">${f.title} <span class="pill ${f.sev}">${f.sev==="crit"?"Nghiêm trọng":"Yếu tố góp phần"}</span></div><div class="f-desc">${f.desc}</div><div class="f-cost">${f.cost}</div></div></div>`).join("")}</div>
+    ${benefit("Khoanh vùng trước khi xử lý","Biết chính xác bao nhiêu máy bị ảnh hưởng, lây từ đâu và còn đường lây nào — mới chặn đúng và khôi phục an toàn.")}`;
+  if(key==="chain") return `<div class="card" style="padding:16px 18px;margin-top:6px"><div class="chain-head"><span style="font-size:12.5px;font-weight:600">Diễn biến cuộc tấn công</span><button class="btn ghost sm" id="chainReplay">▶ Phát lại diễn biến</button></div>
+      <div class="kchain" id="dfirChain">${DFIR_CHAIN.map((k,i)=>`<div class="kc-node"><div class="kc-box"><div class="kc-n">${k.n}</div><div class="kc-t">${k.t}</div><div class="kc-d">${k.d}</div></div></div>${i<DFIR_CHAIN.length-1?'<span class="kc-arrow">→</span>':''}`).join("")}</div></div>
+    <div class="card" style="padding:14px 16px;margin-top:12px"><div style="font-size:11px;font-weight:700;color:var(--crit);text-transform:uppercase;letter-spacing:.7px;font-family:var(--font-mono)">Kết luận điều tra</div><p style="font-size:12.5px;color:var(--ink-soft);margin-top:7px">Khởi nguồn từ một email lừa đảo; kẻ tấn công chiếm máy đầu, leo thang quyền quản trị, lan ngang khắp mạng phẳng rồi kích hoạt mã hóa đồng loạt. Mấu chốt khiến thiệt hại lớn: không MFA và mạng không chia vùng.</p></div>
+    ${benefit("Hiểu để bịt tận gốc","Không chỉ gỡ ransomware — mà biết chính xác lỗ hổng quy trình đã để nó vào và lan rộng.")}`;
+  if(key==="respond") return `<div class="card" style="padding:16px 18px;margin-top:6px">${DFIR_RESP.map((s,i)=>`<div style="display:flex;gap:11px;padding:10px 0;${i?'border-top:1px solid var(--line-soft)':''}"><span class="itile" style="width:24px;height:24px;font-size:11px;background:var(--crit-wash);color:var(--crit)">${i+1}</span><div style="font-size:12.8px;color:var(--ink-soft)">${s}</div></div>`).join("")}</div>
+    <div class="card" style="padding:13px 15px;margin-top:12px;display:flex;gap:10px;align-items:center"><span class="itile" style="width:30px;height:30px;font-size:16px;background:var(--crit-wash);color:var(--crit)">${svgIcon("shield")}</span><div style="font-size:12.5px;color:var(--ink-soft)"><b style="color:var(--ink)">Không trả tiền chuộc:</b> trả tiền không đảm bảo lấy lại dữ liệu và còn nuôi kẻ tấn công. Khôi phục từ backup sạch là đường đúng.</div></div>
+    ${benefit("Ứng cứu có kiểm soát","Ưu tiên chặn lây và giữ bằng chứng; mọi bước phối hợp với bạn — mục tiêu đưa hoạt động trở lại nhanh &amp; an toàn.")}`;
+  if(key==="output") return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · BÁO CÁO ĐIỀU TRA &amp; ỨNG CỨU (DFIR)</span><span>${curScen().customer.name}</span></div><div class="rc-body">
+      ${DFIR_OUTPUT.map(o=>`<div class="rc-row"><span class="rk">${o[0]}</span><span>${o[1]}</span></div>`).join("")}
+      <div class="rc-row"><span class="rk">Tài liệu bàn giao</span><span>Báo cáo sự cố đầy đủ (dòng thời gian, bằng chứng, hành động), khuyến nghị kỹ thuật &amp; quy trình</span></div>
+    </div></div>
+    <div class="svc-link-card" style="margin-top:12px"><p style="font-size:13px;color:var(--ink)"><b>Output:</b> hệ thống được khôi phục, nguyên nhân gốc được bịt, và một báo cáo đủ sức trình ban lãnh đạo/tập đoàn mẹ. Kèm lộ trình để sự cố không lặp lại.</p><button class="btn primary" style="margin-top:12px" data-nav="engagement">Cần ứng cứu khẩn? Liên hệ ngay →</button></div>`;
+  return "";
+}
+
+function bindStageBody(scen,key){
+  // Managed — cơ chế live: bảng trực NOC, log sự kiện chạy liên tục
+  if(scen==="managed" && key==="monitor") startOpsLive();
+  // Đánh giá tổng thể — cơ chế live: quét phát hiện (count-up) + thanh mức trưởng thành
+  if(scen==="assess" && key==="radar"){
+    countUp($("#scHost"),28); countUp($("#scVuln"),41); countUp($("#scMis"),63);
+    if(!reduceMotion){ requestAnimationFrame(()=>requestAnimationFrame(()=>{ $$("#matList .fill").forEach(f=>{ f.style.width=f.dataset.to+"%"; }); })); }
+    else { $$("#matList .fill").forEach(f=>f.style.width=f.dataset.to+"%"); }
+  }
+  // Hardening & Tuning — cơ chế live: thanh before→after trượt lên + gauge count-up
+  if(scen==="tune" && key==="harden"){
+    animateGauge(postureScore("after"));
+    if(!reduceMotion){ requestAnimationFrame(()=>requestAnimationFrame(()=>{ $$("#hardenBars .fill-after").forEach(f=>{ f.style.width=f.dataset.to+"%"; }); })); }
+    else { $$("#hardenBars .fill-after").forEach(f=>f.style.width=f.dataset.to+"%"); }
+  }
+  // DFIR — cơ chế live: phát lại diễn biến tấn công từng bước
+  if(scen==="dfir" && key==="chain"){ startChainReplay(); const rb=$("#chainReplay"); if(rb) rb.addEventListener("click",startChainReplay); }
+}
+function renderCtxPanel(){
+  const sc=curScen(), c=sc.customer, p=$("#ctxPanel");
+  p.innerHTML=`
+    <h4>Kịch bản</h4>
+    <div class="ctx-card"><div class="cc-name" style="font-size:13px"><span class="itile">${svgIcon(sc.icon)}</span>${sc.label}</div><div class="cc-sub">${sc.step}</div></div>
+    <h4 style="margin-top:16px">Khách hàng (ví dụ)</h4>
+    <div class="ctx-card"><div class="cc-name" style="font-size:12.5px">${c.name}</div><div class="cc-sub">${c.type}</div></div>
+    <h4 style="margin-top:16px">Các bước</h4>
+    <div class="ctx-steps">${sc.steps.map((s,i)=>`<div class="ctx-s ${i===STATE.stageIdx?"on":""} ${i<STATE.stageIdx?"done":""}"><span class="cs-n">${i<STATE.stageIdx?"✓":(i+1)}</span>${s.nav}</div>`).join("")}</div>
+    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" style="flex:1;padding:9px" data-nav="engagement">Liên hệ</button><button class="btn" style="padding:9px" data-nav="services">Dịch vụ</button></div>
+    <div style="margin-top:12px"><span class="note-tag">VÍ DỤ MINH HỌA</span></div>`;
+}
+
+/* ---- Services ---- */
+const lifecycleBox=$("#lifecycle");
+const LC_SHORT={consult:"Tư vấn & Đánh giá",design:"Đề xuất giải pháp",operate:"Vận hành & Tự động hóa",debug:"Debug & Xử lý lỗi",harden:"Hardening",incident:"Ứng cứu sự cố",report:"Báo cáo",training:"Đào tạo ATTT"};
+SERVICES.forEach((s,i)=>{
+  const node=el("div","lc-node");
+  node.innerHTML=`<div class="lc-chip" data-svc="${s.id}"><div class="itile">${svgIcon(s.icon)}</div><div class="lc-lbl">${LC_SHORT[s.id]}</div></div>${i<SERVICES.length-1?'<span class="lc-arrow">→</span>':''}`;
+  lifecycleBox.appendChild(node);
+});
+const svcGrid=$("#svcGrid");
+SERVICES.forEach(s=>{
+  const card=el("div","card svc-card");
+  card.innerHTML=`<div class="sc-top"><div class="itile">${svgIcon(s.icon)}</div><div><div class="sc-step">${s.step}</div><h3>${s.name}</h3></div></div>
+    <p class="oneliner">${s.one}</p>
+    <div class="tags">${s.tags.map(t=>`<span class="mini-tag">${t}</span>`).join("")}</div>
+    <div class="sc-foot"><span class="sc-price">${s.model}</span><span style="color:var(--accent-ink);font-size:12px;font-weight:600">Xem chi tiết →</span></div>`;
+  card.addEventListener("click",()=>openService(s));
+  svcGrid.appendChild(card);
+});
+$$(".lc-chip").forEach(c=>c.addEventListener("click",()=>openService(SERVICES.find(s=>s.id===c.dataset.svc))));
+function openService(s){
+  go("services");
+  const body=`<div class="itile" style="width:40px;height:40px;font-size:21px">${svgIcon(s.icon)}</div>
+    <div class="sc-step" style="margin-top:10px;font-size:10px;font-family:var(--font-mono);color:var(--ink-faint);font-weight:600">${s.step} · ${s.model}</div>
+    <h3 style="font-size:18px;margin-top:3px">${s.name}</h3>
+    <p style="color:var(--ink-soft);margin-top:7px">${s.one}</p>
+    <div class="detail-field"><div class="k">Hạng mục kỹ thuật</div><div class="v" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">${s.tags.map(t=>`<span class="mini-tag">${t}</span>`).join("")}</div></div>
+    <div class="detail-field"><div class="k">Giải quyết vấn đề gì</div><div class="v">${s.problem}</div></div>
+    <div class="get-box"><div class="k">Bạn nhận được gì</div><ul>${s.get.map(i=>`<li>${i}</li>`).join("")}</ul></div>
+    <div class="price-box"><div class="k">Chi phí tham khảo</div>${s.price}</div>
+    <div class="exc-box"><div class="k">Ngoài phạm vi</div><ul>${s.boundary.map(i=>`<li>${i}</li>`).join("")}</ul></div>`;
+  openPanel(body);
+}
+
+/* ---- Models ---- */
+const modelGrid=$("#modelGrid");
+MODELS.forEach(m=>modelGrid.appendChild(el("div","card model-card",`<div class="itile">${svgIcon(m.icon)}</div><h3>${m.name}</h3><p class="m-desc">${m.desc}</p><div class="m-for">${m.forWho}</div><div class="m-price">${m.price}</div>`)));
+
+/* ---- Architecture ---- */
+const nodeDetail=$("#nodeDetail");
+function showNode(id){
+  const n=NODES[id];
+  $$(".arch-node").forEach(g=>g.classList.toggle("sel",g.dataset.node===id));
+  nodeDetail.innerHTML=`<h3 style="font-size:16px">${n.title}</h3>${n.oss?`<div style="margin-top:7px"><span class="oss-pill">${n.oss}</span></div>`:""}
+    <div class="detail-field"><div class="k">Làm gì</div><div class="v">${n.purpose}</div></div>
+    <div class="detail-field"><div class="k">Cần gì</div><ul>${n.input.map(i=>`<li>${i}</li>`).join("")}</ul></div>
+    <div class="detail-field"><div class="k">Cho ra gì</div><ul>${n.output.map(i=>`<li>${i}</li>`).join("")}</ul></div>
+    <div class="exc-box"><div class="k">Giới hạn</div><div style="font-size:12.5px;color:var(--ink-soft)">${n.limit}</div></div>
+    <div class="detail-field"><div class="k">Thuộc dịch vụ</div><div class="v" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">${n.svc.map(s=>`<span class="pill accent">${s}</span>`).join("")}</div></div>`;
+}
+$$(".arch-node").forEach(g=>g.addEventListener("click",()=>showNode(g.dataset.node)));
+
+/* ---- Problem → Solution map (trang demo) ---- */
+(function(){
+  const box=$("#probMap"); if(!box) return;
+  PROBLEM_MAP.forEach(p=>{
+    const row=el("button","pm-row");
+    row.innerHTML=`<span class="pm-ic itile">${svgIcon(p.ic)}</span><span class="pm-prob">${p.prob}</span><span class="pm-arrow">→</span><span class="pm-sol">${p.sol}</span><span class="pm-go">${p.scn?"Xem demo":"Xem dịch vụ"}</span>`;
+    row.addEventListener("click",()=>{
+      if(p.scn){ if(STATE.scenId!==p.scn){STATE.scenId=p.scn;STATE.stageIdx=0;STATE.maxStage=0;STATE.clues=new Set();} renderScenario(); const hub=$("#scnHub"); if(hub) hub.scrollIntoView({behavior:"smooth",block:"center"}); }
+      else if(p.svc){ const s=SERVICES.find(x=>x.id===p.svc); if(s) openService(s); }
+    });
+    box.appendChild(row);
+  });
+})();
+
+/* ---- Engagement ---- */
+const chosen=new Set();
+const needOpts=$("#needOpts");
+NEEDS.forEach(n=>{
+  const opt=el("label","need-opt");
+  opt.innerHTML=`<input type="checkbox" value="${n.id}"><div class="no-box"><span class="no-ico itile">${svgIcon(n.icon)}</span><div class="no-txt"><div class="no-t">${n.t}</div><div class="no-d">${n.d}</div></div><span class="no-badge">${svgIcon("check")}</span></div>`;
+  const cb=$("input",opt);
+  cb.addEventListener("change",()=>{opt.classList.toggle("on",cb.checked);cb.checked?chosen.add(n.t):chosen.delete(n.t);const nc=$("#needCount");if(nc)nc.textContent=chosen.size;buildSummary();});
+  needOpts.appendChild(opt);
+});
+["engOrg","engScale","engSys","engGoal","engBudget","engContact"].forEach(f=>$("#"+f).addEventListener("input",buildSummary));
+function summaryText(){
+  const v=id=>$("#"+id).value.trim()||"—";
+  const needs=chosen.size?[...chosen].map(n=>"  • "+n).join("\n"):"  • (chưa chọn)";
+  return `GỬI S4C · ĐIỀU TÔI ĐANG CẦN
+────────────────────────────
+Nhu cầu chính:
+${needs}
+
+Doanh nghiệp làm gì : ${v("engOrg")}
+Quy mô              : ${v("engScale")}
+Hiện có về IT       : ${v("engSys")}
+
+Mong muốn:
+  ${$("#engGoal").value.trim()||"—"}
+
+Ngân sách dự kiến   : ${v("engBudget")}
+Liên hệ lại         : ${v("engContact")}
+────────────────────────────
+Bước tiếp theo: một buổi trao đổi MIỄN PHÍ để S4C
+hiểu rõ bài toán và đề xuất cách phù hợp với bạn.`;
+}
+function buildSummary(){ $("#engSummary").textContent=summaryText(); }
+buildSummary();
+function channelDefs(){
+  const defs=[
+    { id:"hotline", label:"Hotline", icon:"phone", color:"#16a34a", primary:true },
+    { id:"email",   label:"Email",   icon:"mail",  color:"#ea4335" },
+    { id:"zalo",    label:"Zalo",    icon:"chat",  color:"#0068ff" },
+    { id:"telegram",label:"Telegram",icon:"telegram", color:"#229ed9" },
+    { id:"facebook",label:"Facebook / Messenger", icon:"facebook", color:"#1877f2" },
+    { id:"copy",    label:"Sao chép nội dung", icon:"copy", color:"var(--ink-soft)" },
+  ];
+  return defs;
+}
+function buildShare(){
+  const row=$("#shareRow"); if(!row) return; row.innerHTML="";
+  channelDefs().forEach(d=>{
+    const b=el("button","share-btn"+(d.primary?" primary":""));
+    b.innerHTML=`<span class="ic" style="color:${d.primary?'#fff':d.color}">${svgIcon(d.icon)}</span>${d.label}`;
+    b.addEventListener("click",()=> d.id==="copy" ? (copyText(summaryText()),toast("Đã sao chép nội dung")) : openChannelGuide(d));
+    row.appendChild(b);
+  });
+}
+/* Popup tiến trình khi chọn kênh gửi */
+function openChannelGuide(d){
+  const org=$("#engOrg").value.trim();
+  const mailTo=isPlaceholder(CONTACT.email)?"":CONTACT.email;
+  const phoneRaw=!isPlaceholder(CONTACT.phone)?CONTACT.phone.replace(/[^0-9+]/g,""):"";
+  const hotlineRaw=!isPlaceholder(CONTACT.hotline)?CONTACT.hotline.replace(/[^0-9+]/g,""):"";
+  const cfg={
+    hotline:{ target:isPlaceholder(CONTACT.hotline)?null:CONTACT.hotline, copyFirst:false,
+      steps:["Bấm “Gọi ngay” để gọi trực tiếp, hoặc lưu số để nhắn SMS.","Nói ngắn gọn bạn đang gặp vấn đề gì — S4C sẽ hỏi tiếp để hiểu rõ."],
+      actLabel:"Gọi ngay", act:()=>{ if(hotlineRaw) window.location.href="tel:"+hotlineRaw; } },
+    email:{ target:isPlaceholder(CONTACT.email)?null:CONTACT.email, copyFirst:false,
+      steps:["Bấm “Soạn email” — tiêu đề & nội dung đã điền sẵn.","Xem lại một lượt rồi bấm gửi trong ứng dụng mail của bạn."],
+      actLabel:"Soạn email", act:()=>{ window.location.href="mailto:"+encodeURIComponent(mailTo)+"?subject="+encodeURIComponent("Nhu cầu dịch vụ S4C"+(org?(" - "+org):""))+"&body="+encodeURIComponent(summaryText()); } },
+    zalo:{ target:phoneRaw?("Zalo: "+CONTACT.phone):null, copyFirst:true,
+      steps:["Nội dung đã được sao chép tự động.","Bấm “Mở Zalo” để tới trang S4C.","Dán (Ctrl/⌘ + V) vào khung chat và gửi."],
+      actLabel:"Mở Zalo", act:()=>{ window.open(phoneRaw?("https://zalo.me/"+phoneRaw.replace(/[^0-9]/g,"")):"https://zalo.me","_blank"); } },
+    telegram:{ target:!isPlaceholder(CONTACT.telegram)?CONTACT.telegram:null, copyFirst:true,
+      steps:["Nội dung đã được sao chép tự động.","Bấm “Mở Telegram” để tới S4C.","Dán (Ctrl/⌘ + V) vào khung chat và gửi."],
+      actLabel:"Mở Telegram", act:()=>{ const tg=!isPlaceholder(CONTACT.telegram)?CONTACT.telegram:""; const url=tg?(tg.startsWith("http")?tg:("https://t.me/"+tg.replace(/^@/,""))):("https://t.me/share/url?url=&text="+encodeURIComponent(summaryText())); window.open(url,"_blank"); } },
+    facebook:{ target:!isPlaceholder(CONTACT.messenger)?CONTACT.messenger:null, copyFirst:true,
+      steps:["Nội dung đã được sao chép tự động.","Bấm “Mở Messenger” để tới trang S4C.","Dán (Ctrl/⌘ + V) vào khung chat và gửi."],
+      actLabel:"Mở Messenger", act:()=>{ window.open(!isPlaceholder(CONTACT.messenger)?CONTACT.messenger:"https://facebook.com","_blank"); } },
+  }[d.id];
+  if(cfg.copyFirst) copyText(summaryText());
+  const stepsHtml=cfg.steps.map((s,i)=>`<li><span class="cs-num">${i+1}</span><span>${s}</span></li>`).join("");
+  const targetHtml = cfg.target
+    ? `<div class="chan-target"><span class="itile" style="width:30px;height:30px;font-size:15px">${svgIcon(d.icon)}</span><div><div style="font-size:11px;color:var(--ink-faint)">Gửi tới</div><b style="font-size:13.5px">${cfg.target}</b></div></div>`
+    : `<div class="chan-target warn"><span class="itile" style="width:30px;height:30px;font-size:15px;background:var(--warn-wash);color:var(--warn)">${svgIcon("info")}</span><div style="font-size:12px;color:var(--ink-soft)">Kênh ${d.label} đang được S4C cập nhật. Bạn hãy sao chép nội dung và gửi qua Hotline hoặc Email giúp nhé.</div></div>`;
+  openPanel(`
+    <div style="display:flex;gap:11px;align-items:center;margin-bottom:4px"><span class="itile" style="width:40px;height:40px;font-size:20px;color:#fff;background:${d.color==='var(--ink-soft)'?'var(--accent)':d.color}">${svgIcon(d.icon)}</span><div><div class="eyebrow" style="margin:0">Gửi nhu cầu</div><h3 style="font-size:17px">Qua ${d.label}</h3></div></div>
+    ${targetHtml}
+    <div class="sec-title" style="margin:16px 0 8px">Các bước</div>
+    <ol class="chan-steps">${stepsHtml}</ol>
+    ${cfg.target?`<button class="btn primary lg" id="chanAct" style="width:100%;margin-top:6px">${cfg.actLabel}</button>`:""}
+    <button class="btn" id="chanCopy" style="width:100%;margin-top:9px"><span class="ic" style="color:var(--ink-soft)">${svgIcon("copy")}</span> Sao chép lại nội dung</button>
+    <div class="copy-ok" id="chanDone" style="margin-top:10px"></div>
+  `);
+  const act=$("#chanAct"); if(act) act.addEventListener("click",()=>{ cfg.act(); const dn=$("#chanDone"); if(dn){ dn.textContent="✓ Đã mở "+d.label+" — đừng quên dán & gửi nội dung nhé."; dn.style.display="block"; } });
+  const cp=$("#chanCopy"); if(cp) cp.addEventListener("click",()=>{ copyText(summaryText()); const dn=$("#chanDone"); if(dn){ dn.textContent="✓ Đã sao chép nội dung."; dn.style.display="block"; } });
+}
+buildShare();
+
+/* ---- Overlay panel ---- */
+let panelEl=null;
+function openPanel(html){
+  closePanel(); $("#overlay").classList.add("show");
+  panelEl=el("div","card");
+  panelEl.style.cssText="position:fixed;top:0;right:0;bottom:0;width:min(460px,93vw);z-index:51;overflow-y:auto;border-radius:0;box-shadow:var(--shadow-lg);padding:24px;padding-top:calc(24px + env(safe-area-inset-top,0px))";
+  panelEl.innerHTML=`<button class="btn ghost" id="panelClose" style="position:absolute;top:14px;right:14px;padding:5px 11px">✕</button>`+html;
+  document.body.appendChild(panelEl);
+  $("#panelClose").addEventListener("click",closePanel);
+  $("#overlay").onclick=closePanel;
+}
+function closePanel(){if(panelEl){panelEl.remove();panelEl=null;}$("#overlay").classList.remove("show");}
+
+/* ---- Guided presentation (đi theo kịch bản đang chọn) ---- */
+let gIdx=0,guiding=false;
+const guideBar=$("#guideBar");
+function guideTotal(){ return curScen().steps.length+1; }
+function startGuide(){ guiding=true; gIdx=0; guideBar.classList.add("show"); gotoGuide(); }
+function stopGuide(){ guiding=false; guideBar.classList.remove("show"); }
+function gotoGuide(){
+  const sc=curScen(), steps=sc.steps, total=steps.length+1;
+  if(gIdx===0){ go("overview"); $("#gTitle").textContent="Nỗi lo của khách hàng"; $("#gAction").textContent="Mở đầu bằng vấn đề thật của doanh nghiệp nhỏ."; }
+  else { const i=gIdx-1; go("scenario"); STATE.stageIdx=i; STATE.maxStage=Math.max(STATE.maxStage,i); STATE.opTab="perf"; renderScenario(); $("#gTitle").textContent=sc.label+" · "+steps[i].nav; $("#gAction").textContent=steps[i].title.replace(/^\d+ · /,""); }
+  $("#gCount").textContent=(gIdx+1)+" / "+total;
+  $("#gPrev").disabled=gIdx===0; $("#gNext").disabled=gIdx===total-1;
+}
+$("#guideBtn").addEventListener("click",()=>guiding?stopGuide():startGuide());
+$("#gPrev").addEventListener("click",()=>{if(gIdx>0){gIdx--;gotoGuide();}});
+$("#gNext").addEventListener("click",()=>{if(gIdx<guideTotal()-1){gIdx++;gotoGuide();}});
+$("#gClose").addEventListener("click",stopGuide);
+document.addEventListener("keydown",e=>{
+  if(!guiding)return;
+  if(e.key==="ArrowRight"&&gIdx<guideTotal()-1){gIdx++;gotoGuide();}
+  if(e.key==="ArrowLeft"&&gIdx>0){gIdx--;gotoGuide();}
+  if(e.key==="Escape")stopGuide();
+});
+
+/* ---- FAQ ---- */
+const FAQS=[
+  { q:"Cho người ngoài truy cập hệ thống thì có an toàn không?", a:"S4C sẵn sàng ký cam kết bảo mật (NDA). Chúng tôi dùng quyền truy cập tối thiểu và tạm thời, ưu tiên chỉ đọc (read-only) khi có thể, mọi thao tác đều ghi lại (log), và bất kỳ việc gì có rủi ro đều hỏi ý bạn trước khi làm." },
+  { q:"DN của tôi còn nhỏ / mới, S4C có nhận không?", a:"Có — đây đúng là đối tượng S4C hướng tới. Chúng tôi bắt đầu từ việc gấp và quan trọng nhất với bạn, làm vừa sức ngân sách, không ép làm tất cả cùng lúc." },
+  { q:"Chi phí tính thế nào, có phát sinh không?", a:"Buổi trao đổi đầu miễn phí. Sau khi hiểu bài toán, S4C báo giá và phạm vi rõ ràng trước khi làm — không phát sinh ngoài thỏa thuận. Vì mỗi hệ thống một khác nên giá theo đúng phạm vi của bạn." },
+  { q:"Bao lâu thì thấy kết quả?", a:"Việc gấp (bật sao lưu, chặn nguy cơ, xử lý sự cố) thường trong vài ngày. Dựng nền tảng vững chắc thường 1–2 tuần tùy quy mô. Vận hành/giám sát là đồng hành liên tục." },
+  { q:"Tôi chỉ cần tư vấn hoặc làm một lần, được không?", a:"Hoàn toàn được. Bạn có thể chỉ nhờ đánh giá hoặc xử lý một việc cụ thể, không bắt buộc gói dài hạn. Khi cần, quay lại bất cứ lúc nào." },
+  { q:"Khác gì so với tự thuê một bạn IT?", a:"Bạn có cả một đội nhiều mảng (vận hành, tối ưu, bảo mật, ứng cứu) thay vì một người; chi phí linh hoạt theo nhu cầu; và không phải gánh lương cố định hay lo người nghỉ việc." },
+  { q:"S4C có sửa code / sản phẩm của tôi không?", a:"Không. S4C tập trung tầng hệ thống, hạ tầng và an toàn — phối hợp cùng đội phát triển của bạn chứ không viết hay sửa code ứng dụng." },
+  { q:"Dữ liệu khách hàng của tôi có bị lộ không?", a:"Không. S4C không thu thập và không chia sẻ dữ liệu của bạn cho bên thứ ba, chỉ xử lý trong phạm vi được cho phép và tuân thủ cam kết bảo mật đã ký." },
+];
+const faqList=$("#faqList");
+if(faqList) FAQS.forEach(f=>{ const d=el("div","faq"); d.innerHTML=`<div class="faq-q">${f.q}<span class="chev">›</span></div><div class="faq-a">${f.a}</div>`; d.querySelector(".faq-q").addEventListener("click",()=>d.classList.toggle("open")); faqList.appendChild(d); });
+
+/* ---- Footer + FAB ---- */
+(function(){
+  const fp=$("#fPhone"), fe=$("#fEmail");
+  if(fp){ if(!isPlaceholder(CONTACT.hotline)){ fp.textContent="Hotline: "+CONTACT.hotline; fp.href="tel:"+CONTACT.hotline.replace(/[^0-9+]/g,""); } else { fp.textContent="Hotline"; } }
+  if(fe){ if(!isPlaceholder(CONTACT.email)){ fe.textContent=CONTACT.email; fe.href="mailto:"+CONTACT.email; } else { fe.textContent="Email"; } }
+  const fab=$("#fab"); if(fab) fab.addEventListener("click",()=>go("engagement"));
+})();
+
+/* ---- Init ---- */
+fillContact();
+showNode("detect"); $$(".arch-node").forEach(g=>g.classList.remove("sel"));
+renderScenario();
+</script>
+</body>
+</html>
