@@ -374,6 +374,40 @@ svg.ic { width: 1em; height: 1em; display: block; }
 @media (max-width: 860px){ .open-grid { grid-template-columns: 1fr; } }
 .arch-wrap { display: grid; grid-template-columns: 1.55fr 1fr; gap: 18px; align-items: start; }
 .arch-canvas { padding: 18px; overflow-x: auto; }
+/* ===== Sơ đồ kiến trúc — luồng xử lý thẳng hàng, giàu thông tin ===== */
+.arch-board { padding: 22px; }
+.ab-cap { font-size: 10.5px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .7px; color: var(--ink-faint); font-weight: 700; margin-bottom: 11px; }
+.ab-sources { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+.ab-chip { display: flex; align-items: center; gap: 9px; padding: 11px 13px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--surface); cursor: pointer; text-align: left; font-size: 12.5px; font-weight: 600; color: var(--ink); transition: border-color .14s, background .14s, box-shadow .14s; }
+.ab-chip:hover { border-color: var(--accent); background: var(--surface-2); }
+.ab-chip.sel { border-color: var(--accent); background: var(--accent-wash); box-shadow: 0 0 0 1px var(--accent) inset; }
+.ab-chip .itile { width: 30px; height: 30px; font-size: 15px; flex: none; }
+.ab-feed { text-align: center; color: var(--accent-ink); font-size: 11.5px; font-weight: 600; margin: 14px 0; letter-spacing: .3px; }
+.ab-pipe { display: flex; align-items: stretch; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+.ab-stage { flex: 1 1 0; min-width: 108px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px; padding: 14px 8px; border: 1.5px solid var(--line); border-radius: 13px; background: var(--surface); cursor: pointer; transition: border-color .14s, background .14s, box-shadow .14s, transform .08s; }
+.ab-stage:hover { border-color: var(--accent); background: var(--surface-2); }
+.ab-stage:active { transform: scale(.98); }
+.ab-stage.sel { border-color: var(--accent); background: var(--accent-wash); box-shadow: 0 0 0 1px var(--accent) inset, 0 5px 16px rgba(37,99,235,.14); }
+.ab-stage .ab-ic { width: 40px; height: 40px; font-size: 20px; margin-bottom: 5px; background: var(--accent-wash); color: var(--accent-ink); }
+.ab-stage.sel .ab-ic { background: var(--accent); color: #fff; }
+.ab-stage .af-t { font-size: 12.5px; font-weight: 600; line-height: 1.22; }
+.ab-stage .af-d { font-size: 10px; color: var(--ink-faint); line-height: 1.3; margin-top: 1px; }
+.ab-ar { align-self: center; color: var(--accent); font-weight: 800; font-size: 15px; flex: none; }
+.ab-auto { display: flex; align-items: center; gap: 13px; width: 100%; text-align: left; margin-top: 16px; padding: 15px 17px; border-radius: 13px; border: 1.5px dashed var(--accent); background: linear-gradient(135deg, var(--accent-wash), transparent); cursor: pointer; transition: background .14s, box-shadow .14s; }
+.ab-auto:hover { background: var(--accent-wash); }
+.ab-auto.sel { border-style: solid; box-shadow: 0 0 0 1px var(--accent) inset; }
+.ab-auto .itile { width: 42px; height: 42px; font-size: 21px; background: var(--accent); color: #fff; flex: none; }
+.ab-auto .af-t { font-size: 13px; font-weight: 600; }
+.ab-auto .af-d { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; line-height: 1.45; }
+.ab-auto .ab-auto-tag { margin-left: auto; flex: none; font-size: 9.5px; font-family: var(--font-mono); font-weight: 700; letter-spacing: .6px; color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 100px; padding: 3px 10px; }
+@media (max-width: 760px){
+  .ab-sources { grid-template-columns: 1fr 1fr; }
+  .ab-pipe { flex-direction: column; }
+  .ab-ar { transform: rotate(90deg); align-self: center; }
+  .ab-auto .ab-auto-tag { display: none; }
+  .ab-stage { flex-direction: row; text-align: left; gap: 11px; }
+  .ab-stage .ab-ic { margin-bottom: 0; }
+}
 /* Sơ đồ kiến trúc dạng thẻ bấm được */
 .arch-flow { display: flex; align-items: stretch; gap: 12px; min-width: 520px; }
 .af-col { display: flex; flex-direction: column; gap: 9px; flex: 1; min-width: 150px; }
@@ -955,34 +989,40 @@ svg.ic { width: 1em; height: 1em; display: block; }
           <div class="card layer-row cross"><span class="itile" data-icon="eye"></span><div class="layer-body"><div class="layer-h"><b>Quản trị &amp; Vận hành</b><span class="layer-tag">xuyên suốt cả 3 tầng</span></div><p>Lớp "keo" nối tất cả: gom log &amp; chỉ số về một chỗ, dựng tự động hóa để phát hiện và xử lý sớm, giữ cơ chế phê duyệt và báo cáo minh bạch. Đây là nơi S4C thay cho đội kỹ thuật nội bộ mà bạn chưa có.</p></div></div>
         </div>
         <div class="sec-title">Sơ đồ tham chiếu — bấm từng khối để xem chi tiết</div>
-        <p style="font-size:12.5px;color:var(--ink-soft);margin:-6px 0 14px;max-width:760px">Dữ liệu đi theo một luồng rõ ràng: <b>Nguồn</b> → <b>Gom &amp; theo dõi</b> → <b>Phát hiện</b> → <b>Xử lý</b> → <b>Báo cáo</b>. Bấm từng khối để xem nó làm gì, cần gì, cho ra gì và giới hạn ở đâu. Thiết kế thật luôn tùy môi trường của bạn.</p>
-        <div class="arch-wrap">
-          <div class="card arch-canvas">
-            <div class="arch-flow">
-              <div class="af-col">
-                <div class="af-cap">① Nguồn dữ liệu</div>
-                <button class="arch-node af-node" data-node="edge"><span class="itile" data-icon="wall"></span><div><div class="af-t">Tường lửa &amp; WAF</div><div class="af-d">chặn tấn công vào web</div></div></button>
-                <button class="arch-node af-node" data-node="servers"><span class="itile" data-icon="database"></span><div><div class="af-t">Máy chủ &amp; app</div><div class="af-d">website · API · CSDL</div></div></button>
-                <button class="arch-node af-node" data-node="pam"><span class="itile" data-icon="lock"></span><div><div class="af-t">Kiểm soát truy cập</div><div class="af-d">PAM · xác thực</div></div></button>
-              </div>
-              <div class="af-arrow">→</div>
-              <div class="af-col af-core">
-                <div class="af-cap">② Lõi quản trị &amp; giám sát</div>
-                <button class="arch-node af-node accent" data-node="collect"><span class="itile" data-icon="eye"></span><div><div class="af-t">Gom &amp; theo dõi</div><div class="af-d">log · hiệu năng</div></div></button>
-                <div class="af-down">↓</div>
-                <button class="arch-node af-node brain" data-node="detect"><span class="itile" data-icon="pulse"></span><div><div class="af-t">Phát hiện bất thường</div><div class="af-d">cảnh báo sớm</div></div></button>
-                <div class="af-down">↓</div>
-                <button class="arch-node af-node" data-node="respond"><span class="itile" data-icon="gear"></span><div><div class="af-t">Xử lý &amp; vận hành</div><div class="af-d">có người · có phê duyệt</div></div></button>
-              </div>
-              <div class="af-arrow">→</div>
-              <div class="af-col af-out">
-                <div class="af-cap">③ Đầu ra</div>
-                <button class="arch-node af-node" data-node="report"><span class="itile" data-icon="chart"></span><div><div class="af-t">Báo cáo dễ hiểu</div><div class="af-d">bạn nắm tình hình</div></div></button>
-              </div>
-            </div>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin:-6px 0 14px;max-width:820px">Mọi dữ liệu từ hệ thống của bạn chảy qua một <b>luồng xử lý thống nhất</b> của S4C — từ thu thập, làm giàu dữ liệu, giám sát, điều tra đến ứng cứu và báo cáo — với <b>tự động hóa chạy xuyên suốt</b>. Bấm từng khối để xem nó làm gì, cần gì, cho ra gì.</p>
+
+        <div class="card arch-board">
+          <div class="ab-cap">Nguồn dữ liệu từ hệ thống của bạn</div>
+          <div class="ab-sources">
+            <button class="arch-node ab-chip" data-node="servers"><span class="itile" data-icon="database"></span>Máy chủ &amp; app</button>
+            <button class="arch-node ab-chip" data-node="network"><span class="itile" data-icon="network"></span>Mạng &amp; biên</button>
+            <button class="arch-node ab-chip" data-node="edge"><span class="itile" data-icon="wall"></span>Tường lửa &amp; WAF</button>
+            <button class="arch-node ab-chip" data-node="pam"><span class="itile" data-icon="lock"></span>Kiểm soát truy cập</button>
           </div>
-          <div class="card node-detail" id="nodeDetail"><div class="empty">Bấm một khối trong sơ đồ để xem: khối đó làm gì, cần gì, cho ra gì và thuộc dịch vụ nào.</div></div>
+          <div class="ab-feed">↓&nbsp;&nbsp;đưa log &amp; chỉ số vào luồng xử lý&nbsp;&nbsp;↓</div>
+
+          <div class="ab-cap">Luồng xử lý của S4C</div>
+          <div class="ab-pipe">
+            <button class="arch-node ab-stage" data-node="collect"><span class="ab-ic itile" data-icon="database"></span><div class="af-t">Thu thập &amp; chuẩn hóa</div><div class="af-d">gom log về một chỗ</div></button>
+            <span class="ab-ar">→</span>
+            <button class="arch-node ab-stage" data-node="enrich"><span class="ab-ic itile" data-icon="compass"></span><div class="af-t">Làm giàu dữ liệu</div><div class="af-d">thêm ngữ cảnh · điểm rủi ro</div></button>
+            <span class="ab-ar">→</span>
+            <button class="arch-node ab-stage" data-node="detect"><span class="ab-ic itile" data-icon="eye"></span><div class="af-t">Giám sát &amp; phát hiện</div><div class="af-d">cảnh báo sớm</div></button>
+            <span class="ab-ar">→</span>
+            <button class="arch-node ab-stage" data-node="investigate"><span class="ab-ic itile" data-icon="search"></span><div class="af-t">Điều tra &amp; phân tích</div><div class="af-d">DFIR · nguyên nhân gốc</div></button>
+            <span class="ab-ar">→</span>
+            <button class="arch-node ab-stage" data-node="respond"><span class="ab-ic itile" data-icon="shield"></span><div class="af-t">Ứng cứu &amp; xử lý</div><div class="af-d">khống chế · khắc phục</div></button>
+            <span class="ab-ar">→</span>
+            <button class="arch-node ab-stage" data-node="report"><span class="ab-ic itile" data-icon="chart"></span><div class="af-t">Báo cáo &amp; cải thiện</div><div class="af-d">minh bạch mỗi kỳ</div></button>
+          </div>
+
+          <button class="arch-node ab-auto" data-node="automate">
+            <span class="itile" data-icon="gear"></span>
+            <div><div class="af-t">Tự động hóa (job &amp; script) — chạy xuyên suốt mọi bước</div><div class="af-d">cảnh báo tự xử lý · sao lưu · dọn dẹp · đồng bộ danh sách chặn — máy làm phần lặp lại, người làm việc khó</div></div>
+            <span class="ab-auto-tag">XUYÊN SUỐT</span>
+          </button>
         </div>
+        <div class="card node-detail" id="nodeDetail" style="margin-top:14px"><div class="empty">Bấm một khối trong sơ đồ để xem: khối đó làm gì, cần gì, cho ra gì và thuộc dịch vụ nào.</div></div>
 
         <div class="sec-title">Tư duy mở — không khóa cứng, luôn kết nối được</div>
         <div class="grid open-grid">
@@ -1038,7 +1078,7 @@ svg.ic { width: 1em; height: 1em; display: block; }
             <div class="contact-box">
               <div class="cb-head"><span class="itile" data-icon="phone"></span><div><div style="font-weight:600;font-size:13.5px">Liên hệ S4C — tư vấn miễn phí</div><div style="font-size:11.5px;color:var(--ink-soft)">Phản hồi trong giờ làm việc</div></div></div>
               <div class="cb-row"><span class="cb-ic itile" style="background:var(--ok-wash);color:var(--ok)" data-icon="phone"></span><span class="cb-k">Hotline</span><span class="cb-v" id="cHotline"></span></div>
-              <div class="cb-row"><span class="cb-ic itile" data-icon="mail"></span><span class="cb-k">Email</span><span class="cb-v" id="cEmail"></span></div>
+              <div class="cb-row"><span class="cb-ic itile" data-icon="mail"></span><span class="cb-v" id="cEmail"></span></div>
               <div class="cb-row"><span class="cb-ic itile" data-icon="chat"></span><span class="cb-k">Zalo</span><span class="cb-v" id="cPhone"></span></div>
             </div>
 
@@ -1496,20 +1536,28 @@ const MODELS = [
   { icon:"sliders", name:"Custom — may đo", desc:"Bài toán đặc thù cần giải pháp riêng. S4C thiết kế và triển khai đúng tình huống của bạn.", forWho:"Khi nhu cầu của bạn <b>không vừa gói nào</b> có sẵn.", price:"Tham khảo: báo giá theo thiết kế" },
 ];
 const NODES = {
+  servers: { title:"Máy chủ & Ứng dụng", purpose:"Nơi app, API và cơ sở dữ liệu của bạn chạy — nguồn tín hiệu về hiệu năng và sức khỏe hệ thống.",
+    input:["Chỉ số máy chủ (CPU, RAM, đĩa)","Hoạt động ứng dụng & CSDL"], output:["Tín hiệu hiệu năng","Dữ liệu để tối ưu (tuning)"], limit:"S4C chỉ tác động khi được bạn đồng ý.", oss:"", svc:["Vận hành & Tự động hóa"] },
+  network: { title:"Mạng & Biên", purpose:"Hạ tầng mạng, phân vùng (segmentation), VPN, cân tải — đường đi của dữ liệu và là nơi quan sát lưu lượng.",
+    input:["Luồng mạng, nhật ký thiết bị mạng"], output:["Dấu hiệu bất thường về kết nối","Dữ liệu định tuyến & tải"], limit:"Hiệu quả tùy mức truy cập thiết bị mạng bạn cho phép.", oss:"Công cụ mã nguồn mở", svc:["Hardening & Tăng cường bảo mật"] },
   edge: { title:"Tường lửa & Lá chắn web (WAF)", purpose:"Lớp bảo vệ ngoài cùng: chặn truy cập xấu và các kiểu tấn công phổ biến vào website/app.",
     input:["Lưu lượng vào web/API","Luật chặn & nhận diện tấn công"], output:["Tấn công bị chặn","Cảnh báo khi bị dò quét"], limit:"Giảm mạnh rủi ro nhưng không thay được việc vá lỗi ứng dụng.", oss:"Công cụ mã nguồn mở", svc:["Hardening & Tăng cường bảo mật"] },
-  servers: { title:"Máy chủ & Ứng dụng", purpose:"Nơi app, API và cơ sở dữ liệu của bạn chạy — và là nơi theo dõi hiệu năng, sức khỏe để tối ưu.",
-    input:["Chỉ số máy chủ (CPU, RAM, đĩa)","Hoạt động ứng dụng"], output:["Tín hiệu hiệu năng","Dữ liệu để tối ưu (tuning)"], limit:"S4C chỉ tác động khi được bạn đồng ý.", oss:"", svc:["Quản trị vận hành & Giám sát"] },
   pam: { title:"Kiểm soát truy cập (PAM)", purpose:"Quản chặt các tài khoản quyền cao: ai được vào đâu, khi nào, có xác thực 2 lớp và ghi vết đầy đủ.",
     input:["Yêu cầu đăng nhập đặc quyền","Chính sách phân quyền"], output:["Chặn truy cập trái phép","Nhật ký ai làm gì"], limit:"Cần phối hợp để định nghĩa đúng ai cần quyền gì.", oss:"Công cụ mã nguồn mở", svc:["Hardening & Tăng cường bảo mật"] },
-  collect: { title:"Gom & Theo dõi", purpose:"Gom nhật ký (log) và chỉ số hiệu năng từ nhiều nơi về một chỗ, theo dõi liên tục.",
-    input:["Log từ máy chủ, app, WAF","Chỉ số hiệu năng"], output:["Một bức tranh thống nhất","Dữ liệu để phát hiện bất thường"], limit:"Phạm vi tùy nguồn dữ liệu bạn cho phép kết nối.", oss:"Công cụ mã nguồn mở", svc:["Quản trị vận hành & Giám sát"] },
-  detect: { title:"Phát hiện bất thường", purpose:"Nối các tín hiệu lại và cảnh báo sớm khi có điều đáng ngờ — tấn công, đăng nhập lạ, hiệu năng tụt.",
-    input:["Dữ liệu đã gom"], output:["Cảnh báo có ngữ cảnh","Điểm cần ưu tiên"], limit:"Đưa ra nghi vấn cần xác minh, không tự kết luận chắc chắn.", oss:"Công cụ mã nguồn mở", svc:["Điều tra & Ứng cứu sự cố"] },
-  respond: { title:"Xử lý & Vận hành", purpose:"Biến cảnh báo thành các bước xử lý rõ ràng — ai làm, việc rủi ro thì hỏi bạn trước.",
-    input:["Cảnh báo cần xử lý"], output:["Hành động xử lý có ghi lại","Phê duyệt khi cần"], limit:"Việc rủi ro cao luôn cần bạn đồng ý, không tự động tác động.", oss:"", svc:["Quản trị vận hành & Giám sát","Điều tra & Ứng cứu sự cố"] },
-  report: { title:"Báo cáo dễ hiểu", purpose:"Tổng hợp mọi việc thành báo cáo bạn đọc hiểu được: điểm hệ thống, hiệu năng, việc đã làm.",
-    input:["Việc đã xử lý, chỉ số hệ thống"], output:["Báo cáo định kỳ","Đề xuất cải thiện"], limit:"Phản ánh dữ liệu trong phạm vi được theo dõi.", oss:"", svc:["Báo cáo & Minh bạch vận hành"] },
+  collect: { title:"Thu thập & Chuẩn hóa", purpose:"Gom nhật ký (log) và chỉ số từ mọi nguồn về một chỗ, chuẩn hóa về cùng một định dạng để xử lý được.",
+    input:["Log từ máy chủ, app, mạng, WAF, PAM","Chỉ số hiệu năng"], output:["Dữ liệu sạch, thống nhất","Nền tảng cho các bước sau"], limit:"Phạm vi tùy nguồn dữ liệu bạn cho phép kết nối.", oss:"Công cụ mã nguồn mở", svc:["Vận hành & Tự động hóa"] },
+  enrich: { title:"Làm giàu dữ liệu (enrich)", purpose:"Bổ sung ngữ cảnh cho từng tín hiệu: đối chiếu nguồn tình báo mối đe dọa (threat intel), gắn mức rủi ro, chấm điểm — để biết cái nào đáng lo.",
+    input:["Dữ liệu đã chuẩn hóa","Nguồn tình báo mối đe dọa (IOC)"], output:["Tín hiệu có ngữ cảnh & điểm rủi ro","Lọc bớt nhiễu, nổi cái quan trọng"], limit:"Chất lượng tùy nguồn tình báo được cập nhật.", oss:"Công cụ mã nguồn mở", svc:["Điều tra & Ứng cứu sự cố"] },
+  detect: { title:"Giám sát & Phát hiện", purpose:"Theo dõi liên tục và cảnh báo sớm khi có điều đáng ngờ — tấn công, đăng nhập lạ, hiệu năng tụt, dấu hiệu sự cố.",
+    input:["Tín hiệu đã làm giàu"], output:["Cảnh báo có mức ưu tiên","Phát hiện sớm trước khi thành sự cố"], limit:"Đưa ra nghi vấn cần xác minh, không tự kết luận chắc chắn.", oss:"Công cụ mã nguồn mở", svc:["Vận hành & Tự động hóa","Điều tra & Ứng cứu sự cố"] },
+  investigate: { title:"Điều tra & Phân tích (DFIR)", purpose:"Khi có nghi vấn: dựng lại chuỗi sự việc, xác minh thật/giả, tìm 'bệnh nhân số 0' và nguyên nhân gốc.",
+    input:["Cảnh báo cần xác minh","Log & bằng chứng liên quan"], output:["Kết luận điều tra có bằng chứng","Phạm vi ảnh hưởng & nguyên nhân gốc"], limit:"Hiệu quả tùy lượng log/bằng chứng còn giữ được.", oss:"Công cụ mã nguồn mở", svc:["Điều tra & Ứng cứu sự cố"] },
+  respond: { title:"Ứng cứu & Xử lý", purpose:"Biến kết luận thành hành động: cô lập, chặn lây, khắc phục, khôi phục — việc rủi ro luôn hỏi bạn trước.",
+    input:["Kết luận điều tra / cảnh báo"], output:["Sự cố được khống chế & khắc phục","Mọi bước đều được ghi lại"], limit:"Việc rủi ro cao luôn cần bạn đồng ý, không tự ý tác động.", oss:"", svc:["Điều tra & Ứng cứu sự cố","Vận hành & Tự động hóa"] },
+  report: { title:"Báo cáo & Cải thiện", purpose:"Tổng hợp mọi việc thành báo cáo dễ đọc, kèm đề xuất để lần sau tốt hơn — minh bạch mỗi kỳ.",
+    input:["Việc đã xử lý, chỉ số hệ thống"], output:["Báo cáo định kỳ dễ hiểu","Đề xuất cải thiện cho kỳ tới"], limit:"Phản ánh dữ liệu trong phạm vi được theo dõi.", oss:"", svc:["Báo cáo & Minh bạch vận hành"] },
+  automate: { title:"Tự động hóa (job & script)", purpose:"Lớp chạy xuyên suốt mọi bước: S4C viết job/script để máy tự làm phần lặp lại — thu thập, làm giàu, cảnh báo tự xử lý, sao lưu, đồng bộ danh sách chặn.",
+    input:["Các việc lặp lại ở mọi bước"], output:["Hệ thống tự chạy phần nhàm chán","Giải phóng người cho việc giá trị cao"], limit:"Việc cần phán đoán/rủi ro vẫn do con người quyết.", oss:"Công cụ mã nguồn mở", svc:["Vận hành & Tự động hóa"] },
 };
 const NEEDS = [
   {id:"ops", icon:"eye", t:"Cần người quản trị, vận hành hệ thống", d:"Vận hành, cập nhật, sao lưu, lo phần kỹ thuật hộ."},
@@ -1955,6 +2003,7 @@ function showNode(id){
     <div class="detail-field"><div class="k">Cho ra gì</div><ul>${n.output.map(i=>`<li>${i}</li>`).join("")}</ul></div>
     <div class="exc-box"><div class="k">Giới hạn</div><div style="font-size:12.5px;color:var(--ink-soft)">${n.limit}</div></div>
     <div class="detail-field"><div class="k">Thuộc dịch vụ</div><div class="v" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">${n.svc.map(s=>`<span class="pill accent">${s}</span>`).join("")}</div></div>`;
+  if(window.matchMedia("(max-width: 1000px)").matches) nodeDetail.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 $$(".arch-node").forEach(g=>g.addEventListener("click",()=>showNode(g.dataset.node)));
 
