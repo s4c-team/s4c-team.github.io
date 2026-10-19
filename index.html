@@ -373,13 +373,28 @@ svg.ic { width: 1em; height: 1em; display: block; }
 .open-card p { font-size: 12.3px; color: var(--ink-soft); margin-top: 6px; line-height: 1.55; }
 @media (max-width: 860px){ .open-grid { grid-template-columns: 1fr; } }
 .arch-wrap { display: grid; grid-template-columns: 1.55fr 1fr; gap: 18px; align-items: start; }
-.arch-canvas { padding: 10px; overflow-x: auto; }
-.arch-svg { width: 100%; min-width: 540px; height: auto; display: block; }
+.arch-canvas { padding: 18px; overflow-x: auto; }
+/* Sơ đồ kiến trúc dạng thẻ bấm được */
+.arch-flow { display: flex; align-items: stretch; gap: 12px; min-width: 520px; }
+.af-col { display: flex; flex-direction: column; gap: 9px; flex: 1; min-width: 150px; }
+.af-col.af-out { justify-content: flex-start; }
+.af-cap { font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .6px; color: var(--ink-faint); font-weight: 700; margin-bottom: 2px; }
+.af-node { display: flex; gap: 11px; align-items: center; text-align: left; width: 100%; padding: 12px 13px; border: 1.5px solid var(--line); border-radius: 13px; background: var(--surface); cursor: pointer; transition: border-color .14s, background .14s, box-shadow .14s, transform .08s; }
+.af-node:hover { border-color: var(--accent); background: var(--surface-2); }
+.af-node:active { transform: scale(.98); }
+.af-node.sel { border-color: var(--accent); background: var(--accent-wash); box-shadow: 0 0 0 1px var(--accent) inset, 0 5px 16px rgba(37,99,235,.14); }
+.af-node .itile { width: 36px; height: 36px; font-size: 18px; flex: none; }
+.af-node .af-t { font-size: 13px; font-weight: 600; line-height: 1.2; }
+.af-node .af-d { font-size: 10.5px; color: var(--ink-faint); margin-top: 2px; }
+.af-node.accent .itile { background: var(--accent); color: #fff; }
+.af-node.brain { background: linear-gradient(135deg, var(--navy), var(--navy-2)); border-color: transparent; }
+.af-node.brain .af-t { color: #fff; } .af-node.brain .af-d { color: #9bb4c8; } .af-node.brain .itile { background: rgba(255,255,255,.16); color: #fff; }
+.af-node.brain.sel { box-shadow: 0 0 0 2px var(--accent) inset, 0 6px 18px rgba(0,0,0,.3); }
+.af-core { background: linear-gradient(180deg, var(--accent-wash), transparent); border-radius: 14px; padding: 10px 10px 12px; }
+.af-arrow { align-self: center; color: var(--accent); font-size: 22px; font-weight: 800; flex: none; }
+.af-down { text-align: center; color: var(--accent); font-size: 15px; line-height: .7; font-weight: 800; }
+@media (max-width: 760px){ .arch-flow { flex-direction: column; min-width: 0; } .af-arrow { align-self: flex-start; transform: rotate(90deg); margin-left: 16px; } }
 .arch-node { cursor: pointer; }
-.arch-node rect { transition: all .14s; }
-.arch-node:hover rect { stroke: var(--accent); stroke-width: 2; }
-.arch-node.sel rect { stroke: var(--accent); stroke-width: 2.5; }
-.arch-node text { font-family: var(--font-body); pointer-events: none; }
 .node-detail { padding: 18px; position: sticky; top: 18px; }
 .node-detail .empty { color: var(--ink-faint); text-align: center; padding: 28px 10px; font-size: 13px; }
 .oss-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 5px; background: var(--ok-wash); color: var(--ok); }
@@ -940,35 +955,33 @@ svg.ic { width: 1em; height: 1em; display: block; }
           <div class="card layer-row cross"><span class="itile" data-icon="eye"></span><div class="layer-body"><div class="layer-h"><b>Quản trị &amp; Vận hành</b><span class="layer-tag">xuyên suốt cả 3 tầng</span></div><p>Lớp "keo" nối tất cả: gom log &amp; chỉ số về một chỗ, dựng tự động hóa để phát hiện và xử lý sớm, giữ cơ chế phê duyệt và báo cáo minh bạch. Đây là nơi S4C thay cho đội kỹ thuật nội bộ mà bạn chưa có.</p></div></div>
         </div>
         <div class="sec-title">Sơ đồ tham chiếu — bấm từng khối để xem chi tiết</div>
-        <p style="font-size:12.5px;color:var(--ink-soft);margin:-4px 0 12px;max-width:760px">Dưới đây là một sơ đồ giải pháp tham chiếu: dữ liệu đi theo một luồng từ nguồn → gom &amp; theo dõi → phát hiện → xử lý → báo cáo. Bấm từng khối để xem nó làm gì, cần gì, cho ra gì và giới hạn ở đâu. Thiết kế thật luôn tùy môi trường của bạn.</p>
-        <div class="card" style="padding:14px 16px;margin-bottom:16px">
-          <div style="font-size:11px;font-family:var(--font-mono);color:var(--ink-faint);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">Dữ liệu đi theo một luồng</div>
-          <div class="kchain" style="margin-top:0">
-            <div class="kc-node"><div class="kc-box" style="background:var(--surface);border-color:var(--accent)"><div class="kc-n" style="color:var(--accent-ink)">01</div><div class="kc-t">Nguồn</div><div class="kc-d">máy chủ, app, mạng, bảo mật</div></div></div><span class="kc-arrow" style="color:var(--accent)">→</span>
-            <div class="kc-node"><div class="kc-box" style="background:var(--surface);border-color:var(--accent)"><div class="kc-n" style="color:var(--accent-ink)">02</div><div class="kc-t">Gom &amp; theo dõi</div><div class="kc-d">log + hiệu năng về một chỗ</div></div></div><span class="kc-arrow" style="color:var(--accent)">→</span>
-            <div class="kc-node"><div class="kc-box" style="background:var(--surface);border-color:var(--accent)"><div class="kc-n" style="color:var(--accent-ink)">03</div><div class="kc-t">Phát hiện</div><div class="kc-d">cảnh báo bất thường sớm</div></div></div><span class="kc-arrow" style="color:var(--accent)">→</span>
-            <div class="kc-node"><div class="kc-box" style="background:var(--surface);border-color:var(--accent)"><div class="kc-n" style="color:var(--accent-ink)">04</div><div class="kc-t">Xử lý</div><div class="kc-d">có người, có phê duyệt</div></div></div><span class="kc-arrow" style="color:var(--accent)">→</span>
-            <div class="kc-node"><div class="kc-box" style="background:var(--surface);border-color:var(--accent)"><div class="kc-n" style="color:var(--accent-ink)">05</div><div class="kc-t">Báo cáo</div><div class="kc-d">bạn nắm tình hình</div></div></div>
-          </div>
-        </div>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin:-6px 0 14px;max-width:760px">Dữ liệu đi theo một luồng rõ ràng: <b>Nguồn</b> → <b>Gom &amp; theo dõi</b> → <b>Phát hiện</b> → <b>Xử lý</b> → <b>Báo cáo</b>. Bấm từng khối để xem nó làm gì, cần gì, cho ra gì và giới hạn ở đâu. Thiết kế thật luôn tùy môi trường của bạn.</p>
         <div class="arch-wrap">
           <div class="card arch-canvas">
-            <svg class="arch-svg" viewBox="0 0 560 320" id="archSvg" role="img" aria-label="Sơ đồ giải pháp tham chiếu S4C">
-              <g stroke="var(--line)" stroke-width="2" fill="none">
-                <path d="M110,70 L160,95"/><path d="M110,160 L160,120"/><path d="M110,250 L160,140"/>
-                <path d="M270,115 L320,115"/><path d="M430,135 L430,180 L380,205"/>
-                <path d="M320,140 L320,190"/><path d="M270,220 L320,220"/>
-              </g>
-              <g class="arch-node" data-node="edge"><rect x="20" y="45" width="90" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="65" y="67" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Tường lửa &amp; WAF</text><text x="65" y="82" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">chặn tấn công vào web</text></g>
-              <g class="arch-node" data-node="servers"><rect x="20" y="135" width="90" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="65" y="157" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Máy chủ &amp; app</text><text x="65" y="172" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">website · API · DB</text></g>
-              <g class="arch-node" data-node="pam"><rect x="20" y="225" width="90" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="65" y="247" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Kiểm soát truy cập</text><text x="65" y="262" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">PAM · xác thực</text></g>
-              <g class="arch-node" data-node="collect"><rect x="160" y="95" width="110" height="52" rx="8" fill="var(--accent-wash)" stroke="var(--accent)"/><text x="215" y="117" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-ink)">Gom &amp; theo dõi</text><text x="215" y="132" text-anchor="middle" font-size="8.5" fill="var(--accent-ink)">log · hiệu năng</text></g>
-              <g class="arch-node" data-node="detect"><rect x="320" y="90" width="110" height="52" rx="8" fill="var(--navy)" stroke="var(--navy)"/><text x="375" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Phát hiện bất thường</text><text x="375" y="127" text-anchor="middle" font-size="8.5" fill="#9bb0bf">cảnh báo sớm</text></g>
-              <g class="arch-node" data-node="respond"><rect x="320" y="190" width="110" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="375" y="212" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Xử lý &amp; vận hành</text><text x="375" y="227" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">ai làm · phê duyệt</text></g>
-              <g class="arch-node" data-node="report"><rect x="160" y="195" width="110" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="215" y="217" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Báo cáo dễ hiểu</text><text x="215" y="232" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">bạn nắm tình hình</text></g>
-            </svg>
+            <div class="arch-flow">
+              <div class="af-col">
+                <div class="af-cap">① Nguồn dữ liệu</div>
+                <button class="arch-node af-node" data-node="edge"><span class="itile" data-icon="wall"></span><div><div class="af-t">Tường lửa &amp; WAF</div><div class="af-d">chặn tấn công vào web</div></div></button>
+                <button class="arch-node af-node" data-node="servers"><span class="itile" data-icon="database"></span><div><div class="af-t">Máy chủ &amp; app</div><div class="af-d">website · API · CSDL</div></div></button>
+                <button class="arch-node af-node" data-node="pam"><span class="itile" data-icon="lock"></span><div><div class="af-t">Kiểm soát truy cập</div><div class="af-d">PAM · xác thực</div></div></button>
+              </div>
+              <div class="af-arrow">→</div>
+              <div class="af-col af-core">
+                <div class="af-cap">② Lõi quản trị &amp; giám sát</div>
+                <button class="arch-node af-node accent" data-node="collect"><span class="itile" data-icon="eye"></span><div><div class="af-t">Gom &amp; theo dõi</div><div class="af-d">log · hiệu năng</div></div></button>
+                <div class="af-down">↓</div>
+                <button class="arch-node af-node brain" data-node="detect"><span class="itile" data-icon="pulse"></span><div><div class="af-t">Phát hiện bất thường</div><div class="af-d">cảnh báo sớm</div></div></button>
+                <div class="af-down">↓</div>
+                <button class="arch-node af-node" data-node="respond"><span class="itile" data-icon="gear"></span><div><div class="af-t">Xử lý &amp; vận hành</div><div class="af-d">có người · có phê duyệt</div></div></button>
+              </div>
+              <div class="af-arrow">→</div>
+              <div class="af-col af-out">
+                <div class="af-cap">③ Đầu ra</div>
+                <button class="arch-node af-node" data-node="report"><span class="itile" data-icon="chart"></span><div><div class="af-t">Báo cáo dễ hiểu</div><div class="af-d">bạn nắm tình hình</div></div></button>
+              </div>
+            </div>
           </div>
-          <div class="card node-detail" id="nodeDetail"><div class="empty">← Bấm một khối trong sơ đồ để xem giải thích.</div></div>
+          <div class="card node-detail" id="nodeDetail"><div class="empty">Bấm một khối trong sơ đồ để xem: khối đó làm gì, cần gì, cho ra gì và thuộc dịch vụ nào.</div></div>
         </div>
 
         <div class="sec-title">Tư duy mở — không khóa cứng, luôn kết nối được</div>
@@ -995,7 +1008,7 @@ svg.ic { width: 1em; height: 1em; display: block; }
         <div class="page-head">
           <div class="eyebrow">Liên hệ &amp; khảo sát</div>
           <h1>Kể cho S4C nghe câu chuyện của bạn</h1>
-          <p class="sub">Không cần rành kỹ thuật — bạn chỉ cần kể điều đang khiến mình bận lòng. Vài gợi ý bên dưới chỉ để khơi chuyện; quan trọng nhất là phần bạn tự mô tả. Portal gom lại thành một bản tóm tắt để bạn gửi cho S4C qua kênh thuận tiện. Buổi trao đổi đầu tiên luôn miễn phí.</p>
+          <p class="sub">Không cần rành kỹ thuật — bạn chỉ cần kể điều đang khiến mình bận lòng. Vài gợi ý bên dưới chỉ để khơi chuyện; quan trọng nhất là phần bạn tự mô tả. Trang sẽ gom lại thành một bản tóm tắt để bạn gửi cho S4C qua kênh thuận tiện. Buổi trao đổi đầu tiên luôn miễn phí.</p>
         </div>
         <div class="eng-layout">
           <div>
@@ -1024,7 +1037,6 @@ svg.ic { width: 1em; height: 1em; display: block; }
 
             <div class="contact-box">
               <div class="cb-head"><span class="itile" data-icon="phone"></span><div><div style="font-weight:600;font-size:13.5px">Liên hệ S4C — tư vấn miễn phí</div><div style="font-size:11.5px;color:var(--ink-soft)">Phản hồi trong giờ làm việc</div></div></div>
-              <div class="cb-row"><span class="cb-ic itile" data-icon="users"></span><span class="cb-k">Phụ trách</span><span class="cb-v" id="cName"></span></div>
               <div class="cb-row"><span class="cb-ic itile" style="background:var(--ok-wash);color:var(--ok)" data-icon="phone"></span><span class="cb-k">Hotline</span><span class="cb-v" id="cHotline"></span></div>
               <div class="cb-row"><span class="cb-ic itile" data-icon="mail"></span><span class="cb-k">Email</span><span class="cb-v" id="cEmail"></span></div>
               <div class="cb-row"><span class="cb-ic itile" data-icon="chat"></span><span class="cb-k">Zalo</span><span class="cb-v" id="cPhone"></span></div>
@@ -1071,7 +1083,7 @@ svg.ic { width: 1em; height: 1em; display: block; }
 <button class="fab" id="fab"><span class="ic" data-icon="send"></span><span class="lbl">Tư vấn miễn phí</span></button>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"S4C","description":"Đội ngũ kỹ sư giúp doanh nghiệp nhỏ, siêu nhỏ và startup vận hành, tối ưu và bảo vệ an toàn hệ thống.","areaServed":"VN","telephone":"+84769010092","slogan":"Systems · Smart Solutions · Security","knowsAbout":["Quản trị vận hành hệ thống","Giám sát & tối ưu hiệu năng","Hardening","An toàn thông tin","Điều tra & ứng cứu sự cố","Đánh giá an toàn thông tin"]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"S4C","description":"Đội ngũ kỹ sư giúp doanh nghiệp nhỏ, siêu nhỏ và startup vận hành, tối ưu và bảo vệ an toàn hệ thống.","areaServed":"VN","email":"thinhdv90@gmail.com","telephone":"+84769010092","slogan":"Systems · Smart Solutions · Security","knowsAbout":["Quản trị vận hành hệ thống","Giám sát & tối ưu hiệu năng","Hardening","An toàn thông tin","Điều tra & ứng cứu sự cố","Đánh giá an toàn thông tin"]}
 </script>
 
 <div class="overlay" id="overlay"></div>
@@ -1095,7 +1107,7 @@ svg.ic { width: 1em; height: 1em; display: block; }
 const CONTACT = {
   name:     "Mr. Thịnh",
   hotline:  "076.901.0092",
-  email:    "[Email: cập nhật sau]",
+  email:    "thinhdv90@gmail.com",
   phone:    "[Zalo: số/link cập nhật sau]",
   telegram: "[Telegram: @username hoặc link t.me]",
   messenger:"[Messenger: link m.me]",
