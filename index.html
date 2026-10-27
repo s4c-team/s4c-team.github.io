@@ -704,6 +704,22 @@ svg.ic { width: 1em; height: 1em; display: block; }
 @media (max-width: 560px){ .fab span.lbl { display: none; } .fab { padding: 14px; } }
 
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* ===== Polish: màu nhấn amber + motion dẫn mắt + điểm nhấn ===== */
+:root{ --emph:#e08a1e; --emph-ink:#b5700f; --emph-wash:#fcefd6; }
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){ --emph:#f0a93a; --emph-ink:#f6c15e; --emph-wash:#36280f; } }
+:root[data-theme="dark"]{ --emph:#f0a93a; --emph-ink:#f6c15e; --emph-wash:#36280f; }
+.btn.cta{ background:linear-gradient(135deg,var(--emph),var(--emph-ink)); border-color:transparent; color:#fff; box-shadow:0 6px 18px rgba(224,138,30,.30); font-weight:600; }
+.btn.cta:hover{ background:linear-gradient(135deg,var(--emph-ink),var(--emph-ink)); color:#fff; transform:translateY(-2px); box-shadow:0 10px 26px rgba(224,138,30,.42); }
+.hero .btn.cta{ background:linear-gradient(135deg,var(--emph),var(--emph-ink)); border-color:transparent; color:#fff; }
+.hero .btn.cta:hover{ background:linear-gradient(135deg,var(--emph-ink),var(--emph-ink)); color:#fff; }
+.btn.primary{ transition:all .16s ease; }
+.btn.primary:hover{ transform:translateY(-1px); }
+.pain-card,.value-card,.open-card,.model-card,.story-card{ transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+.pain-card:hover,.value-card:hover,.open-card:hover,.model-card:hover,.story-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-lg); border-color:color-mix(in srgb,var(--accent) 32%, var(--line)); }
+.reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .55s cubic-bezier(.4,0,.2,1); will-change:opacity,transform; }
+.reveal.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){ .reveal{ opacity:1 !important; transform:none !important; transition:none; } .btn.cta:hover,.btn.primary:hover,.pain-card:hover,.value-card:hover,.open-card:hover,.model-card:hover,.story-card:hover{ transform:none; } }
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -744,7 +760,7 @@ svg.ic { width: 1em; height: 1em; display: block; }
             <h2>Bạn lo việc kinh doanh. Phần hệ thống — tối ưu, vận hành, an toàn — cứ để S4C.</h2>
             <p class="lead">S4C là dịch vụ IT thuê ngoài: vận hành, tối ưu và bảo đảm an toàn thông tin hệ thống cho doanh nghiệp nhỏ, siêu nhỏ và startup tại Việt Nam chưa có đội IT riêng — tự động hóa những việc lặp lại. Chúng tôi bắt đầu bằng việc hiểu đúng bài toán của bạn, rồi đề xuất giải pháp vừa sức — ưu tiên công cụ mã nguồn mở để tiết kiệm chi phí.</p>
             <div class="cta-row">
-              <button class="btn primary lg" data-nav="scenario"><span class="ic" data-icon="play"></span> Xem S4C làm việc thế nào</button>
+              <button class="btn cta lg" data-nav="scenario"><span class="ic" data-icon="play"></span> Xem S4C làm việc thế nào</button>
               <button class="btn" data-nav="pricing">Xem cách tính chi phí</button>
             </div>
           </div>
@@ -813,7 +829,7 @@ svg.ic { width: 1em; height: 1em; display: block; }
           <h3 style="color:#fff;font-size:21px">Bắt đầu bằng một buổi trao đổi miễn phí</h3>
           <p style="color:#a9bcc7;font-size:13.5px;margin:9px auto 0;max-width:54ch">Kể S4C nghe bạn đang lo gì — chúng tôi giúp nhìn rõ vấn đề và gợi ý hướng đi phù hợp. Không cam kết, không ép mua.</p>
           <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">
-            <button class="btn primary lg" data-nav="engagement">Nhận tư vấn miễn phí</button>
+            <button class="btn cta lg" data-nav="engagement">Nhận tư vấn miễn phí</button>
             <button class="btn lg" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#eaf1f8" data-nav="scenario">Xem kịch bản thực tế</button>
           </div>
         </div>
@@ -963,7 +979,7 @@ svg.ic { width: 1em; height: 1em; display: block; }
         </div>
         <div class="grid price-grid" id="priceGrid"></div>
         <div class="price-note"><span class="ic" data-icon="info" style="font-size:16px"></span><div>Chi phí <b>tùy phạm vi từng bài toán</b>, chưa gồm phần cứng/cloud và license bên thứ ba (nếu có). S4C luôn báo giá chi tiết &amp; thống nhất trước khi làm — không phát sinh bất ngờ. Không chắc nên chọn gì? Cứ bắt đầu bằng <b>buổi tư vấn miễn phí</b>.</div></div>
-        <div style="text-align:center;margin-top:22px"><button class="btn primary lg" data-nav="engagement">Đặt buổi tư vấn miễn phí →</button></div>
+        <div style="text-align:center;margin-top:22px"><button class="btn cta lg" data-nav="engagement">Đặt buổi tư vấn miễn phí →</button></div>
       </section>
 
       <!-- ===== MODELS ===== -->
@@ -1050,7 +1066,7 @@ svg.ic { width: 1em; height: 1em; display: block; }
           <p class="sub">Doanh nghiệp nhỏ thường ngại ngần vài điều trước khi cho người ngoài "đụng" vào hệ thống. Dưới đây là trả lời thẳng thắn.</p>
         </div>
         <div class="faq-list" id="faqList"></div>
-        <div style="text-align:center;margin-top:24px"><button class="btn primary lg" data-nav="engagement">Còn câu hỏi khác? Nhắn S4C →</button></div>
+        <div style="text-align:center;margin-top:24px"><button class="btn cta lg" data-nav="engagement">Còn câu hỏi khác? Nhắn S4C →</button></div>
       </section>
 
       <!-- ===== ENGAGEMENT ===== -->
@@ -1600,7 +1616,7 @@ function resetDemo(){ STATE.scenId="assess"; resetScenario(); go("scenario"); }
    - Plausible: điền tên miền đã đăng ký vào plausibleDomain, vd "s4c.vn"
    - Umami:     điền src script + website id (self-host hoặc cloud) */
 const ANALYTICS = {
-  ga4: "",
+  ga4: "G-7DY198HSSM",
   plausibleDomain: "",
   umami: { src: "", id: "" }
 };
@@ -1649,10 +1665,26 @@ function go(view){
   $$(".nav-item").forEach(n=>n.classList.toggle("active", n.dataset.view===view));
   $("#nav").classList.remove("open"); window.scrollTo({top:0,behavior:"instant"});
   trackView(view);
+  revealIn(view);
 }
 $$(".nav-item").forEach(n=>n.addEventListener("click",()=>go(n.dataset.view)));
 document.addEventListener("click",e=>{const t=e.target.closest("[data-nav]");if(t)go(t.dataset.nav);});
+function setupReveal(){
+  document.querySelectorAll(".content .view").forEach(v=>{
+    [...v.children].forEach(ch=>{ if(ch.nodeType===1) ch.classList.add("reveal"); });
+  });
+}
+function revealIn(view){
+  const root=document.getElementById("view-"+view); if(!root) return;
+  const els=root.querySelectorAll(":scope > .reveal");
+  els.forEach(e=>e.classList.remove("in"));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    els.forEach((e,i)=>setTimeout(()=>e.classList.add("in"), Math.min(i,8)*55));
+  }));
+}
+setupReveal();
 trackView("overview");
+revealIn("overview");
 $("#hamb").addEventListener("click",()=>$("#nav").classList.toggle("open"));
 function currentDark(){const a=document.documentElement.getAttribute("data-theme");if(a)return a==="dark";return window.matchMedia("(prefers-color-scheme: dark)").matches;}
 $("#themeBtn").addEventListener("click",()=>document.documentElement.setAttribute("data-theme",currentDark()?"light":"dark"));
