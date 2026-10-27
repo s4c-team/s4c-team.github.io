@@ -1,4 +1,32 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>S4C Hub — Vận hành, tối ưu & an toàn hệ thống cho doanh nghiệp nhỏ</title>
+<meta name="description" content="S4C Hub là chỗ dựa kỹ thuật cho doanh nghiệp nhỏ, siêu nhỏ và startup: vận hành & tối ưu hệ thống, bảo vệ an toàn, tự động hóa việc lặp lại. Tư vấn ban đầu miễn phí.">
+<meta name="theme-color" content="#0b1220">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://s4c-team.github.io/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='6' y1='2' x2='26' y2='30' gradientUnits='userSpaceOnUse'><stop offset='0' stop-color='%2378a2ff'/><stop offset='.55' stop-color='%233b6fe6'/><stop offset='1' stop-color='%231a3ca3'/></linearGradient></defs><rect width='32' height='32' rx='7' fill='%230b1220'/><path d='M16 4 L26 8 V15 C26 21.5 21.5 25.5 16 27.5 C10.5 25.5 6 21.5 6 15 V8 Z' fill='url(%23g)'/><path d='M11.5 16 l3.2 3.2 L21 12.2' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="S4C Hub">
+<meta property="og:title" content="S4C Hub — Vận hành, tối ưu & an toàn hệ thống cho doanh nghiệp nhỏ">
+<meta property="og:description" content="S4C Hub là chỗ dựa kỹ thuật cho doanh nghiệp nhỏ, siêu nhỏ và startup: vận hành & tối ưu hệ thống, bảo vệ an toàn, tự động hóa việc lặp lại. Tư vấn ban đầu miễn phí.">
+<meta property="og:url" content="https://s4c-team.github.io/">
+<meta property="og:image" content="https://s4c-team.github.io/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="S4C Hub — Vận hành, tối ưu & an toàn hệ thống cho doanh nghiệp nhỏ">
+<meta name="twitter:description" content="S4C Hub là chỗ dựa kỹ thuật cho doanh nghiệp nhỏ, siêu nhỏ và startup: vận hành & tối ưu hệ thống, bảo vệ an toàn, tự động hóa việc lặp lại. Tư vấn ban đầu miễn phí.">
+<meta name="twitter:image" content="https://s4c-team.github.io/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>:root{color-scheme:light}*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0}img{max-width:100%}</style>
+</head>
+<body>
 <title>S4C Hub — Vận hành, tối ưu & an toàn hệ thống cho doanh nghiệp nhỏ</title>
 <style>
 /* Trang giới thiệu dịch vụ tương tác — vận hành, tối ưu & an toàn hệ thống cho DN nhỏ.
@@ -1562,14 +1590,65 @@ const PROBLEM_MAP = [
 const STATE = { scenId:"assess", stageIdx:0, maxStage:0, opTab:"perf", clues:new Set() };
 function resetScenario(){ STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; renderScenario(); }
 function resetDemo(){ STATE.scenId="assess"; resetScenario(); go("scenario"); }
+/* ===== Analytics: đếm lượt xem theo từng màn =====
+   Mặc định TẮT. Điền 1 mã bên dưới (chỉ cần 1 nhà cung cấp) rồi deploy là bật.
+   - GA4:       dán Measurement ID dạng "G-XXXXXXX" vào ga4
+   - Plausible: điền tên miền đã đăng ký vào plausibleDomain, vd "s4c.vn"
+   - Umami:     điền src script + website id (self-host hoặc cloud) */
+const ANALYTICS = {
+  ga4: "G-7DY198HSSM",
+  plausibleDomain: "",
+  umami: { src: "", id: "" }
+};
+const VIEW_TITLES = {
+  overview:"Tổng quan", scenario:"Kịch bản thực tế", about:"Về S4C",
+  services:"Nhóm dịch vụ", pricing:"Bảng giá tham khảo", models:"Cách hợp tác",
+  architecture:"Giải pháp & công nghệ", faq:"Câu hỏi thường gặp", engagement:"Liên hệ & khảo sát"
+};
+(function loadAnalytics(){
+  try{
+    if(ANALYTICS.ga4){
+      const s=document.createElement("script"); s.async=true;
+      s.src="https://www.googletagmanager.com/gtag/js?id="+encodeURIComponent(ANALYTICS.ga4);
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[]; window.gtag=function(){dataLayer.push(arguments);};
+      gtag("js", new Date()); gtag("config", ANALYTICS.ga4, { send_page_view:false });
+    }
+    if(ANALYTICS.plausibleDomain){
+      window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments);};
+      const s=document.createElement("script"); s.defer=true;
+      s.setAttribute("data-domain", ANALYTICS.plausibleDomain);
+      s.src="https://plausible.io/js/script.manual.js";
+      document.head.appendChild(s);
+    }
+    if(ANALYTICS.umami && ANALYTICS.umami.src && ANALYTICS.umami.id){
+      const s=document.createElement("script"); s.async=true; s.defer=true;
+      s.src=ANALYTICS.umami.src; s.setAttribute("data-website-id", ANALYTICS.umami.id);
+      s.setAttribute("data-auto-track","false");
+      document.head.appendChild(s);
+    }
+  }catch(e){}
+})();
+function trackView(view){
+  try{
+    const title=(VIEW_TITLES[view]||view);
+    const path="/"+view;
+    const loc=location.origin+location.pathname+"#"+view;
+    if(window.gtag && ANALYTICS.ga4){ gtag("event","page_view",{page_title:title,page_path:path,page_location:loc}); }
+    if(window.plausible && ANALYTICS.plausibleDomain){ window.plausible("pageview",{u:loc}); }
+    if(window.umami && typeof window.umami.track==="function"){ window.umami.track(p=>({...p,url:path,title:title})); }
+  }catch(e){}
+}
 function go(view){
   liveStop();
   $$(".view").forEach(v=>v.classList.toggle("active", v.id==="view-"+view));
   $$(".nav-item").forEach(n=>n.classList.toggle("active", n.dataset.view===view));
   $("#nav").classList.remove("open"); window.scrollTo({top:0,behavior:"instant"});
+  trackView(view);
 }
 $$(".nav-item").forEach(n=>n.addEventListener("click",()=>go(n.dataset.view)));
 document.addEventListener("click",e=>{const t=e.target.closest("[data-nav]");if(t)go(t.dataset.nav);});
+trackView("overview");
 $("#hamb").addEventListener("click",()=>$("#nav").classList.toggle("open"));
 function currentDark(){const a=document.documentElement.getAttribute("data-theme");if(a)return a==="dark";return window.matchMedia("(prefers-color-scheme: dark)").matches;}
 $("#themeBtn").addEventListener("click",()=>document.documentElement.setAttribute("data-theme",currentDark()?"light":"dark"));
