@@ -170,7 +170,8 @@ svg.ic { width: 1em; height: 1em; display: block; }
 .hero .btn { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #e9f0f6; }
 .hero .btn:hover { background: rgba(255,255,255,.16); color: #fff; }
 .hero .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-.hero .shield { flex: none; width: 150px; height: 150px; position: relative; z-index: 1; }
+.hero .shield { flex: none; width: 216px; height: 170px; position: relative; z-index: 1; }
+@media (prefers-reduced-motion: reduce){ .hero-arrows { display: none; } }
 @media (prefers-reduced-motion: no-preference){ .hero .shield { animation: shieldFloat 5.5s ease-in-out infinite; } }
 @keyframes shieldFloat { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-7px) rotate(-1.2deg); } }
 @media (prefers-reduced-motion: reduce){ .sh-glint { display: none; } }
@@ -797,21 +798,53 @@ svg.ic { width: 1em; height: 1em; display: block; }
               <button class="btn" data-nav="pricing">Xem cách tính chi phí</button>
             </div>
           </div>
-          <svg class="shield" viewBox="0 0 120 130" fill="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="hs" x1="26" y1="6" x2="94" y2="124" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#78a2ff"/><stop offset=".5" stop-color="#3b6fe6"/><stop offset="1" stop-color="#1a3ca3"/></linearGradient>
-              <linearGradient id="hsGloss" x1="60" y1="6" x2="60" y2="66" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-              <radialGradient id="hsGlow" cx="50%" cy="36%" r="62%"><stop offset="0" stop-color="#9cbcff" stop-opacity=".55"/><stop offset="1" stop-color="#9cbcff" stop-opacity="0"/></radialGradient>
-              <clipPath id="hsClip"><path d="M60 6 L108 24 V58 C108 90 86 112 60 124 C34 112 12 90 12 58 V24 Z"/></clipPath>
-            </defs>
-            <path d="M60 10 L108 28 V62 C108 94 86 116 60 128 C34 116 12 94 12 62 V28 Z" fill="#0b2258" opacity=".55"/>
-            <path d="M60 6 L108 24 V58 C108 90 86 112 60 124 C34 112 12 90 12 58 V24 Z" fill="url(#hs)" stroke="rgba(255,255,255,.24)" stroke-width="1.5"/>
-            <path d="M60 6 L108 24 V54 C92 47 76 44 60 44 C44 44 28 47 12 54 V24 Z" fill="url(#hsGloss)"/>
-            <ellipse cx="60" cy="52" rx="42" ry="34" fill="url(#hsGlow)"/>
-            <g clip-path="url(#hsClip)"><rect class="sh-glint" x="-46" y="-6" width="30" height="150" fill="#fff" opacity=".2" transform="skewX(-16)"><animate attributeName="x" from="-46" to="150" dur="3.4s" begin="1.2s" repeatCount="indefinite"/></rect></g>
-            <path d="M40 62 l14 14 L84 44" stroke="#eaf0ff" stroke-width="6.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M40 62 l14 14 L84 44" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
-          </svg>
+          <svg class="shield" viewBox="0 0 210 170" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="gSh" x1="55" y1="36" x2="150" y2="158" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#78a2ff"/><stop offset=".5" stop-color="#3b6fe6"/><stop offset="1" stop-color="#1a3ca3"/></linearGradient>
+    <linearGradient id="gHead" x1="82" y1="12" x2="118" y2="46" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#dbe7ff"/><stop offset="1" stop-color="#9cc0ff"/></linearGradient>
+    <linearGradient id="gBody" x1="80" y1="48" x2="120" y2="70" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6f9bff"/><stop offset="1" stop-color="#3b6fe6"/></linearGradient>
+    <linearGradient id="gShGloss" x1="100" y1="36" x2="100" y2="92" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".4"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <ellipse cx="100" cy="161" rx="42" ry="6" fill="#0b2258" opacity=".28"/>
+  <rect x="86" y="146" width="12" height="15" rx="6" fill="url(#gBody)"/>
+  <rect x="102" y="146" width="12" height="15" rx="6" fill="url(#gBody)"/>
+  <line x1="100" y1="12" x2="100" y2="4" stroke="#9cc0ff" stroke-width="2.5" stroke-linecap="round"/><circle cx="100" cy="3" r="2.6" fill="#ffd27a"/>
+  <circle cx="100" cy="30" r="19" fill="url(#gHead)" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/>
+  <rect x="85" y="24" width="30" height="13" rx="6.5" fill="#12233f"/>
+  <circle cx="94" cy="30.5" r="2.8" fill="#ffd27a"><animate attributeName="opacity" values="1;.35;1" dur="2.6s" repeatCount="indefinite"/></circle>
+  <circle cx="106" cy="30.5" r="2.8" fill="#ffd27a"><animate attributeName="opacity" values="1;.35;1" dur="2.6s" repeatCount="indefinite"/></circle>
+  <g transform="translate(40,30)">
+    <path d="M60 10 L108 28 V62 C108 94 86 116 60 128 C34 116 12 94 12 62 V28 Z" fill="#0b2258" opacity=".5"/>
+    <path d="M60 6 L108 24 V58 C108 90 86 112 60 124 C34 112 12 90 12 58 V24 Z" fill="url(#gSh)" stroke="rgba(255,255,255,.28)" stroke-width="1.6"/>
+    <path d="M60 6 L108 24 V54 C92 47 76 44 60 44 C44 44 28 47 12 54 V24 Z" fill="url(#gShGloss)"/>
+    <path d="M40 62 l14 14 L84 44" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <circle cx="54" cy="56" r="8" fill="url(#gBody)" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+  <circle cx="146" cy="56" r="8" fill="url(#gBody)" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+  <g class="hero-arrows" stroke-linecap="round">
+    <g opacity="0">
+      <line x1="176" y1="70" x2="156" y2="70" stroke="#f0a93a" stroke-width="3"/>
+      <path d="M156 70l7 -5M156 70l7 5" stroke="#f0a93a" stroke-width="3" fill="none"/>
+      <animateTransform attributeName="transform" type="translate" from="58 0" to="0 0" dur="1.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.62;.72" dur="1.8s" begin="0s" repeatCount="indefinite"/>
+    </g>
+    <g opacity="0">
+      <line x1="176" y1="96" x2="156" y2="96" stroke="#ffd27a" stroke-width="3"/>
+      <path d="M156 96l7 -5M156 96l7 5" stroke="#ffd27a" stroke-width="3" fill="none"/>
+      <animateTransform attributeName="transform" type="translate" from="58 0" to="0 0" dur="1.8s" begin="0.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.62;.72" dur="1.8s" begin="0.6s" repeatCount="indefinite"/>
+    </g>
+    <g opacity="0">
+      <line x1="176" y1="120" x2="156" y2="120" stroke="#f0a93a" stroke-width="3"/>
+      <path d="M156 120l7 -5M156 120l7 5" stroke="#f0a93a" stroke-width="3" fill="none"/>
+      <animateTransform attributeName="transform" type="translate" from="58 0" to="0 0" dur="1.8s" begin="1.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.62;.72" dur="1.8s" begin="1.2s" repeatCount="indefinite"/>
+    </g>
+    <g opacity="0" transform="translate(150,70)"><path d="M0 0l8 -5M0 0l9 0M0 0l8 5M0 0l5 -8M0 0l5 8" stroke="#fff" stroke-width="2"/><animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;.6;.68;.82;1" dur="1.8s" begin="0s" repeatCount="indefinite"/></g>
+    <g opacity="0" transform="translate(150,96)"><path d="M0 0l8 -5M0 0l9 0M0 0l8 5M0 0l5 -8M0 0l5 8" stroke="#fff" stroke-width="2"/><animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;.6;.68;.82;1" dur="1.8s" begin="0.6s" repeatCount="indefinite"/></g>
+    <g opacity="0" transform="translate(150,120)"><path d="M0 0l8 -5M0 0l9 0M0 0l8 5M0 0l5 -8M0 0l5 8" stroke="#fff" stroke-width="2"/><animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;.6;.68;.82;1" dur="1.8s" begin="1.2s" repeatCount="indefinite"/></g>
+  </g>
+</svg>
         </div>
 
         <div class="sec-title">Có phải bạn đang gặp những điều này?</div>
@@ -1867,7 +1900,7 @@ function renderHub(){
   const box=$("#scnHub"); if(!box) return; box.innerHTML="";
   SCENARIOS.forEach(sc=>{
     const b=el("button","scn-pick"+(sc.id===STATE.scenId?" active":""));
-    b.innerHTML=`<span class="sp-art">${scnArt(sc.id)}</span><div class="sp-top"><span class="itile sp-ic">${svgIcon(sc.icon)}</span><div class="sp-meta"><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div></div><div class="sp-tag">${sc.tag}</div><div class="sp-cta"><span class="sp-play-btn" title="Xem demo live" aria-label="Xem demo live">${svgIcon("play")}</span></div>`;
+    b.innerHTML=`<div class="sp-top"><span class="itile sp-ic">${svgIcon(sc.icon)}</span><div class="sp-meta"><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div></div><div class="sp-tag">${sc.tag}</div><div class="sp-cta"><span class="sp-play-btn" title="Xem demo live" aria-label="Xem demo live">${svgIcon("play")}</span></div>`;
     b.addEventListener("click",()=>{ if(STATE.scenId!==sc.id){ STATE.scenId=sc.id; STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; STATE.clues=new Set(); renderScenario(); } });
     box.appendChild(b);
   });
