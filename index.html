@@ -592,10 +592,10 @@ svg.ic { width: 1em; height: 1em; display: block; }
 .scn-pick::before{ content:""; position:absolute; left:0; right:0; top:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--emph)); opacity:.5; transition:opacity .2s; }
 .scn-pick:hover::before,.scn-pick.active::before{ opacity:1; }
 .scn-pick:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
-.scn-pick .sp-art{ position:absolute; top:-8px; right:-8px; width:92px; height:92px; color:var(--accent); opacity:.12; pointer-events:none; z-index:0; transition:opacity .2s, transform .2s; }
+.scn-pick .sp-art{ position:absolute; bottom:-12px; right:-10px; width:82px; height:82px; color:var(--accent); opacity:.1; pointer-events:none; z-index:0; transition:opacity .2s, transform .2s; }
 .scn-pick .sp-art svg{ width:100%; height:100%; display:block; }
-.scn-pick:hover .sp-art{ opacity:.22; transform:scale(1.06) rotate(-3deg); }
-.scn-pick.active .sp-art{ opacity:.24; }
+.scn-pick:hover .sp-art{ opacity:.16; transform:scale(1.05); }
+.scn-pick.active .sp-art{ opacity:.18; }
 .scn-pick .sp-top,.scn-pick .sp-tag,.scn-pick .sp-cta{ position:relative; z-index:1; }
 .scn-pick .sp-top{ width:100%; }
 .scn-pick .sp-meta{ min-width:0; }
@@ -1847,10 +1847,10 @@ function curScen(){ return SCENARIOS.find(s=>s.id===STATE.scenId)||SCENARIOS[0];
 function benefit(h,t){ return `<div class="benefit"><span class="b-ic">${svgIcon("check")}</span><div><div class="b-h">${h}</div><div class="b-t">${t}</div></div></div>`; }
 function renderScenario(){ renderHub(); renderCustomer(); renderProgress(); renderStage(); renderCtxPanel(); }
 const SCN_ART = {
-  assess:`<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="12" width="42" height="54" rx="6"/><path d="M24 28h22M24 40h16M24 52h11"/><circle cx="60" cy="58" r="15" style="stroke:var(--emph)"/><path d="M71 69l13 13" style="stroke:var(--emph)"/></svg>`,
-  tune:`<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M16 68a32 32 0 0 1 64 0"/><path d="M22 60l-5-3M48 30v-6M74 60l5-3"/><path d="M48 68l17-15" style="stroke:var(--emph)"/><circle cx="48" cy="68" r="4" fill="currentColor" stroke="none"/></svg>`,
-  managed:`<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M72 40a26 26 0 1 0 3 24"/><path d="M74 26v15H59" style="stroke:var(--emph)"/><circle cx="48" cy="50" r="7"/></svg>`,
-  dfir:`<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M48 12l28 10v17c0 19-13 30-28 36-15-6-28-17-28-36V22z"/><rect x="37" y="46" width="22" height="17" rx="3" style="stroke:var(--emph)"/><path d="M41 46v-5a7 7 0 0 1 14 0v5" style="stroke:var(--emph)"/></svg>`
+  assess:`<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="16" width="50" height="66" rx="7"/><path d="M33 34h26M33 45h18"/><path d="M33 67l11-13 8 7 13-17"/></svg>`,
+  tune:`<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 70a34 34 0 0 1 68 0"/><path d="M24 62l-5-3M52 30v-6M80 62l5-3"/><path d="M52 70l20-16"/><circle cx="52" cy="70" r="5" fill="currentColor" stroke="none"/></svg>`,
+  managed:`<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M78 42a30 30 0 1 0 2 24"/><path d="M80 24v18H62"/><circle cx="50" cy="52" r="9"/></svg>`,
+  dfir:`<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="30" y="46" width="40" height="30" rx="6"/><path d="M38 46v-8a12 12 0 0 1 24 0v8"/><path d="M50 58v8"/></svg>`
 };
 function scnArt(id){ return SCN_ART[id]||""; }
 function renderHub(){
