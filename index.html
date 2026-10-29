@@ -592,10 +592,10 @@ svg.ic { width: 1em; height: 1em; display: block; }
 .scn-pick::before{ content:""; position:absolute; left:0; right:0; top:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--emph)); opacity:.5; transition:opacity .2s; }
 .scn-pick:hover::before,.scn-pick.active::before{ opacity:1; }
 .scn-pick:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
-.scn-pick .sp-art{ position:absolute; bottom:-12px; right:-10px; width:82px; height:82px; color:var(--accent); opacity:.1; pointer-events:none; z-index:0; transition:opacity .2s, transform .2s; }
+.scn-pick .sp-art{ position:absolute; bottom:12px; right:14px; width:58px; height:58px; color:var(--accent); opacity:.14; pointer-events:none; z-index:0; transition:opacity .2s, transform .2s; }
 .scn-pick .sp-art svg{ width:100%; height:100%; display:block; }
-.scn-pick:hover .sp-art{ opacity:.16; transform:scale(1.05); }
-.scn-pick.active .sp-art{ opacity:.18; }
+.scn-pick:hover .sp-art{ opacity:.2; transform:scale(1.06); }
+.scn-pick.active .sp-art{ opacity:.22; }
 .scn-pick .sp-top,.scn-pick .sp-tag,.scn-pick .sp-cta{ position:relative; z-index:1; }
 .scn-pick .sp-top{ width:100%; }
 .scn-pick .sp-meta{ min-width:0; }
@@ -612,6 +612,13 @@ svg.ic { width: 1em; height: 1em; display: block; }
 .scn-pick.active .sp-cta-ic{ color:var(--accent-ink); animation:none; }
 @keyframes ctaPulse{ 0%,100%{ opacity:.45; transform:scale(.88);} 50%{ opacity:1; transform:scale(1.12);} }
 @media (prefers-reduced-motion:reduce){ .scn-pick .sp-cta-ic{ animation:none; opacity:1; } }
+.scn-pick .sp-cta{ margin-top:auto; padding-top:12px; display:flex; align-items:center; }
+.scn-pick .sp-play-btn{ width:40px; height:40px; border-radius:50%; background:var(--emph); color:#fff; display:grid; place-items:center; font-size:14px; position:relative; box-shadow:0 4px 12px rgba(224,138,30,.35); transition:transform .16s, background .16s; }
+.scn-pick .sp-play-btn::after{ content:""; position:absolute; inset:0; border-radius:50%; animation:spPulse 2s ease-out infinite; }
+.scn-pick:hover .sp-play-btn{ transform:scale(1.09); }
+.scn-pick.active .sp-play-btn{ background:var(--accent); box-shadow:0 4px 12px rgba(37,99,235,.35); }
+.scn-pick.active .sp-play-btn::after{ animation:none; }
+@media (prefers-reduced-motion:reduce){ .scn-pick .sp-play-btn::after{ animation:none; } .scn-pick:hover .sp-play-btn{ transform:none; } }
 @keyframes spPulse{ 0%{ box-shadow:0 0 0 0 rgba(224,138,30,.45);} 70%{ box-shadow:0 0 0 9px rgba(224,138,30,0);} 100%{ box-shadow:0 0 0 0 rgba(224,138,30,0);} }
 @media (prefers-reduced-motion:reduce){ .scn-pick .sp-play::after{ animation:none; } .scn-pick:hover .sp-play{ transform:none; } .scn-pick:hover .sp-arrow{ transform:none; } }
 @media (max-width: 760px){ .scn-hub { grid-template-columns: 1fr; } }
@@ -1861,7 +1868,7 @@ function renderHub(){
   const box=$("#scnHub"); if(!box) return; box.innerHTML="";
   SCENARIOS.forEach(sc=>{
     const b=el("button","scn-pick"+(sc.id===STATE.scenId?" active":""));
-    b.innerHTML=`<span class="sp-art">${scnArt(sc.id)}</span><div class="sp-top"><span class="itile sp-ic">${svgIcon(sc.icon)}</span><div class="sp-meta"><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div></div><div class="sp-tag">${sc.tag}</div><div class="sp-cta"><span class="sp-cta-ic">${svgIcon("play")}</span>Xem demo live <span class="sp-arrow">→</span></div>`;
+    b.innerHTML=`<span class="sp-art">${scnArt(sc.id)}</span><div class="sp-top"><span class="itile sp-ic">${svgIcon(sc.icon)}</span><div class="sp-meta"><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div></div><div class="sp-tag">${sc.tag}</div><div class="sp-cta"><span class="sp-play-btn" title="Xem demo live" aria-label="Xem demo live">${svgIcon("play")}</span></div>`;
     b.addEventListener("click",()=>{ if(STATE.scenId!==sc.id){ STATE.scenId=sc.id; STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; STATE.clues=new Set(); renderScenario(); } });
     box.appendChild(b);
   });
