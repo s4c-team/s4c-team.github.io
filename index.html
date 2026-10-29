@@ -587,6 +587,29 @@ svg.ic { width: 1em; height: 1em; display: block; }
 .scn-pick .sp-step { font-size: 9.5px; font-family: var(--font-mono); color: var(--ink-faint); font-weight: 600; letter-spacing: .3px; }
 .scn-pick h3 { font-size: 14px; margin-top: 1px; }
 .scn-pick .sp-tag { font-size: 11.5px; color: var(--ink-soft); margin-top: 8px; line-height: 1.45; }
+/* ===== Hub thẻ demo: tín hiệu động dẫn click ===== */
+.scn-pick{ position:relative; overflow:hidden; display:flex; flex-direction:column; }
+.scn-pick::before{ content:""; position:absolute; left:0; right:0; top:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--emph)); opacity:.5; transition:opacity .2s; }
+.scn-pick:hover::before,.scn-pick.active::before{ opacity:1; }
+.scn-pick:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
+.scn-pick .sp-art{ position:absolute; top:-8px; right:-8px; width:92px; height:92px; color:var(--accent); opacity:.12; pointer-events:none; z-index:0; transition:opacity .2s, transform .2s; }
+.scn-pick .sp-art svg{ width:100%; height:100%; display:block; }
+.scn-pick:hover .sp-art{ opacity:.22; transform:scale(1.06) rotate(-3deg); }
+.scn-pick.active .sp-art{ opacity:.24; }
+.scn-pick .sp-top,.scn-pick .sp-tag,.scn-pick .sp-cta{ position:relative; z-index:1; }
+.scn-pick .sp-top{ width:100%; }
+.scn-pick .sp-meta{ min-width:0; }
+.scn-pick .sp-play{ margin-left:auto; width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:var(--emph-wash); color:var(--emph-ink); font-size:12px; flex:none; position:relative; transition:transform .16s, background .16s, color .16s; }
+.scn-pick .sp-play::after{ content:""; position:absolute; inset:0; border-radius:50%; animation:spPulse 2.2s ease-out infinite; }
+.scn-pick:hover .sp-play{ background:var(--emph); color:#fff; transform:scale(1.08); }
+.scn-pick.active .sp-play{ background:var(--accent); color:#fff; }
+.scn-pick.active .sp-play::after{ animation:none; }
+.scn-pick .sp-cta{ margin-top:auto; padding-top:11px; font-size:12px; font-weight:700; color:var(--emph-ink); display:flex; align-items:center; gap:6px; }
+.scn-pick.active .sp-cta{ color:var(--accent-ink); }
+.scn-pick .sp-arrow{ transition:transform .16s; }
+.scn-pick:hover .sp-arrow{ transform:translateX(4px); }
+@keyframes spPulse{ 0%{ box-shadow:0 0 0 0 rgba(224,138,30,.45);} 70%{ box-shadow:0 0 0 9px rgba(224,138,30,0);} 100%{ box-shadow:0 0 0 0 rgba(224,138,30,0);} }
+@media (prefers-reduced-motion:reduce){ .scn-pick .sp-play::after{ animation:none; } .scn-pick:hover .sp-play{ transform:none; } .scn-pick:hover .sp-arrow{ transform:none; } }
 @media (max-width: 760px){ .scn-hub { grid-template-columns: 1fr; } }
 
 /* radar (đánh giá khung) */
@@ -1823,11 +1846,18 @@ function startChainReplay(){
 function curScen(){ return SCENARIOS.find(s=>s.id===STATE.scenId)||SCENARIOS[0]; }
 function benefit(h,t){ return `<div class="benefit"><span class="b-ic">${svgIcon("check")}</span><div><div class="b-h">${h}</div><div class="b-t">${t}</div></div></div>`; }
 function renderScenario(){ renderHub(); renderCustomer(); renderProgress(); renderStage(); renderCtxPanel(); }
+const SCN_ART = {
+  assess:`<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="12" width="42" height="54" rx="6"/><path d="M24 28h22M24 40h16M24 52h11"/><circle cx="60" cy="58" r="15" style="stroke:var(--emph)"/><path d="M71 69l13 13" style="stroke:var(--emph)"/></svg>`,
+  tune:`<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M16 68a32 32 0 0 1 64 0"/><path d="M22 60l-5-3M48 30v-6M74 60l5-3"/><path d="M48 68l17-15" style="stroke:var(--emph)"/><circle cx="48" cy="68" r="4" fill="currentColor" stroke="none"/></svg>`,
+  managed:`<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M72 40a26 26 0 1 0 3 24"/><path d="M74 26v15H59" style="stroke:var(--emph)"/><circle cx="48" cy="50" r="7"/></svg>`,
+  dfir:`<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M48 12l28 10v17c0 19-13 30-28 36-15-6-28-17-28-36V22z"/><rect x="37" y="46" width="22" height="17" rx="3" style="stroke:var(--emph)"/><path d="M41 46v-5a7 7 0 0 1 14 0v5" style="stroke:var(--emph)"/></svg>`
+};
+function scnArt(id){ return SCN_ART[id]||""; }
 function renderHub(){
   const box=$("#scnHub"); if(!box) return; box.innerHTML="";
   SCENARIOS.forEach(sc=>{
     const b=el("button","scn-pick"+(sc.id===STATE.scenId?" active":""));
-    b.innerHTML=`<div class="sp-top"><span class="itile">${svgIcon(sc.icon)}</span><div><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div></div><div class="sp-tag">${sc.tag}</div>`;
+    b.innerHTML=`<span class="sp-art">${scnArt(sc.id)}</span><div class="sp-top"><span class="itile sp-ic">${svgIcon(sc.icon)}</span><div class="sp-meta"><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div><span class="sp-play">${svgIcon("play")}</span></div><div class="sp-tag">${sc.tag}</div><div class="sp-cta">Xem demo live <span class="sp-arrow">→</span></div>`;
     b.addEventListener("click",()=>{ if(STATE.scenId!==sc.id){ STATE.scenId=sc.id; STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; STATE.clues=new Set(); renderScenario(); } });
     box.appendChild(b);
   });
