@@ -592,10 +592,9 @@ svg.ic { width: 1em; height: 1em; display: block; }
 .scn-pick::before{ content:""; position:absolute; left:0; right:0; top:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--emph)); opacity:.5; transition:opacity .2s; }
 .scn-pick:hover::before,.scn-pick.active::before{ opacity:1; }
 .scn-pick:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
-.scn-pick .sp-art{ position:absolute; bottom:12px; right:14px; width:58px; height:58px; color:var(--accent); opacity:.14; pointer-events:none; z-index:0; transition:opacity .2s, transform .2s; }
+.scn-pick .sp-art{ position:absolute; bottom:14px; right:14px; width:54px; height:54px; pointer-events:none; z-index:0; filter:drop-shadow(0 4px 10px rgba(0,0,0,.20)); transition:transform .2s; }
 .scn-pick .sp-art svg{ width:100%; height:100%; display:block; }
-.scn-pick:hover .sp-art{ opacity:.2; transform:scale(1.06); }
-.scn-pick.active .sp-art{ opacity:.22; }
+.scn-pick:hover .sp-art{ transform:scale(1.08) translateY(-1px); }
 .scn-pick .sp-top,.scn-pick .sp-tag,.scn-pick .sp-cta{ position:relative; z-index:1; }
 .scn-pick .sp-top{ width:100%; }
 .scn-pick .sp-meta{ min-width:0; }
@@ -1858,10 +1857,10 @@ function curScen(){ return SCENARIOS.find(s=>s.id===STATE.scenId)||SCENARIOS[0];
 function benefit(h,t){ return `<div class="benefit"><span class="b-ic">${svgIcon("check")}</span><div><div class="b-h">${h}</div><div class="b-t">${t}</div></div></div>`; }
 function renderScenario(){ renderHub(); renderCustomer(); renderProgress(); renderStage(); renderCtxPanel(); }
 const SCN_ART = {
-  assess:`<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="16" width="50" height="66" rx="7"/><path d="M33 34h26M33 45h18"/><path d="M33 67l11-13 8 7 13-17"/></svg>`,
-  tune:`<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 70a34 34 0 0 1 68 0"/><path d="M24 62l-5-3M52 30v-6M80 62l5-3"/><path d="M52 70l20-16"/><circle cx="52" cy="70" r="5" fill="currentColor" stroke="none"/></svg>`,
-  managed:`<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M78 42a30 30 0 1 0 2 24"/><path d="M80 24v18H62"/><circle cx="50" cy="52" r="9"/></svg>`,
-  dfir:`<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="30" y="46" width="40" height="30" rx="6"/><path d="M38 46v-8a12 12 0 0 1 24 0v8"/><path d="M50 58v8"/></svg>`
+  assess:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gAs" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6f9bff"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="15" fill="url(#gAs)"/><rect x="15" y="34" width="6" height="13" rx="2" fill="#ffffff" opacity=".85"/><rect x="25" y="28" width="6" height="19" rx="2" fill="#ffffff" opacity=".85"/><rect x="35" y="23" width="6" height="24" rx="2" fill="#ffd27a"/><circle cx="40" cy="23" r="9" fill="none" stroke="#ffffff" stroke-width="3"/><path d="M47 30l6 6" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/></svg>`,
+  tune:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gTn" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3ad9bb"/><stop offset="1" stop-color="#17a085"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="15" fill="url(#gTn)"/><path d="M18 42a14 14 0 0 1 28 0" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/><path d="M32 42l11-9" stroke="#ffd27a" stroke-width="3.5" stroke-linecap="round"/><circle cx="32" cy="42" r="3.5" fill="#ffffff"/></svg>`,
+  managed:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gMn" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9a86ff"/><stop offset="1" stop-color="#5b4bd6"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="15" fill="url(#gMn)"/><path d="M44 24a13 13 0 1 0 2 14" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/><path d="M45 18v8h-8" fill="none" stroke="#ffd27a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="34" r="5" fill="#ffffff"/></svg>`,
+  dfir:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gDf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff9a63"/><stop offset="1" stop-color="#e14330"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="15" fill="url(#gDf)"/><path d="M32 15l13 4.5v8.5c0 9.5-6.5 14-13 17-6.5-3-13-7.5-13-17v-8.5z" fill="rgba(255,255,255,.2)" stroke="#ffffff" stroke-width="2.6"/><rect x="26.5" y="31" width="11" height="9" rx="2" fill="#ffd27a"/><path d="M28.5 31v-3a3.5 3.5 0 0 1 7 0v3" fill="none" stroke="#ffd27a" stroke-width="2.6"/></svg>`
 };
 function scnArt(id){ return SCN_ART[id]||""; }
 function renderHub(){
