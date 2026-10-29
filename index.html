@@ -608,6 +608,10 @@ svg.ic { width: 1em; height: 1em; display: block; }
 .scn-pick.active .sp-cta{ color:var(--accent-ink); }
 .scn-pick .sp-arrow{ transition:transform .16s; }
 .scn-pick:hover .sp-arrow{ transform:translateX(4px); }
+.scn-pick .sp-cta-ic{ color:var(--emph); font-size:11px; line-height:0; display:inline-grid; place-items:center; animation:ctaPulse 1.8s ease-in-out infinite; }
+.scn-pick.active .sp-cta-ic{ color:var(--accent-ink); animation:none; }
+@keyframes ctaPulse{ 0%,100%{ opacity:.45; transform:scale(.88);} 50%{ opacity:1; transform:scale(1.12);} }
+@media (prefers-reduced-motion:reduce){ .scn-pick .sp-cta-ic{ animation:none; opacity:1; } }
 @keyframes spPulse{ 0%{ box-shadow:0 0 0 0 rgba(224,138,30,.45);} 70%{ box-shadow:0 0 0 9px rgba(224,138,30,0);} 100%{ box-shadow:0 0 0 0 rgba(224,138,30,0);} }
 @media (prefers-reduced-motion:reduce){ .scn-pick .sp-play::after{ animation:none; } .scn-pick:hover .sp-play{ transform:none; } .scn-pick:hover .sp-arrow{ transform:none; } }
 @media (max-width: 760px){ .scn-hub { grid-template-columns: 1fr; } }
@@ -1857,7 +1861,7 @@ function renderHub(){
   const box=$("#scnHub"); if(!box) return; box.innerHTML="";
   SCENARIOS.forEach(sc=>{
     const b=el("button","scn-pick"+(sc.id===STATE.scenId?" active":""));
-    b.innerHTML=`<span class="sp-art">${scnArt(sc.id)}</span><div class="sp-top"><span class="itile sp-ic">${svgIcon(sc.icon)}</span><div class="sp-meta"><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div><span class="sp-play">${svgIcon("play")}</span></div><div class="sp-tag">${sc.tag}</div><div class="sp-cta">Xem demo live <span class="sp-arrow">→</span></div>`;
+    b.innerHTML=`<span class="sp-art">${scnArt(sc.id)}</span><div class="sp-top"><span class="itile sp-ic">${svgIcon(sc.icon)}</span><div class="sp-meta"><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div></div><div class="sp-tag">${sc.tag}</div><div class="sp-cta"><span class="sp-cta-ic">${svgIcon("play")}</span>Xem demo live <span class="sp-arrow">→</span></div>`;
     b.addEventListener("click",()=>{ if(STATE.scenId!==sc.id){ STATE.scenId=sc.id; STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; STATE.clues=new Set(); renderScenario(); } });
     box.appendChild(b);
   });
