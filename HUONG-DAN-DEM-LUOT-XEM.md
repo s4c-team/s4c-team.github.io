@@ -1,8 +1,12 @@
 # Hướng dẫn bật ĐẾM LƯỢT XEM theo từng màn — S4C Hub
 
-Site này là trang đơn (đổi "màn" bằng JavaScript, không đổi URL). File `index.html`
-mới đã được gắn sẵn bộ đếm: mỗi lần đổi màn sẽ gửi 1 "lượt xem trang" riêng cho
-công cụ phân tích. Bạn **chỉ cần dán 1 mã** rồi đẩy lên GitHub Pages là chạy.
+Site này là trang đơn: đổi "màn" bằng JavaScript, mỗi màn có URL riêng dạng `#pricing`.
+Bộ đếm đã được gắn sẵn: mỗi lần đổi màn sẽ gửi 1 "lượt xem trang" riêng cho
+công cụ phân tích. Mã GA4 hiện tại: `G-7DY198HSSM` (đang bật).
+
+> **Cookie:** GA chỉ được tải sau khi khách bấm **Đồng ý** trên thông báo cookie
+> (theo Nghị định 13/2023/NĐ-CP). Khách bấm **Từ chối** thì không bị đếm, vì vậy số liệu GA
+> sẽ thấp hơn lượng truy cập thật. Khách đổi lựa chọn bằng nút "Cài đặt cookie" ở cuối trang.
 
 Khuyến nghị dùng **Google Analytics 4 (GA4)** — miễn phí, không cần tự host.
 
@@ -20,7 +24,7 @@ Khuyến nghị dùng **Google Analytics 4 (GA4)** — miễn phí, không cần
 
 ------------------------------------------------------------
 ## B. Dán mã vào site (sửa đúng 1 dòng)
-1. Mở file `index.html` bằng trình soạn thảo bất kỳ.
+1. Mở file `assets/js/app.js` bằng trình soạn thảo bất kỳ.
 2. Tìm đoạn (dùng Ctrl+F gõ `const ANALYTICS`):
 
         const ANALYTICS = {
@@ -41,11 +45,9 @@ Khuyến nghị dùng **Google Analytics 4 (GA4)** — miễn phí, không cần
 ------------------------------------------------------------
 ## C. Đẩy lên GitHub Pages (s4c-team.github.io)
 Đưa đủ các file này vào thư mục gốc của repo Pages:
-- `index.html`  (bản mới — ĐÃ có bộ đếm + domain thật)
-- `404.html`
-- `robots.txt`  (bản mới — đã trỏ đúng domain)
-- `sitemap.xml` (bản mới — đã trỏ đúng domain)
-- `og-cover.png` (ảnh preview khi chia sẻ link, nếu có)
+- `index.html`, thư mục `assets/` (CSS, JS, ảnh)
+- `404.html`, `robots.txt`, `sitemap.xml`
+- `og-cover.png` (ảnh preview khi chia sẻ link)
 
 Commit & push lên nhánh đang phục vụ Pages (thường là `main`). Vài phút sau
 `https://s4c-team.github.io` sẽ cập nhật.
@@ -65,6 +67,7 @@ Trong Google Analytics:
         /architecture    Giải pháp & công nghệ
         /faq             Câu hỏi thường gặp
         /engagement      Liên hệ & khảo sát
+        /privacy         Chính sách quyền riêng tư
 
 - Muốn thấy ngay khi test: **Reports → Realtime**, rồi tự mở site và bấm qua các màn.
 
@@ -72,9 +75,8 @@ Trong Google Analytics:
 ## Lưu ý
 - Số liệu chỉ bắt đầu chạy sau khi site đã lên domain thật và có người truy cập.
   Mở file trực tiếp trên máy (file://) sẽ KHÔNG được tính.
-- GA4 dùng cookie → nên thêm 1 dòng thông báo cookie nhỏ cho đúng quy định.
-  Cần thì báo mình làm thêm.
+- Thông báo cookie và trang Chính sách quyền riêng tư (`#privacy`) đã có sẵn.
 - Không muốn dùng Google thì thay bằng:
   - **Plausible**: điền `plausibleDomain: "s4c-team.github.io"` (cần tài khoản Plausible).
   - **Umami** (tự host, hợp hệ open-source của bạn): điền `umami.src` + `umami.id`.
-  Code trong index.html đã hỗ trợ sẵn cả ba, chỉ cần điền 1 cái.
+  Code trong assets/js/app.js đã hỗ trợ sẵn cả ba, chỉ cần điền 1 cái.
