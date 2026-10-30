@@ -35,6 +35,11 @@ function checkStatic() {
   check((html.match(/"@type":"ProfessionalService"/g) || []).length === 1, "JSON-LD ProfessionalService khai báo một lần");
   check((html.match(/fonts\.googleapis\.com\/css2/g) || []).length === 1, "Google Fonts tải một lần");
   check(!/base64,/.test(html), "không nhúng ảnh base64");
+  const imgs = [...html.matchAll(/<img[^>]*src="([^"]+)"/g)].map(m => m[1]);
+  check(new Set(imgs).size === imgs.length, "không có ảnh dùng lặp (" + imgs.length + " ảnh)");
+  const files = fs.readdirSync(path.join(ROOT, "assets/img")).map(f => "assets/img/" + f);
+  const unused = files.filter(f => !imgs.includes(f));
+  check(unused.length === 0, "không còn ảnh thừa trong assets/img" + (unused.length ? ": " + unused.join(", ") : ""));
   [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].forEach((m, i) => {
     let ok = true; try { JSON.parse(m[1]); } catch (e) { ok = false; } check(ok, "JSON-LD #" + (i + 1) + " hợp lệ");
   });
@@ -90,8 +95,10 @@ async function checkBrowser(base) {
     check(!(await page.isVisible("#panelClose")), "Esc đóng panel");
 
     check(await page.getAttribute("#hamb", "aria-label") !== null, "nút menu có aria-label");
-    const imgs = await page.$$eval("img", is => is.filter(i => !i.alt).length);
-    check(imgs === 0, "mọi ảnh đều có alt");
+    const noAlt = await page.$$eval("img", is => is.filter(i => !i.hasAttribute("alt") || (!i.alt && !i.closest("[aria-hidden=true]"))).length);
+    check(noAlt === 0, "mọi ảnh nội dung đều có alt");
+    const broken = await page.evaluate(async () => Promise.all([...document.images].map(i => { i.loading = "eager"; return i.decode().then(() => null, () => i.getAttribute("src")); })));
+    check(broken.every(b => !b), "mọi ảnh đều tải được" + (broken.some(b => b) ? ": " + broken.filter(Boolean).join(", ") : ""));
 
     check(errors.length === 0, "không có lỗi JavaScript" + (errors.length ? ": " + errors.join(" | ") : ""));
     await ctx.close();
