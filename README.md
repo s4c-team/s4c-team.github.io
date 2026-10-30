@@ -50,6 +50,15 @@ CI (GitHub Actions) chạy cùng bộ test này cho mỗi pull request và mỗi
 3. Thay `https://s4c-team.github.io` bằng domain mới trong `index.html` (canonical, og:*, JSON-LD), `robots.txt` và `sitemap.xml`.
 4. Tạo email theo domain (Google Workspace, Zoho Mail…), rồi cập nhật `CONTACT.email`.
 
+## Khi site ngừng chạy
+- **Repo phải để Public.** Với tài khoản GitHub miễn phí, chuyển repo sang Private thì GitHub gỡ site xuống ngay. Chuyển lại Public thì site **không tự chạy lại**.
+- **Cách cho site chạy lại:**
+  1. Vào **Settings → Pages**, kiểm tra Source là **Deploy from a branch**, nhánh `main`, thư mục `/ (root)`.
+  2. Đẩy một commit bất kỳ lên `main`, **hoặc** vào tab **Actions → pages build and deployment**, chọn lượt gần nhất rồi bấm **Re-run all jobs**.
+  3. Đợi 1–2 phút.
+- **Kiểm tra:** tab **Actions** phải có lượt **pages build and deployment** mới, báo xanh.
+- **Vẫn thấy giao diện cũ:** nhấn Ctrl+F5, hoặc mở bằng tab ẩn danh.
+
 ## Liên hệ
 Mr. Thịnh · Hotline 076 901 0092 · thinhdv90@gmail.com
 
