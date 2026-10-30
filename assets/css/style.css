@@ -860,3 +860,81 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
 
 /* thuộc tính hidden luôn thắng các display: flex/grid */
 [hidden] { display: none !important; }
+
+/* =====================================================================
+   Hiệu ứng nhẹ nhàng, thân thiện — chuyển động chậm, màu dịu, không nhấp nháy
+   (tự tắt khi máy bật "giảm chuyển động")
+   ===================================================================== */
+/* nền: vài mảng màu dịu trôi rất chậm phía sau nội dung */
+.aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.aurora span { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .18; }
+.aurora span:nth-child(1) { width: 42vmax; height: 42vmax; background: #93b4ff; top: -16vmax; right: -10vmax; }
+.aurora span:nth-child(2) { width: 38vmax; height: 38vmax; background: #8ee6d2; bottom: -20vmax; left: 8vmax; opacity: .14; }
+:root[data-theme="dark"] .aurora span { opacity: .12; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .aurora span { opacity: .12; } }
+.app { position: relative; z-index: 1; }
+
+/* hero: ảnh "thở" chậm, vài đốm sáng dịu trôi lên */
+.hv-glow { position: absolute; z-index: 1; width: 6px; height: 6px; border-radius: 50%; background: #b9d0ff; box-shadow: 0 0 12px 3px rgba(150,185,255,.55); opacity: 0; }
+.hv-glow.g1 { left: 38%; top: 78%; } .hv-glow.g2 { left: 62%; top: 70%; } .hv-glow.g3 { left: 82%; top: 82%; }
+@media (max-width: 720px){ .hv-glow { display: none; } }
+@keyframes breathe { from { transform: scale(1); } to { transform: scale(1.05); } }
+@keyframes floatUp { 0% { transform: translateY(0); opacity: 0; } 25% { opacity: .9; } 100% { transform: translateY(-90px); opacity: 0; } }
+@keyframes softIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* chữ nhấn ở hero: gradient dịu, đứng yên */
+.grad-text { background: linear-gradient(90deg, #9cbcff, #7fe0cb); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* số liệu: chữ số gradient dịu, thẻ nhấc nhẹ khi rê chuột */
+.stat .st-v { background: linear-gradient(135deg, var(--accent-ink), #14b8a6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.stat:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+
+/* thẻ: quầng sáng rất nhẹ theo con trỏ + nhấc lên êm */
+.pain-card:hover, .value-card:hover, .svc-card:hover, .price-card:hover, .model-card:hover, .open-card:hover,
+.story-card:hover, .cap-card:hover, .scn-pick:hover {
+  background-image: radial-gradient(360px circle at var(--mx,50%) var(--my,50%), color-mix(in srgb, var(--accent) 7%, transparent), transparent 65%);
+  box-shadow: 0 14px 34px -16px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.pain-card, .value-card, .svc-card, .price-card, .model-card, .open-card, .story-card, .cap-card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.value-card:hover, .open-card:hover, .model-card:hover { transform: translateY(-3px); }
+/* biểu tượng trong thẻ khẽ nảy khi rê chuột */
+.card:hover .itile { transform: translateY(-2px) rotate(-4deg); }
+.itile { transition: transform .3s cubic-bezier(.34,1.56,.64,1); }
+
+/* nút chính: ánh sáng lướt qua chậm, thưa */
+.btn.cta { position: relative; overflow: hidden; isolation: isolate; }
+.btn.cta::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.28) 50%, transparent 65%); transform: translateX(-130%); }
+.btn:active { transform: scale(.97); }
+
+/* thẻ năng lực cốt lõi: khẽ nhấc khi rê chuột */
+.mq-row span { transition: transform .2s ease, border-color .2s ease, color .2s ease; }
+.mq-row span:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent-ink); }
+
+/* banner ảnh: hiện ra từ từ, chú thích trượt nhẹ */
+.img-banner img { transition: transform 1.2s cubic-bezier(.2,.7,.2,1); transform: scale(1.04); }
+.img-banner.in img, .img-banner:not(.reveal) img { transform: scale(1); }
+.img-banner:hover img { transform: scale(1.03); }
+.img-banner .ib-cap { transition: transform .7s ease .2s, opacity .7s ease .2s; }
+.img-banner.reveal:not(.in) .ib-cap { opacity: 0; transform: translateX(-12px); }
+
+/* khung demo đang tự chạy: viền màu nhấn kèm quầng sáng "thở" chậm */
+.demo-run.playing { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent); }
+
+@media (prefers-reduced-motion: no-preference){
+  .aurora span:nth-child(1) { animation: driftA 40s ease-in-out infinite alternate; }
+  .aurora span:nth-child(2) { animation: driftB 46s ease-in-out infinite alternate; }
+  .hero-visual img { animation: breathe 14s ease-in-out infinite alternate; }
+  .hv-glow { animation: floatUp 7s ease-in infinite; }
+  .hv-glow.g2 { animation-delay: 2.4s; } .hv-glow.g3 { animation-delay: 4.6s; }
+  .hero .hero-text > * { animation: softIn .7s ease both; }
+  .hero .hero-text > :nth-child(2) { animation-delay: .08s; } .hero .hero-text > :nth-child(3) { animation-delay: .16s; } .hero .hero-text > :nth-child(4) { animation-delay: .24s; }
+  .btn.cta::after { animation: ctaGlide 9s ease-in-out 2s infinite; }
+  .demo-run.playing { animation: softGlow 3.2s ease-in-out infinite; }
+}
+@keyframes driftA { to { transform: translate(-10vmax, 8vmax); } }
+@keyframes driftB { to { transform: translate(10vmax, -6vmax); } }
+@keyframes ctaGlide { 0%, 75% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
+@keyframes softGlow { 0%, 100% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 10%, transparent); } 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 16%, transparent); } }
+@media (prefers-reduced-motion: reduce){ .card:hover .itile, .stat:hover, .mq-row span:hover { transform: none; } .img-banner img { transform: none !important; transition: none; } .img-banner .ib-cap { opacity: 1 !important; transform: none !important; } }

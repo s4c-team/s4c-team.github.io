@@ -1247,6 +1247,15 @@ if(faqList) FAQS.forEach(f=>{ const d=el("div","faq"); d.innerHTML=`<button clas
   const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ io.unobserve(e.target); countUp(e.target,+e.target.dataset.count); } }),{threshold:.6});
   nums.forEach(n=>io.observe(n));
 })();
+/* quầng sáng rất nhẹ theo con trỏ trên các thẻ (chỉ máy có chuột) */
+(function(){
+  if(reduceMotion||!window.matchMedia("(pointer: fine)").matches) return;
+  document.addEventListener("pointermove",e=>{
+    const c=e.target.closest&&e.target.closest(".card,.scn-pick"); if(!c) return;
+    const r=c.getBoundingClientRect();
+    c.style.setProperty("--mx",(e.clientX-r.left)+"px"); c.style.setProperty("--my",(e.clientY-r.top)+"px");
+  },{passive:true});
+})();
 /* thanh tiến độ cuộn trang */
 (function(){
   const bar=$("#scrollProgress"); if(!bar) return;

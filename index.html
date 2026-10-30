@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"S4C","alternateName":"S4C Hub","description":"Dịch vụ IT thuê ngoài cho doanh nghiệp nhỏ, siêu nhỏ và startup tại Việt Nam: vận hành – tối ưu hệ thống, an toàn thông tin (hardening), ứng cứu sự cố. Tư vấn miễn phí.","url":"https://s4c-team.github.io/","image":"https://s4c-team.github.io/og-cover.png","email":"thinhdv90@gmail.com","telephone":"+84769010092","areaServed":{"@type":"Country","name":"Việt Nam"},"address":{"@type":"PostalAddress","addressLocality":"Hà Nội","addressCountry":"VN"},"slogan":"Systems · Smart Solutions · Security","knowsAbout":["Quản trị & vận hành hệ thống","Tối ưu hiệu năng hệ thống","An toàn thông tin","Hardening máy chủ","Ứng cứu & điều tra sự cố","Tự động hóa vận hành"],"serviceType":["Dịch vụ quản trị & vận hành hệ thống","Tối ưu hiệu năng hệ thống","An toàn thông tin (hardening)","Ứng cứu & điều tra sự cố","Tự động hóa vận hành IT"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Cho người ngoài truy cập hệ thống thì có an toàn không?","acceptedAnswer":{"@type":"Answer","text":"S4C sẵn sàng ký cam kết bảo mật (NDA). Chúng tôi dùng quyền truy cập tối thiểu và tạm thời, ưu tiên chỉ đọc (read-only) khi có thể, mọi thao tác đều ghi lại (log), và bất kỳ việc gì có rủi ro đều hỏi ý bạn trước khi làm."}},{"@type":"Question","name":"DN của tôi còn nhỏ / mới, S4C có nhận không?","acceptedAnswer":{"@type":"Answer","text":"Có — đây đúng là đối tượng S4C hướng tới. Chúng tôi bắt đầu từ việc gấp và quan trọng nhất với bạn, làm vừa sức ngân sách, không ép làm tất cả cùng lúc."}},{"@type":"Question","name":"Chi phí tính thế nào, có phát sinh không?","acceptedAnswer":{"@type":"Answer","text":"Buổi trao đổi đầu miễn phí. Sau khi hiểu bài toán, S4C báo giá và phạm vi rõ ràng trước khi làm — không phát sinh ngoài thỏa thuận. Vì mỗi hệ thống một khác nên giá theo đúng phạm vi của bạn."}},{"@type":"Question","name":"Bao lâu thì thấy kết quả?","acceptedAnswer":{"@type":"Answer","text":"Việc gấp (bật sao lưu, chặn nguy cơ, xử lý sự cố) thường trong vài ngày. Dựng nền tảng vững chắc thường 1–2 tuần tùy quy mô. Quản trị vận hành là đồng hành dài hạn, theo nhịp định kỳ đã thống nhất."}},{"@type":"Question","name":"Tôi chỉ cần tư vấn hoặc làm một lần, được không?","acceptedAnswer":{"@type":"Answer","text":"Hoàn toàn được. Bạn có thể chỉ nhờ đánh giá hoặc xử lý một việc cụ thể, không bắt buộc gói dài hạn. Khi cần, quay lại bất cứ lúc nào."}},{"@type":"Question","name":"Khác gì so với tự thuê một bạn IT?","acceptedAnswer":{"@type":"Answer","text":"Bạn có cả một đội nhiều mảng (vận hành, tối ưu, bảo mật, ứng cứu) thay vì một người; chi phí linh hoạt theo nhu cầu; và không phải gánh lương cố định hay lo người nghỉ việc."}},{"@type":"Question","name":"S4C có sửa code / sản phẩm của tôi không?","acceptedAnswer":{"@type":"Answer","text":"Không. S4C tập trung tầng hệ thống, hạ tầng và an toàn — phối hợp cùng đội phát triển của bạn chứ không viết hay sửa code ứng dụng."}},{"@type":"Question","name":"Dữ liệu khách hàng của tôi có bị lộ không?","acceptedAnswer":{"@type":"Answer","text":"Không. S4C không thu thập và không chia sẻ dữ liệu của bạn cho bên thứ ba, chỉ xử lý trong phạm vi được cho phép và tuân thủ cam kết bảo mật đã ký."}}]}</script>
-<link rel="stylesheet" href="assets/css/style.css?v=0f124154">
+<link rel="stylesheet" href="assets/css/style.css?v=6e11a697">
 <script>try{var t=localStorage.getItem("s4c-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 </head>
 <body>
@@ -38,6 +38,7 @@
 
 <noscript><p style="padding:16px;text-align:center">Trang cần bật JavaScript để hiển thị đầy đủ. Liên hệ S4C: Hotline 076 901 0092 · <a href="mailto:thinhdv90@gmail.com">thinhdv90@gmail.com</a></p></noscript>
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"><span></span><span></span></div>
 <div class="app">
   <nav class="nav" id="nav">
     <div class="brand">
@@ -78,6 +79,7 @@
           </div>
           <div class="hero-visual" aria-hidden="true">
             <img src="assets/img/hero-cloud.webp?v=24c8fd71" width="1400" height="933" alt="" fetchpriority="high" decoding="async">
+            <span class="hv-glow g1"></span><span class="hv-glow g2"></span><span class="hv-glow g3"></span>
           </div>
         </div>
 
@@ -523,5 +525,5 @@
   <button id="gClose" style="font-size:13px">Đóng</button>
 </div>
 
-<script src="assets/js/app.js?v=dbcf019d"></script>
+<script src="assets/js/app.js?v=4d249568"></script>
 </body></html>
