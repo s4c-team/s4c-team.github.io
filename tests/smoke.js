@@ -70,6 +70,13 @@ async function checkBrowser(base) {
       await page.evaluate(view => go(view), v);
       check(await page.isVisible("#view-" + v + ".active") && page.url().endsWith("#" + v), "điều hướng tới #" + v);
     }
+    const leaks = [];
+    for (const v of VIEWS) {
+      await page.evaluate(view => go(view), v);
+      const t = await page.evaluate(view => document.getElementById("view-" + view).innerText, v);
+      if (/undefined|NaN|\[object /.test(t)) leaks.push(v);
+    }
+    check(leaks.length === 0, "không hiện chữ undefined/NaN trên màn" + (leaks.length ? ": " + leaks.join(", ") : ""));
     await page.goBack();
     check(page.url().endsWith("#engagement") && await page.isVisible("#view-engagement.active"), "nút Back quay về màn trước");
 

@@ -945,3 +945,9 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
   .stage-card { padding: 16px 14px; }
   .scn-stage { gap: 12px; }
 }
+
+/* tiêu đề mục: chữ thường, đậm, dễ đọc với tiếng Việt có dấu (thay cho IN HOA font mono) */
+.sec-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; text-transform: none; letter-spacing: -.2px; color: var(--ink); line-height: 1.35; }
+.sec-title::before { height: 4px; }
+@media (max-width: 560px){ .sec-title { font-size: 16.5px; } }
+.mq-label { font-family: var(--font-body); font-size: 13px; letter-spacing: 0; text-transform: none; color: var(--ink-soft); font-weight: 500; }
