@@ -951,3 +951,6 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
 .sec-title::before { height: 4px; }
 @media (max-width: 560px){ .sec-title { font-size: 16.5px; } }
 .mq-label { font-family: var(--font-body); font-size: 13px; letter-spacing: 0; text-transform: none; color: var(--ink-soft); font-weight: 500; }
+
+/* thuộc tính hidden luôn thắng các display: flex/grid */
+[hidden] { display: none !important; }

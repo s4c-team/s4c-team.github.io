@@ -8,7 +8,7 @@ const CONTACT = {
   name:     "Mr. Thịnh",
   hotline:  "076.901.0092",
   email:    "thinhdv90@gmail.com",
-  phone:    "076.901.0092",
+  phone:    "[Zalo: số/link cập nhật sau]",
   telegram: "[Telegram: @username hoặc link t.me]",
   messenger:"[Messenger: link m.me]",
 };
@@ -586,7 +586,9 @@ function fillContact(){
   const map={cName:CONTACT.name, cHotline:CONTACT.hotline, cEmail:CONTACT.email, cPhone:CONTACT.phone};
   Object.entries(map).forEach(([id,val])=>{
     const node=$("#"+id); if(!node) return;
-    if(isPlaceholder(val)){ node.textContent="sẽ cập nhật"; node.classList.add("ph"); }
+    const row=node.closest(".cb-row");
+    if(isPlaceholder(val)){ if(row) row.hidden=true; else { node.textContent="sẽ cập nhật"; node.classList.add("ph"); } return; }
+    if(row) row.hidden=false;
     else { node.textContent=val; node.classList.remove("ph"); }
   });
 }
@@ -1130,7 +1132,7 @@ async function submitForm(btn){
       body:JSON.stringify({ _subject:"Nhu cầu dịch vụ S4C", lien_he:contact, noi_dung:summaryText() }) });
     if(!r.ok) throw new Error(r.status);
     toast("Đã gửi — S4C sẽ liên hệ lại sớm");
-  }catch(e){ toast("Chưa gửi được — bạn thử kênh Hotline/Email/Zalo bên cạnh nhé"); }
+  }catch(e){ toast("Chưa gửi được — bạn thử gọi Hotline hoặc gửi Email nhé"); }
   btn.disabled=false;
 }
 /* Popup tiến trình khi chọn kênh gửi */

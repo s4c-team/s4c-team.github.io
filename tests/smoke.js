@@ -107,8 +107,9 @@ async function checkBrowser(base) {
     check(!(await page.isVisible("#consent.show")), "ghi nhớ lựa chọn từ chối cookie");
 
     const labels = await page.$$eval("#shareRow .share-btn", bs => bs.map(b => b.textContent.trim()));
-    check(!labels.some(l => /Telegram|Messenger/.test(l)), "ẩn kênh liên hệ chưa cấu hình (" + labels.join(", ") + ")");
-    check(labels.includes("Zalo"), "có kênh Zalo");
+    check(labels.join("|") === "Hotline|Email|Sao chép nội dung", "chỉ hiện kênh Hotline, Email (" + labels.join(", ") + ")");
+    const rows = await page.$$eval(".cb-row", rs => rs.filter(r => getComputedStyle(r).display !== "none").map(r => r.querySelector(".cb-k").textContent));
+    check(rows.join("|") === "Hotline|Email", "khung liên hệ chỉ hiện Hotline, Email (" + rows.join(", ") + ")");
 
     await page.evaluate(() => document.documentElement.removeAttribute("data-theme"));
     await page.click("#themeBtn").catch(async () => { await page.click("#hamb"); await page.click("#themeBtn"); });
