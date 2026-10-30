@@ -491,6 +491,7 @@ svg.ic { width: 1em; height: 1em; display: block; }
   .page-head h1, .page-head h2 { font-size: 22px; }
 }
 .model-grid { grid-template-columns: repeat(2,1fr); }
+@media (max-width: 860px){ .model-grid { grid-template-columns: 1fr; } }
 .model-card { padding: 20px; }
 .model-card .itile { width: 40px; height: 40px; font-size: 21px; margin-bottom: 12px; }
 .model-card h3 { font-size: 16px; } .model-card .m-desc { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
@@ -792,3 +793,11 @@ img{max-width:100%}
 }
 @keyframes bannerSweep { 0% { left: -40%; opacity: 0; } 20% { opacity: 1; } 100% { left: 130%; opacity: 0; } }
 @media (prefers-reduced-motion: reduce){ .img-banner img, .img-banner:hover img { transform: none; transition: none; } .img-banner .ib-cap { opacity: 1 !important; transform: none !important; } }
+
+/* consent trên mobile: gọn, nút chia đều, ẩn FAB khi đang hiện */
+@media (max-width: 560px){
+  .consent { left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom,0px)); padding: 12px 14px; gap: 10px; font-size: 12.5px; }
+  .consent p { flex-basis: 100%; }
+  .consent .c-act { width: 100%; } .consent .c-act .btn { flex: 1; }
+}
+body.consent-open .fab { opacity: 0; pointer-events: none; }

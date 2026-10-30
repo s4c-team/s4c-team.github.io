@@ -28,14 +28,17 @@ function serve() {
 function checkStatic() {
   console.log("Static checks");
   const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-  const refs = [...html.matchAll(/(?:src|href)="([^"#:]+)"/g)].map(m => m[1]).filter(r => !r.startsWith("//") && r !== "/");
+  const refs = [...html.matchAll(/(?:src|href)="([^"#:]+)"/g)].map(m => m[1].split("?")[0]).filter(r => !r.startsWith("//") && r !== "/");
+  const { hash } = require("../tools/stamp-assets.js");
   refs.forEach(r => check(fs.existsSync(path.join(ROOT, r)), "tồn tại: " + r));
   ["og-cover.png", "robots.txt", "sitemap.xml", "404.html"].forEach(f => check(fs.existsSync(path.join(ROOT, f)), "tồn tại: " + f));
   check((html.match(/<h1[\s>]/g) || []).length === 1, "chỉ một <h1> trong index.html");
   check((html.match(/"@type":"ProfessionalService"/g) || []).length === 1, "JSON-LD ProfessionalService khai báo một lần");
   check((html.match(/fonts\.googleapis\.com\/css2/g) || []).length === 1, "Google Fonts tải một lần");
   check(!/base64,/.test(html), "không nhúng ảnh base64");
-  const imgs = [...html.matchAll(/<img[^>]*src="([^"]+)"/g)].map(m => m[1]);
+  const stale = [...html.matchAll(/(?:src|href)="(assets\/[^"?]+)(?:\?v=([0-9a-f]+))?"/g)].filter(m => m[2] !== hash(m[1])).map(m => m[1]);
+  check(stale.length === 0, "mã phiên bản ?v= khớp nội dung file" + (stale.length ? " — chạy node tools/stamp-assets.js: " + stale.join(", ") : ""));
+  const imgs = [...html.matchAll(/<img[^>]*src="([^"?]+)/g)].map(m => m[1]);
   check(new Set(imgs).size === imgs.length, "không có ảnh dùng lặp (" + imgs.length + " ảnh)");
   const files = fs.readdirSync(path.join(ROOT, "assets/img")).map(f => "assets/img/" + f);
   const unused = files.filter(f => !imgs.includes(f));
@@ -100,8 +103,27 @@ async function checkBrowser(base) {
     const broken = await page.evaluate(async () => Promise.all([...document.images].map(i => { i.loading = "eager"; return i.decode().then(() => null, () => i.getAttribute("src")); })));
     check(broken.every(b => !b), "mọi ảnh đều tải được" + (broken.some(b => b) ? ": " + broken.filter(Boolean).join(", ") : ""));
 
+    if (vp.name === "mobile") {
+      await page.goto(base + "/#models");
+      const cols = await page.$eval("#modelGrid", e => getComputedStyle(e).gridTemplateColumns.split(" ").length);
+      check(cols === 1, "Cách hợp tác hiển thị 1 cột trên mobile");
+    }
     check(errors.length === 0, "không có lỗi JavaScript" + (errors.length ? ": " + errors.join(" | ") : ""));
     await ctx.close();
+  }
+  console.log("Quét cuộn ngang ở nhiều cỡ màn hình");
+  for (const w of [320, 768, 1024, 1440]) {
+    const c = await browser.newContext({ viewport: { width: w, height: 800 } });
+    await c.route(url => !url.href.startsWith(base), r => r.abort());
+    const pg = await c.newPage();
+    await pg.goto(base + "/");
+    const bad = [];
+    for (const v of VIEWS) {
+      await pg.evaluate(view => go(view), v);
+      if (await pg.evaluate(() => document.documentElement.scrollWidth > innerWidth)) bad.push(v);
+    }
+    check(bad.length === 0, w + "px: không cuộn ngang" + (bad.length ? " (" + bad.join(", ") + ")" : ""));
+    await c.close();
   }
   const ctx = await browser.newContext();
   const page = await ctx.newPage();

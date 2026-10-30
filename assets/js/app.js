@@ -557,7 +557,7 @@ function currentDark(){const a=document.documentElement.getAttribute("data-theme
 $("#themeBtn").addEventListener("click",()=>{ const t=currentDark()?"light":"dark"; document.documentElement.setAttribute("data-theme",t); try{ localStorage.setItem("s4c-theme",t); }catch(e){} });
 
 /* ---- Cookie consent ---- */
-function showConsent(show){ $("#consent").classList.toggle("show",show); }
+function showConsent(show){ $("#consent").classList.toggle("show",show); document.body.classList.toggle("consent-open",show); }
 $("#consentYes").addEventListener("click",()=>{ setConsent("yes"); showConsent(false); loadAnalytics(); trackView(currentView||"overview"); });
 $("#consentNo").addEventListener("click",()=>{ setConsent("no"); showConsent(false); });
 $("#consentReopen").addEventListener("click",()=>showConsent(true));

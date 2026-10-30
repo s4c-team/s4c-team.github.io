@@ -16,6 +16,7 @@ Trang đang chạy tại <https://s4c-team.github.io> (GitHub Pages, nhánh `mai
 | `og-cover.png` | Ảnh xem trước khi chia sẻ link (1200×630) |
 | `404.html`, `robots.txt`, `sitemap.xml` | Trang lỗi và file cho công cụ tìm kiếm |
 | `tests/smoke.js` | Kiểm thử tự động bằng Playwright |
+| `tools/stamp-assets.js` | Gắn mã phiên bản `?v=` cho CSS/JS/ảnh (chống cache cũ) |
 | `HUONG-DAN-DEM-LUOT-XEM.md` | Hướng dẫn bật/đọc số liệu Google Analytics |
 
 Mỗi màn có URL riêng dạng `https://s4c-team.github.io/#pricing`, gửi link là mở đúng màn đó. Các màn: `overview`, `scenario`, `about`, `services`, `pricing`, `models`, `architecture`, `faq`, `engagement`, `privacy`.
@@ -26,6 +27,8 @@ Mọi cấu hình nằm ở đầu `assets/js/app.js`:
 - **`FORM_ENDPOINT`**: để form gửi thẳng về email, tạo form miễn phí tại <https://formspree.io>, rồi dán link dạng `https://formspree.io/f/xxxx` vào đây. Nút **Gửi ngay** sẽ tự xuất hiện.
 - **`PRICING`, `SERVICES`, `FAQS`…**: nội dung từng màn. Khi sửa `FAQS`, nhớ sửa luôn khối JSON-LD `FAQPage` trong `index.html`.
 - **`ANALYTICS`**: mã GA4. GA chỉ được tải sau khi khách bấm **Đồng ý** trên thông báo cookie.
+
+**Sau khi sửa bất kỳ file nào trong `assets/`**, chạy `node tools/stamp-assets.js`. Script này cập nhật mã `?v=` trong `index.html` để điện thoại và trình duyệt tải bản mới thay vì bản cũ trong cache. CI sẽ báo lỗi nếu quên bước này.
 
 ## Chạy thử & kiểm thử
 ```bash
