@@ -19,15 +19,15 @@ const PRICING = [
   { icon:"chat",    name:"Trao đổi & tư vấn ban đầu", price:"Miễn phí", unit:"", popular:false,
     desc:"Một buổi nghe bài toán của bạn và phác thảo hướng xử lý. Không cam kết, không ràng buộc.",
     items:["Hiểu nhu cầu & hiện trạng","Gợi ý hướng ưu tiên","Phác thảo phạm vi & chi phí"] },
-  { icon:"search",  name:"Tư vấn & đánh giá hệ thống", price:"Theo quy mô", unit:"", popular:false,
+  { icon:"search",  name:"Tư vấn & đánh giá hệ thống", price:"Từ ~5 triệu", unit:"/ lần", popular:false,
     desc:"Rà soát tổng thể, đánh giá sức khỏe & an toàn, chỉ ra điểm yếu theo thứ tự ưu tiên.",
     items:["Đánh giá vận hành + an toàn","Báo cáo & điểm số dễ hiểu","Lộ trình đề xuất rõ ràng"] },
-  { icon:"wrench",  name:"Triển khai & tối ưu", price:"Theo gói công việc", unit:"", popular:true,
+  { icon:"wrench",  name:"Triển khai & tối ưu", price:"Từ ~10 triệu", unit:"/ gói", popular:true,
     desc:"Dựng nền tảng: cài đặt & cấu hình, tối ưu hiệu năng, hardening (FW/WAF/PAM), sao lưu.",
     items:["Thiết lập & siết cấu hình","Tối ưu hiệu năng (performance)","Bảo vệ nhiều lớp + sao lưu"] },
-  { icon:"gear",    name:"Đồng hành vận hành (Managed)", price:"Phí theo tháng", unit:"", popular:false,
-    desc:"S4C vận hành, giám sát, tối ưu định kỳ và ứng cứu sự cố hằng tháng — thay cho đội kỹ thuật.",
-    items:["Giám sát & cảnh báo sớm","Vận hành + tuning định kỳ","Ứng cứu sự cố + báo cáo"] },
+  { icon:"gear",    name:"Đồng hành vận hành (Managed)", price:"Từ ~5 triệu", unit:"/ tháng", popular:false,
+    desc:"S4C quản trị vận hành, đảm bảo an toàn thông tin và tối ưu định kỳ hằng tháng — thay cho đội kỹ thuật.",
+    items:["Cảnh báo tự động khi có bất thường","Quản trị + tối ưu định kỳ","Hỗ trợ xử lý sự cố + báo cáo tháng"] },
   { icon:"users",   name:"Thuê theo giờ / theo việc", price:"Theo giờ / đợt", unit:"", popular:false,
     desc:"Cần người làm theo đợt, linh hoạt như một thành viên kỹ thuật bên ngoài.",
     items:["Theo nhu cầu cụ thể","Không ràng buộc dài hạn","Tính theo khối lượng"] },
@@ -42,6 +42,10 @@ const ICONS = {
   book:'<path d="M12 6c-2-1.3-4.6-2-7.2-2A1 1 0 004 5v12.5a1 1 0 001 1c2.4 0 4.7.6 7 1.8 2.3-1.2 4.6-1.8 7-1.8a1 1 0 001-1V5a1 1 0 00-.8-1C16.6 4 14 4.7 12 6z"/><path d="M12 6v13"/>',
   quote:'<path d="M9 7H5a2 2 0 00-2 2v3a2 2 0 002 2h2v3H4M19 7h-4a2 2 0 00-2 2v3a2 2 0 002 2h2v3h-3"/>',
   play:'<path d="M7 5l12 7-12 7z" fill="currentColor" stroke="none"/>',
+  pause:'<rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor" stroke="none"/><rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor" stroke="none"/>',
+  next:'<path d="M5 5.5l9.5 6.5L5 18.5z" fill="currentColor" stroke="none"/><path d="M18.5 5.5v13"/>',
+  prev:'<path d="M19 5.5L9.5 12l9.5 6.5z" fill="currentColor" stroke="none"/><path d="M5.5 5.5v13"/>',
+  arrowR:'<path d="M5 12h14M13 6l6 6-6 6"/>',
   grid:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
   money:'<rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9v6M18 9v6"/>',
   users:'<circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3 2.6-5 5.5-5s5.5 2 5.5 5"/><path d="M16 5.2a3 3 0 010 5.6"/><path d="M20.5 20c0-2.4-1.7-4.2-4-4.8"/>',
@@ -109,9 +113,9 @@ const NAV = [
   { view:"about", icon:"book", label:"Về S4C" },
   { sec:"Tìm hiểu" },
   { view:"services", icon:"grid", label:"Nhóm dịch vụ" },
-  { view:"pricing", icon:"money", label:"Bảng giá tham khảo" },
-  { view:"models", icon:"handshake", label:"Cách hợp tác" },
   { view:"architecture", icon:"network", label:"Giải pháp & công nghệ" },
+  { view:"models", icon:"handshake", label:"Cách hợp tác" },
+  { view:"pricing", icon:"money", label:"Bảng giá tham khảo" },
   { view:"faq", icon:"quote", label:"Câu hỏi thường gặp" },
   { view:"engagement", icon:"mail", label:"Liên hệ & khảo sát" },
 ];
@@ -123,6 +127,18 @@ NAV.forEach(n=>{
   b.innerHTML=`<span class="ix">${svgIcon(n.icon)}</span>${n.label}`;
   navScroll.appendChild(b);
 });
+/* thanh "Tiếp theo" cuối mỗi màn — đi theo đúng thứ tự menu cho liền mạch */
+(function(){
+  const order=NAV.filter(n=>n.view).map(n=>n.view);
+  order.forEach((v,i)=>{
+    const next=NAV.find(n=>n.view===order[i+1]), sec=document.getElementById("view-"+v);
+    if(!next||!sec) return;
+    const b=el("button","next-step");
+    b.dataset.nav=next.view;
+    b.innerHTML=`<span class="ns-k">Tiếp theo · ${i+2}/${order.length}</span><span class="ns-t"><span class="ns-ic">${svgIcon(next.icon)}</span>${next.label}</span><span class="ns-go">${svgIcon("arrowR")}</span>`;
+    sec.appendChild(b);
+  });
+})();
 $("#guideBtn").innerHTML=`${svgIcon("play")} Trình bày theo kịch bản`;
 $("#resetBtn").textContent="↺ Xem lại từ đầu";
 $("#themeBtn").textContent="◐ Theme";
@@ -282,7 +298,7 @@ const MANAGED = [
 const OPS_REPORT = {
   what:"Dựng tự động hóa (sao lưu, dọn dẹp, cảnh báo tự xử lý); tinh chỉnh (tuning) hệ thống; cải thiện định kỳ.",
   perf:"Tốc độ phản hồi nhanh hơn ~2,6 lần (từ ~430ms xuống ~165ms).",
-  uptime:"Uptime tháng: 99,95% · không có gián đoạn kéo dài.",
+  uptime:"Uptime tháng: 99,9% · không có gián đoạn kéo dài.",
   followup:"Theo dõi dung lượng đĩa, tối ưu truy vấn chậm, rà soát bảo mật định kỳ.",
   cost:"Trong gói Managed theo tháng — không phát sinh ngoài.",
 };
@@ -306,7 +322,7 @@ const ASSESS_FINDINGS = [
   { sev:"warn", color:"var(--warn)", title:"App/web chưa có WAF che chắn", desc:"Ứng dụng công khai nhưng không có WAF (lá chắn ứng dụng web) chặn tấn công tự động. Bị dò quét là có thể bị khai thác.", cost:"Điểm mù: bị tấn công mà không hay" },
 ];
 const PROPOSE_OPTIONS = [
-  { id:"quickwin", name:"Gói \"Xử lý vấn đề cấp thiết\"", desc:"Làm ngay việc rủi ro cao nhất: bật sao lưu tự động + giám sát cơ bản + lá chắn web. Nhanh, gọn, chặn nguy cơ lớn.", fit:"Hợp nếu ngân sách hạn chế, cần an tâm ngay", price:"Tham khảo: từ ~5 triệu, theo việc" },
+  { id:"quickwin", name:"Gói \"Xử lý vấn đề cấp thiết\"", desc:"Làm ngay việc rủi ro cao nhất: bật sao lưu tự động + cảnh báo cơ bản + lá chắn web. Nhanh, gọn, chặn nguy cơ lớn.", fit:"Hợp nếu ngân sách hạn chế, cần an tâm ngay", price:"Tham khảo: từ ~5 triệu, theo việc" },
   { id:"foundation", name:"Gói \"Nền tảng vững chắc\"", desc:"Triển khai & tối ưu đủ 5 khía cạnh: giám sát, hiệu năng/cấu hình, sao lưu, bảo vệ hệ thống, kiểm soát truy cập — bằng công cụ mã nguồn mở.", fit:"Hợp nếu muốn chắc chắn, làm một lần cho gọn", price:"Tham khảo: từ ~10 triệu, gói 1 lần" },
   { id:"companion", name:"Gói \"Đồng hành lâu dài\"", desc:"Nền tảng vững chắc + tự động hóa việc lặp, tối ưu hiệu năng định kỳ và ứng cứu sự cố khi cần. Bạn có một chỗ dựa kỹ thuật ổn định.", fit:"Hợp nếu muốn yên tâm dài hạn, không phải tự lo", price:"Tham khảo: từ ~5 triệu/tháng" },
 ];
@@ -513,6 +529,7 @@ function go(view, opts){
   if(!(opts&&opts.fromHistory) && viewFromHash()!==view){
     try{ history.pushState(null,"",view==="overview"?location.pathname+location.search:"#"+view); }catch(e){ location.hash=view; }
   }
+  if(view!=="scenario" && typeof setAuto==="function" && AUTO.on) setAuto(false);
   currentView=view;
   document.title=(view==="overview"?"S4C — Dịch vụ IT & an toàn thông tin cho doanh nghiệp nhỏ":VIEW_TITLES[view]+" — S4C");
   liveStop();
@@ -521,6 +538,7 @@ function go(view, opts){
   setNavOpen(false); window.scrollTo({top:0,behavior:"instant"});
   trackView(view);
   revealIn(view);
+  if(view==="scenario" && !reduceMotion && !guiding) setAuto(true);
 }
 $$(".nav-item").forEach(n=>n.addEventListener("click",()=>go(n.dataset.view)));
 document.addEventListener("click",e=>{const t=e.target.closest("[data-nav]");if(t){e.preventDefault();go(t.dataset.nav);}});
@@ -734,12 +752,62 @@ function stageNavHtml(){
   </div>`;
 }
 function renderStage(){
-  liveStop();
+  liveStop(); autoReset();
   const sc=curScen(), steps=sc.steps, s=steps[STATE.stageIdx];
   const body = sc.id==="assess"?assessBody(s.key) : sc.id==="tune"?tuneBody(s.key) : sc.id==="managed"?managedBody(s.key) : dfirBody(s.key);
-  $("#scnStage").innerHTML=`<div class="st-eyebrow">${sc.label} · Bước ${STATE.stageIdx+1}/${steps.length}</div><h2>${s.title}</h2><p class="st-intro">${s.intro}</p>${body}${stageNavHtml()}`;
+  const stg=$("#scnStage");
+  stg.innerHTML=`<div class="st-eyebrow">${sc.label} · Bước ${STATE.stageIdx+1}/${steps.length}</div><h2>${s.title}</h2><p class="st-intro">${s.intro}</p>${body}${stageNavHtml()}`;
+  stg.classList.remove("enter"); void stg.offsetWidth; stg.classList.add("enter");
+  const si=SCENARIOS.indexOf(sc), pm=$("#plMeta"); if(pm) pm.textContent=`Kịch bản ${si+1}/${SCENARIOS.length} · Bước ${STATE.stageIdx+1}/${steps.length}`;
   bindStageNav(); bindStageBody(sc.id, s.key);
 }
+/* ---- Trình phát demo: tự chuyển bước, hết kịch bản thì sang kịch bản kế tiếp ---- */
+const AUTO={ on:false, ms:9000, t0:0, elapsed:0, raf:0, hold:false };
+function autoReset(){ AUTO.elapsed=0; AUTO.t0=performance.now(); const f=$("#plFill"); if(f) f.style.transform="scaleX(0)"; }
+function stepDemo(dir){
+  const steps=curScen().steps, i=SCENARIOS.findIndex(s=>s.id===STATE.scenId);
+  if(dir>0 && STATE.stageIdx<steps.length-1){ STATE.stageIdx++; }
+  else if(dir<0 && STATE.stageIdx>0){ STATE.stageIdx--; }
+  else {
+    const nx=SCENARIOS[(i+dir+SCENARIOS.length)%SCENARIOS.length];
+    STATE.scenId=nx.id; STATE.opTab="perf"; STATE.clues=new Set();
+    STATE.stageIdx=dir>0?0:nx.steps.length-1; STATE.maxStage=STATE.stageIdx;
+  }
+  STATE.maxStage=Math.max(STATE.maxStage,STATE.stageIdx);
+  renderScenario();
+}
+function autoTick(now){
+  if(!AUTO.on) return;
+  if(AUTO.hold||AUTO.offscreen||document.hidden) AUTO.t0=now-AUTO.elapsed; else AUTO.elapsed=now-AUTO.t0;
+  const k=Math.min(1,AUTO.elapsed/AUTO.ms), f=$("#plFill");
+  if(f) f.style.transform=`scaleX(${k})`;
+  if(k>=1) stepDemo(1);
+  AUTO.raf=requestAnimationFrame(autoTick);
+}
+function setAuto(on){
+  AUTO.on=on; cancelAnimationFrame(AUTO.raf);
+  const b=$("#plToggle"), dr=$("#demoRun");
+  if(b){ b.setAttribute("aria-pressed",String(on)); b.innerHTML=`<span class="ic">${svgIcon(on?"pause":"play")}</span><span class="pl-lbl">${on?"Tạm dừng":"Tự chạy"}</span>`; }
+  if(dr) dr.classList.toggle("playing",on);
+  autoReset(); if(on) AUTO.raf=requestAnimationFrame(autoTick);
+}
+$("#plToggle").addEventListener("click",()=>setAuto(!AUTO.on));
+$("#plNext").addEventListener("click",()=>stepDemo(1));
+$("#plPrev").addEventListener("click",()=>stepDemo(-1));
+/* đang đọc (rê chuột / thao tác trong khung demo) thì giữ, không tự chuyển */
+(function(){
+  const st=document.querySelector(".scn-stage"); if(!st) return;
+  const hold=v=>{ AUTO.hold=v; const dr=$("#demoRun"); if(dr) dr.classList.toggle("held",v&&AUTO.on); };
+  st.addEventListener("pointerenter",e=>{ if(e.pointerType==="mouse") hold(true); });
+  st.addEventListener("pointerleave",e=>{ if(e.pointerType==="mouse") hold(false); });
+  st.addEventListener("focusin",()=>hold(true)); st.addEventListener("focusout",()=>hold(false));
+  /* cảm ứng: chạm vào khung demo thì giữ 10 giây */
+  let tHold=0;
+  st.addEventListener("pointerdown",e=>{ if(e.pointerType==="mouse") return; hold(true); clearTimeout(tHold); tHold=setTimeout(()=>hold(false),10000); });
+  /* khung demo ra khỏi màn hình thì không tự chuyển (tránh trang nhảy khi đang đọc chỗ khác) */
+  const dr=$("#demoRun");
+  if(dr && "IntersectionObserver" in window) new IntersectionObserver(es=>{ AUTO.offscreen=!es[0].isIntersecting; },{threshold:.15}).observe(dr);
+})();
 function bindStageNav(){
   const p=$("#stPrev"),n=$("#stNext"),r=$("#stReset");
   if(p)p.addEventListener("click",()=>{STATE.stageIdx--;renderScenario();});
@@ -987,7 +1055,7 @@ $$(".arch-node").forEach(g=>g.addEventListener("click",()=>showNode(g.dataset.no
     const row=el("button","pm-row");
     row.innerHTML=`<span class="pm-ic itile">${svgIcon(p.ic)}</span><span class="pm-prob">${p.prob}</span><span class="pm-arrow">→</span><span class="pm-sol">${p.sol}</span><span class="pm-go">${p.scn?"Xem demo":"Xem dịch vụ"}</span>`;
     row.addEventListener("click",()=>{
-      if(p.scn){ if(STATE.scenId!==p.scn){STATE.scenId=p.scn;STATE.stageIdx=0;STATE.maxStage=0;STATE.clues=new Set();} renderScenario(); const hub=$("#scnHub"); if(hub) hub.scrollIntoView({behavior:"smooth",block:"center"}); }
+      if(p.scn){ if(STATE.scenId!==p.scn){STATE.scenId=p.scn;STATE.stageIdx=0;STATE.maxStage=0;STATE.clues=new Set();} renderScenario(); const dr=$("#demoRun"); if(dr) dr.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"start"}); }
       else if(p.svc){ const s=SERVICES.find(x=>x.id===p.svc); if(s) openService(s); }
     });
     box.appendChild(row);
@@ -1127,7 +1195,7 @@ function closePanel(){if(panelEl){panelEl.remove();panelEl=null;}$("#overlay").c
 let gIdx=0,guiding=false;
 const guideBar=$("#guideBar");
 function guideTotal(){ return curScen().steps.length+1; }
-function startGuide(){ guiding=true; gIdx=0; guideBar.classList.add("show"); gotoGuide(); }
+function startGuide(){ if(AUTO.on) setAuto(false); guiding=true; gIdx=0; guideBar.classList.add("show"); gotoGuide(); }
 function stopGuide(){ guiding=false; guideBar.classList.remove("show"); }
 function gotoGuide(){
   const sc=curScen(), steps=sc.steps, total=steps.length+1;
@@ -1152,7 +1220,7 @@ const FAQS=[
   { q:"Cho người ngoài truy cập hệ thống thì có an toàn không?", a:"S4C sẵn sàng ký cam kết bảo mật (NDA). Chúng tôi dùng quyền truy cập tối thiểu và tạm thời, ưu tiên chỉ đọc (read-only) khi có thể, mọi thao tác đều ghi lại (log), và bất kỳ việc gì có rủi ro đều hỏi ý bạn trước khi làm." },
   { q:"DN của tôi còn nhỏ / mới, S4C có nhận không?", a:"Có — đây đúng là đối tượng S4C hướng tới. Chúng tôi bắt đầu từ việc gấp và quan trọng nhất với bạn, làm vừa sức ngân sách, không ép làm tất cả cùng lúc." },
   { q:"Chi phí tính thế nào, có phát sinh không?", a:"Buổi trao đổi đầu miễn phí. Sau khi hiểu bài toán, S4C báo giá và phạm vi rõ ràng trước khi làm — không phát sinh ngoài thỏa thuận. Vì mỗi hệ thống một khác nên giá theo đúng phạm vi của bạn." },
-  { q:"Bao lâu thì thấy kết quả?", a:"Việc gấp (bật sao lưu, chặn nguy cơ, xử lý sự cố) thường trong vài ngày. Dựng nền tảng vững chắc thường 1–2 tuần tùy quy mô. Vận hành/giám sát là đồng hành liên tục." },
+  { q:"Bao lâu thì thấy kết quả?", a:"Việc gấp (bật sao lưu, chặn nguy cơ, xử lý sự cố) thường trong vài ngày. Dựng nền tảng vững chắc thường 1–2 tuần tùy quy mô. Quản trị vận hành là đồng hành dài hạn, theo nhịp định kỳ đã thống nhất." },
   { q:"Tôi chỉ cần tư vấn hoặc làm một lần, được không?", a:"Hoàn toàn được. Bạn có thể chỉ nhờ đánh giá hoặc xử lý một việc cụ thể, không bắt buộc gói dài hạn. Khi cần, quay lại bất cứ lúc nào." },
   { q:"Khác gì so với tự thuê một bạn IT?", a:"Bạn có cả một đội nhiều mảng (vận hành, tối ưu, bảo mật, ứng cứu) thay vì một người; chi phí linh hoạt theo nhu cầu; và không phải gánh lương cố định hay lo người nghỉ việc." },
   { q:"S4C có sửa code / sản phẩm của tôi không?", a:"Không. S4C tập trung tầng hệ thống, hạ tầng và an toàn — phối hợp cùng đội phát triển của bạn chứ không viết hay sửa code ứng dụng." },
@@ -1168,6 +1236,36 @@ if(faqList) FAQS.forEach(f=>{ const d=el("div","faq"); d.innerHTML=`<button clas
   if(fe){ if(!isPlaceholder(CONTACT.email)){ fe.textContent="Email: "+CONTACT.email; fe.href="mailto:"+CONTACT.email; } else { fe.textContent="Email"; } }
   const pe=$("#pEmail"); if(pe && !isPlaceholder(CONTACT.email)) pe.textContent=CONTACT.email;
   const fab=$("#fab"); if(fab) fab.addEventListener("click",()=>go("engagement"));
+})();
+
+/* ---- Hiệu ứng giao diện ---- */
+/* marquee: nhân đôi hàng để chạy vòng liền mạch */
+$$(".mq-row").forEach(r=>{ const c=r.cloneNode(true); c.setAttribute("aria-hidden","true"); r.parentNode.appendChild(c); });
+/* số liệu đếm lên khi cuộn tới */
+(function(){
+  const nums=$$("[data-count]"); if(!nums.length) return;
+  if(!("IntersectionObserver" in window)||reduceMotion) return;
+  nums.forEach(n=>n.textContent="0");
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ io.unobserve(e.target); countUp(e.target,+e.target.dataset.count); } }),{threshold:.6});
+  nums.forEach(n=>io.observe(n));
+})();
+/* spotlight theo con trỏ trên các thẻ */
+(function(){
+  if(reduceMotion||!window.matchMedia("(pointer: fine)").matches) return;
+  document.addEventListener("pointermove",e=>{
+    const c=e.target.closest&&e.target.closest(".card,.scn-pick,.stat");
+    if(!c) return;
+    const r=c.getBoundingClientRect();
+    c.style.setProperty("--mx",(e.clientX-r.left)+"px"); c.style.setProperty("--my",(e.clientY-r.top)+"px");
+  },{passive:true});
+})();
+/* thanh tiến độ cuộn trang */
+(function(){
+  const bar=$("#scrollProgress"); if(!bar) return;
+  let q=false;
+  const upd=()=>{ q=false; const h=document.documentElement.scrollHeight-innerHeight; bar.style.transform=`scaleX(${h>0?Math.min(1,scrollY/h):0})`; };
+  addEventListener("scroll",()=>{ if(!q){ q=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener("resize",upd); upd();
 })();
 
 /* ---- Init ---- */

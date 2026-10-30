@@ -73,6 +73,25 @@ async function checkBrowser(base) {
     await page.goBack();
     check(page.url().endsWith("#engagement") && await page.isVisible("#view-engagement.active"), "nút Back quay về màn trước");
 
+    await page.goto(base + "/#scenario");
+    check(await page.isVisible("#demoRun.playing"), "demo tự chạy khi vào màn Kịch bản");
+    await page.evaluate(() => { document.getElementById("demoRun").scrollIntoView({ block: "start" }); AUTO.ms = 300; autoReset(); });
+    await page.mouse.move(1, 1);
+    await page.waitForFunction(() => STATE.stageIdx >= 1, null, { timeout: 4000 }).catch(() => {});
+    check(await page.evaluate(() => STATE.stageIdx >= 1), "demo tự chuyển sang bước tiếp");
+    await page.evaluate(() => { STATE.stageIdx = curScen().steps.length - 1; renderScenario(); document.getElementById("demoRun").scrollIntoView({ block: "start" }); });
+    await page.waitForFunction(() => STATE.scenId !== "assess", null, { timeout: 4000 }).catch(() => {});
+    check(await page.evaluate(() => STATE.scenId === "tune" && STATE.stageIdx === 0), "hết kịch bản thì sang kịch bản kế tiếp");
+    await page.click("#plToggle");
+    const idx = await page.evaluate(() => STATE.stageIdx);
+    await page.waitForTimeout(800);
+    check(!(await page.isVisible("#demoRun.playing")) && await page.evaluate(i => STATE.stageIdx === i, idx), "nút Tạm dừng dừng tự chạy");
+    await page.click("#plNext");
+    check(await page.evaluate(i => STATE.stageIdx === i + 1, idx), "nút bước tiếp hoạt động");
+    await page.evaluate(() => { setAuto(true); go("faq"); });
+    check(await page.evaluate(() => !AUTO.on), "rời màn Kịch bản thì dừng tự chạy");
+    check(await page.isVisible("#view-faq .next-step"), "có thanh Tiếp theo cuối màn");
+
     await page.goto(base + "/#pricing");
     check(await page.isVisible("#view-pricing.active"), "deep link #pricing mở đúng màn");
 
