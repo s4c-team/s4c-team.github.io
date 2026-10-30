@@ -164,7 +164,7 @@ const VALUES = [
 const SCENARIOS = [
   { id:"assess", icon:"search", step:"Dịch vụ 1 · Tư vấn & Đánh giá", label:"Đánh giá tổng thể",
     tag:"Rà soát toàn diện hệ thống & ATTT theo khung chuẩn → bàn giao bản đánh giá, rủi ro và khuyến nghị.",
-    customer:{icon:"store", name:"Xưởng may xuất khẩu", type:"~50 nhân sự · làm hàng cho nhãn hàng châu Âu", context:"Nhãn hàng nước ngoài yêu cầu bản đánh giá an toàn thông tin trước khi ký đơn hàng mới; xưởng chưa có người IT riêng"},
+    customer:{icon:"network", name:"Công ty IT game outsource", type:"~60 kỹ sư · gia công cho studio Âu–Mỹ", context:"Đối tác nước ngoài yêu cầu bản đánh giá năng lực an toàn thông tin trước khi ký hợp đồng mới"},
     steps:[
       {key:"why", nav:"Vì sao", title:"1 · Vì sao cần đánh giá tổng thể", intro:"Đối tác nước ngoài, nhà đầu tư, hay chính rủi ro mất dữ liệu buộc bạn phải biết hệ thống mình đang ở đâu so với một chuẩn an toàn — bằng chứng, không cảm tính."},
       {key:"framework", nav:"Khung chuẩn", title:"2 · Soi theo một khung chuẩn", intro:"S4C đánh giá theo khung NIST CSF — 5 trụ cột dễ hiểu: Nhận diện, Bảo vệ, Phát hiện, Ứng phó, Phục hồi; đối chiếu thêm các mục của ISO 27001."},
@@ -194,9 +194,9 @@ const SCENARIOS = [
     ]},
   { id:"dfir", icon:"shield", step:"Dịch vụ 4 · Điều tra & Ứng cứu (DFIR)", label:"Ứng cứu mã độc tống tiền",
     tag:"Sự cố nghiêm trọng (ransomware, malware, webshell) → điều tra số (DFIR), khống chế, khôi phục và báo cáo.",
-    customer:{icon:"network", name:"Xưởng sản xuất bao bì", type:"Xưởng + văn phòng · ~40 máy tính", context:"Sáng thứ Hai: hàng loạt máy hiện thông báo đòi tiền chuộc, file bị mã hóa đuôi .locked — dây chuyền &amp; văn phòng đình trệ"},
+    customer:{icon:"network", name:"Công ty sản xuất vốn Nhật (FDI)", type:"Nhà máy + văn phòng tại VN · ~180 máy", context:"Sáng thứ Hai: hàng loạt máy hiện thông báo đòi tiền chuộc, file bị mã hóa đuôi .locked — dây chuyền &amp; văn phòng đình trệ"},
     steps:[
-      {key:"signal", nav:"Sự cố", title:"1 · Sự cố: hệ thống bị mã hóa & đòi tiền chuộc", intro:"Đây là tình huống khẩn cấp: nhiều máy trạm và máy chủ file bị mã hóa, kèm ghi chú đòi tiền chuộc. Mỗi giờ trôi qua là thiệt hại."},
+      {key:"signal", nav:"Sự cố", title:"1 · Sự cố: hệ thống bị mã hóa & đòi tiền chuộc", intro:"Đây là tình huống khẩn cấp quy mô lớn: nhiều máy trạm và máy chủ file bị mã hóa, kèm ghi chú đòi tiền chuộc. Mỗi giờ trôi qua là thiệt hại."},
       {key:"scope", nav:"Khoanh vùng", title:"2 · Khoanh vùng & điều tra số (DFIR)", intro:"Việc đầu tiên không phải xóa — mà là khoanh vùng thiệt hại, giữ bằng chứng và tìm 'bệnh nhân số 0' để chặn lây lan."},
       {key:"chain", nav:"Chuỗi tấn công", title:"3 · Dựng lại chuỗi tấn công", intro:"S4C dựng lại toàn bộ đường đi của kẻ tấn công — từ email lừa đảo đến lúc mã hóa hàng loạt."},
       {key:"respond", nav:"Ứng cứu", title:"4 · Ứng cứu & khôi phục", intro:"Cô lập, chặn lây, khôi phục từ bản sao lưu sạch — và nguyên tắc quan trọng: không trả tiền chuộc."},
@@ -209,10 +209,10 @@ const COMPLIANCE=["Tắt dịch vụ &amp; cổng mạng không dùng","Chuẩn 
 /* Dữ liệu KB3 — Managed: so sánh nguồn lực */
 const RESOURCE=[{k:"Tự tuyển nhân viên IT", pct:100, note:"Lương cố định cả năm, một người khó giỏi đủ mọi mảng, nghỉ là hụt"},{k:"Thuê Managed từ S4C", pct:38, note:"Trả theo nhu cầu, có cả đội nhiều mảng, không gánh lương cố định"}];
 const MGMT_WAY=["Quy trình chuẩn: tiếp nhận → xử lý → phê duyệt → ghi vết","Thời gian phản hồi thống nhất trước, theo mức độ nghiêm trọng","Báo cáo định kỳ &amp; đề xuất cải thiện minh bạch"];
-/* Dữ liệu KB4 — DFIR ransomware */
-const DFIR_SIGNAL=[["Máy bị mã hóa","9 / 40","máy trạm + 1 máy chủ file"],["Thời điểm","02:30 Chủ nhật","ngoài giờ, cuối tuần"],["Đòi tiền chuộc","Có","ghi chú để trên màn hình"]];
+/* Dữ liệu KB4 — DFIR ransomware (FDI) */
+const DFIR_SIGNAL=[["Máy bị mã hóa","34 / 180","máy trạm + 2 máy chủ file"],["Thời điểm","02:30 Chủ nhật","ngoài giờ, cuối tuần"],["Đòi tiền chuộc","Có","ghi chú để trên màn hình"]];
 const DFIR_FINDINGS=[
-  { sev:"crit", title:"Ransomware mã hóa hàng loạt", desc:"Mã độc tống tiền lan qua mạng nội bộ, mã hóa file trên nhiều máy và máy chủ chia sẻ. Đuôi file đổi thành .locked." , cost:"Dây chuyền & văn phòng đình trệ" },
+  { sev:"crit", title:"Ransomware mã hóa hàng loạt", desc:"Mã độc tống tiền lan qua mạng nội bộ, mã hóa file trên nhiều máy và 2 máy chủ chia sẻ. Đuôi file đổi thành .locked." , cost:"Dây chuyền & văn phòng đình trệ" },
   { sev:"crit", title:"Xâm nhập từ email lừa đảo", desc:"Lần ngược về 'bệnh nhân số 0': một nhân viên mở tệp đính kèm độc hại cuối tuần trước — khởi nguồn của toàn bộ sự việc." , cost:"Thiếu lọc email & nhận thức" },
   { sev:"warn", title:"Mạng phẳng, không chia vùng", desc:"Máy văn phòng và máy chủ cùng một vùng mạng, không MFA cho tài khoản quản trị — nên mã độc lan ngang rất nhanh." , cost:"Lây lan diện rộng" },
 ];
@@ -232,7 +232,7 @@ const DFIR_RESP=[
 ];
 const DFIR_OUTPUT=[
   ["Nguyên nhân gốc","Email lừa đảo + thiếu MFA + mạng phẳng không chia vùng"],
-  ["Phạm vi","9/40 máy bị mã hóa; chưa thấy dấu hiệu dữ liệu bị mang ra ngoài"],
+  ["Phạm vi","34/180 máy bị mã hóa; chưa thấy dấu hiệu dữ liệu bị mang ra ngoài"],
   ["Khôi phục","Phục hồi từ backup sạch trong ~28 giờ — không trả tiền chuộc"],
   ["Ngăn tái diễn","Chia vùng mạng, bật xác thực 2 lớp, cài phần mềm chống mã độc có giám sát (EDR), sao lưu offline, diễn tập ứng cứu"],
 ];
@@ -949,7 +949,7 @@ function managedBody(key){
   return "";
 }
 
-/* ===== KB4: DFIR — Ứng cứu ransomware ===== */
+/* ===== KB4: DFIR — Ứng cứu Ransomware (FDI) ===== */
 function dfirBody(key){
   if(key==="signal") return `<div class="risk-callout" style="margin-top:6px"><span class="r-ic">${svgIcon("info")}</span><div><div class="r-h">Sự cố khẩn cấp</div><div style="font-size:12.5px;color:var(--ink)">Ransomware đã mã hóa hàng loạt máy. Dây chuyền sản xuất và văn phòng đình trệ — cần ứng cứu ngay, đúng quy trình, không hoảng loạn.</div></div></div>
     <div class="spark-row" style="margin-top:12px">${DFIR_SIGNAL.map(s=>`<div class="spark"><div class="sp-lbl">${s[0]}</div><div class="sp-val tnum" style="color:var(--crit)">${s[1]}</div><div style="font-size:11px;color:var(--ink-faint);margin-top:6px">${s[2]}</div></div>`).join("")}</div>
@@ -967,7 +967,7 @@ function dfirBody(key){
       ${DFIR_OUTPUT.map(o=>`<div class="rc-row"><span class="rk">${o[0]}</span><span>${o[1]}</span></div>`).join("")}
       <div class="rc-row"><span class="rk">Tài liệu bàn giao</span><span>Báo cáo sự cố đầy đủ (dòng thời gian, bằng chứng, hành động), khuyến nghị kỹ thuật &amp; quy trình</span></div>
     </div></div>
-    <div class="svc-link-card" style="margin-top:12px"><p style="font-size:13px;color:var(--ink)"><b>Output:</b> hệ thống được khôi phục, nguyên nhân gốc được bịt, và một báo cáo đủ sức trình chủ doanh nghiệp và đối tác. Kèm lộ trình để sự cố không lặp lại.</p><button class="btn primary" style="margin-top:12px" data-nav="engagement">Cần ứng cứu khẩn? Liên hệ ngay →</button></div>`;
+    <div class="svc-link-card" style="margin-top:12px"><p style="font-size:13px;color:var(--ink)"><b>Output:</b> hệ thống được khôi phục, nguyên nhân gốc được bịt, và một báo cáo đủ sức trình ban lãnh đạo/tập đoàn mẹ. Kèm lộ trình để sự cố không lặp lại.</p><button class="btn primary" style="margin-top:12px" data-nav="engagement">Cần ứng cứu khẩn? Liên hệ ngay →</button></div>`;
   return "";
 }
 
