@@ -138,6 +138,32 @@ async function checkBrowser(base) {
     check(errors.length === 0, "không có lỗi JavaScript" + (errors.length ? ": " + errors.join(" | ") : ""));
     await ctx.close();
   }
+  console.log("Demo tự chạy trong các điều kiện thực tế");
+  for (const [name, opts] of [["điện thoại, chưa cuộn tới demo", { viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true }],
+                              ["máy bật giảm chuyển động", { viewport: { width: 1366, height: 800 }, reducedMotion: "reduce" }]]) {
+    const c = await browser.newContext(opts);
+    await c.route(url => !url.href.startsWith(base), r => r.abort());
+    const pg = await c.newPage();
+    await pg.goto(base + "/#scenario");
+    await pg.evaluate(() => { AUTO.ms = 400; autoReset(); });
+    await pg.waitForFunction(() => STATE.stageIdx >= 1, null, { timeout: 4000 }).catch(() => {});
+    check(await pg.evaluate(() => AUTO.on && STATE.stageIdx >= 1), name + ": demo vẫn tự chuyển bước");
+    await c.close();
+  }
+  {
+    const c = await browser.newContext({ viewport: { width: 1366, height: 800 } });
+    await c.route(url => !url.href.startsWith(base), r => r.abort());
+    const pg = await c.newPage();
+    await pg.goto(base + "/#scenario");
+    await pg.evaluate(() => { document.getElementById("demoRun").scrollIntoView({ block: "start" }); });
+    const box = await pg.locator(".scn-stage").boundingBox();
+    await pg.mouse.move(box.x + 50, box.y + 50); await pg.mouse.move(box.x + 60, box.y + 60);
+    check(await pg.evaluate(() => AUTO.hold), "rê chuột trên demo thì tạm giữ");
+    await pg.waitForFunction(() => !AUTO.hold, null, { timeout: 6000 }).catch(() => {});
+    check(await pg.evaluate(() => !AUTO.hold), "con trỏ nằm yên thì vài giây sau tự chạy tiếp");
+    await c.close();
+  }
+
   console.log("Quét cuộn ngang ở nhiều cỡ màn hình");
   for (const w of [320, 768, 1024, 1440]) {
     const c = await browser.newContext({ viewport: { width: w, height: 800 } });

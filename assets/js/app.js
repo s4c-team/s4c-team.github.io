@@ -538,7 +538,7 @@ function go(view, opts){
   setNavOpen(false); window.scrollTo({top:0,behavior:"instant"});
   trackView(view);
   revealIn(view);
-  if(view==="scenario" && !reduceMotion && !guiding) setAuto(true);
+  if(view==="scenario" && !guiding) setAuto(true);
 }
 $$(".nav-item").forEach(n=>n.addEventListener("click",()=>go(n.dataset.view)));
 document.addEventListener("click",e=>{const t=e.target.closest("[data-nav]");if(t){e.preventDefault();go(t.dataset.nav);}});
@@ -728,7 +728,10 @@ function renderHub(){
   SCENARIOS.forEach(sc=>{
     const b=el("button","scn-pick"+(sc.id===STATE.scenId?" active":""));
     b.innerHTML=`<div class="sp-top"><span class="itile sp-ic">${svgIcon(sc.icon)}</span><div class="sp-meta"><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div></div><div class="sp-tag">${sc.tag}</div><div class="sp-cta"><span class="sp-play-btn" title="Xem demo live" aria-label="Xem demo live">${svgIcon("play")}</span></div>`;
-    b.addEventListener("click",()=>{ if(STATE.scenId!==sc.id){ STATE.scenId=sc.id; STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; STATE.clues=new Set(); renderScenario(); } });
+    b.addEventListener("click",()=>{
+      if(STATE.scenId!==sc.id){ STATE.scenId=sc.id; STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; STATE.clues=new Set(); renderScenario(); }
+      const dr=$("#demoRun"); if(dr && dr.getBoundingClientRect().top>innerHeight*.6) dr.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"start"});
+    });
     box.appendChild(b);
   });
 }
@@ -796,19 +799,20 @@ function setAuto(on){
 $("#plToggle").addEventListener("click",()=>setAuto(!AUTO.on));
 $("#plNext").addEventListener("click",()=>stepDemo(1));
 $("#plPrev").addEventListener("click",()=>stepDemo(-1));
-/* đang đọc (rê chuột / thao tác trong khung demo) thì giữ, không tự chuyển */
+/* khách đang thao tác trong khung demo (rê/di chuột, chạm, gõ phím) thì giữ tạm,
+   ngừng thao tác vài giây là tự chạy tiếp — con trỏ nằm yên trên khung không làm demo đứng mãi */
 (function(){
   const st=document.querySelector(".scn-stage"); if(!st) return;
-  const hold=v=>{ AUTO.hold=v; const dr=$("#demoRun"); if(dr) dr.classList.toggle("held",v&&AUTO.on); };
-  st.addEventListener("pointerenter",e=>{ if(e.pointerType==="mouse") hold(true); });
-  st.addEventListener("pointerleave",e=>{ if(e.pointerType==="mouse") hold(false); });
-  st.addEventListener("focusin",()=>hold(true)); st.addEventListener("focusout",()=>hold(false));
-  /* cảm ứng: chạm vào khung demo thì giữ 10 giây */
   let tHold=0;
-  st.addEventListener("pointerdown",e=>{ if(e.pointerType==="mouse") return; hold(true); clearTimeout(tHold); tHold=setTimeout(()=>hold(false),10000); });
-  /* khung demo ra khỏi màn hình thì không tự chuyển (tránh trang nhảy khi đang đọc chỗ khác) */
+  const hold=ms=>{ AUTO.hold=true; const dr=$("#demoRun"); if(dr) dr.classList.toggle("held",AUTO.on);
+    clearTimeout(tHold); tHold=setTimeout(()=>{ AUTO.hold=false; const d=$("#demoRun"); if(d) d.classList.remove("held"); },ms); };
+  st.addEventListener("pointermove",e=>{ if(e.pointerType==="mouse") hold(4000); },{passive:true});
+  st.addEventListener("pointerdown",e=>hold(e.pointerType==="mouse"?6000:10000),{passive:true});
+  st.addEventListener("keydown",()=>hold(8000));
+  /* chỉ dừng khi khung demo đã cuộn qua (nằm phía trên màn hình) — tránh trang nhảy khi đang đọc phần bên dưới;
+     demo còn nằm phía dưới (vừa vào màn trên điện thoại) thì vẫn chạy */
   const dr=$("#demoRun");
-  if(dr && "IntersectionObserver" in window) new IntersectionObserver(es=>{ AUTO.offscreen=!es[0].isIntersecting; },{threshold:.15}).observe(dr);
+  if(dr && "IntersectionObserver" in window) new IntersectionObserver(es=>{ const e=es[0]; AUTO.offscreen=!e.isIntersecting && e.boundingClientRect.top<0; }).observe(dr);
 })();
 function bindStageNav(){
   const p=$("#stPrev"),n=$("#stNext"),r=$("#stReset");
