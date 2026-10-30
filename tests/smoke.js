@@ -36,6 +36,13 @@ function checkStatic() {
   check((html.match(/"@type":"ProfessionalService"/g) || []).length === 1, "JSON-LD ProfessionalService khai báo một lần");
   check((html.match(/fonts\.googleapis\.com\/css2/g) || []).length === 1, "Google Fonts tải một lần");
   check(!/base64,/.test(html), "không nhúng ảnh base64");
+  {
+    const js = fs.readFileSync(path.join(ROOT, "assets/js/app.js"), "utf8");
+    const shown = Object.fromEntries([...js.matchAll(/\{ q:"([^"]+)", a:"([^"]+)" \}/g)].map(m => [m[1], m[2]]));
+    const ldRaw = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1])).find(d => d["@type"] === "FAQPage");
+    const same = ldRaw && ldRaw.mainEntity.length === Object.keys(shown).length && ldRaw.mainEntity.every(q => shown[q.name] === q.acceptedAnswer.text);
+    check(same, "FAQ khai báo cho Google khớp với FAQ trên trang");
+  }
   const stale = [...html.matchAll(/(?:src|href)="(assets\/[^"?]+)(?:\?v=([0-9a-f]+))?"/g)].filter(m => m[2] !== hash(m[1])).map(m => m[1]);
   check(stale.length === 0, "mã phiên bản ?v= khớp nội dung file" + (stale.length ? " — chạy node tools/stamp-assets.js: " + stale.join(", ") : ""));
   const imgs = [...html.matchAll(/<img[^>]*src="([^"?]+)/g)].map(m => m[1]);

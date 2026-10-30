@@ -19,10 +19,10 @@ const PRICING = [
   { icon:"chat",    name:"Trao đổi & tư vấn ban đầu", price:"Miễn phí", unit:"", popular:false,
     desc:"Một buổi nghe bài toán của bạn và phác thảo hướng xử lý. Không cam kết, không ràng buộc.",
     items:["Hiểu nhu cầu & hiện trạng","Gợi ý hướng ưu tiên","Phác thảo phạm vi & chi phí"] },
-  { icon:"search",  name:"Tư vấn & đánh giá hệ thống", price:"Từ ~5 triệu", unit:"/ lần", popular:false,
+  { icon:"search",  name:"Tư vấn & đánh giá hệ thống", price:"Từ ~5 triệu", unit:"/ lần", popular:true,
     desc:"Rà soát tổng thể, đánh giá sức khỏe & an toàn, chỉ ra điểm yếu theo thứ tự ưu tiên.",
     items:["Đánh giá vận hành + an toàn","Báo cáo & điểm số dễ hiểu","Lộ trình đề xuất rõ ràng"] },
-  { icon:"wrench",  name:"Triển khai & tối ưu", price:"Từ ~10 triệu", unit:"/ gói", popular:true,
+  { icon:"wrench",  name:"Triển khai & tối ưu", price:"Từ ~10 triệu", unit:"/ gói", popular:false,
     desc:"Dựng nền tảng: cài đặt & cấu hình, tăng tốc, siết bảo mật (tường lửa, lá chắn web, quyền quản trị), sao lưu.",
     items:["Thiết lập & siết cấu hình","Tăng tốc hệ thống","Bảo vệ nhiều lớp + sao lưu"] },
   { icon:"gear",    name:"Đồng hành vận hành theo tháng", price:"Từ ~5 triệu", unit:"/ tháng", popular:false,
@@ -31,7 +31,7 @@ const PRICING = [
   { icon:"users",   name:"Thuê theo giờ / theo việc", price:"Theo giờ / đợt", unit:"", popular:false,
     desc:"Cần người làm theo đợt, linh hoạt như một thành viên kỹ thuật bên ngoài.",
     items:["Theo nhu cầu cụ thể","Không ràng buộc dài hạn","Tính theo khối lượng"] },
-  { icon:"sliders", name:"Giải pháp may đo (Custom)", price:"Báo giá riêng", unit:"", popular:false,
+  { icon:"sliders", name:"Giải pháp may đo", price:"Báo giá riêng", unit:"", popular:false,
     desc:"Bài toán đặc thù cần thiết kế riêng. S4C nghiên cứu và triển khai đúng tình huống của bạn.",
     items:["Khảo sát & thiết kế riêng","Kết hợp nhiều dịch vụ","Báo giá theo phạm vi"] },
 ];
@@ -143,7 +143,7 @@ NAV.forEach(n=>{
 })();
 $("#guideBtn").innerHTML=`${svgIcon("play")} Trình bày theo kịch bản`;
 $("#resetBtn").textContent="↺ Xem lại từ đầu";
-$("#themeBtn").textContent="◐ Theme";
+$("#themeBtn").textContent="◐ Sáng / Tối";
 
 /* resolve inline [data-icon] placeholders in static HTML */
 $$("[data-icon]").forEach(n=>{ n.innerHTML=svgIcon(n.dataset.icon); });
@@ -164,7 +164,7 @@ const VALUES = [
 ];
 /* ===== 4 KỊCH BẢN (sắp theo thứ tự dịch vụ) — mỗi KB có OUTPUT bàn giao ===== */
 const SCENARIOS = [
-  { id:"assess", icon:"search", step:"Dịch vụ 1 · Tư vấn & Đánh giá", label:"Đánh giá tổng thể",
+  { id:"assess", icon:"search", step:"Dịch vụ · Tư vấn & Đánh giá", label:"Đánh giá tổng thể",
     tag:"Rà soát toàn diện hệ thống & ATTT theo khung chuẩn → bàn giao bản đánh giá, rủi ro và khuyến nghị.",
     customer:{icon:"network", name:"Công ty IT game outsource", type:"~30 người · gia công cho studio Âu–Mỹ", context:"Đối tác nước ngoài yêu cầu bản đánh giá năng lực an toàn thông tin trước khi ký hợp đồng mới"},
     steps:[
@@ -174,7 +174,7 @@ const SCENARIOS = [
       {key:"gap", nav:"Khoảng cách", title:"4 · Khoảng cách & rủi ro", intro:"S4C liệt kê khoảng cách cụ thể theo mức ưu tiên — cái nào nguy hiểm cần xử lý ngay, cái nào làm sau."},
       {key:"output", nav:"Bàn giao", title:"5 · Bàn giao: Bản đánh giá tổng thể", intro:"Kết quả cuối cùng là một bộ tài liệu bạn cầm được — để ra quyết định, trình đối tác hoặc chuẩn bị cho đợt kiểm tra của đối tác."},
     ]},
-  { id:"tune", icon:"gear", step:"Dịch vụ 2 · Siết bảo mật & tối ưu", label:"Siết bảo mật & tăng tốc hệ thống",
+  { id:"tune", icon:"gear", step:"Dịch vụ · Tăng cường bảo mật & tối ưu", label:"Siết bảo mật & tăng tốc hệ thống",
     tag:"Siết cấu hình, tăng tốc và tăng cường bảo mật → hệ thống nhanh hơn và đạt chuẩn.",
     customer:{icon:"store", name:"Nền tảng app đi chợ", type:"Startup giao hàng · ~25 người", context:"Lượt truy cập tăng nhanh — giờ cao điểm hệ thống quá tải, đồng thời lo bề mặt tấn công mở rộng"},
     steps:[
@@ -184,7 +184,7 @@ const SCENARIOS = [
       {key:"standard", nav:"Đạt chuẩn", title:"4 · Đáp ứng tiêu chuẩn", intro:"Đối chiếu với bộ chuẩn cấu hình an toàn được quốc tế công nhận (CIS) — đảm bảo làm đúng chứ không làm cho có."},
       {key:"output", nav:"Bàn giao", title:"5 · Bàn giao: hệ thống tối ưu & đạt chuẩn", intro:"Kết quả: hệ thống nhanh hơn, vững hơn, có tài liệu cấu hình chuẩn để duy trì."},
     ]},
-  { id:"managed", icon:"gear", step:"Dịch vụ 3 · Vận hành trọn gói", label:"Vận hành & Tự động hóa",
+  { id:"managed", icon:"gear", step:"Dịch vụ · Vận hành & Tự động hóa", label:"Vận hành & Tự động hóa",
     tag:"S4C đưa việc lặp lại vào tự động hóa (tác vụ chạy định kỳ, cảnh báo tự xử lý) để hệ thống tự chạy phần nhàm chán → bạn tiết kiệm nguồn lực, đội ngũ tập trung việc giá trị cao.",
     customer:{icon:"store", name:"Shop Táo Xanh (bán lẻ online)", type:"Bán lẻ đa kênh · ~30 người", context:"Không có đội kỹ thuật riêng; tuyển người giỏi thì đắt và khó giữ, mà phần lớn công việc lại là những đầu việc lặp đi lặp lại"},
     steps:[
@@ -194,7 +194,7 @@ const SCENARIOS = [
       {key:"resource", nav:"Nguồn lực", title:"4 · Tối ưu nguồn lực & chuẩn hóa cách làm", intro:"Nhờ tự động hóa, cùng một chi phí lo được nhiều việc hơn so với tuyển người làm tay — kèm quy trình rõ ràng và thời gian phản hồi thống nhất trước."},
       {key:"output", nav:"Bàn giao", title:"5 · Bàn giao: hệ thống tự chạy & minh bạch", intro:"Kết quả: phần việc lặp đã tự động hóa, nguồn lực dồn vào việc giá trị cao, và báo cáo minh bạch mỗi kỳ."},
     ]},
-  { id:"dfir", icon:"shield", step:"Dịch vụ 4 · Điều tra & Ứng cứu sự cố", label:"Ứng cứu mã độc tống tiền",
+  { id:"dfir", icon:"shield", step:"Dịch vụ · Điều tra & Ứng cứu sự cố", label:"Ứng cứu mã độc tống tiền",
     tag:"Sự cố nghiêm trọng (mã độc tống tiền, mã độc, website bị cài cửa hậu) → điều tra, khống chế, khôi phục và báo cáo.",
     customer:{icon:"network", name:"Công ty sản xuất đồ gỗ nội thất", type:"Doanh nghiệp nhỏ · xưởng + văn phòng · ~60 máy", context:"Sáng thứ Hai: hàng loạt máy hiện thông báo đòi tiền chuộc, file bị mã hóa đuôi .locked — dây chuyền &amp; văn phòng đình trệ"},
     steps:[
@@ -219,7 +219,7 @@ const DFIR_FINDINGS=[
   { sev:"warn", title:"Mạng phẳng, không chia vùng", desc:"Máy văn phòng và máy chủ cùng một vùng mạng, tài khoản quản trị không bật xác thực 2 lớp — nên mã độc lan ngang rất nhanh." , cost:"Lây lan diện rộng" },
 ];
 const DFIR_CHAIN=[
-  {n:"01",t:"Email lừa đảo",d:"NV mở tệp đính kèm độc"},
+  {n:"01",t:"Email lừa đảo",d:"Nhân viên mở tệp đính kèm độc hại"},
   {n:"02",t:"Chiếm máy đầu",d:"Mã độc chạy, tải thêm công cụ"},
   {n:"03",t:"Leo thang quyền",d:"Chiếm tài khoản quản trị"},
   {n:"04",t:"Lan ngang",d:"Phát tán khắp mạng nội bộ"},
@@ -257,37 +257,6 @@ const ROADMAP = [
   { ph:"Giai đoạn 2 · 1–3 tháng", h:"Hoàn thiện bảo vệ & quy trình", p:"Siết bảo mật (tường lửa, lá chắn web, tài khoản quản trị), chuẩn hóa cấu hình, xây quy trình ứng phó sự cố và đầu mối rõ ràng." },
   { ph:"Giai đoạn 3 · duy trì", h:"Vận hành & cải thiện liên tục", p:"Tự động hóa việc lặp, theo dõi và đánh giá lại định kỳ theo khung, báo cáo mức trưởng thành cho đối tác/lãnh đạo." },
 ];
-/* Dữ liệu KB3 — Điều tra tấn công */
-const PROCS = [
-  { name:"nginx", cpu:12, flag:false }, { name:"php-fpm", cpu:18, flag:false },
-  { name:"mysqld", cpu:22, flag:false }, { name:"kdevtmpfsi", cpu:98, flag:true },
-  { name:"sshd", cpu:2, flag:false },
-];
-const CLUES = [
-  { icon:"pulse", t:"Tiến trình lạ chiếm 98% CPU", d:"Tiến trình 'kdevtmpfsi' không thuộc hệ thống — đây là phần mềm đào tiền ảo (cryptominer) đang dùng máy chủ của bạn để đào coin cho kẻ khác. Đó là lý do CPU luôn 99% và hóa đơn cloud tăng vọt." },
-  { icon:"wall", t:"File lạ trong thư mục upload", d:"Phát hiện file /var/www/uploads/img_9f3.php — một 'webshell': cửa hậu cho phép kẻ tấn công chạy lệnh trên máy chủ qua trình duyệt. Nó được tải lên qua một lỗ hổng ở chức năng upload." },
-  { icon:"gear", t:"Tác vụ định kỳ (cron) lạ", d:"Có một cron job tự tải lại mã độc mỗi 10 phút — gọi là backdoor để duy trì quyền kiểm soát, kể cả khi bạn xóa tiến trình thì nó tự quay lại." },
-  { icon:"network", t:"Kết nối ra 'mỏ đào' coin", d:"Máy chủ đang kết nối ra một pool đào tiền ảo qua cổng 3333 — bằng chứng rõ ràng tài nguyên của bạn đang bị lợi dụng để kiếm tiền." },
-];
-const KCHAIN = [
-  { n:"01", t:"Khai thác lỗ hổng", d:"Chức năng upload thiếu kiểm tra" },
-  { n:"02", t:"Cài webshell", d:"Tải cửa hậu .php lên máy chủ" },
-  { n:"03", t:"Cắm backdoor", d:"Cron tự tải lại mã độc" },
-  { n:"04", t:"Thả miner", d:"Cài phần mềm đào tiền ảo" },
-  { n:"05", t:"Chiếm tài nguyên", d:"CPU 99%, hóa đơn tăng" },
-];
-const SEC_RESP = [
-  "Cô lập máy chủ khỏi 'mỏ đào' — chặn kết nối ra cổng 3333 (sau khi báo bạn).",
-  "Dừng & xóa tiến trình miner và webshell; gỡ cron job backdoor cắm sẵn.",
-  "Đổi toàn bộ mật khẩu/khóa truy cập có thể đã lộ; rà soát tài khoản lạ.",
-  "Kiểm tra log xác nhận phạm vi — dữ liệu khách có bị lấy đi không.",
-];
-const SEC_PREVENT = [
-  "Vá lỗ hổng upload (nguyên nhân gốc) & siết cấu hình máy chủ.",
-  "Dựng WAF (lá chắn web) chặn các kiểu tấn công tương tự.",
-  "Bật giám sát + cảnh báo khi CPU/kết nối bất thường — để lần sau biết ngay trong vài phút.",
-  "Sao lưu sạch & kiểm chứng để khôi phục nhanh nếu cần.",
-];
 /* Dữ liệu KB2 — Managed */
 const MANAGED = [
   { icon:"gear", t:"Tự động hóa việc lặp (TỰ ĐỘNG)", d:"Tác vụ tự động lo cập nhật, dọn dẹp, kiểm tra sức khỏe — không cần ngồi làm tay." },
@@ -304,53 +273,18 @@ const OPS_REPORT = {
   followup:"Theo dõi dung lượng đĩa, tối ưu truy vấn chậm, rà soát bảo mật định kỳ.",
   cost:"Trong gói vận hành theo tháng — không phát sinh ngoài.",
 };
-const LISTEN_POINTS = [
-  { icon:"chat", t:"Lắng nghe không thuật ngữ", d:"\"App nhà tôi mấy lần tự nhiên đơ\", \"sợ mất dữ liệu khách\" — S4C ghi nhận đúng điều bạn cần." },
-  { icon:"grid", t:"Ghi lại bạn đang có gì", d:"App, website, máy chủ, ai đang quản, đã có sao lưu/giám sát chưa — S4C hỏi và ghi giúp, bạn không cần rành kỹ thuật." },
-  { icon:"compass", t:"Chốt mục tiêu thực tế", d:"Ưu tiên điều quan trọng nhất với việc kinh doanh, không làm dàn trải." },
-];
 const POSTURE = [
   { id:"mon", name:"Giám sát & cảnh báo",  tag:"MON",   before:10, after:86, note:"Dựng theo dõi hệ thống + cảnh báo sớm (mã nguồn mở)" },
   { id:"perf",name:"Hiệu năng & cấu hình", tag:"PERF",  before:45, after:85, note:"Tối ưu cấu hình, xử lý điểm nghẽn, chuẩn hóa" },
   { id:"bak", name:"Sao lưu & khôi phục",  tag:"BAK",   before:15, after:90, note:"Sao lưu tự động, kiểm thử khôi phục định kỳ" },
   { id:"web", name:"Bảo vệ hệ thống & mạng",tag:"FW/WAF",before:20, after:87, note:"Tường lửa + lá chắn web chặn tấn công phổ biến" },
-  { id:"acc", name:"Kiểm soát truy cập",   tag:"PAM",   before:25, after:82, note:"Giới hạn quyền admin, xác thực 2 lớp, ghi vết" },
+  { id:"acc", name:"Kiểm soát truy cập",   tag:"PAM",   before:25, after:82, note:"Giới hạn quyền quản trị, xác thực 2 lớp, ghi vết" },
 ];
 function postureScore(k){ return Math.round(POSTURE.reduce((s,p)=>s+p[k],0)/POSTURE.length); }
-const ASSESS_FINDINGS = [
-  { sev:"crit", color:"var(--crit)", title:"Hệ thống đang chạy \"trong bóng tối\"", desc:"Không có ai hay công cụ nào theo dõi, nên máy chủ đầy ổ đĩa, hết RAM hay một dịch vụ chết mà không ai biết — tới khi khách báo mới hay.", cost:"Điểm mù: chỉ biết khi đã sập" },
-  { sev:"crit", color:"var(--crit)", title:"Tưởng đã có sao lưu, thật ra chưa chắc dùng được", desc:"Nhiều nơi có sao lưu nhưng chưa bao giờ thử khôi phục. Đến lúc cần mới phát hiện bản sao lưu hỏng hoặc thiếu.", cost:"Điểm mù: mất dữ liệu đúng lúc cần nhất" },
-  { sev:"warn", color:"var(--warn)", title:"Máy chủ để nguyên cấu hình mặc định", desc:"Máy chủ chạy thiết lập mặc định, còn cổng mở thừa và dịch vụ không dùng — vừa ì ạch, vừa hở cửa cho kẻ xấu.", cost:"Điểm mù: vừa chậm vừa rủi ro" },
-  { sev:"warn", color:"var(--warn)", title:"App/website chưa có lá chắn", desc:"Ứng dụng công khai nhưng không có lá chắn web chặn tấn công tự động. Bị dò quét là có thể bị khai thác.", cost:"Điểm mù: bị tấn công mà không hay" },
-];
-const PROPOSE_OPTIONS = [
-  { id:"quickwin", name:"Gói \"Xử lý vấn đề cấp thiết\"", desc:"Làm ngay việc rủi ro cao nhất: bật sao lưu tự động + cảnh báo cơ bản + lá chắn web. Nhanh, gọn, chặn nguy cơ lớn.", fit:"Hợp nếu ngân sách hạn chế, cần an tâm ngay", price:"Tham khảo: từ ~5 triệu, theo việc" },
-  { id:"foundation", name:"Gói \"Nền tảng vững chắc\"", desc:"Triển khai & tối ưu đủ 5 khía cạnh: giám sát, hiệu năng/cấu hình, sao lưu, bảo vệ hệ thống, kiểm soát truy cập — bằng công cụ mã nguồn mở.", fit:"Hợp nếu muốn chắc chắn, làm một lần cho gọn", price:"Tham khảo: từ ~10 triệu, gói 1 lần" },
-  { id:"companion", name:"Gói \"Đồng hành lâu dài\"", desc:"Nền tảng vững chắc + tự động hóa việc lặp, tối ưu hiệu năng định kỳ và ứng cứu sự cố khi cần. Bạn có một chỗ dựa kỹ thuật ổn định.", fit:"Hợp nếu muốn yên tâm dài hạn, không phải tự lo", price:"Tham khảo: từ ~5 triệu/tháng" },
-];
 const PERF = {
   points: [ {t:"08:00",v:290},{t:"09:00",v:340},{t:"10:00",v:410},{t:"11:00",v:395},{t:"12:00",v:430},{t:"13:00",v:180},{t:"14:00",v:165},{t:"15:00",v:158},{t:"16:00",v:170},{t:"17:00",v:162} ],
   tuneIdx: 5, threshold: 300,
   cpu:[42,48,61,58,66,39,35,33,37,34], ram:[55,58,63,61,67,52,49,48,50,49],
-};
-const INVESTIGATE = {
-  timeline:[
-    { t:"02:14", src:"WAF", text:"Lá chắn web chặn một chuỗi tấn công vào trang đăng nhập của app", level:"warn" },
-    { t:"02:15", src:"WAF", text:"Cùng một địa chỉ IP lạ tiếp tục thử nhiều kiểu tấn công khác", level:"warn" },
-    { t:"02:16", src:"PAM", text:"Cảnh báo: có người thử đăng nhập tài khoản admin ngoài giờ, từ IP lạ", level:"crit" },
-    { t:"02:17", src:"PAM", text:"Xác thực 2 lớp chặn lại — đăng nhập KHÔNG thành công", level:"ok" },
-    { t:"02:20", src:"S4C", text:"S4C nhận cảnh báo, chặn IP tấn công và rà soát toàn hệ thống", level:"ok" },
-  ],
-  verdict:"Kẻ tấn công dò tự động vào app, bị lá chắn web (WAF) chặn, rồi thử chiếm tài khoản admin nhưng bị xác thực 2 lớp (PAM) chặn lại. Không có xâm nhập thành công. Nhờ có các lớp bảo vệ và theo dõi, sự việc được phát hiện và chặn ngay trong đêm.",
-  action:"S4C chặn IP tấn công, kiểm tra log toàn hệ thống xác nhận không có truy cập trái phép thành công, và đề xuất siết thêm luật WAF. Mọi thao tác đều ghi lại.",
-};
-const REPORT = {
-  what:"Thiết lập monitoring & backup; tinh chỉnh (tuning) hệ thống; dựng bảo vệ nhiều lớp; xử lý 1 nỗ lực tấn công trong đêm.",
-  score:"Điểm sức khỏe & an toàn hệ thống tăng từ 23/100 lên 86/100.",
-  perf:"Tốc độ phản hồi hệ thống nhanh hơn ~2,6 lần (từ ~0,43 giây xuống ~0,17 giây).",
-  incident:"1 nỗ lực tấn công bị chặn, không thiệt hại.",
-  followup:"Theo dõi IP tấn công, duy trì sao lưu, rà soát định kỳ hằng tháng.",
-  cost:"Thuộc gói đồng hành theo tháng — không phát sinh chi phí ngoài cho các việc trên.",
 };
 
 const SERVICES = [
@@ -420,7 +354,7 @@ const MODELS = [
 const NODES = {
   servers: { title:"Máy chủ & Ứng dụng", purpose:"Nơi app, website và cơ sở dữ liệu của bạn chạy — nguồn tín hiệu về hiệu năng và sức khỏe hệ thống.",
     input:["Chỉ số máy chủ (CPU, RAM, đĩa)","Hoạt động ứng dụng & cơ sở dữ liệu"], output:["Tín hiệu hiệu năng","Dữ liệu để tinh chỉnh"], limit:"S4C chỉ tác động khi được bạn đồng ý.", oss:"", svc:["Vận hành & Tự động hóa"] },
-  network: { title:"Mạng & Biên", purpose:"Hạ tầng mạng, chia vùng mạng, kết nối từ xa (VPN), cân tải — đường đi của dữ liệu và là nơi quan sát lưu lượng.",
+  network: { title:"Mạng & Cửa ngõ", purpose:"Hạ tầng mạng, chia vùng mạng, kết nối từ xa (VPN), cân tải — đường đi của dữ liệu và là nơi quan sát lưu lượng.",
     input:["Luồng mạng, nhật ký thiết bị mạng"], output:["Dấu hiệu bất thường về kết nối","Dữ liệu định tuyến & tải"], limit:"Hiệu quả tùy mức truy cập thiết bị mạng bạn cho phép.", oss:"Công cụ mã nguồn mở", svc:["Tăng cường bảo mật"] },
   edge: { title:"Tường lửa & Lá chắn web", purpose:"Lớp bảo vệ ngoài cùng: chặn truy cập xấu và các kiểu tấn công phổ biến vào website/app.",
     input:["Lưu lượng vào website/app","Luật chặn & nhận diện tấn công"], output:["Tấn công bị chặn","Cảnh báo khi bị dò quét"], limit:"Giảm mạnh rủi ro nhưng không thay được việc vá lỗi ứng dụng.", oss:"Công cụ mã nguồn mở", svc:["Tăng cường bảo mật"] },
@@ -428,17 +362,17 @@ const NODES = {
     input:["Yêu cầu đăng nhập đặc quyền","Chính sách phân quyền"], output:["Chặn truy cập trái phép","Nhật ký ai làm gì"], limit:"Cần phối hợp để định nghĩa đúng ai cần quyền gì.", oss:"Công cụ mã nguồn mở", svc:["Tăng cường bảo mật"] },
   collect: { title:"Thu thập & Chuẩn hóa", purpose:"Gom nhật ký và số liệu từ mọi nguồn về một chỗ, chuẩn hóa về cùng một định dạng để xử lý được.",
     input:["Nhật ký từ máy chủ, app, mạng, tường lửa, hệ thống đăng nhập","Chỉ số hiệu năng"], output:["Dữ liệu sạch, thống nhất","Nền tảng cho các bước sau"], limit:"Phạm vi tùy nguồn dữ liệu bạn cho phép kết nối.", oss:"Công cụ mã nguồn mở", svc:["Vận hành & Tự động hóa"] },
-  enrich: { title:"Làm giàu dữ liệu", purpose:"Bổ sung ngữ cảnh cho từng tín hiệu: đối chiếu với danh sách các mối đe dọa đã biết, gắn mức rủi ro, chấm điểm — để biết cái nào đáng lo.",
+  enrich: { title:"Bổ sung ngữ cảnh", purpose:"Bổ sung ngữ cảnh cho từng tín hiệu: đối chiếu với danh sách các mối đe dọa đã biết, gắn mức rủi ro, chấm điểm — để biết cái nào đáng lo.",
     input:["Dữ liệu đã chuẩn hóa","Danh sách mối đe dọa đã biết"], output:["Tín hiệu có ngữ cảnh & điểm rủi ro","Lọc bớt nhiễu, nổi cái quan trọng"], limit:"Chất lượng tùy danh sách được cập nhật thường xuyên.", oss:"Công cụ mã nguồn mở", svc:["Điều tra & Ứng cứu sự cố"] },
   detect: { title:"Giám sát & Phát hiện", purpose:"Theo dõi liên tục và cảnh báo sớm khi có điều đáng ngờ — tấn công, đăng nhập lạ, hiệu năng tụt, dấu hiệu sự cố.",
-    input:["Tín hiệu đã làm giàu"], output:["Cảnh báo có mức ưu tiên","Phát hiện sớm trước khi thành sự cố"], limit:"Đưa ra nghi vấn cần xác minh, không tự kết luận chắc chắn.", oss:"Công cụ mã nguồn mở", svc:["Vận hành & Tự động hóa","Điều tra & Ứng cứu sự cố"] },
+    input:["Tín hiệu đã có ngữ cảnh"], output:["Cảnh báo có mức ưu tiên","Phát hiện sớm trước khi thành sự cố"], limit:"Đưa ra nghi vấn cần xác minh, không tự kết luận chắc chắn.", oss:"Công cụ mã nguồn mở", svc:["Vận hành & Tự động hóa","Điều tra & Ứng cứu sự cố"] },
   investigate: { title:"Điều tra & Phân tích", purpose:"Khi có nghi vấn: dựng lại chuỗi sự việc, xác minh thật/giả, tìm 'bệnh nhân số 0' và nguyên nhân gốc.",
     input:["Cảnh báo cần xác minh","Nhật ký & bằng chứng liên quan"], output:["Kết luận điều tra có bằng chứng","Phạm vi ảnh hưởng & nguyên nhân gốc"], limit:"Hiệu quả tùy lượng nhật ký/bằng chứng còn giữ được.", oss:"Công cụ mã nguồn mở", svc:["Điều tra & Ứng cứu sự cố"] },
   respond: { title:"Ứng cứu & Xử lý", purpose:"Biến kết luận thành hành động: cô lập, chặn lây, khắc phục, khôi phục — việc rủi ro luôn hỏi bạn trước.",
     input:["Kết luận điều tra / cảnh báo"], output:["Sự cố được khống chế & khắc phục","Mọi bước đều được ghi lại"], limit:"Việc rủi ro cao luôn cần bạn đồng ý, không tự ý tác động.", oss:"", svc:["Điều tra & Ứng cứu sự cố","Vận hành & Tự động hóa"] },
   report: { title:"Báo cáo & Cải thiện", purpose:"Tổng hợp mọi việc thành báo cáo dễ đọc, kèm đề xuất để lần sau tốt hơn — minh bạch mỗi kỳ.",
     input:["Việc đã xử lý, chỉ số hệ thống"], output:["Báo cáo định kỳ dễ hiểu","Đề xuất cải thiện cho kỳ tới"], limit:"Phản ánh dữ liệu trong phạm vi được theo dõi.", oss:"", svc:["Báo cáo & Minh bạch vận hành"] },
-  automate: { title:"Tự động hóa", purpose:"Lớp chạy xuyên suốt mọi bước: S4C cài đặt tác vụ tự động để máy tự làm phần lặp lại — thu thập, làm giàu, cảnh báo tự xử lý, sao lưu, đồng bộ danh sách chặn.",
+  automate: { title:"Tự động hóa", purpose:"Lớp chạy xuyên suốt mọi bước: S4C cài đặt tác vụ tự động để máy tự làm phần lặp lại — thu thập, bổ sung ngữ cảnh, cảnh báo tự xử lý, sao lưu, đồng bộ danh sách chặn.",
     input:["Các việc lặp lại ở mọi bước"], output:["Hệ thống tự chạy phần nhàm chán","Giải phóng người cho việc giá trị cao"], limit:"Việc cần phán đoán/rủi ro vẫn do con người quyết.", oss:"Công cụ mã nguồn mở", svc:["Vận hành & Tự động hóa"] },
 };
 const NEEDS = [
@@ -606,7 +540,7 @@ VALUES.forEach(v=>valueRow.appendChild(el("div","card value-card",`<div class="i
 const priceGrid=$("#priceGrid");
 PRICING.forEach(p=>{
   priceGrid.appendChild(el("div","card price-card"+(p.popular?" popular":""),
-    `${p.popular?'<span class="pc-badge">Phổ biến</span>':''}<div class="itile">${svgIcon(p.icon)}</div><h3>${p.name}</h3>
+    `${p.popular?'<span class="pc-badge">Nên bắt đầu</span>':''}<div class="itile">${svgIcon(p.icon)}</div><h3>${p.name}</h3>
      <div class="pc-price">${p.price}${p.unit?`<span class="pc-unit"> ${p.unit}</span>`:''}</div>
      <div class="pc-desc">${p.desc}</div>
      <ul>${p.items.map(i=>`<li><span class="ck">✓</span>${i}</li>`).join("")}</ul>`));
@@ -657,7 +591,7 @@ function sparkSvg(arr,color){
 const OPS_EVENTS = [
   {ic:"database",c:"ok",  t:"Job sao lưu tự động: hoàn tất &amp; kiểm chứng khôi phục"},
   {ic:"gear",   c:"ok",   t:"Tự dọn file nhật ký &amp; ổ đĩa: giải phóng 18 GB"},
-  {ic:"pulse",  c:"ok",   t:"Luật tự giãn tải: CPU chạm 82% → đưa về 54%"},
+  {ic:"pulse",  c:"ok",   t:"Tự chia tải: CPU chạm 82% → đưa về 54%"},
   {ic:"wall",   c:"warn", t:"Lá chắn web tự chặn 37 lượt truy cập bất thường vào trang đăng nhập"},
   {ic:"eye",    c:"ok",   t:"Tự vá bảo mật: cập nhật 3 dịch vụ, không gián đoạn"},
   {ic:"lock",   c:"warn", t:"Đăng nhập sai nhiều lần → tự khóa tài khoản &amp; gửi cảnh báo"},
@@ -670,7 +604,7 @@ function managedConsole(){
       <span class="live-badge"><span class="dot"></span>ĐANG CHẠY · Tự động hóa</span>
       <div class="ops-counters">
         <div class="opc"><div class="opc-v tnum"><span id="opcEvt">0</span></div><div class="opc-l">việc tự động xử lý hôm nay</div></div>
-        <div class="opc"><div class="opc-v tnum" style="color:var(--ok)">99.9%</div><div class="opc-l">ổn định 30 ngày</div></div>
+        <div class="opc"><div class="opc-v tnum" style="color:var(--ok)">99,9%</div><div class="opc-l">ổn định 30 ngày</div></div>
         <div class="opc"><div class="opc-v tnum">0</div><div class="opc-l">việc cần bạn can thiệp</div></div>
       </div>
     </div>
@@ -683,7 +617,8 @@ function startOpsLive(){
   const feed=$("#opsFeed"); if(!feed) return;
   let evt=147; const evtEl=$("#opcEvt"); countUp(evtEl, evt);
   const push=()=>{
-    const e=OPS_EVENTS[Math.floor(Math.random()*OPS_EVENTS.length)];
+    let e; do { e=OPS_EVENTS[Math.floor(Math.random()*OPS_EVENTS.length)]; } while(e===startOpsLive.last && OPS_EVENTS.length>1);
+    startOpsLive.last=e;
     const n=new Date(), p=x=>String(x).padStart(2,"0");
     const row=document.createElement("div");
     row.className="of-row "+e.c;
@@ -876,10 +811,10 @@ function assessBody(key){
       <div class="rc-row"><span class="rk">Rủi ro ưu tiên</span><span>${CSF_GAPS.filter(g=>g.sev==="crit").map(g=>g.title.replace(/ \(.*/,"")).join("; ")}</span></div>
       <div class="rc-row"><span class="rk">Khuyến nghị</span><span>${CSF_GAPS.map(g=>g.act).join("; ")}</span></div>
       <div class="rc-row"><span class="rk">Lộ trình</span><span>${ROADMAP.map(r=>r.h).join(" → ")}</span></div>
-      <div class="rc-row"><span class="rk">Tài liệu bàn giao</span><span>Báo cáo đánh giá (bản điều hành cho sếp + bản kỹ thuật cho IT), danh mục rủi ro có mức ưu tiên, lộ trình &amp; checklist hành động</span></div>
+      <div class="rc-row"><span class="rk">Tài liệu bàn giao</span><span>Báo cáo đánh giá (bản điều hành cho sếp + bản kỹ thuật cho IT), danh mục rủi ro có mức ưu tiên, lộ trình &amp; danh sách việc cần làm</span></div>
     </div></div>
     <div class="roadmap" style="margin-top:14px">${ROADMAP.map((r,i)=>`<div class="rm-item"><div class="rm-rail"><div class="rm-dot">${i+1}</div><div class="rm-line"></div></div><div class="rm-body"><div class="rm-ph">${r.ph}</div><h4>${r.h}</h4><p>${r.p}</p></div></div>`).join("")}</div>
-    <div class="svc-link-card" style="margin-top:12px"><p style="font-size:13px;color:var(--ink)"><b>Kết quả:</b> ${curScen().customer.name} nhận bộ tài liệu đánh giá đầy đủ — đủ cơ sở ra quyết định đầu tư, trình đối tác nước ngoài và chuẩn bị cho đợt kiểm tra.</p><button class="btn primary" style="margin-top:12px" data-nav="engagement">Đặt lịch đánh giá miễn phí →</button></div>`;
+    <div class="svc-link-card" style="margin-top:12px"><p style="font-size:13px;color:var(--ink)"><b>Kết quả:</b> ${curScen().customer.name} nhận bộ tài liệu đánh giá đầy đủ — đủ cơ sở ra quyết định đầu tư, trình đối tác nước ngoài và chuẩn bị cho đợt kiểm tra.</p><button class="btn primary" style="margin-top:12px" data-nav="engagement">Đặt lịch trao đổi miễn phí →</button></div>`;
   }
   return "";
 }
@@ -907,7 +842,7 @@ function tuneBody(key){
       <div class="rc-row"><span class="rk">Hiệu năng</span><span style="color:var(--ok)">Phản hồi nhanh hơn ~2,6 lần (từ ~${secs(peak)} xuống ~${secs(165)})</span></div>
       <div class="rc-row"><span class="rk">An toàn</span><span>Điểm an toàn tăng <b style="color:${scoreColor(before)}">${before}</b> → <b style="color:var(--ok)">${after}</b> / 100</span></div>
       <div class="rc-row"><span class="rk">Tuân thủ</span><span>Đạt các mốc an toàn cơ bản theo bộ chuẩn CIS</span></div>
-      <div class="rc-row"><span class="rk">Tài liệu bàn giao</span><span>Tài liệu cấu hình chuẩn, hướng dẫn vận hành &amp; checklist duy trì</span></div>
+      <div class="rc-row"><span class="rk">Tài liệu bàn giao</span><span>Tài liệu cấu hình chuẩn, hướng dẫn vận hành &amp; danh sách kiểm tra định kỳ</span></div>
     </div></div>
     <div class="svc-link-card" style="margin-top:12px"><p style="font-size:13px;color:var(--ink)"><b>Kết quả:</b> hệ thống vừa nhanh hơn vừa vững hơn, có tài liệu để tự duy trì — không phụ thuộc một chiều.</p><button class="btn primary" style="margin-top:12px" data-nav="engagement">Nhận tư vấn siết bảo mật &amp; tăng tốc →</button></div>`;
   }
@@ -931,11 +866,11 @@ function managedBody(key){
       <ul style="margin:0;padding-left:18px;color:var(--ink-soft);font-size:12.5px">${MGMT_WAY.map(w=>`<li style="margin-bottom:6px">${w}</li>`).join("")}</ul></div>
       ${benefit("Tối ưu nguồn lực","Nhờ tự động hóa, cùng một chi phí lo được nhiều việc hơn so với tuyển người làm tay — lại có quy trình rõ ràng và người chịu trách nhiệm.")}`;
   if(key==="output"){ const r=OPS_REPORT;
-    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · BÁO CÁO MANAGED THÁNG (ví dụ)</span><span>${curScen().customer.name}</span></div><div class="rc-body">
+    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · BÁO CÁO VẬN HÀNH THÁNG (ví dụ)</span><span>${curScen().customer.name}</span></div><div class="rc-body">
       <div class="rc-row"><span class="rk">Việc đã làm</span><span>${r.what}</span></div>
       <div class="rc-row"><span class="rk">Hiệu năng</span><span style="color:var(--ok)">${r.perf}</span></div>
       <div class="rc-row"><span class="rk">Ổn định</span><span>${r.uptime}</span></div>
-      <div class="rc-row"><span class="rk">Nguồn lực</span><span>Phần việc lặp đã tự động hóa; ước tính tiết kiệm ~60% so với tự tuyển đội tương đương</span></div>
+      <div class="rc-row"><span class="rk">Nguồn lực</span><span>Phần việc lặp đã tự động hóa; ước tính tiết kiệm ~60% so với tự tuyển nhân viên IT</span></div>
       <div class="rc-row"><span class="rk">Chi phí</span><span style="color:var(--gold)">${r.cost}</span></div>
     </div></div>
     <div class="svc-link-card" style="margin-top:12px"><p style="font-size:13px;color:var(--ink)"><b>Kết quả:</b> việc lặp lại được tự động hóa, hệ thống chạy ổn định, nguồn lực dồn vào việc giá trị cao — minh bạch mỗi kỳ.</p><button class="btn primary" style="margin-top:12px" data-nav="engagement">Nhận tư vấn vận hành trọn gói →</button></div>`;
@@ -1218,7 +1153,7 @@ document.addEventListener("keydown",e=>{
 /* ---- FAQ ---- */
 const FAQS=[
   { q:"Cho người ngoài truy cập hệ thống thì có an toàn không?", a:"S4C sẵn sàng ký cam kết bảo mật (NDA). Chúng tôi dùng quyền truy cập tối thiểu và tạm thời, ưu tiên chỉ đọc (read-only) khi có thể, mọi thao tác đều được ghi lại, và bất kỳ việc gì có rủi ro đều hỏi ý bạn trước khi làm." },
-  { q:"DN của tôi còn nhỏ / mới, S4C có nhận không?", a:"Có — đây đúng là đối tượng S4C hướng tới. Chúng tôi bắt đầu từ việc gấp và quan trọng nhất với bạn, làm vừa sức ngân sách, không ép làm tất cả cùng lúc." },
+  { q:"Doanh nghiệp của tôi còn nhỏ / mới, S4C có nhận không?", a:"Có — đây đúng là đối tượng S4C hướng tới. Chúng tôi bắt đầu từ việc gấp và quan trọng nhất với bạn, làm vừa sức ngân sách, không ép làm tất cả cùng lúc." },
   { q:"Chi phí tính thế nào, có phát sinh không?", a:"Buổi trao đổi đầu miễn phí. Sau khi hiểu bài toán, S4C báo giá và phạm vi rõ ràng trước khi làm — không phát sinh ngoài thỏa thuận. Vì mỗi hệ thống một khác nên giá theo đúng phạm vi của bạn." },
   { q:"Bao lâu thì thấy kết quả?", a:"Việc gấp (bật sao lưu, chặn nguy cơ, xử lý sự cố) thường trong vài ngày. Dựng nền tảng vững chắc thường 1–2 tuần tùy quy mô. Quản trị vận hành là đồng hành dài hạn, theo nhịp định kỳ đã thống nhất." },
   { q:"Tôi chỉ cần tư vấn hoặc làm một lần, được không?", a:"Hoàn toàn được. Bạn có thể chỉ nhờ đánh giá hoặc xử lý một việc cụ thể, không bắt buộc gói dài hạn. Khi cần, quay lại bất cứ lúc nào." },
