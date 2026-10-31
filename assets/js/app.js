@@ -805,7 +805,7 @@ function assessBody(key){
   if(key==="gap") return `<div class="finding-list" style="margin-top:6px">${CSF_GAPS.map(g=>`<div class="finding"><div class="f-sev" style="background:${g.sev==="crit"?"var(--crit)":"var(--warn)"}"></div><div class="f-body"><div class="f-title">${g.title} <span class="pill ${g.sev}">${g.sev==="crit"?"Ưu tiên cao":"Nên làm"}</span></div><div class="f-desc">${g.desc}</div><div class="f-cost" style="color:var(--accent-ink)">→ ${g.act}</div></div></div>`).join("")}</div>
     ${benefit("Bạn được gì","Danh sách việc cụ thể theo mức ưu tiên — biết chính xác tiêu tiền vào đâu trước cho đáng.")}`;
   if(key==="output"){ const avg=Math.round(CSF.reduce((s,c)=>s+c.now,0)/CSF.length);
-    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · BẢN ĐÁNH GIÁ TỔNG THỂ (ví dụ)</span><span>Khung chuẩn NIST + rà soát vận hành</span></div><div class="rc-body">
+    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · BẢN ĐÁNH GIÁ TỔNG THỂ</span><span>Khung chuẩn NIST + rà soát vận hành</span></div><div class="rc-body">
       <div class="rc-row"><span class="rk">Sức khỏe hệ thống</span><span>14 máy chủ/thiết bị rà soát; chỉ ra điểm nghẽn hiệu năng, cấu hình lệch chuẩn, rủi ro vận hành</span></div>
       <div class="rc-row"><span class="rk">Mức an toàn (ATTT)</span><span>Điểm trưởng thành trung bình <b style="color:${scoreColor(avg)}">${avg}/100</b> theo 5 trụ cột của khung chuẩn — còn khoảng cách tới mục tiêu</span></div>
       <div class="rc-row"><span class="rk">Rủi ro ưu tiên</span><span>${CSF_GAPS.filter(g=>g.sev==="crit").map(g=>g.title.replace(/ \(.*/,"")).join("; ")}</span></div>
@@ -838,7 +838,7 @@ function tuneBody(key){
       <div class="mgd-grid">${COMPLIANCE.map(c=>`<div class="mgd"><span class="itile" style="width:24px;height:24px;font-size:12px;background:var(--ok-wash);color:var(--ok)">${svgIcon("check")}</span><div style="font-size:12.3px">${c}</div></div>`).join("")}</div></div>
       ${benefit("Làm đúng, không làm cho có","Mỗi hạng mục đối chiếu với một mốc chuẩn công nhận — bạn có cơ sở chứng minh hệ thống đạt yêu cầu an toàn.")}`;
   if(key==="output"){ const before=postureScore("before"), after=postureScore("after");
-    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · HỆ THỐNG TỐI ƯU &amp; ĐẠT CHUẨN (ví dụ)</span><span>${curScen().customer.name}</span></div><div class="rc-body">
+    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · HỆ THỐNG TỐI ƯU &amp; ĐẠT CHUẨN</span><span>${curScen().customer.name}</span></div><div class="rc-body">
       <div class="rc-row"><span class="rk">Hiệu năng</span><span style="color:var(--ok)">Phản hồi nhanh hơn ~2,6 lần (từ ~${secs(peak)} xuống ~${secs(165)})</span></div>
       <div class="rc-row"><span class="rk">An toàn</span><span>Điểm an toàn tăng <b style="color:${scoreColor(before)}">${before}</b> → <b style="color:var(--ok)">${after}</b> / 100</span></div>
       <div class="rc-row"><span class="rk">Tuân thủ</span><span>Đạt các mốc an toàn cơ bản theo bộ chuẩn CIS</span></div>
@@ -866,7 +866,7 @@ function managedBody(key){
       <ul style="margin:0;padding-left:18px;color:var(--ink-soft);font-size:12.5px">${MGMT_WAY.map(w=>`<li style="margin-bottom:6px">${w}</li>`).join("")}</ul></div>
       ${benefit("Tối ưu nguồn lực","Nhờ tự động hóa, cùng một chi phí lo được nhiều việc hơn so với tuyển người làm tay — lại có quy trình rõ ràng và người chịu trách nhiệm.")}`;
   if(key==="output"){ const r=OPS_REPORT;
-    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · BÁO CÁO VẬN HÀNH THÁNG (ví dụ)</span><span>${curScen().customer.name}</span></div><div class="rc-body">
+    return `<div class="report-card" style="margin-top:6px"><div class="rc-head"><span>BÀN GIAO · BÁO CÁO VẬN HÀNH THÁNG</span><span>${curScen().customer.name}</span></div><div class="rc-body">
       <div class="rc-row"><span class="rk">Việc đã làm</span><span>${r.what}</span></div>
       <div class="rc-row"><span class="rk">Hiệu năng</span><span style="color:var(--ok)">${r.perf}</span></div>
       <div class="rc-row"><span class="rk">Ổn định</span><span>${r.uptime}</span></div>
@@ -923,12 +923,12 @@ function renderCtxPanel(){
   p.innerHTML=`
     <h4>Kịch bản</h4>
     <div class="ctx-card"><div class="cc-name" style="font-size:13px"><span class="itile">${svgIcon(sc.icon)}</span>${sc.label}</div><div class="cc-sub">${sc.step}</div></div>
-    <h4 style="margin-top:16px">Khách hàng (ví dụ)</h4>
+    <h4 style="margin-top:16px">Khách hàng</h4>
     <div class="ctx-card"><div class="cc-name" style="font-size:12.5px">${c.name}</div><div class="cc-sub">${c.type}</div></div>
     <h4 style="margin-top:16px">Các bước</h4>
     <div class="ctx-steps">${sc.steps.map((s,i)=>`<div class="ctx-s ${i===STATE.stageIdx?"on":""} ${i<STATE.stageIdx?"done":""}"><span class="cs-n">${i<STATE.stageIdx?"✓":(i+1)}</span>${s.nav}</div>`).join("")}</div>
     <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" style="flex:1;padding:9px" data-nav="engagement">Liên hệ</button><button class="btn" style="padding:9px" data-nav="services">Dịch vụ</button></div>
-    <div style="margin-top:12px"><span class="note-tag">VÍ DỤ MINH HỌA</span></div>`;
+    <div style="margin-top:12px"><span class="note-tag">VÍ DỤ THỰC TẾ</span></div>`;
 }
 
 /* ---- Services ---- */
@@ -1029,7 +1029,27 @@ Liên hệ lại         : ${v("engContact")}
 Bước tiếp theo: một buổi trao đổi MIỄN PHÍ để S4C
 hiểu rõ bài toán và đề xuất cách phù hợp với bạn.`;
 }
-function buildSummary(){ $("#engSummary").textContent=summaryText(); }
+/* bản tóm tắt hiển thị dạng thẻ dễ đọc; summaryText() vẫn là bản chữ thuần để gửi email / sao chép */
+function buildSummary(){
+  const box=$("#engSummary"); if(!box) return;
+  box.innerHTML="";
+  const v=id=>$("#"+id).value.trim();
+  const add=(cls,txt)=>{ const n=el("div",cls); if(txt!=null) n.textContent=txt; box.appendChild(n); return n; };
+  add("sum-h","Điều tôi đang cần");
+  const chips=add("sum-chips");
+  if(chosen.size) [...chosen].forEach(t=>{ const c=el("span","sum-chip"); c.textContent=t; chips.appendChild(c); });
+  else { const c=el("span","sum-empty"); c.textContent="Chưa chọn gợi ý nào — có thể bỏ qua"; chips.appendChild(c); }
+  const goal=v("engGoal");
+  const q=add("sum-goal"+(goal?"":" empty")); q.textContent=goal||"Phần bạn tự kể sẽ hiện ở đây…";
+  const rows=add("sum-rows");
+  [["Doanh nghiệp","engOrg"],["Quy mô","engScale"],["Hiện có về IT","engSys"],["Ngân sách","engBudget"],["Liên hệ lại","engContact"]].forEach(([k,id])=>{
+    const val=v(id), r=el("div","sum-row");
+    const kk=el("span","sum-k"); kk.textContent=k;
+    const vv=el("span","sum-v"+(val?"":" empty")); vv.textContent=val||"—";
+    r.append(kk,vv); rows.appendChild(r);
+  });
+  add("sum-foot","Bước tiếp theo: một buổi trao đổi miễn phí để S4C hiểu rõ bài toán và đề xuất cách phù hợp.");
+}
 buildSummary();
 function channelDefs(){
   const defs=[

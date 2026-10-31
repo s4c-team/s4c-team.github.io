@@ -411,7 +411,6 @@ svg.ic { width: 1em; height: 1em; display: block; }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); }
 .need-opt .no-t { font-weight: 600; font-size: 13px; } .need-opt .no-d { font-size: 11.5px; color: var(--ink-soft); margin-top: 2px; }
 .summary-out { padding: 18px; position: sticky; top: 18px; }
-.summary-out pre { background: var(--navy); color: #cbdcea; padding: 15px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 11.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; max-height: 300px; overflow-y: auto; margin: 11px 0; }
 .copy-ok { color: var(--ok); font-size: 12px; font-weight: 600; display: none; }
 .chan-target { display: flex; gap: 11px; align-items: center; padding: 11px 13px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-2); margin-top: 4px; }
 .chan-target.warn { background: var(--warn-wash); border-color: transparent; }
@@ -938,3 +937,58 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
 @keyframes ctaGlide { 0%, 75% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
 @keyframes softGlow { 0%, 100% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 10%, transparent); } 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 16%, transparent); } }
 @media (prefers-reduced-motion: reduce){ .card:hover .itile, .stat:hover, .mq-row span:hover { transform: none; } .img-banner img { transform: none !important; transition: none; } .img-banner .ib-cap { opacity: 1 !important; transform: none !important; } }
+
+/* =====================================================================
+   Bố cục thoáng hơn: bớt "khung trong khung", banner chữ nổi, tóm tắt dạng thẻ
+   ===================================================================== */
+/* khung con nằm trong khung lớn: bỏ viền, dùng nền nhạt — chỉ khung ngoài cùng có viền */
+.demo-run > .card, .scn-stage > .card, .scn-main > .card { border-color: transparent; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.stage-card .card, .stage-card .finding, .stage-card .report-card, .stage-card .mgd, .stage-card .spark,
+.ctx-panel .ctx-card, .summary-out .contact-box, .card .card {
+  border-color: transparent; box-shadow: none; background: var(--surface-2);
+}
+.stage-card .report-card .rc-head { background: var(--surface-3); border-bottom-color: transparent; }
+.stage-card .benefit, .stage-card .risk-callout { border-color: transparent; }
+.demo-run { border-color: var(--line-soft); }
+
+/* banner ảnh ở các màn: ảnh làm mờ, chữ to & nổi ở giữa */
+.img-banner { border: none; }
+.img-banner img { height: 190px; filter: blur(3px) brightness(.62) saturate(1.15); transform: scale(1.12); }
+.img-banner.in img, .img-banner:not(.reveal) img { transform: scale(1.08); }
+.img-banner:hover img { transform: scale(1.1); }
+.img-banner .ib-ov { background: linear-gradient(90deg, rgba(9,13,21,.72) 0%, rgba(9,13,21,.35) 60%, rgba(9,13,21,.15) 100%); }
+.img-banner .ib-cap { top: 0; bottom: 0; left: 30px; right: 30px; display: flex; align-items: center; max-width: 760px;
+  font-size: 23px; font-weight: 700; line-height: 1.35; letter-spacing: -.3px; color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,.6); }
+.img-banner .ib-cap::before { content: ""; flex: none; width: 4px; align-self: stretch; margin: 46px 16px 46px 0; border-radius: 4px; background: linear-gradient(180deg, #9cbcff, #7fe0cb); }
+@media (max-width: 700px){
+  .img-banner img { height: 150px; }
+  .img-banner .ib-cap { font-size: 17px; left: 18px; right: 18px; max-width: none; }
+  .img-banner .ib-cap::before { margin: 34px 12px 34px 0; }
+}
+@media (prefers-reduced-motion: reduce){ .img-banner img { transform: scale(1.08) !important; } }
+
+/* Về S4C: ảnh nền như phần Tổng quan */
+.about-lede .lede-visual { position: absolute; top: 0; right: 0; bottom: 0; width: 58%; z-index: 0; pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 30%, #000 70%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 30%, #000 70%); }
+.about-lede .lede-visual img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 35% 40%; opacity: .55; }
+.about-lede .lede-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,20,36,.2), rgba(12,20,36,.55)); }
+.about-lede p { text-shadow: 0 1px 10px rgba(9,13,21,.85); }
+@media (max-width: 720px){ .about-lede .lede-visual { width: 100%; -webkit-mask-image: none; mask-image: none; } .about-lede .lede-visual img { opacity: .22; } }
+@media (prefers-reduced-motion: no-preference){ .about-lede .lede-visual img { animation: breathe 16s ease-in-out infinite alternate; } }
+
+/* Tóm tắt gửi S4C: thẻ dễ đọc thay cho khối chữ máy đánh */
+.sum-card { background: var(--surface-2); border-radius: 12px; padding: 16px 16px 14px; margin: 12px 0 14px; }
+.sum-h { font-size: 12px; font-weight: 600; color: var(--ink-faint); margin-bottom: 8px; }
+.sum-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.sum-chip { font-size: 12.5px; font-weight: 500; padding: 5px 11px; border-radius: 100px; background: var(--accent-wash); color: var(--accent-ink); }
+.sum-empty { font-size: 12.5px; color: var(--ink-faint); font-style: italic; }
+.sum-goal { margin-top: 12px; padding: 10px 12px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0; font-size: 13.5px; line-height: 1.55; color: var(--ink); white-space: pre-wrap; word-break: break-word; }
+.sum-goal.empty { color: var(--ink-faint); font-style: italic; }
+.sum-rows { margin-top: 12px; display: grid; gap: 2px; }
+.sum-row { display: grid; grid-template-columns: 112px 1fr; gap: 10px; padding: 7px 2px; border-bottom: 1px dashed var(--line); font-size: 13px; }
+.sum-row:last-child { border-bottom: none; }
+.sum-k { color: var(--ink-faint); }
+.sum-v { color: var(--ink); font-weight: 500; word-break: break-word; }
+.sum-v.empty { color: var(--ink-faint); font-weight: 400; }
+.sum-foot { margin-top: 10px; font-size: 12px; color: var(--ink-soft); display: flex; gap: 6px; }
+.sum-foot::before { content: "→"; color: var(--accent); font-weight: 700; }

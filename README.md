@@ -40,7 +40,7 @@ CI (GitHub Actions) chạy cùng bộ test này cho mỗi pull request và mỗi
 
 ## Quy trình đóng góp
 1. Tạo nhánh từ `main` (ví dụ `feat/bang-gia-moi`), đừng commit thẳng vào `main`.
-2. Viết commit message nêu rõ thay đổi (ví dụ `Thêm gói Giám sát 24/7 vào bảng giá`), không ghi chung chung kiểu "Update".
+2. Viết commit message nêu rõ thay đổi (ví dụ `Thêm gói Vận hành theo tháng vào bảng giá`), không ghi chung chung kiểu "Update".
 3. Mở pull request, đợi CI xanh rồi mới merge.
 4. Đổi nội dung đáng kể thì cập nhật `<lastmod>` trong `sitemap.xml`.
 
@@ -63,4 +63,4 @@ CI (GitHub Actions) chạy cùng bộ test này cho mỗi pull request và mỗi
 Mr. Thịnh · Hotline 076 901 0092 · thinhdv90@gmail.com
 
 ---
-*Các tình huống, tên khách hàng và số liệu trên portal là ví dụ minh họa cho cách làm việc.*
+*Các tình huống trên portal lấy từ ví dụ thực tế; tên khách hàng và số liệu đã được điều chỉnh để bảo mật thông tin.*
