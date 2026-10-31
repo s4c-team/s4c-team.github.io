@@ -117,6 +117,8 @@ async function checkBrowser(base) {
     check(labels.join("|") === "Hotline|Email|Sao chép nội dung", "chỉ hiện kênh Hotline, Email (" + labels.join(", ") + ")");
     const rows = await page.$$eval(".cb-row", rs => rs.filter(r => getComputedStyle(r).display !== "none").map(r => r.querySelector(".cb-k").textContent));
     check(rows.join("|") === "Hotline|Email", "khung liên hệ chỉ hiện Hotline, Email (" + rows.join(", ") + ")");
+    const vals = await page.$$eval(".cb-row", rs => rs.filter(r => getComputedStyle(r).display !== "none").map(r => r.querySelector(".cb-v").textContent.trim()));
+    check(vals.length === 2 && /\d{3}/.test(vals[0]) && /@/.test(vals[1]), "khung liên hệ hiện đúng số hotline & email (" + vals.join(", ") + ")");
 
     await page.evaluate(() => document.documentElement.removeAttribute("data-theme"));
     await page.click("#themeBtn").catch(async () => { await page.click("#hamb"); await page.click("#themeBtn"); });

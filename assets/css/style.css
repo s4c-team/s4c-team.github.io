@@ -1101,7 +1101,7 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
   background: var(--bg); transition: background .3s, box-shadow .3s; cursor: pointer; }
 .l3-ops.on { background: var(--accent-wash); border-style: solid; box-shadow: 0 0 22px -4px color-mix(in srgb, var(--accent) 60%, transparent); }
 .l3-ops [data-icon] { font-size: 15px; }
-@media (max-width: 560px){ .l3-stage { height: 300px; transform: scale(.85); transform-origin: top center; margin-bottom: -40px; } }
+@media (max-width: 560px){ .l3-stage { height: 350px; transform: scale(.85); transform-origin: top center; margin-bottom: -46px; } }
 .layer-list { display: flex; flex-direction: column; gap: 4px; }
 .layer-item { --c: var(--accent); display: flex; gap: 14px; align-items: flex-start; width: 100%; text-align: left; padding: 14px 16px; border: none; border-radius: var(--radius);
   background: none; color: var(--ink); position: relative; transition: background .3s; }
@@ -1136,7 +1136,6 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
 .ab-auto { border-radius: 14px; }
 .node-detail { position: static; margin-top: 16px; padding: 20px 22px; border: none; border-radius: 16px; background: var(--surface-2); box-shadow: none; }
 .node-detail.swap { animation: softIn .45s ease both; }
-@media (max-width: 1000px){ .ab-ar { width: 2px; height: 18px; } .ab-ar i { left: -3px; top: 0; } }
 @media (prefers-reduced-motion: no-preference){
   .l3-slab[data-layer="sec"] { animation: l3bob 6s ease-in-out infinite; }
   .l3-slab[data-layer="net"] { animation: l3bob 6s ease-in-out .7s infinite; }
@@ -1149,8 +1148,54 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
   .ab-tour:not(.off) .dot { animation: blink 1.6s ease-in-out infinite; }
   .ab-chip.sel .itile, .ab-stage.sel .ab-ic { animation: popIc .5s cubic-bezier(.34,1.56,.64,1); }
 }
-@media (prefers-reduced-motion: no-preference) and (max-width: 1000px){ .ab-ar i { animation-name: flowY; } }
 @keyframes l3bob { 0%, 100% { margin-top: 0; } 50% { margin-top: -9px; } }
 @keyframes flowX { from { left: -4px; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } to { left: calc(100% - 4px); opacity: 0; } }
 @keyframes flowY { from { top: -6px; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } to { top: 100%; opacity: 0; } }
 @keyframes popIc { from { transform: scale(.7); } to { transform: scale(1); } }
+
+/* luồng xử lý: ≤1100px xếp dọc, đường nối & chấm sáng chạy dọc (một quy tắc duy nhất) */
+@media (max-width: 1100px){
+  .ab-pipe { flex-direction: column; overflow: visible; gap: 0; }
+  .ab-stage { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 1px; align-items: center; text-align: left; padding: 12px 14px; min-width: 0; }
+  .ab-stage .ab-ic { margin-bottom: 0; grid-row: span 2; }
+  .ab-stage .af-t, .ab-stage .af-d { margin: 0; }
+  .ab-ar { transform: none; width: 2px; height: 20px; margin: 2px 0 2px 33px; align-self: flex-start; }
+  .ab-ar i { left: -3px; top: 0; }
+  .ab-sources { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 1100px){ .ab-ar i { animation-name: flowY; } }
+
+/* =====================================================================
+   KHUNG KÍNH MỜ — nhóm nội dung chính của Tổng quan, Kịch bản, Nhóm dịch vụ,
+   Giải pháp & công nghệ, Cách hợp tác, Liên hệ
+   ===================================================================== */
+.glass, .eng-layout > div:first-child, .summary-out {
+  position: relative; border-radius: 22px;
+  background: color-mix(in srgb, var(--surface) 52%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  box-shadow: 0 24px 60px -36px rgba(0,0,0,.65), inset 0 1px 0 color-mix(in srgb, #fff 6%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2);
+}
+.glass { margin-top: 26px; padding: 4px 28px 28px; }
+.glass > .sec-title:first-child { margin-top: 24px; }
+.glass + .glass { margin-top: 20px; }
+@media (max-width: 560px){ .glass { padding: 2px 16px 20px; border-radius: 18px; } }
+/* bên trong khung kính: các khối con nhẹ đi, không thành "khung trong khung" */
+.glass .arch-board { background: color-mix(in srgb, var(--surface-2) 60%, transparent); }
+.glass .node-detail { background: color-mix(in srgb, var(--surface-2) 70%, transparent); }
+.glass .card { background: color-mix(in srgb, var(--surface) 70%, transparent); border-color: color-mix(in srgb, var(--ink) 7%, transparent); box-shadow: none; }
+.glass .card:hover { background: var(--surface); }
+.glass .callout, .glass .position-strip { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.lifecycle-wrap { padding: 4px 0 14px; margin-bottom: 6px; border-bottom: 1px solid var(--line); }
+.glass .layer-item.on { background: color-mix(in srgb, var(--c) 12%, transparent); }
+.glass .l3-ops { background: color-mix(in srgb, var(--surface) 80%, transparent); }
+/* Liên hệ: cột form và cột tóm tắt là 2 khung kính */
+.eng-layout > div:first-child { padding: 20px 22px; }
+.eng-layout > div:first-child > .card { background: none; border: none; box-shadow: none; padding: 6px 0 0 !important; }
+.summary-out { padding: 22px; }
+.summary-out .sum-card { background: color-mix(in srgb, var(--surface-2) 70%, transparent); }
+@media (max-width: 560px){ .eng-layout > div:first-child, .summary-out { padding: 16px; border-radius: 18px; } }
+/* giao diện sáng: kính sáng hơn */
+:root[data-theme="light"] .glass, :root[data-theme="light"] .eng-layout > div:first-child, :root[data-theme="light"] .summary-out {
+  background: color-mix(in srgb, #fff 62%, transparent); border-color: rgba(17,26,40,.07); box-shadow: 0 20px 50px -34px rgba(17,26,40,.35);
+}

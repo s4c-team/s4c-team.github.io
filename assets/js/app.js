@@ -129,6 +129,21 @@ NAV.forEach(n=>{
   b.innerHTML=`<span class="ix">${svgIcon(n.icon)}</span>${n.label}`;
   navScroll.appendChild(b);
 });
+/* khung kính mờ: gom mỗi tiêu đề mục + phần nội dung đi kèm vào một khung trong mờ.
+   Khối nổi bật (banner, demo, lời mời, thanh Tiếp theo) đứng riêng bên ngoài. */
+(function(){
+  const STOP=".next-step,.cta-panel,.img-banner,.page-head,.demo-run,.hero,.stat-strip";
+  ["overview","scenario","services","architecture","models"].forEach(id=>{
+    const v=document.getElementById("view-"+id); if(!v) return;
+    let grp=null;
+    [...v.children].forEach(ch=>{
+      if(ch.classList.contains("sec-title")){ grp=el("div","glass"); v.insertBefore(grp,ch); grp.appendChild(ch); return; }
+      if(!grp) return;
+      if(ch.matches(STOP)){ grp=null; return; }
+      grp.appendChild(ch);
+    });
+  });
+})();
 /* thanh "Tiếp theo" cuối mỗi màn — đi theo đúng thứ tự menu cho liền mạch */
 (function(){
   const order=NAV.filter(n=>n.view).map(n=>n.view);
@@ -518,7 +533,7 @@ function fillContact(){
     const row=node.closest(".cb-row");
     if(isPlaceholder(val)){ if(row) row.hidden=true; else { node.textContent="sẽ cập nhật"; node.classList.add("ph"); } return; }
     if(row) row.hidden=false;
-    else { node.textContent=val; node.classList.remove("ph"); }
+    node.textContent=val; node.classList.remove("ph");
   });
 }
 
