@@ -90,8 +90,10 @@ const secs=ms=>(ms/1000).toFixed(2).replace(".",",")+" giây";
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const randInt=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
 function copyText(txt){
-  try{ navigator.clipboard.writeText(txt); return; }catch(e){}
-  try{ const ta=document.createElement("textarea"); ta.value=txt; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }catch(e){}
+  /* cách dự phòng cho trình duyệt chặn quyền clipboard (lỗi xảy ra bất đồng bộ nên phải bắt bằng .catch) */
+  const fallback=()=>{ try{ const ta=document.createElement("textarea"); ta.value=txt; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }catch(e){} };
+  try{ if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(txt).catch(fallback); return; } }catch(e){}
+  fallback();
 }
 function toast(msg){ const o=$("#copyOk"); if(!o) return; o.textContent="✓ "+msg; o.style.display="inline"; clearTimeout(window.__toast); window.__toast=setTimeout(()=>o.style.display="none",2800); }
 function liveStop(){ if(window.__live){ clearInterval(window.__live); window.__live=null; } }

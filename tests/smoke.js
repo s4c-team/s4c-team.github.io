@@ -144,6 +144,10 @@ async function checkBrowser(base) {
       const cols = await page.$eval("#modelGrid", e => getComputedStyle(e).gridTemplateColumns.split(" ").length);
       check(cols === 1, "Cách hợp tác hiển thị 1 cột trên mobile");
     }
+    await page.goto(base + "/#engagement");
+    await page.click('.share-btn:has-text("Sao chép")');
+    await page.waitForTimeout(300);
+    check(await page.isVisible("#copyOk"), "bấm Sao chép nội dung không gây lỗi (kể cả khi trình duyệt chặn clipboard)");
     check(errors.length === 0, "không có lỗi JavaScript" + (errors.length ? ": " + errors.join(" | ") : ""));
     await ctx.close();
   }
