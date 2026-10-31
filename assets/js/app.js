@@ -139,7 +139,11 @@ NAV.forEach(n=>{
     const v=document.getElementById("view-"+id); if(!v) return;
     let grp=null;
     [...v.children].forEach(ch=>{
-      if(ch.classList.contains("sec-title")){ grp=el("div","glass"); v.insertBefore(grp,ch); grp.appendChild(ch); return; }
+      if(ch.classList.contains("sec-title")){
+        /* lưới thẻ bấm được (đã là khung) thì không bọc thêm khung kính — tránh khung trong khung */
+        const nx=ch.nextElementSibling;
+        if(nx && nx.matches(".scn-hub,.lifecycle-wrap,.model-grid,.svc-grid,.price-grid")){ grp=null; return; }
+        grp=el("div","glass"); v.insertBefore(grp,ch); grp.appendChild(ch); return; }
       if(!grp) return;
       if(ch.matches(STOP)){ grp=null; return; }
       grp.appendChild(ch);
