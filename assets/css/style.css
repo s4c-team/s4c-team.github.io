@@ -1031,3 +1031,22 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
 .hp-live { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
 @media (prefers-reduced-motion: no-preference) { .hp-live { animation: blink 1.6s ease-in-out infinite; } }
 @media (max-width: 420px) { .scn-hub .scn-pick { padding: 14px; gap: 12px; } .hp-ic { width: 38px; height: 38px; font-size: 17px; } .hp-title { font-size: 15px; } }
+
+/* ---- Khung kính: lề rộng hơn, bên trong không có "khung con" ---- */
+.glass { padding: 6px 32px 32px; }
+.glass > .sec-title:first-child { margin-top: 28px; }
+@media (max-width: 560px){ .glass { padding: 4px 22px 24px; } .glass > .sec-title:first-child { margin-top: 22px; } }
+/* nội dung để đọc nằm trong khung kính: bỏ hẳn nền/viền/bóng của thẻ con */
+.glass .pain-card, .glass .value-card, .glass .who, .glass .story-card, .glass .cap-card, .glass .feature, .glass .commit, .glass .journey-wrap {
+  background: none; border-radius: 0; box-shadow: none;
+}
+.glass .value-card, .glass .who { border: none; }
+.glass .who.no { border-left: 1px solid var(--line); }
+@media (max-width: 860px){ .glass .who.no { border-left: none; border-top: 1px solid var(--line); } }
+.glass .pain-card { border: none; border-top: 1px solid var(--line); }
+.glass .pain-card:hover, .glass .value-card:hover { background: none; }
+/* đoạn ghi chú trong khung kính: dòng chữ có biểu tượng, ngăn bằng vạch mảnh — không thành hộp */
+.glass .position-strip, .glass .callout, .glass .insight {
+  background: none; border-radius: 0; padding: 18px 0 0; margin-top: 20px; border-top: 1px solid var(--line);
+}
+.glass .position-strip .itile, .glass .callout .itile { border-radius: 50%; }
