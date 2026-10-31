@@ -475,6 +475,7 @@ function go(view, opts){
   trackView(view);
   revealIn(view);
   if(view==="scenario" && !guiding) setAuto(true);
+  if(view==="architecture") startArch(); else if(typeof stopArch==="function") stopArch();
 }
 $$(".nav-item").forEach(n=>n.addEventListener("click",()=>go(n.dataset.view)));
 document.addEventListener("click",e=>{const t=e.target.closest("[data-nav]");if(t){e.preventDefault();go(t.dataset.nav);}});
@@ -973,6 +974,7 @@ const nodeDetail=$("#nodeDetail");
 function showNode(id){
   const n=NODES[id];
   $$(".arch-node").forEach(g=>g.classList.toggle("sel",g.dataset.node===id));
+  nodeDetail.classList.remove("swap"); void nodeDetail.offsetWidth; nodeDetail.classList.add("swap");
   nodeDetail.innerHTML=`<h3 style="font-size:16px">${n.title}</h3>${n.oss?`<div style="margin-top:7px"><span class="oss-pill">${n.oss}</span></div>`:""}
     <div class="detail-field"><div class="k">Làm gì</div><div class="v">${n.purpose}</div></div>
     <div class="detail-field"><div class="k">Cần gì</div><ul>${n.input.map(i=>`<li>${i}</li>`).join("")}</ul></div>
@@ -981,7 +983,35 @@ function showNode(id){
     <div class="detail-field"><div class="k">Thuộc dịch vụ</div><div class="v" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">${n.svc.map(s=>`<span class="pill accent">${s}</span>`).join("")}</div></div>`;
   if(window.matchMedia("(max-width: 1000px)").matches) nodeDetail.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
-$$(".arch-node").forEach(g=>g.addEventListener("click",()=>showNode(g.dataset.node)));
+$$(".arch-node").forEach(g=>g.addEventListener("click",()=>{ stopArchTour(); showNode(g.dataset.node); }));
+
+/* ---- Giải pháp & công nghệ: tầng sáng lần lượt + sơ đồ tự giới thiệu ---- */
+const LAYER_ORDER=["sys","net","sec","ops"];
+const ARCH_ORDER=["servers","network","edge","pam","collect","enrich","detect","investigate","respond","report","automate"];
+const ARCH={ layer:0, node:-1, timer:0, tour:true, hoverLayer:false };
+function setLayer(k){
+  $$(".l3-slab,.l3-ops,.layer-item").forEach(n=>n.classList.toggle("on",n.dataset.layer===k));
+  ARCH.layer=Math.max(0,LAYER_ORDER.indexOf(k));
+}
+function archTick(){
+  if(currentView!=="architecture"||document.hidden) return;
+  if(!ARCH.hoverLayer) setLayer(LAYER_ORDER[(ARCH.layer+1)%LAYER_ORDER.length]);
+  const board=document.querySelector(".arch-board");
+  if(ARCH.tour && board){ const r=board.getBoundingClientRect(); if(r.bottom>0 && r.top<innerHeight){ ARCH.node=(ARCH.node+1)%ARCH_ORDER.length; showNode(ARCH_ORDER[ARCH.node]); } }
+}
+function startArch(){ clearInterval(ARCH.timer); setLayer(LAYER_ORDER[ARCH.layer]); ARCH.timer=setInterval(archTick, reduceMotion?6000:3400); }
+function stopArch(){ clearInterval(ARCH.timer); }
+function stopArchTour(){ ARCH.tour=false; const b=$("#abTour"); if(b){ b.classList.add("off"); $(".lbl",b).textContent="▶ Xem tự giới thiệu từng khối"; } }
+(function(){
+  $$(".layer-item,.l3-slab,.l3-ops").forEach(n=>{
+    n.addEventListener("pointerenter",()=>{ ARCH.hoverLayer=true; setLayer(n.dataset.layer); });
+    n.addEventListener("pointerleave",()=>{ ARCH.hoverLayer=false; });
+    n.addEventListener("click",()=>setLayer(n.dataset.layer));
+    n.addEventListener("focus",()=>setLayer(n.dataset.layer));
+  });
+  const b=$("#abTour");
+  if(b) b.addEventListener("click",()=>{ if(ARCH.tour){ stopArchTour(); return; } ARCH.tour=true; b.classList.remove("off"); $(".lbl",b).textContent="Đang tự giới thiệu từng khối · bấm khối bất kỳ để xem"; archTick(); });
+})();
 
 /* ---- Problem → Solution map (trang demo) ---- */
 (function(){
