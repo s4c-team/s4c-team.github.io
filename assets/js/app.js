@@ -179,7 +179,7 @@ const VALUES = [
 ];
 /* ===== 4 KỊCH BẢN (sắp theo thứ tự dịch vụ) — mỗi KB có OUTPUT bàn giao ===== */
 const SCENARIOS = [
-  { id:"assess", icon:"search", step:"Dịch vụ · Tư vấn & Đánh giá", label:"Đánh giá tổng thể",
+  { id:"assess", icon:"search", chip:"Tư vấn & đánh giá", brief:"Rà soát hệ thống theo khung chuẩn, chỉ ra rủi ro và việc nên làm trước.", step:"Dịch vụ · Tư vấn & Đánh giá", label:"Đánh giá tổng thể",
     tag:"Rà soát toàn diện hệ thống & ATTT theo khung chuẩn → bàn giao bản đánh giá, rủi ro và khuyến nghị.",
     customer:{icon:"network", name:"Công ty IT game outsource", type:"~30 người · gia công cho studio Âu–Mỹ", context:"Đối tác nước ngoài yêu cầu bản đánh giá năng lực an toàn thông tin trước khi ký hợp đồng mới"},
     steps:[
@@ -189,7 +189,7 @@ const SCENARIOS = [
       {key:"gap", nav:"Khoảng cách", title:"4 · Khoảng cách & rủi ro", intro:"S4C liệt kê khoảng cách cụ thể theo mức ưu tiên — cái nào nguy hiểm cần xử lý ngay, cái nào làm sau."},
       {key:"output", nav:"Bàn giao", title:"5 · Bàn giao: Bản đánh giá tổng thể", intro:"Kết quả cuối cùng là một bộ tài liệu bạn cầm được — để ra quyết định, trình đối tác hoặc chuẩn bị cho đợt kiểm tra của đối tác."},
     ]},
-  { id:"tune", icon:"gear", step:"Dịch vụ · Tăng cường bảo mật & tối ưu", label:"Siết bảo mật & tăng tốc hệ thống",
+  { id:"tune", icon:"shield", chip:"Bảo mật & tối ưu", brief:"Tăng tốc giờ cao điểm và đóng các “cửa” còn mở trên hệ thống.", step:"Dịch vụ · Tăng cường bảo mật & tối ưu", label:"Siết bảo mật & tăng tốc hệ thống",
     tag:"Siết cấu hình, tăng tốc và tăng cường bảo mật → hệ thống nhanh hơn và đạt chuẩn.",
     customer:{icon:"store", name:"Nền tảng app đi chợ", type:"Startup giao hàng · ~25 người", context:"Lượt truy cập tăng nhanh — giờ cao điểm hệ thống quá tải, đồng thời lo bề mặt tấn công mở rộng"},
     steps:[
@@ -199,7 +199,7 @@ const SCENARIOS = [
       {key:"standard", nav:"Đạt chuẩn", title:"4 · Đáp ứng tiêu chuẩn", intro:"Đối chiếu với bộ chuẩn cấu hình an toàn được quốc tế công nhận (CIS) — đảm bảo làm đúng chứ không làm cho có."},
       {key:"output", nav:"Bàn giao", title:"5 · Bàn giao: hệ thống tối ưu & đạt chuẩn", intro:"Kết quả: hệ thống nhanh hơn, vững hơn, có tài liệu cấu hình chuẩn để duy trì."},
     ]},
-  { id:"managed", icon:"gear", step:"Dịch vụ · Vận hành & Tự động hóa", label:"Vận hành & Tự động hóa",
+  { id:"managed", icon:"gear", chip:"Vận hành", brief:"Máy tự làm việc lặp lại, kỹ sư lo phần cần đến con người.", step:"Dịch vụ · Vận hành & Tự động hóa", label:"Vận hành & Tự động hóa",
     tag:"S4C đưa việc lặp lại vào tự động hóa (tác vụ chạy định kỳ, cảnh báo tự xử lý) để hệ thống tự chạy phần nhàm chán → bạn tiết kiệm nguồn lực, đội ngũ tập trung việc giá trị cao.",
     customer:{icon:"store", name:"Shop Táo Xanh (bán lẻ online)", type:"Bán lẻ đa kênh · ~30 người", context:"Không có đội kỹ thuật riêng; tuyển người giỏi thì đắt và khó giữ, mà phần lớn công việc lại là những đầu việc lặp đi lặp lại"},
     steps:[
@@ -209,7 +209,7 @@ const SCENARIOS = [
       {key:"resource", nav:"Nguồn lực", title:"4 · Tối ưu nguồn lực & chuẩn hóa cách làm", intro:"Nhờ tự động hóa, cùng một chi phí lo được nhiều việc hơn so với tuyển người làm tay — kèm quy trình rõ ràng và thời gian phản hồi thống nhất trước."},
       {key:"output", nav:"Bàn giao", title:"5 · Bàn giao: hệ thống tự chạy & minh bạch", intro:"Kết quả: phần việc lặp đã tự động hóa, nguồn lực dồn vào việc giá trị cao, và báo cáo minh bạch mỗi kỳ."},
     ]},
-  { id:"dfir", icon:"shield", step:"Dịch vụ · Điều tra & Ứng cứu sự cố", label:"Ứng cứu mã độc tống tiền",
+  { id:"dfir", icon:"pulse", chip:"Ứng cứu sự cố", brief:"Khoanh vùng, điều tra và khôi phục khi bị mã độc tống tiền.", step:"Dịch vụ · Điều tra & Ứng cứu sự cố", label:"Ứng cứu mã độc tống tiền",
     tag:"Sự cố nghiêm trọng (mã độc tống tiền, mã độc, website bị cài cửa hậu) → điều tra, khống chế, khôi phục và báo cáo.",
     customer:{icon:"network", name:"Công ty sản xuất đồ gỗ nội thất", type:"Doanh nghiệp nhỏ · xưởng + văn phòng · ~60 máy", context:"Sáng thứ Hai: hàng loạt máy hiện thông báo đòi tiền chuộc, file bị mã hóa đuôi .locked — dây chuyền &amp; văn phòng đình trệ"},
     steps:[
@@ -672,7 +672,12 @@ function renderHub(){
   const box=$("#scnHub"); if(!box) return; box.innerHTML="";
   SCENARIOS.forEach(sc=>{
     const b=el("button","scn-pick"+(sc.id===STATE.scenId?" active":""));
-    b.innerHTML=`<div class="sp-top"><span class="itile sp-ic">${svgIcon(sc.icon)}</span><div class="sp-meta"><div class="sp-step">${sc.step}</div><h3>${sc.label}</h3></div></div><div class="sp-tag">${sc.tag}</div><div class="sp-cta"><span class="sp-play-btn" title="Xem demo live" aria-label="Xem demo live">${svgIcon("play")}</span></div>`;
+    const on=sc.id===STATE.scenId;
+    b.innerHTML=`<span class="hp-ic">${svgIcon(sc.icon)}</span>
+      <span class="hp-body"><span class="hp-title">${sc.label}</span><span class="hp-brief">${sc.brief}</span>
+        <span class="hp-foot"><span class="hp-chip">${sc.chip}</span><span class="hp-steps">${sc.steps.length} bước</span>
+        <span class="hp-go">${on?'<span class="hp-live"></span>Đang xem':svgIcon("play")+'Xem demo'}</span></span></span>`;
+    b.setAttribute("aria-pressed",String(on));
     b.addEventListener("click",()=>{
       if(STATE.scenId!==sc.id){ STATE.scenId=sc.id; STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; STATE.clues=new Set(); renderScenario(); }
       const dr=$("#demoRun"); if(dr && dr.getBoundingClientRect().top>innerHeight*.6) dr.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"start"});
