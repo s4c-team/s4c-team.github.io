@@ -1158,14 +1158,6 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
 .about-lede h2 .grad-text { white-space: nowrap; }
 
 /* Nhóm dịch vụ: mỗi dịch vụ một màu nhấn ở icon, nhãn "Bước" và tiêu đề */
-.svc-grid > .svc-card:nth-child(8n+1) { --hc: var(--h-blue); }
-.svc-grid > .svc-card:nth-child(8n+2) { --hc: var(--h-violet); }
-.svc-grid > .svc-card:nth-child(8n+3) { --hc: var(--h-teal); }
-.svc-grid > .svc-card:nth-child(8n+4) { --hc: var(--h-gold); }
-.svc-grid > .svc-card:nth-child(8n+5) { --hc: var(--h-rose); }
-.svc-grid > .svc-card:nth-child(8n+6) { --hc: var(--h-blue); }
-.svc-grid > .svc-card:nth-child(8n+7) { --hc: var(--h-green); }
-.svc-grid > .svc-card:nth-child(8n+8) { --hc: var(--h-violet); }
 .svc-card .itile { border-radius: 50%; color: var(--hc); background: color-mix(in srgb, var(--hc) 15%, transparent); }
 .svc-card h3 { font-size: 16.5px; }
 .svc-card:hover h3 { color: var(--hc); }
@@ -1187,3 +1179,20 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
 .price-card { border-top: 3px solid color-mix(in srgb, var(--hc) 70%, transparent); }
 .price-card.popular { border-color: var(--accent); border-top: 3px solid var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 18px 40px -22px color-mix(in srgb, var(--accent) 80%, transparent); }
 .price-card .pc-badge { background: linear-gradient(90deg, var(--accent), #14b8a6); }
+
+/* Nhóm dịch vụ: chỉ 3 tông màu theo nhóm */
+[data-tone="a"] { --hc: var(--h-blue); }
+[data-tone="b"] { --hc: var(--h-teal); }
+[data-tone="c"] { --hc: var(--h-gold); }
+.lc-node .itile { color: var(--hc, var(--accent)); background: color-mix(in srgb, var(--hc, var(--accent)) 15%, transparent); border-radius: 50%; }
+.svc-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: -6px 0 16px; font-size: 12.5px; color: var(--ink-soft); }
+.svc-legend .lg { display: inline-flex; align-items: center; gap: 7px; }
+.svc-legend .lg::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--hc); }
+.svc-legend .lg-a { --hc: var(--h-blue); } .svc-legend .lg-b { --hc: var(--h-teal); } .svc-legend .lg-c { --hc: var(--h-gold); }
+
+/* Năng lực cốt lõi trên điện thoại: nhãn nhỏ gọn, xếp lưới đều thay vì cột dài giữa trang */
+@media (max-width: 560px){
+  .mq-track, .mq-row { justify-content: flex-start; gap: 6px; }
+  .mq-label { text-align: left; }
+  .mq-row span { font-size: 12.5px; padding: 6px 11px; }
+}

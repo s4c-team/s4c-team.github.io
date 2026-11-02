@@ -305,7 +305,6 @@ function postureScore(k){ return Math.round(POSTURE.reduce((s,p)=>s+p[k],0)/POST
 const PERF = {
   points: [ {t:"08:00",v:290},{t:"09:00",v:340},{t:"10:00",v:410},{t:"11:00",v:395},{t:"12:00",v:430},{t:"13:00",v:180},{t:"14:00",v:165},{t:"15:00",v:158},{t:"16:00",v:170},{t:"17:00",v:162} ],
   tuneIdx: 5, threshold: 300,
-  cpu:[42,48,61,58,66,39,35,33,37,34], ram:[55,58,63,61,67,52,49,48,50,49],
 };
 
 const SERVICES = [
@@ -418,8 +417,8 @@ const PROBLEM_MAP = [
 /* =========================================================
    State & nav behaviour
    ========================================================= */
-const STATE = { scenId:"assess", stageIdx:0, maxStage:0, opTab:"perf", clues:new Set() };
-function resetScenario(){ STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; renderScenario(); }
+const STATE = { scenId:"assess", stageIdx:0, maxStage:0 };
+function resetScenario(){ STATE.stageIdx=0; STATE.maxStage=0; renderScenario(); }
 function resetDemo(){ STATE.scenId="assess"; resetScenario(); go("scenario"); }
 /* ===== Analytics: đếm lượt xem theo từng màn =====
    Mặc định TẮT. Điền 1 mã bên dưới (chỉ cần 1 nhà cung cấp) rồi deploy là bật.
@@ -604,11 +603,6 @@ function perfChart(){
       ${dots}${labels}
     </svg></div>`;
 }
-function sparkSvg(arr,color){
-  const W=120,H=26,max=Math.max(...arr),min=Math.min(...arr);
-  const xx=i=>W*(i/(arr.length-1)), yy=v=> H-2-(H-4)*((v-min)/((max-min)||1));
-  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path d="${arr.map((v,i)=>`${i===0?"M":"L"} ${xx(i).toFixed(1)} ${yy(v).toFixed(1)}`).join(" ")}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
-}
 /* ===== Live riêng cho Managed: luồng tự động hóa (job/script) đang chạy ===== */
 const OPS_EVENTS = [
   {ic:"database",c:"ok",  t:"Job sao lưu tự động: hoàn tất &amp; kiểm chứng khôi phục"},
@@ -667,13 +661,6 @@ function startChainReplay(){
 function curScen(){ return SCENARIOS.find(s=>s.id===STATE.scenId)||SCENARIOS[0]; }
 function benefit(h,t){ return `<div class="benefit"><span class="b-ic">${svgIcon("check")}</span><div><div class="b-h">${h}</div><div class="b-t">${t}</div></div></div>`; }
 function renderScenario(){ renderHub(); renderCustomer(); renderProgress(); renderStage(); renderCtxPanel(); }
-const SCN_ART = {
-  assess:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gAs" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6f9bff"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="15" fill="url(#gAs)"/><rect x="15" y="34" width="6" height="13" rx="2" fill="#ffffff" opacity=".85"/><rect x="25" y="28" width="6" height="19" rx="2" fill="#ffffff" opacity=".85"/><rect x="35" y="23" width="6" height="24" rx="2" fill="#ffd27a"/><circle cx="40" cy="23" r="9" fill="none" stroke="#ffffff" stroke-width="3"/><path d="M47 30l6 6" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/></svg>`,
-  tune:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gTn" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3ad9bb"/><stop offset="1" stop-color="#17a085"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="15" fill="url(#gTn)"/><path d="M18 42a14 14 0 0 1 28 0" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/><path d="M32 42l11-9" stroke="#ffd27a" stroke-width="3.5" stroke-linecap="round"/><circle cx="32" cy="42" r="3.5" fill="#ffffff"/></svg>`,
-  managed:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gMn" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9a86ff"/><stop offset="1" stop-color="#5b4bd6"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="15" fill="url(#gMn)"/><path d="M44 24a13 13 0 1 0 2 14" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/><path d="M45 18v8h-8" fill="none" stroke="#ffd27a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="34" r="5" fill="#ffffff"/></svg>`,
-  dfir:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gDf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff9a63"/><stop offset="1" stop-color="#e14330"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="15" fill="url(#gDf)"/><path d="M32 15l13 4.5v8.5c0 9.5-6.5 14-13 17-6.5-3-13-7.5-13-17v-8.5z" fill="rgba(255,255,255,.2)" stroke="#ffffff" stroke-width="2.6"/><rect x="26.5" y="31" width="11" height="9" rx="2" fill="#ffd27a"/><path d="M28.5 31v-3a3.5 3.5 0 0 1 7 0v3" fill="none" stroke="#ffd27a" stroke-width="2.6"/></svg>`
-};
-function scnArt(id){ return SCN_ART[id]||""; }
 function renderHub(){
   const box=$("#scnHub"); if(!box) return; box.innerHTML="";
   SCENARIOS.forEach(sc=>{
@@ -685,7 +672,7 @@ function renderHub(){
         <span class="hp-go">${on?'<span class="hp-live"></span>Đang xem':svgIcon("play")+'Xem demo'}</span></span></span>`;
     b.setAttribute("aria-pressed",String(on));
     b.addEventListener("click",()=>{
-      if(STATE.scenId!==sc.id){ STATE.scenId=sc.id; STATE.stageIdx=0; STATE.maxStage=0; STATE.opTab="perf"; STATE.clues=new Set(); renderScenario(); }
+      if(STATE.scenId!==sc.id){ STATE.scenId=sc.id; STATE.stageIdx=0; STATE.maxStage=0; renderScenario(); }
       const dr=$("#demoRun"); if(dr && dr.getBoundingClientRect().top>innerHeight*.6) dr.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"start"});
     });
     box.appendChild(b);
@@ -731,7 +718,7 @@ function stepDemo(dir){
   else if(dir<0 && STATE.stageIdx>0){ STATE.stageIdx--; }
   else {
     const nx=SCENARIOS[(i+dir+SCENARIOS.length)%SCENARIOS.length];
-    STATE.scenId=nx.id; STATE.opTab="perf"; STATE.clues=new Set();
+    STATE.scenId=nx.id;
     STATE.stageIdx=dir>0?0:nx.steps.length-1; STATE.maxStage=STATE.stageIdx;
   }
   STATE.maxStage=Math.max(STATE.maxStage,STATE.stageIdx);
@@ -776,23 +763,6 @@ function bindStageNav(){
   if(p)p.addEventListener("click",()=>{STATE.stageIdx--;renderScenario();});
   if(n)n.addEventListener("click",()=>{STATE.stageIdx++;STATE.maxStage=Math.max(STATE.maxStage,STATE.stageIdx);renderScenario();});
   if(r)r.addEventListener("click",resetScenario);
-}
-let liveCpu=PERF.cpu.slice(), liveRam=PERF.ram.slice(), liveLat=PERF.points[PERF.points.length-1].v;
-function startPerfLive(){
-  liveStop();
-  if(reduceMotion) return;
-  window.__live=setInterval(()=>{
-    const latEl=$("#liveLatVal"),cpuEl=$("#liveCpuVal"),ramEl=$("#liveRamVal"),cs=$("#liveCpuSpark"),rs=$("#liveRamSpark");
-    if(!latEl){ liveStop(); return; }
-    liveLat=clamp(liveLat+randInt(-6,6),150,184);
-    liveCpu.push(clamp(liveCpu[liveCpu.length-1]+randInt(-4,4),28,48)); liveCpu.shift();
-    liveRam.push(clamp(liveRam[liveRam.length-1]+randInt(-3,3),44,56)); liveRam.shift();
-    latEl.textContent=liveLat;
-    cpuEl.textContent=liveCpu[liveCpu.length-1]+"%";
-    ramEl.textContent=liveRam[liveRam.length-1]+"%";
-    if(cs) cs.innerHTML=sparkSvg(liveCpu,"var(--accent)");
-    if(rs) rs.innerHTML=sparkSvg(liveRam,"var(--accent)");
-  },1700);
 }
 function radarChart(items){
   const cx=150, cy=138, R=104, N=items.length;
@@ -967,9 +937,13 @@ SERVICES.forEach((s,i)=>{
   node.innerHTML=`<div class="lc-chip" data-svc="${s.id}"><div class="itile">${svgIcon(s.icon)}</div><div class="lc-lbl">${LC_SHORT[s.id]}</div></div>${i<SERVICES.length-1?'<span class="lc-arrow">→</span>':''}`;
   lifecycleBox.appendChild(node);
 });
+/* 3 nhóm màu: a = tư vấn & thiết kế · b = triển khai & vận hành · c = khi cần & bổ trợ */
+const SVC_TONE={consult:"a",design:"a",operate:"b",harden:"b",report:"b",incident:"c",debug:"c",training:"c"};
+$$(".lc-chip").forEach(c=>c.closest(".lc-node").dataset.tone=SVC_TONE[c.dataset.svc]||"a");
 const svcGrid=$("#svcGrid");
 SERVICES.forEach(s=>{
   const card=el("div","card svc-card");
+  card.dataset.tone=SVC_TONE[s.id]||"a";
   card.innerHTML=`<div class="sc-top"><div class="itile">${svgIcon(s.icon)}</div><div><div class="sc-step">${s.step}</div><h3>${s.name}</h3></div></div>
     <p class="oneliner">${s.one}</p>
     <div class="tags">${s.tags.map(t=>`<span class="mini-tag">${t}</span>`).join("")}</div>
@@ -1047,7 +1021,7 @@ function stopArchTour(){ ARCH.tour=false; const b=$("#abTour"); if(b){ b.classLi
     const row=el("button","pm-row");
     row.innerHTML=`<span class="pm-ic itile">${svgIcon(p.ic)}</span><span class="pm-prob">${p.prob}</span><span class="pm-arrow">→</span><span class="pm-sol">${p.sol}</span><span class="pm-go">${p.scn?"Xem demo":"Xem dịch vụ"}</span>`;
     row.addEventListener("click",()=>{
-      if(p.scn){ if(STATE.scenId!==p.scn){STATE.scenId=p.scn;STATE.stageIdx=0;STATE.maxStage=0;STATE.clues=new Set();} renderScenario(); const dr=$("#demoRun"); if(dr) dr.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"start"}); }
+      if(p.scn){ if(STATE.scenId!==p.scn){STATE.scenId=p.scn;STATE.stageIdx=0;STATE.maxStage=0;} renderScenario(); const dr=$("#demoRun"); if(dr) dr.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"start"}); }
       else if(p.svc){ const s=SERVICES.find(x=>x.id===p.svc); if(s) openService(s); }
     });
     box.appendChild(row);
@@ -1212,7 +1186,7 @@ function stopGuide(){ guiding=false; guideBar.classList.remove("show"); }
 function gotoGuide(){
   const sc=curScen(), steps=sc.steps, total=steps.length+1;
   if(gIdx===0){ go("overview"); $("#gTitle").textContent="Nỗi lo của khách hàng"; $("#gAction").textContent="Mở đầu bằng vấn đề thật của doanh nghiệp nhỏ."; }
-  else { const i=gIdx-1; go("scenario"); STATE.stageIdx=i; STATE.maxStage=Math.max(STATE.maxStage,i); STATE.opTab="perf"; renderScenario(); $("#gTitle").textContent=sc.label+" · "+steps[i].nav; $("#gAction").textContent=steps[i].title.replace(/^\d+ · /,""); }
+  else { const i=gIdx-1; go("scenario"); STATE.stageIdx=i; STATE.maxStage=Math.max(STATE.maxStage,i); renderScenario(); $("#gTitle").textContent=sc.label+" · "+steps[i].nav; $("#gAction").textContent=steps[i].title.replace(/^\d+ · /,""); }
   $("#gCount").textContent=(gIdx+1)+" / "+total;
   $("#gPrev").disabled=gIdx===0; $("#gNext").disabled=gIdx===total-1;
 }
@@ -1255,8 +1229,8 @@ if(faqList) FAQS.forEach(f=>{ const d=el("div","faq"); d.innerHTML=`<button clas
 (function(){
   const nums=$$("[data-count]"); if(!nums.length) return;
   if(!("IntersectionObserver" in window)||reduceMotion) return;
-  nums.forEach(n=>n.textContent="0");
-  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ io.unobserve(e.target); countUp(e.target,+e.target.dataset.count); } }),{threshold:.6});
+  /* giữ số thật cho tới khi số lọt vào màn hình mới đếm lên — không bao giờ hiện "0" sai */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ io.unobserve(e.target); countUp(e.target,+e.target.dataset.count); } }),{threshold:.3});
   nums.forEach(n=>io.observe(n));
 })();
 /* quầng sáng rất nhẹ theo con trỏ trên các thẻ (chỉ máy có chuột) */
