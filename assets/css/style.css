@@ -676,7 +676,7 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
 .pl-fill { display: block; height: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--accent), #5eead4); }
 .demo-run:not(.playing) .pl-track { opacity: .4; }
 .demo-run.held .pl-fill { opacity: .45; }
-.demo-run.held .dr-title::after { content: " · đang giữ khi bạn đọc"; color: var(--ink-faint); font-weight: 500; text-transform: none; letter-spacing: 0; }
+.demo-run.held .dr-title::after { content: " · tạm giữ vì bạn đang thao tác"; color: var(--ink-faint); font-weight: 500; text-transform: none; letter-spacing: 0; }
 @media (max-width: 560px) { .player { width: 100%; } .pl-meta { margin-right: auto; } }
 
 /* nội dung bước demo trượt vào lần lượt */@media (prefers-reduced-motion: no-preference) {
@@ -1104,3 +1104,86 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
 @media (max-width: 560px){
   .eng-layout > div:first-child > .form-group:first-child > label { flex-direction: column; align-items: flex-start !important; gap: 4px !important; }
 }
+
+/* ---- Banner: chữ chú thích cân dòng, không rớt chữ lẻ ---- */
+.img-banner .ib-txt { display: block; text-wrap: balance; }
+
+/* ---- Thẻ chọn tình huống: hàng nhãn · số bước · nút luôn nằm sát đáy, các thẻ thẳng hàng ---- */
+.scn-hub .scn-pick { align-items: stretch; }
+.scn-hub .scn-pick .hp-ic { align-self: flex-start; }
+.scn-hub .hp-body { align-self: stretch; }
+.scn-hub .hp-foot { margin-top: auto; padding-top: 14px; }
+
+/* ---- Sơ đồ luồng xử lý: không nhấc khối lên & không cắt tràn → viền sáng không đè mép trên ---- */
+.ab-pipe { overflow: visible; padding: 6px 2px 4px; }
+.ab-chip.sel, .ab-stage.sel { transform: none; position: relative; z-index: 1; }
+.ab-sources { padding-top: 2px; }
+
+/* ---- Tư duy phân lớp: chuyển tầng mượt — mô tả luôn hiện, không co giãn chiều cao ---- */
+.layer-item .li-p { max-height: none; opacity: 1; transition: color .5s ease; color: var(--ink-faint); }
+.layer-item { transition: background .5s ease, opacity .5s ease; opacity: .62; }
+.layer-item.on { opacity: 1; }
+.layer-item.on .li-p { color: var(--ink-soft); }
+.layer-item::before { transition: opacity .5s ease; }
+.l3-slab { transition: transform .7s cubic-bezier(.22,.8,.3,1), background .6s ease, box-shadow .6s ease, opacity .6s ease; will-change: transform; }
+@media (prefers-reduced-motion: no-preference){
+  .l3-slab[data-layer="sec"] { animation: l3float 6s ease-in-out infinite; }
+  .l3-slab[data-layer="net"] { animation: l3float 6s ease-in-out .7s infinite; }
+  .l3-slab[data-layer="sys"] { animation: l3float 6s ease-in-out 1.4s infinite; }
+}
+@keyframes l3float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -9px; } }
+
+/* =====================================================================
+   Điểm nhấn màu cho tiêu đề: Về S4C · Nhóm dịch vụ · Bảng giá
+   ===================================================================== */
+:root { --h-blue: #7ea2ff; --h-teal: #4fd1b5; --h-gold: #f5b84b; --h-violet: #b69cff; --h-rose: #ff8fa3; --h-green: #5fd68e; }
+:root[data-theme="light"] { --h-blue: #2f5fd6; --h-teal: #0f9c80; --h-gold: #b7791f; --h-violet: #6d4fd8; --h-rose: #d14a64; --h-green: #1f9d57; }
+
+/* Về S4C: tiêu đề mở đầu có cụm nhấn; 4 chặng câu chuyện mỗi chặng một màu; 3 trụ cột theo màu của mô hình 3 tầng */
+.story-grid > .story-card:nth-child(1) { --hc: var(--h-blue); }
+.story-grid > .story-card:nth-child(2) { --hc: var(--h-teal); }
+.story-grid > .story-card:nth-child(3) { --hc: var(--h-gold); }
+.story-grid > .story-card:nth-child(4) { --hc: var(--h-violet); }
+.story-card { border-left-color: color-mix(in srgb, var(--hc, var(--accent)) 55%, transparent); }
+.story-card h3 { font-size: 17px; color: var(--hc, var(--ink)); }
+.story-card .sh .stage-n { background: color-mix(in srgb, var(--hc, var(--accent)) 16%, transparent); color: var(--hc, var(--accent-ink)); font-size: 12.5px; }
+.story-card .itile { color: var(--hc, var(--accent)); background: color-mix(in srgb, var(--hc, var(--accent)) 14%, transparent); }
+.story-card .lesson b { color: var(--hc, var(--accent-ink)); }
+.cap-grid > .cap-card:nth-child(1) { --hc: var(--h-blue); }
+.cap-grid > .cap-card:nth-child(2) { --hc: var(--h-teal); }
+.cap-grid > .cap-card:nth-child(3) { --hc: var(--h-gold); }
+.cap-card .cap-h h3 { font-size: 17px; color: var(--hc, var(--ink)); }
+.cap-card .cap-h .itile { color: var(--hc); background: color-mix(in srgb, var(--hc) 14%, transparent); border-radius: 50%; }
+.commit b { color: var(--accent-ink); font-size: 14.5px !important; }
+.about-lede h2 .grad-text { white-space: nowrap; }
+
+/* Nhóm dịch vụ: mỗi dịch vụ một màu nhấn ở icon, nhãn "Bước" và tiêu đề */
+.svc-grid > .svc-card:nth-child(8n+1) { --hc: var(--h-blue); }
+.svc-grid > .svc-card:nth-child(8n+2) { --hc: var(--h-violet); }
+.svc-grid > .svc-card:nth-child(8n+3) { --hc: var(--h-teal); }
+.svc-grid > .svc-card:nth-child(8n+4) { --hc: var(--h-gold); }
+.svc-grid > .svc-card:nth-child(8n+5) { --hc: var(--h-rose); }
+.svc-grid > .svc-card:nth-child(8n+6) { --hc: var(--h-blue); }
+.svc-grid > .svc-card:nth-child(8n+7) { --hc: var(--h-green); }
+.svc-grid > .svc-card:nth-child(8n+8) { --hc: var(--h-violet); }
+.svc-card .itile { border-radius: 50%; color: var(--hc); background: color-mix(in srgb, var(--hc) 15%, transparent); }
+.svc-card h3 { font-size: 16.5px; }
+.svc-card:hover h3 { color: var(--hc); }
+.svc-card .sc-step { display: inline-block; padding: 2px 9px; border-radius: 100px; font-weight: 600; color: var(--hc); background: color-mix(in srgb, var(--hc) 13%, transparent); margin-bottom: 4px; }
+.svc-card { border-top: 3px solid color-mix(in srgb, var(--hc) 70%, transparent); }
+
+/* Bảng giá: tên gói rõ hơn, con số nổi bằng màu, gói "Nên bắt đầu" nổi bật */
+.price-grid > .price-card:nth-child(6n+1) { --hc: var(--h-green); }
+.price-grid > .price-card:nth-child(6n+2) { --hc: var(--h-blue); }
+.price-grid > .price-card:nth-child(6n+3) { --hc: var(--h-violet); }
+.price-grid > .price-card:nth-child(6n+4) { --hc: var(--h-teal); }
+.price-grid > .price-card:nth-child(6n+5) { --hc: var(--h-gold); }
+.price-grid > .price-card:nth-child(6n+6) { --hc: var(--h-rose); }
+.price-card .itile { border-radius: 50%; color: var(--hc); background: color-mix(in srgb, var(--hc) 15%, transparent); }
+.price-card h3 { font-size: 16.5px; }
+.price-card .pc-price { color: var(--hc); font-size: 27px; }
+.price-card .pc-unit { color: var(--ink-faint); }
+.price-card li .ck { color: var(--hc); }
+.price-card { border-top: 3px solid color-mix(in srgb, var(--hc) 70%, transparent); }
+.price-card.popular { border-color: var(--accent); border-top: 3px solid var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 18px 40px -22px color-mix(in srgb, var(--accent) 80%, transparent); }
+.price-card .pc-badge { background: linear-gradient(90deg, var(--accent), #14b8a6); }

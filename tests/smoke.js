@@ -170,10 +170,12 @@ async function checkBrowser(base) {
     await pg.goto(base + "/#scenario");
     await pg.evaluate(() => { document.getElementById("demoRun").scrollIntoView({ block: "start" }); });
     const box = await pg.locator(".scn-stage").boundingBox();
-    await pg.mouse.move(box.x + 50, box.y + 50); await pg.mouse.move(box.x + 60, box.y + 60);
-    check(await pg.evaluate(() => AUTO.hold), "rê chuột trên demo thì tạm giữ");
-    await pg.waitForFunction(() => !AUTO.hold, null, { timeout: 6000 }).catch(() => {});
-    check(await pg.evaluate(() => !AUTO.hold), "con trỏ nằm yên thì vài giây sau tự chạy tiếp");
+    for (let i = 0; i < 12; i++) await pg.mouse.move(box.x + 40 + i * 25, box.y + 60 + i * 10);
+    check(await pg.evaluate(() => !AUTO.hold), "di chuột trên demo không làm demo dừng");
+    await pg.mouse.click(box.x + 20, box.y + 20);
+    check(await pg.evaluate(() => AUTO.hold), "bấm vào trong demo thì tạm giữ");
+    await pg.click("#plToggle"); await pg.click("#plToggle");
+    check(await pg.evaluate(() => AUTO.on && !AUTO.hold), "bấm Tự chạy thì bỏ giữ và chạy tiếp ngay");
     await c.close();
   }
 

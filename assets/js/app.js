@@ -752,18 +752,19 @@ function setAuto(on){
   if(dr) dr.classList.toggle("playing",on);
   autoReset(); if(on) AUTO.raf=requestAnimationFrame(autoTick);
 }
-$("#plToggle").addEventListener("click",()=>setAuto(!AUTO.on));
+$("#plToggle").addEventListener("click",()=>{ if(window.releaseHold) releaseHold(); setAuto(!AUTO.on); });
 $("#plNext").addEventListener("click",()=>stepDemo(1));
 $("#plPrev").addEventListener("click",()=>stepDemo(-1));
-/* khách đang thao tác trong khung demo (rê/di chuột, chạm, gõ phím) thì giữ tạm,
-   ngừng thao tác vài giây là tự chạy tiếp — con trỏ nằm yên trên khung không làm demo đứng mãi */
+/* chỉ tạm giữ khi khách thật sự thao tác trong khung demo (bấm, chạm, gõ phím) — giữ 8 giây rồi chạy tiếp.
+   Rê / di chuột KHÔNG làm demo dừng (người đọc hay di chuột liên tục, trình duyệt cũng tự phát
+   sự kiện di chuột khi nội dung dưới con trỏ thay đổi) */
 (function(){
   const st=document.querySelector(".scn-stage"); if(!st) return;
   let tHold=0;
   const hold=ms=>{ AUTO.hold=true; const dr=$("#demoRun"); if(dr) dr.classList.toggle("held",AUTO.on);
-    clearTimeout(tHold); tHold=setTimeout(()=>{ AUTO.hold=false; const d=$("#demoRun"); if(d) d.classList.remove("held"); },ms); };
-  st.addEventListener("pointermove",e=>{ if(e.pointerType==="mouse") hold(4000); },{passive:true});
-  st.addEventListener("pointerdown",e=>hold(e.pointerType==="mouse"?6000:10000),{passive:true});
+    clearTimeout(tHold); tHold=setTimeout(releaseHold,ms); };
+  window.releaseHold=()=>{ clearTimeout(tHold); AUTO.hold=false; const d=$("#demoRun"); if(d) d.classList.remove("held"); };
+  st.addEventListener("pointerdown",()=>hold(8000),{passive:true});
   st.addEventListener("keydown",()=>hold(8000));
   /* chỉ dừng khi khung demo đã cuộn qua (nằm phía trên màn hình) — tránh trang nhảy khi đang đọc phần bên dưới;
      demo còn nằm phía dưới (vừa vào màn trên điện thoại) thì vẫn chạy */
