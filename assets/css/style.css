@@ -1196,3 +1196,19 @@ body.consent-open .fab { opacity: 0; pointer-events: none; }
   .mq-label { text-align: left; }
   .mq-row span { font-size: 12.5px; padding: 6px 11px; }
 }
+
+/* Nhóm dịch vụ: một tông xanh, đậm nhạt theo nhóm (nhạt = tư vấn, vừa = vận hành, đậm = khi cần) */
+:root { --s-a: #a9c3ff; --s-b: #6b95ff; --s-c: #3d68e6; }
+:root[data-theme="light"] { --s-a: #6f97f0; --s-b: #2f5fd6; --s-c: #1b3a94; }
+[data-tone="a"] { --hc: var(--s-a); }
+[data-tone="b"] { --hc: var(--s-b); }
+[data-tone="c"] { --hc: var(--s-c); }
+.svc-legend .lg-a { --hc: var(--s-a); } .svc-legend .lg-b { --hc: var(--s-b); } .svc-legend .lg-c { --hc: var(--s-c); }
+
+/* Banner trên điện thoại: chữ trải gần hết bề ngang → phủ tối đều cả khung, ảnh mờ & tối hơn,
+   bóng chữ đậm hơn để chữ luôn rõ bất kể vùng ảnh sáng/tối phía sau */
+@media (max-width: 700px){
+  .img-banner img { filter: blur(5px) brightness(.45) saturate(.9); }
+  .img-banner .ib-ov { background: linear-gradient(180deg, rgba(9,13,21,.55), rgba(9,13,21,.7)); }
+  .img-banner .ib-cap { text-shadow: 0 1px 2px rgba(0,0,0,.8), 0 2px 16px rgba(0,0,0,.7); }
+}

@@ -751,7 +751,8 @@ $("#plPrev").addEventListener("click",()=>stepDemo(-1));
   const hold=ms=>{ AUTO.hold=true; const dr=$("#demoRun"); if(dr) dr.classList.toggle("held",AUTO.on);
     clearTimeout(tHold); tHold=setTimeout(releaseHold,ms); };
   window.releaseHold=()=>{ clearTimeout(tHold); AUTO.hold=false; const d=$("#demoRun"); if(d) d.classList.remove("held"); };
-  st.addEventListener("pointerdown",()=>hold(8000),{passive:true});
+  /* "click" chỉ phát khi bấm/chạm hẳn — vuốt để cuộn trang trên điện thoại không làm demo dừng */
+  st.addEventListener("click",()=>hold(8000));
   st.addEventListener("keydown",()=>hold(8000));
   /* chỉ dừng khi khung demo đã cuộn qua (nằm phía trên màn hình) — tránh trang nhảy khi đang đọc phần bên dưới;
      demo còn nằm phía dưới (vừa vào màn trên điện thoại) thì vẫn chạy */

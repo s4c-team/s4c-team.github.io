@@ -37,6 +37,15 @@ function checkStatic() {
   check((html.match(/fonts\.googleapis\.com\/css2/g) || []).length === 1, "Google Fonts tải một lần");
   check(!/base64,/.test(html), "không nhúng ảnh base64");
   {
+    const meta = n => (html.match(new RegExp(`<meta (?:name|property)="${n}" content="([^"]*)"`)) || [])[1] || "";
+    const title = (html.match(/<title>([^<]*)<\/title>/) || [])[1] || "";
+    const desc = meta("description");
+    check(title.length >= 30 && title.length <= 65, "SEO: tiêu đề trang 30–65 ký tự (" + title.length + ")");
+    check(desc.length >= 70 && desc.length <= 160, "SEO: mô tả trang 70–160 ký tự (" + desc.length + ")");
+    check(meta("og:description") === desc && meta("twitter:description") === desc, "SEO: mô tả Open Graph/Twitter trùng mô tả trang");
+    check(/<link rel="canonical" href="https:\/\/[^"]+">/.test(html) && meta("og:image").startsWith("https://"), "SEO: có canonical & ảnh chia sẻ dạng URL đầy đủ");
+  }
+  {
     const js = fs.readFileSync(path.join(ROOT, "assets/js/app.js"), "utf8");
     const shown = Object.fromEntries([...js.matchAll(/\{ q:"([^"]+)", a:"([^"]+)" \}/g)].map(m => [m[1], m[2]]));
     const ldRaw = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1])).find(d => d["@type"] === "FAQPage");
@@ -176,6 +185,21 @@ async function checkBrowser(base) {
     check(await pg.evaluate(() => AUTO.hold), "bấm vào trong demo thì tạm giữ");
     await pg.click("#plToggle"); await pg.click("#plToggle");
     check(await pg.evaluate(() => AUTO.on && !AUTO.hold), "bấm Tự chạy thì bỏ giữ và chạy tiếp ngay");
+    await c.close();
+  }
+
+  {
+    const c = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+    await c.route(url => !url.href.startsWith(base), r => r.abort());
+    const pg = await c.newPage();
+    await pg.goto(base + "/#scenario");
+    await pg.evaluate(() => document.getElementById("demoRun").scrollIntoView({ block: "start" }));
+    const cdp = await c.newCDPSession(pg);
+    await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: 200, y: 500 }] });
+    for (let k = 1; k <= 6; k++) await cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: 200, y: 500 - k * 20 }] });
+    await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+    await pg.waitForTimeout(300);
+    check(await pg.evaluate(() => AUTO.on && !AUTO.hold), "điện thoại: vuốt cuộn trong khung demo không làm demo dừng");
     await c.close();
   }
 
