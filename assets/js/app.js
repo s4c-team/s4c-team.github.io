@@ -480,6 +480,7 @@ function trackView(view){
 }
 function viewFromHash(){ const v=decodeURIComponent(location.hash.slice(1)); return VIEW_TITLES[v]?v:"overview"; }
 let currentView=null;
+const HOME_TITLE=document.title; /* tiêu đề trang chủ lấy từ <title>, chỉ sửa một chỗ */
 function go(view, opts){
   if(!VIEW_TITLES[view]) view="overview";
   if(!(opts&&opts.fromHistory) && viewFromHash()!==view){
@@ -487,7 +488,7 @@ function go(view, opts){
   }
   if(view!=="scenario" && typeof setAuto==="function" && AUTO.on) setAuto(false);
   currentView=view;
-  document.title=(view==="overview"?"S4C — Dịch vụ IT & an toàn thông tin cho doanh nghiệp nhỏ":VIEW_TITLES[view]+" — S4C");
+  document.title=(view==="overview"?HOME_TITLE:VIEW_TITLES[view]+" — S4C");
   liveStop();
   $$(".view").forEach(v=>v.classList.toggle("active", v.id==="view-"+view));
   $$(".nav-item").forEach(n=>n.classList.toggle("active", n.dataset.view===view));

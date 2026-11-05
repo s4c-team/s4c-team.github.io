@@ -1,6 +1,6 @@
 # S4C Portal
 
-**Systems · Smart Solutions · Security** — chỗ dựa kỹ thuật cho doanh nghiệp nhỏ, siêu nhỏ và startup.
+**S4C – Technology & Solutions** — dịch vụ và giải pháp công nghệ cho doanh nghiệp nhỏ, siêu nhỏ và startup: xây dựng, vận hành, tối ưu hệ thống CNTT và bảo đảm an toàn thông tin.
 
 Portal giới thiệu dịch vụ tương tác: vận hành & tối ưu hệ thống, hardening & an toàn thông tin, tự động hóa việc lặp lại, và điều tra – ứng cứu sự cố. Có demo live theo từng tình huống thực tế, mỗi tình huống kết thúc bằng một kết quả bàn giao cụ thể.
 
