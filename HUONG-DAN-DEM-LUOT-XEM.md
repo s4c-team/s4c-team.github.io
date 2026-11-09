@@ -1,4 +1,4 @@
-# Hướng dẫn bật ĐẾM LƯỢT XEM theo từng màn — S4C Hub
+# Hướng dẫn bật ĐẾM LƯỢT XEM theo từng màn — S4C
 
 Site này là trang đơn: đổi "màn" bằng JavaScript, mỗi màn có URL riêng dạng `#pricing`.
 Bộ đếm đã được gắn sẵn: mỗi lần đổi màn sẽ gửi 1 "lượt xem trang" riêng cho
@@ -15,11 +15,11 @@ Khuyến nghị dùng **Google Analytics 4 (GA4)** — miễn phí, không cần
 1. Vào https://analytics.google.com và đăng nhập Google.
 2. Bấm bánh răng **Admin** (góc dưới trái) → **Create** → **Account**.
    - Account name: `S4C` → Next.
-3. **Create property**: name `S4C Hub`, Time zone `Vietnam`, Currency `VND` → Next
+3. **Create property**: name `S4C`, Time zone `Vietnam`, Currency `VND` → Next
    → chọn ngành/quy mô bất kỳ → **Create**.
 4. Chọn nền tảng **Web**:
    - Website URL: `https://s4c-team.github.io`
-   - Stream name: `S4C Hub` → **Create stream**.
+   - Stream name: `S4C` → **Create stream**.
 5. Màn hình hiện **Measurement ID** dạng `G-XXXXXXXXXX` → **copy** mã này.
 
 ------------------------------------------------------------

@@ -87,8 +87,6 @@ const isPlaceholder = v => !v || /^\s*\[.*\]\s*$/.test(v);
 function asButton(node, fn){ node.setAttribute("role","button"); node.tabIndex=0; node.addEventListener("click",fn); node.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); fn(e); } }); return node; }
 /* mili-giây → "0,43 giây" cho người không chuyên dễ đọc */
 const secs=ms=>(ms/1000).toFixed(2).replace(".",",")+" giây";
-const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-const randInt=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
 function copyText(txt){
   /* cách dự phòng cho trình duyệt chặn quyền clipboard (lỗi xảy ra bất đồng bộ nên phải bắt bằng .catch) */
   const fallback=()=>{ try{ const ta=document.createElement("textarea"); ta.value=txt; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }catch(e){} };

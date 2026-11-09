@@ -18,6 +18,7 @@ Trang đang chạy tại <https://s4c-team.github.io> (GitHub Pages, nhánh `mai
 | `tests/smoke.js` | Kiểm thử tự động bằng Playwright |
 | `tools/stamp-assets.js` | Gắn mã phiên bản `?v=` cho CSS/JS/ảnh (chống cache cũ) |
 | `HUONG-DAN-DEM-LUOT-XEM.md` | Hướng dẫn bật/đọc số liệu Google Analytics |
+| `google9fb899d5a0ef34b2.html` | File xác minh Google Search Console — **không xóa**, xóa là mất quyền quản lý site trên Search Console |
 
 Mỗi màn có URL riêng dạng `https://s4c-team.github.io/#pricing`, gửi link là mở đúng màn đó. Các màn: `overview`, `scenario`, `about`, `services`, `pricing`, `models`, `architecture`, `faq`, `engagement`, `privacy`.
 
